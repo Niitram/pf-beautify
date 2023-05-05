@@ -1,33 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Route, Routes } from "react-router-dom"
+import Landing from "./views/landing/Landing"
+import Home from "./views/home/Home"
+import About from "./views/about/About"
+import Cart from "./views/cart/Cart"
+import Products from "./views/products/Products"
+import Services from "./views/services/Services"
+import DashboardAdmin from "./views/dashboardAdmin/DashboardAdmin"
+import DetailProduct from "./views/detailProduct/DetailProduct"
+import DetailPayment from "./views/detailPayment/DetailPayment"
+import DetailUser from "./views/detailUser/DetailUser"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
+        <Route path="/detailUser" element={<DetailUser />} />
+        <Route path="/detailProduct" element={<DetailProduct />} />
+        <Route path="/detailPayment" element={<DetailPayment />} />
+      </Routes>
     </>
   )
 }
