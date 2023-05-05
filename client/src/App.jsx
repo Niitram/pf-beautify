@@ -12,21 +12,22 @@ import DetailPayment from "./views/detailPayment/DetailPayment"
 import DetailUser from "./views/detailUser/DetailUser"
 
 function App() {
-
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
-        <Route path="/detailUser" element={<DetailUser />} />
-        <Route path="/detailProduct" element={<DetailProduct />} />
-        <Route path="/detailPayment" element={<DetailPayment />} />
-      </Routes>
+      <div>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
+          <Route path="/detailUser" element={<DetailUser />} />
+          <Route path="/detailProduct" element={<DetailProduct />} />
+          <Route path="/detailPayment" element={<DetailPayment />} />
+        </Routes>
+      </div>
     </>
   )
 }
