@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 //* Definiendo la función que crea el modelo Products
 module.exports = (sequelize) => {
   sequelize.define(
-    "Products",
+    "Product",
     {
       id: {
         type: DataTypes.INTEGER,
