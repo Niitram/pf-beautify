@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 
-//* Definiendo la función que crea el modelo Genre
+//* Definiendo la función que crea el modelo Admins
 module.exports = (sequelize) => {
   sequelize.define(
     "Admin",
