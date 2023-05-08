@@ -1,16 +1,15 @@
-const { Router } = require("express");
+const { Router } = require('express');
+const categoriesRoutes = require('../handlers/categories-routes')
+const servicesRoutes = require('../handlers/service-routes')
 const productsRouter = require("../handlers/products-routes");
-const bulkCreateProducts = require("../data/productsData");
-// const authRoutes = require("../handlers/auth-routes");
-
+const usersRouter = require('../handlers/client-routes')
 const router = Router();
 
-router.use((req, res, next) => {
-  console.log("holis");
-  next();
-});
 
-// router.use("/auth", authRoutes);
+
+router.use('/client', usersRouter)
+ router.use('/categories', categoriesRoutes)
+ router.use('/services', servicesRoutes);
 router.use("/products", productsRouter);
 
 router.get("/holis", (req, res) => {

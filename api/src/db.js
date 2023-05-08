@@ -12,7 +12,7 @@ const sequelize = new Sequelize(
   }
 );
 const basename = path.basename(__filename);
-
+// aqui paso eber para dejarles la extencion ajajaa gracias!
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
