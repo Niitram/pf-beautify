@@ -9,6 +9,7 @@ const sequelize = new Sequelize(
   {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+    alter: true,
   }
 );
 const basename = path.basename(__filename);
@@ -36,10 +37,11 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 //Creamos relaciones de la bdd
-const { Product, Category, Client } = sequelize.models;
+const { Product, Category, Client, Service, Employee} = sequelize.models;
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
+Employee.hasMany(Service);
 
 module.exports = {
   ...sequelize.models,

@@ -1,9 +1,10 @@
 const { Router } = require('express');
-const authRoutes = require('../handlers/auth-routes')
+const categoriesRoutes = require('../handlers/categories-routes')
+const servicesRoutes = require('../handlers/service-routes')
 const router = Router();
 
-
- router.use('/auth', authRoutes)
+ router.use('/categories', categoriesRoutes)
+ router.use('/service', servicesRoutes);
  router.get("/holis", (req, res) => {
     try {
         res.status(200).send("tukis")
