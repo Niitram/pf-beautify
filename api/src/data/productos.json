@@ -1,0 +1,12 @@
+[
+    {
+  "name": "jesus",
+  "description": "jesus",
+  "image": "jesus",
+  "price": 10,
+  "discount": 2,
+  "stock": 30,
+  "state": 5,
+  "CategoryID": 1
+}
+]
