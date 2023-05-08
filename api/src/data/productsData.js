@@ -1,21 +1,25 @@
 const productos = require("./productos.json");
-const { Product } = require("../db.js");
+const { Product, Category } = require("../db.js");
 
-const productForDataBase = async () => {
-    try {
-       
-        for (let product of productos) {
-            await Product.create(product);
-        }
+const bulkCreateProducts = async (req, res) => {
+  try {
+    for (let product of productos) {
+      const newProduct = await Product.create(product);
+      const category = await Category.findOne({
+        where: { name: product.category },
+      });
 
-        console.log("Productos agregados a la base de datos!");
-
-    } catch (error) {
-        console.error("Error al agregar productos a la base de datos:", error);
-
+      if (!category) newProduct.createCategory({ name: product.category });
+      else newProduct.setCategory(category.dataValues.id);
     }
-}
 
-module.exports = {
-    productForDataBase
-}
+    console.log("Productos agregados a la base de datos!");
+  } catch (error) {
+    console.error(
+      "Error al agregar productos a la base de datos:",
+      error.message
+    );
+  }
+};
+
+module.exports = bulkCreateProducts;

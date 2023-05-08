@@ -11,7 +11,20 @@ const getProducts = async (name) => {
       })
     : await Product.findAll();
 
-  return products;
+  const filteredProducts = products.map(
+    ({ id, name, image, price, discount, CategoryId, stock }) => {
+      return {
+        id,
+        name,
+        image,
+        price,
+        discount,
+        categoryId: CategoryId,
+        stock,
+      };
+    }
+  );
+  return filteredProducts;
 };
 
 module.exports = getProducts;

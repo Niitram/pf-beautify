@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const getProducts = require("../controllers/getProducts");
 const postProduct = require("../controllers/postProduct");
+const getProductById = require("../controllers/getProductById");
 
 const productsRouter = Router();
 
@@ -24,9 +25,26 @@ productsRouter.post("/", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+productsRouter.get("/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+
+    //chequea que la id sea un número
+    if (String(id) === "NaN")
+      return res.status(400).json({ error: "Incorrect data" });
+
+    const product = await getProductById(id);
+    if (!product) return res.status(400).json({ error: "Product not found" });
+
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // productsRouter.put("/:id",updateProducts);
 // productsRouter.delete("/:id",deleteProducts);
-// productsRouter.get("/:id",getProductById);
 // productsRouter.patch("/:id", updateProductValues);
 
 module.exports = productsRouter;

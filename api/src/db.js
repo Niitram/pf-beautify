@@ -7,7 +7,6 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/beautify`,
   {
-   
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   }
@@ -38,28 +37,26 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 //Creamos relaciones de la bdd
 
-const { Product, Category,Client,Admin,Comment,Profesional,Service,Favorite } = sequelize.models;
-
+const { Product, Category, Client, Comment, Profesional, Service } =
+  sequelize.models;
 
 //*Relaciones entre los modelos Category y Product
 Category.hasMany(Product);
-
 Product.belongsTo(Category);
 
-
 //* Relaciones entre el modelo Comment (Comentarios) con Product y Client
-Comment.belongsTo(Client, { as: 'user', foreignKey: 'id' });
-Comment.belongsTo(Product, { as: 'product', foreignKey: 'id' });
-Product.hasMany(Comment, { as: 'comments' });
-Client.hasMany(Comment, { as: 'comments' });
+Comment.belongsTo(Client, { as: "user", foreignKey: "id" });
+Comment.belongsTo(Product, { as: "product", foreignKey: "id" });
+Product.hasMany(Comment, { as: "comments" });
+Client.hasMany(Comment, { as: "comments" });
 
 //*Relaciones entre el modelo Service y Profesional
-Service.belongsTo(Profesional, { as: "profesional", foreignKey: "id" });
-Profesional.hasMany(Service, { as: "service", foreignKey: "id" });
+Service.belongsTo(Profesional);
+Profesional.hasMany(Service);
 
-//* Relacion del modelo Favorite con los modelos Client y Product
-Favorite.belongsTo(Client);
-Favorite.belongsTo(Product);
+//*Relaciones entre modelo Clients y modelo Products a través de Favorites
+Client.belongsToMany(Product, { through: "Favorites" });
+Product.belongsToMany(Client, { through: "Favorites" });
 
 module.exports = {
   ...sequelize.models,
