@@ -2,7 +2,15 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const routes = require('./routes/index.js');
+const productsRoutes= require("./routes/products.routes.js")
+// const clientsRoutes= require("./routes/clients.routes.js")
+// const adminRoutes= require("./routes/admin.routes.js")
+// const commentRoutes= require("./routes/comment.routes.js")
+// const serviceRoutes= require("./routes/service.routes.js")
+// const profesionalRoutes= require("./routes/profesional.routes.js")
+// const favoriteRoutes= require("./routes/favorites.routes.js")
+// const categoriesRoutes= require("./routes/categories.routes.js")
+
 
 require('./db.js');
 
@@ -21,7 +29,6 @@ server.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
-
 
 
 server.use('/', routes);
