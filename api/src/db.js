@@ -36,7 +36,7 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 //Creamos relaciones de la bdd
-const { Product, Category } = sequelize.models;
+const { Product, Category, Client } = sequelize.models;
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
