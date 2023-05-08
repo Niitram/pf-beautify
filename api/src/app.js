@@ -30,8 +30,8 @@ server.use((req, res, next) => {
     next();
 });
 
-//* aqui se agregan las rutas 
-server.use("/",productsRoutes);
+
+server.use('/', routes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
