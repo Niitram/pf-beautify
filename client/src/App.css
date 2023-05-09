@@ -1,22 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Playfair+Display&display=swap");
-
-* {
-  padding: 0;
-  margin: 0;
-  --background: #fef2f4;
-  --accent1: #d14d72;
-  --accent2: #f5b7b1;
-  --text: #3d3b54;
-  --text-alt: #a2a0bb;
-  --muted: #d3d3de;
-}
-
 .App {
   text-align: center;
-  background-color: var(--background);
   font-family: "Playfair Display", serif;
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  padding:0px;
+  margin: 0px;
 }
