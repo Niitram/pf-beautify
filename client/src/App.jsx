@@ -1,26 +1,23 @@
-import './App.css'
-import { Route, Routes, useLocation } from "react-router-dom"
-import Landing from "./views/landing/Landing"
-import Home from "./views/home/Home"
-import About from "./views/about/About"
-import Cart from "./views/cart/Cart"
-import Products from "./views/products/Products"
-import Services from "./views/services/Services"
-import DashboardAdmin from "./views/dashboardAdmin/DashboardAdmin"
-import DetailProduct from "./views/detailProduct/DetailProduct"
-import DetailPayment from "./views/detailPayment/DetailPayment"
-import DetailUser from "./views/detailUser/DetailUser"
-import Nav from './components/nav/Nav'
+import "./App.css";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Landing from "./views/landing/Landing";
+import Home from "./views/home/Home";
+import About from "./views/about/About";
+import Cart from "./views/cart/Cart";
+import Products from "./views/products/Products";
+import Services from "./views/services/Services";
+import DashboardAdmin from "./views/dashboardAdmin/DashboardAdmin";
+import DetailProduct from "./views/detailProduct/DetailProduct";
+import DetailPayment from "./views/detailPayment/DetailPayment";
+import DetailUser from "./views/detailUser/DetailUser";
+import Nav from "./components/nav/Nav";
 
 function App() {
-  const locationNow = useLocation()
-
+  const locationNow = useLocation();
 
   return (
-    <>
-      {
-        locationNow.pathname !== "/" && <Nav />
-      }
+    <div className="App">
+      {locationNow.pathname !== "/" && <Nav />}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
@@ -33,8 +30,7 @@ function App() {
         <Route path="/detailProduct" element={<DetailProduct />} />
         <Route path="/detailPayment" element={<DetailPayment />} />
       </Routes>
-    </>
-  )
+    </div>
+  );
 }
-
-export default App
+export default App;
