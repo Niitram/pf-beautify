@@ -2,9 +2,15 @@ const router = require("express").Router();
 const getProfesionals = require("../controllers/Profesionals/getProfesionals");
 const getProfesionalDetail = require("../controllers/Profesionals/getProfesionalDetail");
 const postProfesional = require("../controllers/Profesionals/postProfesional");
-const putProfesional = require('../controllers/Profesionals/putProfesional')
+const putProfesional = require("../controllers/Profesionals/putProfesional");
+const {
+  profesionalGetValidation,
+  profesionalGetIdValidation,
+  profesionalPostValidation,
+  profesionalPutValidation,
+} = require("../validations/professionalsValidation");
 
-router.get("/", async (req, res) => {
+router.get("/", profesionalGetValidation, async (req, res) => {
   try {
     const response = await getProfesionals();
     res.json(response);
@@ -13,7 +19,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", profesionalGetIdValidation, async (req, res) => {
   try {
     const { id } = req.params;
     console.log(id);
@@ -24,25 +30,25 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", profesionalPostValidation,  async (req, res) => {
   try {
-    const { fullName, mail, direction, image } = req.body;
-    const response = await postProfesional(fullName, mail, direction, image);
+    const { fullname, mail, direction, image } = req.body;
+    const response = await postProfesional(fullname, mail, direction, image);
     res.json(response);
   } catch (error) {
     res.json({ error: error.message });
   }
 });
 
-router.put('/:id', async (req, res) => {
-    try {
-        const {fullName, mail, direction, image} = req.body
-        const {id} = req.params
-        await putProfesional(id, fullName, mail, direction, image)
-        res.send('successfully modified')
-    } catch (error) {
-        res.json({error: error.message})
-    }
-})
+router.put("/:id", profesionalPutValidation, async (req, res) => {
+  try {
+    const { fullName, mail, direction, image } = req.body;
+    const { id } = req.params;
+    await putProfesional(id, fullName, mail, direction, image);
+    res.send("successfully modified");
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+});
 
 module.exports = router;
