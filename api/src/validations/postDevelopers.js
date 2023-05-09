@@ -42,19 +42,47 @@ const postDevelopersValidation = async (req, res, next) => {
   if (!email.match(emailRegex))
     return res.status(400).json({ error: "email must be an email direction" });
 
-  //*checking there's not another developer with the same name
-  let oldDeveloper = await Developer.findOne({
-    where: { fullName: { [Op.iLike]: fullName } },
-  });
-  if (oldDeveloper)
-    return res.status(400).json({ error: "Developer alredy exists" });
+  //*checking there's not another developer with the same name, email, linkedin or github
+  const promises = [
+    Developer.findOne({
+      where: { fullName: { [Op.iLike]: fullName } },
+    }),
+    Developer.findOne({
+      where: { linkedin: { [Op.iLike]: linkedin } },
+    }),
+    Developer.findOne({
+      where: { email: { [Op.iLike]: email } },
+    }),
+    Developer.findOne({
+      where: { github: { [Op.iLike]: github } },
+    }),
+  ];
 
-  //*checking there's not another developer with the same linkedin
-  oldDeveloper = await Developer.findOne({
-    where: { linkedin: { [Op.iLike]: linkedin } },
-  });
-  if (oldDeveloper)
-    return res.status(400).json({ error: "Developer alredy exists" });
+  try {
+    let oldDeveloper = false;
+    await Promise.all(promises).then((responses) => {
+      responses.forEach((response) => {
+        if (response) oldDeveloper = true;
+      });
+    });
+    if (oldDeveloper)
+      return res.status(400).json({ error: "Developer alredy exists" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  // let oldDeveloper = await Developer.findOne({
+  //   where: { fullName: { [Op.iLike]: fullName } },
+  // });
+  // if (oldDeveloper)
+  //   return res.status(400).json({ error: "Developer alredy exists" });
+
+  // //*checking there's not another developer with the same linkedin
+  // oldDeveloper = await Developer.findOne({
+  //   where: { linkedin: { [Op.iLike]: linkedin } },
+  // });
+  // if (oldDeveloper)
+  //   return res.status(400).json({ error: "Developer alredy exists" });
 
   next();
 };
