@@ -12,3 +12,5 @@ const postClient = async (password, email, name) => {
 };
 
 module.exports = postClient;
+
+module.exports = postClient

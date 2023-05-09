@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
             allowNull: false,
             unique: true,
         },
-        direccion: {
+        direction: {
             type: DataTypes.STRING,
             allowNull: false,
         },

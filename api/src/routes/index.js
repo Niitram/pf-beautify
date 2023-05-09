@@ -4,11 +4,14 @@ const servicesRoutes = require("../handlers/service-routes");
 const productsRouter = require("../handlers/products-routes");
 const usersRouter = require("../handlers/client-routes");
 const developersRouter = require("../handlers/developers-routes");
+const profesionalsRouter = require('../handlers/profesionals-routes')
 const router = Router();
 
-router.use("/client", usersRouter);
-router.use("/categories", categoriesRoutes);
-router.use("/services", servicesRoutes);
+
+router.use('/profesionals', profesionalsRouter)
+router.use('/client', usersRouter)
+ router.use('/categories', categoriesRoutes)
+ router.use('/services', servicesRoutes);
 router.use("/products", productsRouter);
 router.use("/developers", developersRouter);
 
