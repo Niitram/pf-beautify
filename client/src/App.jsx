@@ -11,9 +11,15 @@ import DetailProduct from "./views/detailProduct/DetailProduct";
 import DetailPayment from "./views/detailPayment/DetailPayment";
 import DetailUser from "./views/detailUser/DetailUser";
 import Nav from "./components/nav/Nav";
+import { useDispatch } from 'react-redux'
+import { getAllProducts } from "./redux/actions";
+import useGetProducts from "./hooks/useGetProducts";
 
 function App() {
   const locationNow = useLocation();
+  const dispatch = useDispatch()
+  const [products] =useGetProducts()
+  dispatch(getAllProducts(products))
 
   return (
     <div className="App">
