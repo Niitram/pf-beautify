@@ -1,4 +1,4 @@
-const { Product } = require("../../db");
+const { Product, Category } = require("../../db");
 
 const getProducts = async (name) => {
   const products = name
@@ -8,18 +8,25 @@ const getProducts = async (name) => {
             [Op.iLike]: `%${name}%`,
           },
         },
+        include: {
+          model: Category,
+        },
       })
-    : await Product.findAll();
+    : await Product.findAll({
+        include: {
+          model: Category,
+        },
+      });
 
   const filteredProducts = products.map(
-    ({ id, name, image, price, discount, CategoryId, stock }) => {
+    ({ id, name, image, price, discount, Category, stock }) => {
       return {
         id,
         name,
         image,
         price,
         discount,
-        categoryId: CategoryId,
+        category: Category.name,
         stock,
       };
     }
