@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const getDevelopers = require("../controllers/getDevelopers");
-const postDeveloper = require("../controllers/postDeveloper");
+const getDevelopers = require("../controllers/Developers/getDevelopers");
+const postDeveloper = require("../controllers/Developers/postDeveloper");
 const postDevelopersValidation = require("../validations/postDevelopers");
 
 const developersRouter = Router();

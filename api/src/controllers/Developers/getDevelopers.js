@@ -1,4 +1,4 @@
-const { Developer } = require("../db");
+const { Developer } = require("../../db");
 
 const getDevelopers = async () => {
   const developers = Developer.findAll();

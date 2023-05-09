@@ -1,4 +1,4 @@
-const { Developer } = require("../db");
+const { Developer } = require("../../db");
 
 const postDeveloper = async (developerInfo) => {
   const newDeveloper = await Developer.create(developerInfo);
