@@ -1,0 +1,33 @@
+const { DataTypes } = require("sequelize");
+
+//* Definiendo el modelo Developers (info para el about)
+
+module.exports = (sequelize) => {
+  sequelize.define(
+    "Developer",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      fullName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      linkedin: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+    },
+    { timestamps: false }
+  );
+};
