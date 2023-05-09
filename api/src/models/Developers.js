@@ -26,6 +26,8 @@ module.exports = (sequelize) => {
       linkedin: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
+        validate: { isUrl: true },
       },
     },
     { timestamps: false }
