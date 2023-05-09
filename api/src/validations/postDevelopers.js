@@ -28,7 +28,8 @@ const postDevelopersValidation = async (req, res, next) => {
     });
 
   //* checking linkedin is an url
-  const urlRegex = /^(https?|ftp):\/\/([^\s/$.?#].[^\s]*)\.com$/i;
+  const urlRegex =
+    /^(https?|ftp):\/\/([^\s/$.?#].[^\s]*)\.com\/([^\s/?#]+[^\s]*)$/i;
   if (!linkedin.match(urlRegex))
     return res.status(400).json({ error: "linkedin link must be an url" });
 
