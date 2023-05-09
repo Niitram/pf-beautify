@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const getServices = require("../controllers/Services/getServices");
 const postService = require("../controllers/Services/postService");
-router.get("/", async (req, res) => {
+const {validatePostService, validateServiceExistence } = require('../validations/ValidationService')
+router.get("/", validateServiceExistence, async (req, res) => {
   try {
     const service = await getServices();
     res.json(service);
@@ -10,7 +11,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validatePostService, async (req, res) => {
   try {
     const { name, price, description, image, rate } = req.body;
     const createService = await postService(

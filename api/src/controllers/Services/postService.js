@@ -1,6 +1,7 @@
 const { Service } = require("../../db");
 
 const postService = async (name, price, description, image, rate) => {
+
   const response = await Service.create({
     name: name,
     price: price,
@@ -13,3 +14,5 @@ const postService = async (name, price, description, image, rate) => {
 };
 
 module.exports = postService;
+
+module.exports = postService

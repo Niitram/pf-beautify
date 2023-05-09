@@ -1,4 +1,4 @@
-const { Comment, Product, Client } = require("../../db");
+const { Comment} = require("../../db");
 
 const postComment = async (content, productId, clientId) => {
     
