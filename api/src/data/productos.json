@@ -1,0 +1,112 @@
+[
+  {
+    "name": "jesus",
+    "description": "jesus",
+    "image": "https://tse4.mm.bing.net/th?id=OIP.l2JCqllQeJkaOB01O8rDoAHaHa&pid=Api&P=0&w=300&h=300",
+    "price": 10,
+    "discount": 2,
+    "stock": 30,
+    "state": "active",
+    "category": "esmalte",
+    "rate": 2.5
+  },
+  {
+    "name": "Mi Esmalte",
+    "description": "Este es mi esmalte favorito",
+    "image": "https://static1.mujerhoy.com/www/multimedia/202107/05/media/cortadas/just-a-hint-of-pearl-ple-nle97-nail-lacquer-99350036619_1_0_0-kuVC--697x900@MujerHoy.jpg",
+    "price": 30,
+    "discount": 0,
+    "stock": 30,
+    "state": "active",
+    "category": "esmalte",
+    "rate": 5
+  },
+  {
+    "name": "quita esmaltes",
+    "description": "este es un quitaesmaltes",
+    "image": "https://tse2.mm.bing.net/th?id=OIP.0OvkXSUX5hJkvd6u3cA2fQHaHa&pid=Api&P=0",
+    "price": 10,
+    "discount": 0,
+    "stock": 30,
+    "state": "active",
+    "category": "quitaesmaltes",
+    "rate": 4.3
+  },
+  {
+    "name": "Otro esmalte",
+    "description": "Este es otro pintauñas",
+    "image": "https://tse2.mm.bing.net/th?id=OIP.b9yF_OIiPXHG8tGrSL94hAHaHa&pid=Api&P=0",
+    "price": 50,
+    "discount": 2,
+    "stock": 30,
+    "state": "active",
+    "category": "esmalte",
+    "rate": 3.23
+  },
+  {
+    "name": "Set de limas de uñas",
+    "description": "Es un set de limas de uñas, no sé qué más decirte al respecto",
+    "image": "https://tse1.mm.bing.net/th?id=OIP.oj4MujpEKGizHIf335v93QHaF1&pid=Api&P=0",
+    "price": 100,
+    "discount": 0,
+    "stock": 0,
+    "state": "active",
+    "category": "lima de uñas",
+    "rate": 2.53
+  },
+  {
+    "name": "Otra lima de uñas",
+    "description": "Esta es otra lima de uñas, más bonita que la otra",
+    "image": "https://tse2.mm.bing.net/th?id=OIP.ffXjLm8xhi3hOjBILfRMTwHaHa&pid=Api&P=0",
+    "price": 80,
+    "discount": 2,
+    "stock": 2,
+    "state": "active",
+    "category": "lima de uñas",
+    "rate": 1
+  },
+  {
+    "name": "Mis sales de baño",
+    "description": "Conjunto de sales de baño",
+    "image": "https://tse1.mm.bing.net/th?id=OIP.LEqk8W7E2NkyCUoKhVpJrAHaGK&pid=Api&P=0",
+    "price": 1000,
+    "discount": 0,
+    "stock": 30,
+    "state": "active",
+    "category": "sales de baño",
+    "rate": 0
+  },
+  {
+    "name": "Otras sales de baño",
+    "description": "Son sales de baño, qué descripción original la mía eh",
+    "image": "https://tse2.mm.bing.net/th?id=OIP.g7Ejzo7YrIjr37QKtHjXYgHaHa&pid=Api&P=0",
+    "price": 100,
+    "discount": 0,
+    "stock": 0,
+    "state": "active",
+    "category": "sales de baño",
+    "rate": 2.5
+  },
+  {
+    "name": "un producto inactivo",
+    "description": "no me muestres, estoy inactivo",
+    "image": "https://tse1.mm.bing.net/th?id=OIP.JzQhxjpaD8E1-6CUbWP0twHaFj&pid=Api&P=0",
+    "price": 10,
+    "discount": 2,
+    "stock": 30,
+    "state": "inactive",
+    "category": "otra categoría",
+    "rate": 5
+  },
+  {
+    "name": "el último producto",
+    "description": "mi imaginación está agotada",
+    "image": "https://tse4.mm.bing.net/th?id=OIP.ASVGVXIjBjBpGL6iEr2RcgHaHa&pid=Api&P=0",
+    "price": 10,
+    "discount": 2,
+    "stock": 30,
+    "state": "active",
+    "category": "otra categoría",
+    "rate": 4
+  }
+]
