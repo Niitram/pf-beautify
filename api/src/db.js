@@ -37,20 +37,18 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 //Creamos relaciones de la bdd
 
-const { Product, Category,Client,Admin,Comment,Profesional,Service,Favorite } = sequelize.models;
-
+const { Product, Category, Client, Comment, Profesional, Service } =
+  sequelize.models;
 
 //*Relaciones entre los modelos Category y Product
 Category.hasMany(Product);
-
 Product.belongsTo(Category);
 
-
 //* Relaciones entre el modelo Comment (Comentarios) con Product y Client
-Comment.belongsTo(Client, { as: 'user', foreignKey: 'id' });
-Comment.belongsTo(Product, { as: 'product', foreignKey: 'id' });
-Product.hasMany(Comment, { as: 'comments' });
-Client.hasMany(Comment, { as: 'comments' });
+Comment.belongsTo(Client, { as: "user", foreignKey: "id" });
+Comment.belongsTo(Product, { as: "product", foreignKey: "id" });
+Product.hasMany(Comment, { as: "comments" });
+Client.hasMany(Comment, { as: "comments" });
 
 //*Relaciones entre el modelo Service y Profesional
 Service.belongsTo(Profesional);

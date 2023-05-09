@@ -6,6 +6,7 @@ const usersRouter = require('../handlers/client-routes')
 const router = Router();
 
 
+
 router.use('/client', usersRouter)
  router.use('/categories', categoriesRoutes)
  router.use('/services', servicesRoutes);
