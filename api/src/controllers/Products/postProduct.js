@@ -1,4 +1,4 @@
-const { Product, Category } = require("../db");
+const { Product, Category } = require("../../db");
 
 const postProduct = async (product) => {
   let newProduct = await Product.create(product);

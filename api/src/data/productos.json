@@ -7,7 +7,8 @@
     "discount": 2,
     "stock": 30,
     "state": "active",
-    "category": "esmalte"
+    "category": "esmalte",
+    "rate": 2.5
   },
   {
     "name": "Mi Esmalte",
@@ -17,7 +18,8 @@
     "discount": 0,
     "stock": 30,
     "state": "active",
-    "category": "esmalte"
+    "category": "esmalte",
+    "rate": 5
   },
   {
     "name": "quita esmaltes",
@@ -27,7 +29,8 @@
     "discount": 0,
     "stock": 30,
     "state": "active",
-    "category": "quitaesmaltes"
+    "category": "quitaesmaltes",
+    "rate": 4.3
   },
   {
     "name": "Otro esmalte",
@@ -37,7 +40,8 @@
     "discount": 2,
     "stock": 30,
     "state": "active",
-    "category": "esmalte"
+    "category": "esmalte",
+    "rate": 3.23
   },
   {
     "name": "Set de limas de uñas",
@@ -47,7 +51,8 @@
     "discount": 0,
     "stock": 0,
     "state": "active",
-    "category": "lima de uñas"
+    "category": "lima de uñas",
+    "rate": 2.53
   },
   {
     "name": "Otra lima de uñas",
@@ -57,7 +62,8 @@
     "discount": 2,
     "stock": 2,
     "state": "active",
-    "category": "lima de uñas"
+    "category": "lima de uñas",
+    "rate": 1
   },
   {
     "name": "Mis sales de baño",
@@ -67,7 +73,8 @@
     "discount": 0,
     "stock": 30,
     "state": "active",
-    "category": "sales de baño"
+    "category": "sales de baño",
+    "rate": 0
   },
   {
     "name": "Otras sales de baño",
@@ -77,7 +84,8 @@
     "discount": 0,
     "stock": 0,
     "state": "active",
-    "category": "sales de baño"
+    "category": "sales de baño",
+    "rate": 2.5
   },
   {
     "name": "un producto inactivo",
@@ -87,7 +95,8 @@
     "discount": 2,
     "stock": 30,
     "state": "inactive",
-    "category": "otra categoría"
+    "category": "otra categoría",
+    "rate": 5
   },
   {
     "name": "el último producto",
@@ -97,6 +106,7 @@
     "discount": 2,
     "stock": 30,
     "state": "active",
-    "category": "otra categoría"
+    "category": "otra categoría",
+    "rate": 4
   }
 ]

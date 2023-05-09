@@ -1,18 +1,20 @@
 const { DataTypes } = require("sequelize");
 
-//* Definiendo la función que crea el modelo Products
+//* Definiendo el modelo Developers (info para el about)
+
 module.exports = (sequelize) => {
   sequelize.define(
-    "Product",
+    "Developer",
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
-        allowNull: false,
+      fullName: {
         type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
       },
       description: {
         type: DataTypes.STRING,
@@ -22,25 +24,23 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      price: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
-      discount: {
-        type: DataTypes.FLOAT,
-        allowNull: true,
-      },
-      stock: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      state: {
+      linkedin: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
+        validate: { isUrl: true },
       },
-      rate: {
-        type: DataTypes.FLOAT,
+      email: {
+        type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
+        validate: { isEmail: true },
+      },
+      github: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: { isUrl: true },
       },
     },
     { timestamps: false }

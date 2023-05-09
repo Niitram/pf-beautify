@@ -1,7 +1,8 @@
 const { Router } = require("express");
-const getProducts = require("../controllers/getProducts");
-const postProduct = require("../controllers/postProduct");
-const getProductById = require("../controllers/getProductById");
+const getProducts = require("../controllers/Products/getProducts");
+const postProduct = require("../controllers/Products/postProduct");
+const getProductById = require("../controllers/Products/getProductById");
+const postProductsValidation = require("../validations/postProducts");
 
 const productsRouter = Router();
 
@@ -15,8 +16,7 @@ productsRouter.get("/", async (req, res) => {
   }
 });
 
-//*falta validación!!!
-productsRouter.post("/", async (req, res) => {
+productsRouter.post("/", postProductsValidation, async (req, res) => {
   try {
     const product = req.body;
     const createdProduct = await postProduct(product);
