@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const getCategories = require("../controllers/Categories/getCategories");
-
-router.get("/", async (req, res) => {
+const  validateCategoriesExistence = require('../validations/validationCategories')
+router.get("/", validateCategoriesExistence, async (req, res) => {
   try {
     const categories = await getCategories();
     res.json(categories);
