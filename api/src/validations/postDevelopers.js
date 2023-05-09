@@ -71,19 +71,6 @@ const postDevelopersValidation = async (req, res, next) => {
     return res.status(500).json({ error: error.message });
   }
 
-  // let oldDeveloper = await Developer.findOne({
-  //   where: { fullName: { [Op.iLike]: fullName } },
-  // });
-  // if (oldDeveloper)
-  //   return res.status(400).json({ error: "Developer alredy exists" });
-
-  // //*checking there's not another developer with the same linkedin
-  // oldDeveloper = await Developer.findOne({
-  //   where: { linkedin: { [Op.iLike]: linkedin } },
-  // });
-  // if (oldDeveloper)
-  //   return res.status(400).json({ error: "Developer alredy exists" });
-
   next();
 };
 
