@@ -11,4 +11,3 @@ const getCategories = async () => {
 
 module.exports = getCategories;
 
-module.exports = getCategories
