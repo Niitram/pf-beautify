@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const getDevelopers = require("../controllers/getDevelopers");
 const postDeveloper = require("../controllers/postDeveloper");
+const postDevelopersValidation = require("../validations/postDevelopers");
 
 const developersRouter = Router();
 
@@ -13,8 +14,7 @@ developersRouter.get("/", async (req, res) => {
   }
 });
 
-//*validaciones!
-developersRouter.post("/", async (req, res) => {
+developersRouter.post("/", postDevelopersValidation, async (req, res) => {
   try {
     const developerInfo = req.body;
     const newDeveloper = await postDeveloper(developerInfo);
