@@ -45,8 +45,8 @@ Category.hasMany(Product);
 Product.belongsTo(Category);
 
 //* Relaciones entre el modelo Comment (Comentarios) con Product y Client
-Comment.belongsTo(Client, { as: "user", foreignKey: "id" });
-Comment.belongsTo(Product, { as: "product", foreignKey: "id" });
+Comment.belongsTo(Client);
+Comment.belongsTo(Product);
 Product.hasMany(Comment, { as: "comments" });
 Client.hasMany(Comment, { as: "comments" });
 
