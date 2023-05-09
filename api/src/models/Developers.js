@@ -30,6 +30,18 @@ module.exports = (sequelize) => {
         unique: true,
         validate: { isUrl: true },
       },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: { isEmail: true },
+      },
+      github: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: { isUrl: true },
+      },
     },
     { timestamps: false }
   );
