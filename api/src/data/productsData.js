@@ -9,6 +9,13 @@ const bulkCreateProducts = async (req, res) => {
 
     for (let product of productos) {
       const newProduct = await Product.create(product);
+
+      if (product.rate)
+        await Product.update(
+          { arrayRates: [product.rate] },
+          { where: { id: newProduct.id } }
+        );
+
       const category = await Category.findOne({
         where: { name: product.category },
       });

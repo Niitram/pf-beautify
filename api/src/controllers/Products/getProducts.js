@@ -19,7 +19,7 @@ const getProducts = async (name) => {
       });
 
   const filteredProducts = products.map(
-    ({ id, name, image, price, discount, Category, stock }) => {
+    ({ id, name, image, price, discount, Category, stock, finalRate }) => {
       return {
         id,
         name,
@@ -28,6 +28,7 @@ const getProducts = async (name) => {
         discount,
         category: Category.name,
         stock,
+        rate: finalRate,
       };
     }
   );

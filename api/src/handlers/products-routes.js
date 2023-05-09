@@ -3,6 +3,8 @@ const getProducts = require("../controllers/Products/getProducts");
 const postProduct = require("../controllers/Products/postProduct");
 const getProductById = require("../controllers/Products/getProductById");
 const postProductsValidation = require("../validations/postProducts");
+const addRate = require("../controllers/Products/addRate");
+const productAddRate = require("../validations/productAddRate");
 
 const productsRouter = Router();
 
@@ -38,6 +40,18 @@ productsRouter.get("/:id", async (req, res) => {
     if (!product) return res.status(400).json({ error: "Product not found" });
 
     res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+productsRouter.put("/addRate/:productId", productAddRate, async (req, res) => {
+  try {
+    const productId = Number(req.params.productId);
+    const rate = Number(req.body.rate);
+
+    const newProduct = await addRate(productId, rate);
+    res.status(200).json(newProduct);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

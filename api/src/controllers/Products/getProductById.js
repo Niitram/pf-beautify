@@ -12,7 +12,7 @@ const getProductById = async (id) => {
     discount: product.discount,
     stock: product.stock,
     state: product.state,
-    rate: product.rate,
+    rate: product.finalRate,
     category: product.Category.name,
   };
 
