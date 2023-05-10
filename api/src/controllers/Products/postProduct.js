@@ -1,7 +1,14 @@
-const { Product, Category } = require("../db");
+const { Product, Category } = require("../../db");
 
 const postProduct = async (product) => {
   let newProduct = await Product.create(product);
+  if (product.rate) {
+    await Product.update(
+      { arrayRates: [product.rate] },
+      { where: { id: newProduct.id } }
+    );
+    newProduct = await Product.findByPk(newProduct.id);
+  }
 
   if (!product.category) return newProduct;
 
