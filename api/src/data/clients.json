@@ -1,0 +1,32 @@
+[
+  {
+    "password": "contraseña1",
+    "email": "email@mail.com",
+    "fullName": "cliente1"
+  },
+  {
+    "password": "contraseña2",
+    "email": "email2@mail.com",
+    "fullName": "cliente2"
+  },
+  {
+    "password": "contraseña3",
+    "email": "email3@mail.com",
+    "fullName": "cliente3"
+  },
+  {
+    "password": "contraseña4",
+    "email": "emai4l@mail.com",
+    "fullName": "cliente4"
+  },
+  {
+    "password": "contraseña5",
+    "email": "email5@mail.com",
+    "fullName": "cliente5"
+  },
+  {
+    "password": "contraseña6",
+    "email": "email6@mail.com",
+    "fullName": "cliente6"
+  }
+]
