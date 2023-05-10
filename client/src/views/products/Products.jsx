@@ -10,7 +10,7 @@ function Products() {
 
     return (
         <section>
-            <Paginations currentPage={currentPage} setCurrentPage={setCurrentPage} allProducts={allProducts}/>
+            <Paginations currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             <ContainerCardsProducts allProducts={allProducts}/>
         </section>
     )

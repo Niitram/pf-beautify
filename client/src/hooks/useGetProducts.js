@@ -6,16 +6,20 @@ const useGetProducts = () => {
 
     const [data, setData] = useState([]);
     const URL_BASE = "http://localhost:3001"
-    useEffect(() => {
-        axios.get(`${URL_BASE}/products`)
-            .then(res => {
-                setData(res.data)
-                console.log(res.data)
+    const getProducts = () => {
+        axios
+            .get(`${URL_BASE}/products`)
+            .then((res) => {
+                setData(res.data);
             })
-            .catch(err => console.log(err.message))
+            .catch((err) => console.log(err.message));
+    };
+
+    useEffect(() => {
+        getProducts();
     }, []);
 
-    return [data]
+    return [data];
 }
 
 export default useGetProducts;
