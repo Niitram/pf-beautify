@@ -24,7 +24,11 @@ function DetailProduct() {
           <h3 className={styles.precio}> $19.99 </h3>
         </div>
         <label className={styles.stock}>Quedan {cantStock} Productos</label>
-        <LinearProgress variant="determinate" value={80} />
+        <LinearProgress
+          sx={{ width: `100%`, height: 5, borderRadius: "16px" }}
+          variant="determinate"
+          value={80}
+        />
         <progress max="100" value="80">
           80
         </progress>

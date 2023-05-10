@@ -65,5 +65,5 @@
 }
 
 .progresBar{
-    background-color: var(--accent1);
+    border-radius: 15px;
 }
