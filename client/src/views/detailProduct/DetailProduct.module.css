@@ -1,0 +1,69 @@
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 6rem;
+    
+}
+
+.imgProduct{
+    width: 15rem;
+    margin-top: 1rem;
+    margin-right: 6rem;
+    border-radius: 15px;
+    
+}
+
+.containerDetails{
+    width: 387px;
+}
+.nombreProduct{
+    display: flex;
+    justify-content: start;
+    font-family: 'Hind Siliguri';
+    font-size: 30px;
+    font-weight: bold;
+}
+.descripcionProduct{
+    display: flex;
+    justify-content: start;
+    font-family: 'Hind Siliguri';
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--accent1);
+}
+.descuento{
+    display: flex;
+    align-items: center;
+    color: #828282;
+    font-family: 'Hind Siliguri';
+    font-weight: lighter;
+    text-decoration:line-through 1px;
+
+}
+.precio{
+    justify-content: start;
+    color: var(--accent1);
+    font-family: 'Hind Siliguri';
+    font-weight:900;
+    margin: 2%;
+    font-size: 30px;
+}
+.precios{
+    display: flex;
+    flex-direction: row;
+}
+
+.stock{
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    font-size: 14px;
+    font-family: 'Hind Siliguri';
+    font-weight: bold;
+}
+
+.progresBar{
+    background-color: var(--accent1);
+}
