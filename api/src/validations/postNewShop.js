@@ -51,7 +51,6 @@ const postNewShopValidation = async (req, res, next) => {
     });
 
     const hasDetailProducts = await Promise.all(promises);
-    console.log(hasDetailProducts);
     if (!hasDetailProducts.every(Boolean))
       return res.status(400).json({ error: "Some product wasn't found" });
   } catch (error) {
