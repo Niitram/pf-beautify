@@ -5,6 +5,8 @@ const getProductById = require("../controllers/Products/getProductById");
 const postProductsValidation = require("../validations/postProducts");
 const addRate = require("../controllers/Products/addRate");
 const productAddRate = require("../validations/productAddRate");
+const updateProduct = require("../controllers/Products/updateProduct");
+const updateProductValidation = require("../validations/updateProduct");
 
 const productsRouter = Router();
 
@@ -57,8 +59,17 @@ productsRouter.put("/addRate/:productId", productAddRate, async (req, res) => {
   }
 });
 
-// productsRouter.put("/:id",updateProducts);
-// productsRouter.delete("/:id",deleteProducts);
-// productsRouter.patch("/:id", updateProductValues);
+productsRouter.put("/:id", updateProductValidation, async (req, res) => {
+  try {
+    const propertys = req.body;
+    const id = Number(req.params.id);
+    const updatedProduct = await updateProduct(id, propertys);
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+//* no hay una ruta de delete porque se usa borrado lógico =)
 
 module.exports = productsRouter;
