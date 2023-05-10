@@ -18,4 +18,3 @@ const getService = async () => {
 
 module.exports = getService;
 
-module.exports = getService
