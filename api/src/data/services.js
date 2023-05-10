@@ -1,17 +1,19 @@
+//* Este archivo guarda toma el json services.json y por medio de la funcion bulkCreateProfesionalsAndServices guarda los datos del porfesional y su servicio en la DB.
+
 const profesionals = require("./services.json");
 const { Profesional, Service } = require("../db.js");
 
 const bulkCreateProfesionalsAndServices = async () => {
   try {
-    for (let expert of profesionals) {
+    for (let profesional of profesionals) {
       const newProfessional = await Profesional.create({
-        fullname: expert.fullname,
-        mail: expert.mail,
-        direccion: expert.direccion,
-        image: expert.image,
+        fullname: profesional.fullname,
+        mail: profesional.mail,
+        direction: profesional.direccion,
+        image: profesional.image,
       });
 
-      for (let service of professional.services) {
+      for (let service of profesional.services) {
         const [newService, created] = await Service.findOrCreate({
           where: { name: service.name },
           defaults: {
