@@ -11,6 +11,8 @@ module.exports = (sequelize) => {
     name: {
       allowNull: false,
       type: DataTypes.STRING,
-  },  { timestamps: false });
+    },
+  }, { timestamps: false })
+
 
 };
