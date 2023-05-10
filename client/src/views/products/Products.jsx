@@ -1,17 +1,15 @@
 import { useState } from "react";
-import ContainerCardsProducts from "../../components/ContainerCardsProducts/ContainerCardsProducts";
-import { useSelector } from "react-redux";
 import Paginations from "../../components/paginations/Paginations";
+import SearchBar from "../../components/searchBar/SearchBar";
 
 
 function Products() {
     const [currentPage, setCurrentPage] = useState(1);
-    const allProducts = useSelector(state=>state.allProducts)
 
     return (
         <section>
+            <SearchBar setCurrentPage={setCurrentPage}/>
             <Paginations currentPage={currentPage} setCurrentPage={setCurrentPage}/>
-            <ContainerCardsProducts allProducts={allProducts}/>
         </section>
     )
 }
