@@ -14,5 +14,7 @@
   --background-alt: #FBF4F5;
   --gradient: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
 
-  overflow-y: hidden;
+}
+:root{
+  overflow-y: scroll;
 }

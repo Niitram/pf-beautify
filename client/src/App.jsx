@@ -14,12 +14,16 @@ import Nav from "./components/nav/Nav";
 import { useDispatch } from 'react-redux'
 import { getAllProducts } from "./redux/actions";
 import useGetProducts from "./hooks/useGetProducts";
+import { useEffect } from "react";
 
 function App() {
   const locationNow = useLocation();
   const dispatch = useDispatch()
-  const [products] =useGetProducts()
-  dispatch(getAllProducts(products))
+  const [products] = useGetProducts();
+
+  useEffect(() => {
+    dispatch(getAllProducts(products));
+  }, [dispatch, products]);
 
   return (
     <div className="App">

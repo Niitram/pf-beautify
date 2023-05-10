@@ -1,0 +1,26 @@
+[
+  {
+    "fullName": "Franco Rocamora",
+    "description": "Es buen tipo! Me cae bien",
+    "image": "https://tse4.mm.bing.net/th?id=OIP.rJ2LUCIiAOdtpc7nahNP7wHaLG&pid=Api&P=0",
+    "linkedin": "http://linkedin.com/Franco",
+    "github": "http://github.com/Franco",
+    "email": "franco@mail.com"
+  },
+  {
+    "fullName": "Viviana Galvagno",
+    "description": "También me cae bien, en realidad todos me caen bien (ah re que quería quedar bien la tipa)",
+    "image": "https://tse2.mm.bing.net/th?id=OIP.kRvxyFVDPTIZRudkc4T5eAHaKX&pid=Api&P=0",
+    "linkedin": "http://linkedin.com/Vivi",
+    "github": "http://github.com/Vivi",
+    "email": "vivi@mail.com"
+  },
+  {
+    "fullName": "Ana María Garófalo",
+    "description": "Ella no, me cae mal. Super mal. Y lo peor es que me la tengo que bancar todos los días",
+    "image": "https://tse1.mm.bing.net/th?id=OIP.lT4bhv98k8AaWmAGRiAFUQHaHa&pid=Api&P=0",
+    "linkedin": "http://linkedin.com/Ana",
+    "github": "http://github.com/Ana",
+    "email": "ana@mail.com"
+  }
+]
