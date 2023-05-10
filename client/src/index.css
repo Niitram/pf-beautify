@@ -13,8 +13,15 @@
   --muted: #d3d3de;
   --background-alt: #FBF4F5;
   --gradient: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
-
 }
 :root{
-  overflow-y: scroll;
+  overflow: scroll;
+}
+:root::-webkit-scrollbar{
+  width: 3px;
+  color: var(--text)
+}
+:root::-webkit-scrollbar-thumb{
+  background: var(--text);
+  border-radius: 10px;
 }
