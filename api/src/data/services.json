@@ -1,0 +1,97 @@
+[ 
+    {
+        "fullname":"Anna Doe",
+        "mail": "jhonDoe@gmail.com",
+        "direccion":"LA Angeles California",
+        "image":"https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg?auto=compress&cs=tinysrgb&w=600 ",
+        "services": [
+            {
+                "name": "Manicura y pedicura",
+                "description":"Servicio de uñas de alta calidad con una amplia selección de colores y diseños para satisfacer las necesidades y preferencias de cada cliente.",
+                "price":50 ,
+                "image":"https://images.pexels.com/photos/973405/pexels-photo-973405.jpeg?auto=compress&cs=tinysrgb&w=600", 
+                "rate":4.5 
+            }
+        ]
+    },
+    {
+        "fullname":"Andres Pirlo",
+        "mail": "andresP@gmail.com",
+        "direccion":"Buenos Aires",
+        "image":"https://images.pexels.com/photos/7440134/pexels-photo-7440134.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "services": [
+            {
+                "name": "Peluquería y estilismo",
+                "description":"Tratamientos para el Cabello, Cortes y colores",
+                "price":40 ,
+                "image":"https://images.pexels.com/photos/3993451/pexels-photo-3993451.jpeg?auto=compress&cs=tinysrgb&w=600", 
+                "rate":4.5 
+            }
+        ]
+    },
+    {
+        "fullname":"Andrea Dos Santos",
+        "mail": "andreaDSP@gmail.com",
+        "direccion":"Brasil",
+        "image":"https://images.pexels.com/photos/6954149/pexels-photo-6954149.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "services": [
+            {
+                "name": "Maquillaje profesional",
+                "description":"Realzar la belleza natural del rostro mediante la aplicación de productos cosméticos de alta calidad",
+                "price":70,
+                "image":"https://images.pexels.com/photos/6648492/pexels-photo-6648492.jpeg?auto=compress&cs=tinysrgb&w=600", 
+                "rate":4.5 
+            }
+        ]
+    },
+    {
+        "fullname":"Monica Messi",
+        "mail": "MoniMessi@gmail.com",
+        "direccion":"Buenos Aires",
+        "image":"https://images.pexels.com/photos/12975826/pexels-photo-12975826.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "services": [
+            {
+                "name": "Extensiones de pestañas",
+                "description":"Aplicación de pestañas artificiales en las pestañas naturales para lograr una apariencia más larga, gruesa y curvada",
+                "price":35,
+                "image":"https://images.pexels.com/photos/3867210/pexels-photo-3867210.jpeg?auto=compress&cs=tinysrgb&w=600", 
+                "rate":4.5 
+            }
+        ]
+    },
+    {
+        "fullname":"Kara Anchelotti",
+        "mail": "anchelotti@gmail.com",
+        "direccion":"Buenos Aires",
+        "image":"https://images.pexels.com/photos/15049082/pexels-photo-15049082.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "services": [
+            {
+                "name": "Depilación con cera",
+                "description":"Eliminar el vello no deseado del cuerpo mediante la aplicación de cera caliente o tibia sobre la piel.",
+                "price":90,
+                "image":"https://media.istockphoto.com/id/1073859506/es/foto/master-profesional-de-depilaci%C3%B3n-con-cera-proporciona-servicio-para-el-cliente.jpg?s=612x612&w=0&k=20&c=bYcnzjdOPlfu6lQ7L_3ZTGK-vwqvG_8_XCz8XjTOo1k=", 
+                "rate":4.5 
+            }
+        ]
+    },
+    {
+        "fullname":"Irina Martinez",
+        "mail": "martinezI@gmail.com",
+        "direccion":"Buenos Aires",
+        "image":"https://images.pexels.com/photos/15045159/pexels-photo-15045159.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "services": [
+            {
+                "name": "Masajes relajantes",
+                "description":" Masajes relajantes con técnicas terapéuticas que utiliza diferentes técnicas de manipulación del tejido blando para reducir la tensión muscular, mejorar la circulación sanguínea y promover una sensación de calma y bienestar general en el cuerpo y la mente.",
+                "price":40,
+                "image":"https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg?auto=compress&cs=tinysrgb&w=600", 
+                "rate":4.5 
+            }
+        ]
+    }
+
+
+]
+ 
+
+
