@@ -1,16 +1,20 @@
-
+import { GET_ALL_PRODUCTS } from './actions';
 
 
 const initialState = {
-    allProducts: []
+    allProducts: [],
+    allServices: [],
+    allProfessionals: []
 }
 
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "value":
-
-            break;
+        case GET_ALL_PRODUCTS:
+            return {
+                ...state,
+                allProducts: [...action.payload]
+            }
 
         default:
             return { ...state }

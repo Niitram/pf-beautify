@@ -25,4 +25,5 @@
 :root::-webkit-scrollbar-thumb{
   background: var(--text);
   border-radius: 10px;
+
 }
