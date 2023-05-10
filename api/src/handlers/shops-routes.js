@@ -1,20 +1,27 @@
 const { Router } = require("express");
-const { Shop, ShopsDetail, Product } = require("../db");
 const getAllShopsDetails = require("../controllers/Shops/getAllShopsDetails");
 const getShopsByClient = require("../controllers/Shops/getShopsByClient");
+const postNewShop = require("../controllers/Shops/postNewShop");
+const postNewShopValidation = require("../validations/postNewShop");
+const getShopsByClientIdValidation = require("../validations/getShopsByClientId");
 
 const shopsRouter = Router();
 
-shopsRouter.get("/shopsByClient/:clientId", async (req, res) => {
-  try {
-    const clientId = Number(req.params.clientId);
-    const shops = await getShopsByClient(clientId);
+//* esta ruta está pensada para que los clientes tengan acceso a su historial de compras
+shopsRouter.get(
+  "/shopsByClient/:clientId",
+  getShopsByClientIdValidation,
+  async (req, res) => {
+    try {
+      const clientId = Number(req.params.clientId);
+      const shops = await getShopsByClient(clientId);
 
-    res.send(shops);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+      res.send(shops);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   }
-});
+);
 
 //* esta ruta está pensada para que el admin pueda ver un detalle de todas las compras
 shopsRouter.get("/allDetails", async (req, res) => {
@@ -26,20 +33,14 @@ shopsRouter.get("/allDetails", async (req, res) => {
   }
 });
 
-shopsRouter.post("/", async (req, res) => {
-  let newShop = await Shop.create({ amount: 50, discount: 0 });
-  let newDetail = await ShopsDetail.create({ price: 25, count: 1 });
-  newDetail.setProduct(1);
-  newDetail.setShop(newShop.id);
-  newShop.setClient(1);
-
-  newShop = await Shop.create({ amount: 50, discount: 0 });
-  newDetail = await ShopsDetail.create({ price: 25, count: 1 });
-  newDetail.setProduct(2);
-  newDetail.setShop(newShop.id);
-  newShop.setClient(2);
-
-  res.send("created");
+shopsRouter.post("/", postNewShopValidation, async (req, res) => {
+  try {
+    const shop = req.body;
+    const newShop = await postNewShop(shop);
+    res.status(200).json(newShop);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports = shopsRouter;
