@@ -7,8 +7,7 @@ const developersRouter = require("../handlers/developers-routes");
 const profesionalsRouter = require('../handlers/profesionals-routes');
 const commentsRouter = require('../handlers/comments-routes');
 const appointmentsRouter = require('../handlers/appointments-routes');
-
-
+const shopsRouter = require("../handlers/shops-routes");
 const router = Router();
 
 
@@ -20,6 +19,8 @@ router.use('/services', servicesRoutes);
 router.use("/products", productsRouter);
 router.use("/developers", developersRouter);
 router.use('/appointments',appointmentsRouter);
+router.use("/shops", shopsRouter);
+
 
 
 module.exports = router;

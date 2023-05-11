@@ -2,7 +2,8 @@ const {Service} = require('../db')
 
 const validatePostService = (req, res, next) => {
     try {
-        const { name, price, description, image, rate } = req.body;
+
+        const {name, price, description, image, rate } = req.body;
         if(!name) throw new Error('Require service name to create')
         if(!price) throw new Error('Require a price to create')
         if(!description) throw new Error('Require description to create')
