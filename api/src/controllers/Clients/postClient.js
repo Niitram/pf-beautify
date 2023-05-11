@@ -8,9 +8,8 @@ const postClient = async (password, email, name) => {
       password: password,
     },
   });
-  return client[0];
+  return client[0].dataValues;
 };
 
 module.exports = postClient;
 
-module.exports = postClient
