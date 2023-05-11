@@ -1,6 +1,7 @@
 const server = require("./src/app.js");
 const bulkCreateClients = require("./src/data/clients.js");
 const bulkCreateDevelopers = require("./src/data/developersData.js");
+const bulckCreateFavorites = require("./src/data/favorites.js");
 const bulkCreateProducts = require("./src/data/productsData.js");
 const bulkCreateShops = require("./src/data/shops.js");
 const { conn } = require("./src/db.js");
@@ -14,5 +15,6 @@ conn.sync({ force: true }).then(() => {
     await bulkCreateDevelopers();
     await bulkCreateClients();
     await bulkCreateShops();
+    await bulckCreateFavorites();
   });
 });
