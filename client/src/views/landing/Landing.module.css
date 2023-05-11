@@ -4,11 +4,13 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  color: var(--text);
   font-size: 60px;
+  background-color: var(--background);
+  height: 100vh;
 }
 .Container img {
-  scale: 80%;
+  scale: 90%;
+  margin-right: 5%;
 }
 .EmbraceYourBeauty {
   display: flex;
@@ -16,6 +18,7 @@
   align-items: start;
   margin-left: 12%;
 }
+
 .Login {
   background-color: var(--accent1);
   border: 0px;
@@ -25,17 +28,17 @@
   padding: 10px 35px 10px 35px;
   cursor: pointer;
   transition: 200ms;
-  color: var(--text);
+  color: var(--background);
 }
 .beauty {
-  background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
+  background: var(--gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .Login:hover {
-  background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
-  color: var(--background);
+  background: var(--gradient);
+  color: var(--text);
 }
 
 .LoginForm span {
