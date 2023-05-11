@@ -4,10 +4,10 @@ const {Client} = require('../db')
 const validationSaveClient = async (req, res, next) => {
 
     try {
-        const { password, email, name } = req.body;
+        const { password, email, fullName } = req.body;
         if(!password) throw new Error(`Unable to save user in database, no password provided`)
         if(!email) throw new Error(`Unable to save user in database, no email provided`)
-        if(!name) throw new Error(`Unable to save user in database, not name provided`)
+        if(!fullName) throw new Error(`Unable to save user in database, not name provided`)
         next()
     } catch (error) {
         res.json({error: error.message})
