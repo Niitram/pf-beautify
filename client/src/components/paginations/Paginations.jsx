@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 import productsForPage from "../../utils/productsForPage"
 import ShowCardsProduct from "../showCardsProduct/ShowCardsProduct";
 
 function Paginations({currentPage,setCurrentPage}) {
-    const allProducts = useSelector(state=>state.allProducts)
-    const arrayWithPages = productsForPage(allProducts)
+    const copyAllProducts = useSelector(state=>state.copyAllProducts)
+
+    const arrayWithPages = productsForPage(copyAllProducts)
 
     const nextPage = () => {
         setCurrentPage((prev) => prev + 1);
