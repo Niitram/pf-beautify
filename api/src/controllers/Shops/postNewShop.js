@@ -21,6 +21,7 @@ const postNewShop = async (shopData) => {
     newDetail.setShop(newShop.id);
 
     const product = await Product.findByPk(detail.productId);
+    product.update({ stock: product.stock - detail.count });
 
     const finalDetail = {
       id: newDetail.id,

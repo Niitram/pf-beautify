@@ -7,6 +7,7 @@ const developersRouter = require("../handlers/developers-routes");
 const profesionalsRouter = require("../handlers/profesionals-routes");
 const commentsRouter = require("../handlers/comments-routes");
 const shopsRouter = require("../handlers/shops-routes");
+const favoritesRouter = require("../handlers/favorites-routes");
 const router = Router();
 
 router.use("/comments", commentsRouter);
@@ -17,6 +18,7 @@ router.use("/services", servicesRoutes);
 router.use("/products", productsRouter);
 router.use("/developers", developersRouter);
 router.use("/shops", shopsRouter);
+router.use("/favorites", favoritesRouter);
 
 router.get("/holis", (req, res) => {
   try {
