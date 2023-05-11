@@ -1,9 +1,11 @@
 import { Stack, Rating } from "@mui/material";
 import styles from "./Card.module.css"; 
+import {Link} from "react-router-dom"
 
-function Card({ image, price, name, rate }) {
+function Card({ image, price, name, rate,id }) {
   return (
-    <div className={styles.card}>
+    <Link style={{ textDecoration: 'none' }} to={`/detailProduct/${id}`} >
+      <div className={styles.card}>
       <img src={image} alt={name} />
       <span>{name}</span>
       <Stack>
@@ -17,6 +19,7 @@ function Card({ image, price, name, rate }) {
 
       <span>${price}</span>
     </div>
+    </Link>
   );
 }
 

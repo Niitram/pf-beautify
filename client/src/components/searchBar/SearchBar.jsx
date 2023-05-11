@@ -1,32 +1,24 @@
-
-import axios from "axios"
 import { useDispatch} from "react-redux"
 import { searchProductByName } from "../../redux/actions"
 import { useState } from "react"
+import handlerSearch from "../../handlers/handleSearch"
+import handlerChange from "../../handlers/handleChange"
 
 function SearchBar({setCurrentPage}) {
     const [searched, setSearched] = useState("")
     const dispatch = useDispatch()
 
-    const handlerSearch = async (e) => {
-        e.preventDefault()
-        const response = await axios.get(`http://localhost:3001/products?name=${searched}`)
-        dispatch(searchProductByName(response.data))
-        setCurrentPage(1)
-        setSearched("")
-    }
-    const handlerChange = (e) => {
-        e.preventDefault()
-        setSearched(e.target.value)
-    }
-
     return (
         <div>
-            <form onSubmit={(e)=>{handlerSearch(e)}} >
+            <form onSubmit={(e)=>{handlerSearch(e, searched, dispatch, searchProductByName, setCurrentPage, setSearched)}} >
                 <input 
                     type="search" 
                     value={searched}
-                    onChange={(e)=>{handlerChange(e)}}
+                    onKeyDown={(e)=>{
+                        if (e.key === 'Enter') {
+                            handlerSearch(e, searched, dispatch, searchProductByName, setCurrentPage, setSearched)
+                        }}}
+                    onChange={(e)=>{handlerChange(e,setSearched)}}
                     placeholder="Nail polish..."/>
                 <button type="submit">Search</button>
             </form>
