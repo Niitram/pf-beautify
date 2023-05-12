@@ -3,6 +3,7 @@ import Paginations from "../../components/paginations/Paginations";
 import SearchBar from "../../components/searchBar/SearchBar";
 import Filter from "../../components/filter/Filter";
 import Order from "../../components/order/Order";
+import styles from "./products.module.css";
 
 function Products() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,7 +25,12 @@ function Products() {
       />
       <Filter filter={filter} setFilter={setFilter} />
       <Order ordered={ordered} setOrdered={setOrdered} />
-      <Paginations currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <div className={styles.containerPaginations}>
+        <Paginations
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
     </section>
   );
 }
