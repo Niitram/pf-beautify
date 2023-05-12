@@ -1,32 +1,32 @@
 [
   {
-    "password": "contraseña1",
-    "email": "email@mail.com",
-    "fullName": "cliente1"
+    "password": "ernestoperez",
+    "email": "ernestoperez@mail.com",
+    "fullName": "Ernesto Pérez"
   },
   {
-    "password": "contraseña2",
-    "email": "email2@mail.com",
-    "fullName": "cliente2"
+    "password": "lucaslopez",
+    "email": "lucaslopez@mail.com",
+    "fullName": "Lucas Lopez"
   },
   {
-    "password": "contraseña3",
-    "email": "email3@mail.com",
-    "fullName": "cliente3"
+    "password": "lorenaorozco",
+    "email": "lorenaorozco@mail.com",
+    "fullName": "Lorena Orozco"
   },
   {
-    "password": "contraseña4",
-    "email": "emai4l@mail.com",
-    "fullName": "cliente4"
+    "password": "claramartinez",
+    "email": "claramartinez@mail.com",
+    "fullName": "Claram Martinez"
   },
   {
-    "password": "contraseña5",
-    "email": "email5@mail.com",
-    "fullName": "cliente5"
+    "password": "eugeniamontes",
+    "email": "eugeniamontes@mail.com",
+    "fullName": "Eugenia Montes"
   },
   {
-    "password": "contraseña6",
-    "email": "email6@mail.com",
-    "fullName": "cliente6"
+    "password": "giovanabatista",
+    "email": "giovanabatista@mail.com",
+    "fullName": "Giovana Batista"
   }
 ]
