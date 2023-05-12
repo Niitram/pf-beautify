@@ -5,6 +5,8 @@ const { Profesional, Service } = require("../db.js");
 
 const bulkCreateProfesionalsAndServices = async () => {
   try {
+    const oldProfesionals = await Profesional.findAll();
+    if (oldProfesionals.length) return;
     for (let profesional of profesionals) {
       const newProfessional = await Profesional.create({
         fullname: profesional.fullname,
@@ -36,8 +38,4 @@ const bulkCreateProfesionalsAndServices = async () => {
   }
 };
 
-
-module.exports =  bulkCreateProfesionalsAndServices
-
-
-
+module.exports = bulkCreateProfesionalsAndServices;
