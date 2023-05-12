@@ -1,0 +1,11 @@
+.formCreateProduct{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.containerInputs{
+    margin: 10px;
+}
