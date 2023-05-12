@@ -1,4 +1,4 @@
-const { Category } = require("../db");
+const { Category, Product } = require("../db");
 
 const deleteCategoryValidation = async (req, res, next) => {
   const id = Number(req.params.id);
@@ -11,6 +11,10 @@ const deleteCategoryValidation = async (req, res, next) => {
   const oldCategory = await Category.findByPk(id);
   if (!oldCategory)
     return res.status(400).json({ error: "category not found" });
+
+  const relatedProducts = await Product.findAll({ where: { CategoryId: id } });
+  if (relatedProducts.length)
+    return res.status(400).json({ error: "category has related products" });
 
   next();
 };
