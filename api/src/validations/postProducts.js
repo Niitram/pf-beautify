@@ -19,6 +19,10 @@ const postProductsValidation = (req, res, next) => {
   if (!numericVars.every((numericVar) => typeof numericVar === "number"))
     return res.status(400).json({ error: "Incomplete Data" });
 
+  //* checking status is a boolean
+  if (typeof state !== "boolean")
+    return res.status(400).json({ error: "State must be a boolean" });
+
   //* checking string vars come as strings
   if (!stringVars.every((data) => typeof data === "string"))
     return res.status(400).json({
