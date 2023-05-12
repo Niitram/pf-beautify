@@ -12,18 +12,21 @@ import DetailPayment from "./views/detailPayment/DetailPayment";
 import DetailUser from "./views/detailUser/DetailUser";
 import Nav from "./components/nav/Nav";
 import { useDispatch } from 'react-redux'
-import { getAllProducts } from "./redux/actions";
+import { getAllCategories, getAllProducts } from "./redux/actions";
 import useGetProducts from "./hooks/useGetProducts";
 import { useEffect } from "react";
+import useGetCategories from "./hooks/useGetCategories";
 
 function App() {
   const locationNow = useLocation();
   const dispatch = useDispatch()
   const [products] = useGetProducts();
+  const [categories] = useGetCategories();
 
   useEffect(() => {
+    dispatch(getAllCategories(categories));
     dispatch(getAllProducts(products));
-  }, [dispatch, products]);
+  }, [dispatch, products,categories]);
 
   return (
     <div className="App">
