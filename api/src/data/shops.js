@@ -4,8 +4,6 @@ const shops = require("./shops.json");
 
 const bulkCreateShops = async () => {
   try {
-    const oldShops = await Shop.findAll();
-    if (oldShops.length) return;
     for (const shop of shops) {
       await postNewShop(shop);
     }

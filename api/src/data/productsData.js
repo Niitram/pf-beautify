@@ -4,10 +4,6 @@ const axios = require("axios");
 
 const bulkCreateProducts = async (req, res) => {
   try {
-    //* checking there are not products in the database
-    const oldProducts = await Product.findAll();
-    if (oldProducts.length) return;
-
     // for (let product of productos) {
     //   const newProduct = await Product.create(product);
 
@@ -46,7 +42,7 @@ const bulkCreateProducts = async (req, res) => {
           category: productCategory,
           image: image_link,
           discount: random > 50 ? null : random,
-          state: random > 950 ? "inactiv" : "active",
+          state: random > 950 ? false : true,
           stock: random,
           rate: Math.random() * 5,
         };

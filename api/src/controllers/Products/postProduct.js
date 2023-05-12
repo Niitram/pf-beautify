@@ -15,7 +15,8 @@ const postProduct = async (product) => {
   const productCategory = await Category.findOne({
     where: { name: product.category },
   });
-  if (productCategory) newProduct.setCategory(productCategory.dataValues.id);
+  if (productCategory)
+    await newProduct.setCategory(productCategory.dataValues.id);
   else await newProduct.createCategory({ name: product.category });
 
   return newProduct;

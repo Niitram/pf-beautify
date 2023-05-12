@@ -26,8 +26,6 @@ const favorites = [
 
 const bulckCreateFavorites = async () => {
   try {
-    const oldClients = await Client.findAll();
-    if (oldClients.length) return;
     const promises = favorites.map(async ({ clientId, productId }) => {
       await postFavorite(clientId, productId);
     });
