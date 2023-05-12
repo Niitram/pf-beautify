@@ -4,26 +4,28 @@ const axios = require("axios");
 
 const bulkCreateProducts = async (req, res) => {
   try {
-    // for (let product of productos) {
-    //   const newProduct = await Product.create(product);
-
-    //   if (product.rate)
-    //     await Product.update(
-    //       { arrayRates: [product.rate] },
-    //       { where: { id: newProduct.id } }
-    //     );
-
-    //   const category = await Category.findOne({
-    //     where: { name: product.category },
-    //   });
-
-    //   if (!category) newProduct.createCategory({ name: product.category });
-    //   else newProduct.setCategory(category.dataValues.id);
-    // }
-
     const apiProducts = await axios.get(
       "http://makeup-api.herokuapp.com/api/v1/products.json"
     );
+
+    if (!apiProducts) {
+      for (let product of productos) {
+        const newProduct = await Product.create(product);
+
+        if (product.rate)
+          await Product.update(
+            { arrayRates: [product.rate] },
+            { where: { id: newProduct.id } }
+          );
+
+        const category = await Category.findOne({
+          where: { name: product.category },
+        });
+
+        if (!category) newProduct.createCategory({ name: product.category });
+        else newProduct.setCategory(category.dataValues.id);
+      }
+    }
 
     const promise = apiProducts.data.map(
       async ({ name, price, image_link, description, category }) => {
