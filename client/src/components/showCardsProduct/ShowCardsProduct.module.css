@@ -1,9 +1,5 @@
 .container {
-<<<<<<< HEAD
-    height: 100%;
-=======
     max-width: 80%;
->>>>>>> fc1a625d43c64e9833c7aa65e1e4f69ab6a2330f
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1rem;

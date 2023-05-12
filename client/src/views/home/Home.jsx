@@ -6,13 +6,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PromoCard from "../../components/promo card/PromoCard";
 import styles from "./Home.module.css";
-<<<<<<< HEAD
-// import Rating from "@mui/material/Rating";
-
-function Home() {
-  /*  const [value, setValue] = useState(3); */
-  return <div className={styles.home}>home</div>;
-=======
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -75,7 +68,6 @@ function Home() {
       </span>
     </div>
   );
->>>>>>> fc1a625d43c64e9833c7aa65e1e4f69ab6a2330f
 }
 
 export default Home;
