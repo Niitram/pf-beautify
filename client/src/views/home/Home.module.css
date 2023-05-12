@@ -1,6 +1,25 @@
-.home{
+.Container{
     width: 100%;
     height: 100vh;
     padding-top: 1rem;
-    background-color: var(--background)
+    background-color: var(--background);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
+.Promos{
+    display: flex;
+    padding: 5rem;
+    transition: 1.5s;
+
+}
+.Slider{
+    position:relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width:200vw;
+}
+

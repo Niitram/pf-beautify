@@ -1,0 +1,22 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width:60vw;
+    transition: 1.5s;
+
+}
+.Container img{
+    scale:200%;
+    transition:500ms
+}
+.Container p{
+    z-index: 4;
+    align-self: center;
+    justify-self: center;
+    position: relative;
+    bottom: 40px;
+
+}
