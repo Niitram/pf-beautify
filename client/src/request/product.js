@@ -9,6 +9,13 @@ export const getProductByName = async (searched) => {
         console.log(error.message);
     }
 }
+export const getProductById = async (id) => {
+    try {
+        return await axios.get(`${URL_BASE}/products/${Number(id)}`)
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 export const getProducts = async () => {
     try {
@@ -16,8 +23,7 @@ export const getProducts = async () => {
     } catch (error) {
         console.log(error.message);
     }
-}
-    ;
+};
 export const createProduct = async (product) => {
     try {
         return await axios.post(`${URL_BASE}/products`, product)
