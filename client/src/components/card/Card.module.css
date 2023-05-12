@@ -1,21 +1,16 @@
-
-.containerGlobal{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 90%;
-    height: 50rem;
-    padding: 5%;
+.link{
+    -webkit-box-shadow: 9px 10px 5px -7px rgba(0,0,0,0.54);
+    -moz-box-shadow: 9px 10px 5px -7px rgba(0,0,0,0.54);
+    box-shadow: 9px 10px 5px -7px rgba(0,0,0,0.54);
 }
 
 .cardContainer{
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 150px;
     height: 15rem;
     background-color: var(--accent2);
     padding: 20px;
-    margin: 5px;
     border-radius: 10px;
     -webkit-box-shadow: 9px 10px 5px -7px rgba(0,0,0,0.54);
     -moz-box-shadow: 9px 10px 5px -7px rgba(0,0,0,0.54);
