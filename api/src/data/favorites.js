@@ -1,4 +1,5 @@
 const postFavorite = require("../controllers/Favorites/postFavorite");
+const { Client } = require("../db");
 
 const favorites = [
   { clientId: 1, productId: 1 },

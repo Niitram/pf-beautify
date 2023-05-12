@@ -10,14 +10,18 @@ const postProductsValidation = (req, res, next) => {
     category,
     rate,
   } = req.body;
-  const stringVars = [name, description, image, state, category];
-  const numericVars = [price, discount, stock, rate];
+  const stringVars = [name, description, image, category];
+  const numericVars = [price, discount, stock];
 
   //*checking there's no missing data
   if (!stringVars.every(Boolean))
     return res.status(400).json({ error: "Incomplete Data" });
   if (!numericVars.every((numericVar) => typeof numericVar === "number"))
     return res.status(400).json({ error: "Incomplete Data" });
+
+  //* checking status is a boolean
+  if (typeof state !== "boolean")
+    return res.status(400).json({ error: "State must be a boolean" });
 
   //* checking string vars come as strings
   if (!stringVars.every((data) => typeof data === "string"))

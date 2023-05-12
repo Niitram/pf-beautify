@@ -1,4 +1,5 @@
 const postNewShop = require("../controllers/Shops/postNewShop");
+const { Shop } = require("../db");
 const shops = require("./shops.json");
 
 const bulkCreateShops = async () => {
