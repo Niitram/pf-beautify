@@ -1,0 +1,27 @@
+.buttonPages{
+    padding: 3px 8px;
+    background-color: var(--accent2);
+    border-radius: 8px;
+    border: none;
+    margin: 1px;
+}
+.buttonPages:hover{
+    background-color: #EE9890;
+    cursor: pointer;
+}
+
+.buttonPages:focus{
+    background-color: #EE9890;
+}
+
+.buttonPages:not(:disabled):hover {
+    background-color: var(--muted);
+    color: var(--text-alt);
+}
+.containerShowCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    
+}
