@@ -32,8 +32,8 @@ function DetailProduct() {
           <Rating defaultValue={rate} precision={0.5} readOnly />
         </Stack>
         <div className={styles.descripcionProduct}>
-          <h3 className={styles.descuento}>${discount}</h3>
-          <h3 className={styles.precio}> ${price} </h3>
+          <h3 className={styles.descuento}>${price}</h3>
+          <h3 className={styles.precio}> ${price - discount} </h3>
         </div>
 
         <label className={styles.stock}>{stock} available</label>
