@@ -1,6 +1,7 @@
 import { useState } from "react";
 import validateCreateProduct from "../../utils/validateCreateProduct";
 import { createProduct } from "../../request/product";
+import styles from "./FormCreateProduct.module.css";
 
 function FormCreateProduct() {
   const [productData, setProductData] = useState({
@@ -87,98 +88,117 @@ function FormCreateProduct() {
     }
   };
   return (
-    <form
-      onSubmit={(e) => {
-        handleSubmitCreate(e);
-      }}
-    >
-      <label htmlFor="name">Name</label>
-      <input
-        value={productData.name}
-        placeholder="nails..."
-        onChange={(e) => {
-          handleInputChange(e);
+    <div>
+      <h1>Create product</h1>
+      <form
+        className={styles.formCreateProduct}
+        onSubmit={(e) => {
+          handleSubmitCreate(e);
         }}
-        type="text"
-        id="name-input"
-        name="name"
-      />
-      {errors.name && <div>{errors.name}</div>}
+      >
+        <div className={styles.containerInputs}>
+          <label htmlFor="name">Name</label>
+          <input
+            value={productData.name}
+            placeholder="nails..."
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+            type="text"
+            id="name-input"
+            name="name"
+          />
+          {errors.name && <div>{errors.name}</div>}
+        </div>
 
-      <label htmlFor="description">Description</label>
-      <input
-        value={productData.description}
-        placeholder="Nice product..."
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-        type="text"
-        id="description-input"
-        name="description"
-      />
-      {errors.description && <div>{errors.description}</div>}
-      <label htmlFor="image">Image</label>
-      <input
-        value={productData.image}
-        placeholder="https://image.png"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-        type="text"
-        id="image-input"
-        name="image"
-      />
-      {errors.image && <div>{errors.image}</div>}
-      <label htmlFor="price">Price</label>
-      <input
-        value={productData.price}
-        placeholder="$123"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-        type="number"
-        id="price-input"
-        name="price"
-      />
-      {errors.price && <div>{errors.price}</div>}
-      <label htmlFor="stock">Stock</label>
-      <input
-        value={productData.stock}
-        placeholder="123"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-        type="number"
-        id="stock-input"
-        name="stock"
-      />
-      {errors.stock && <div>{errors.stock}</div>}
-      <label htmlFor="category">Category</label>
-      <input
-        value={productData.category}
-        placeholder="lotions..."
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-        type="text"
-        id="category-input"
-        name="category"
-      />
-      {errors.category && <div>{errors.category}</div>}
-      <label htmlFor="state">State</label>
-      <input
-        value={productData.state}
-        placeholder="true"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-        type="text"
-        id="state-input"
-        name="state"
-      />
-      {errors.state && <div>{errors.state}</div>}
-      <button type="submit">Create</button>
-    </form>
+        <div className={styles.containerInputs}>
+          <label htmlFor="description">Description</label>
+          <input
+            value={productData.description}
+            placeholder="Nice product..."
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+            type="text"
+            id="description-input"
+            name="description"
+          />
+          {errors.description && <div>{errors.description}</div>}
+        </div>
+
+        <div className={styles.containerInputs}>
+          <label htmlFor="image">Image</label>
+          <input
+            value={productData.image}
+            placeholder="https://image.png"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+            type="text"
+            id="image-input"
+            name="image"
+          />
+          {errors.image && <div>{errors.image}</div>}
+        </div>
+        <div className={styles.containerInputs}>
+          <label htmlFor="price">Price</label>
+          <input
+            value={productData.price}
+            placeholder="$123"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+            type="number"
+            id="price-input"
+            name="price"
+          />
+          {errors.price && <div>{errors.price}</div>}
+        </div>
+        <div className={styles.containerInputs}>
+          <label htmlFor="stock">Stock</label>
+          <input
+            value={productData.stock}
+            placeholder="123"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+            type="number"
+            id="stock-input"
+            name="stock"
+          />
+          {errors.stock && <div>{errors.stock}</div>}
+        </div>
+        <div className={styles.containerInputs}>
+          <label htmlFor="category">Category</label>
+          <input
+            value={productData.category}
+            placeholder="lotions..."
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+            type="text"
+            id="category-input"
+            name="category"
+          />
+          {errors.category && <div>{errors.category}</div>}
+        </div>
+        <div className={styles.containerInputs}>
+          <label htmlFor="state">State</label>
+          <input
+            value={productData.state}
+            placeholder="true"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+            type="text"
+            id="state-input"
+            name="state"
+          />
+          {errors.state && <div>{errors.state}</div>}
+        </div>
+        <button type="submit">Create</button>
+      </form>
+    </div>
   );
 }
 
