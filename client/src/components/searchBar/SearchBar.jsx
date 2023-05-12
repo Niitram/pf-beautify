@@ -3,6 +3,7 @@ import { searchProductByName } from "../../redux/actions";
 import { useState } from "react";
 import handlerSearch from "../../handlers/handleSearch";
 import handlerChange from "../../handlers/handleChange";
+import styles from "./SearchBar.module.css";
 
 function SearchBar({ setCurrentPage, setFilter, setOrdered }) {
   const [searched, setSearched] = useState("");
@@ -33,6 +34,7 @@ function SearchBar({ setCurrentPage, setFilter, setOrdered }) {
         }}
       >
         <input
+          className={styles.input}
           type="search"
           value={searched}
           onKeyDown={(e) => {
@@ -52,8 +54,12 @@ function SearchBar({ setCurrentPage, setFilter, setOrdered }) {
           }}
           placeholder="Nail polish..."
         />
-        <button type="submit">Search</button>
-        <button onClick={handlerReset}>View all</button>
+        <button className={styles.buttonSubmit} type="submit">
+          Search
+        </button>
+        <button className={styles.buttonReset} onClick={handlerReset}>
+          View all
+        </button>
       </form>
     </div>
   );

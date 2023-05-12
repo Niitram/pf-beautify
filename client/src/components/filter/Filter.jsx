@@ -5,6 +5,7 @@ import Select from "@mui/material/Select";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Slider } from "@mui/material";
 import { filterProducts } from "../../redux/actions";
+import styles from "./Filter.module.css";
 
 function valuetext(value) {
   return `$ ${value}`;
@@ -34,6 +35,7 @@ function Filter({ setFilter, filter }) {
           Categories
         </InputLabel>
         <Select
+          className={styles.selectCategories}
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
           value={filter.category}
@@ -51,10 +53,11 @@ function Filter({ setFilter, filter }) {
             );
           })}
         </Select>
-        <Box sx={{ width: 300 }}>
-          <span>{`$ ${filter.price[0]}`}</span>
-          <span>{`$ ${filter.price[1]}`}</span>
+        <span>{`$ ${filter.price[0]}`}</span>
+        <span>{`$ ${filter.price[1]}`}</span>
+        <Box className={styles.boxSlider} sx={{ width: 300 }}>
           <Slider
+            className={styles.Slider}
             getAriaLabel={() => "Temperature range"}
             value={filter.price}
             onChange={handleChangeFilter}
