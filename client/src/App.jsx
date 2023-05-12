@@ -11,22 +11,23 @@ import DetailProduct from "./views/detailProduct/DetailProduct";
 import DetailPayment from "./views/detailPayment/DetailPayment";
 import DetailUser from "./views/detailUser/DetailUser";
 import Nav from "./components/nav/Nav";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 import { getAllCategories, getAllProducts } from "./redux/actions";
 import useGetProducts from "./hooks/useGetProducts";
 import { useEffect } from "react";
 import useGetCategories from "./hooks/useGetCategories";
+import NewProduct from "./views/newProduct/NewProduct";
 
 function App() {
   const locationNow = useLocation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [products] = useGetProducts();
   const [categories] = useGetCategories();
 
   useEffect(() => {
     dispatch(getAllCategories(categories));
     dispatch(getAllProducts(products));
-  }, [dispatch, products,categories]);
+  }, [dispatch, products, categories]);
 
   return (
     <div className="App">
@@ -42,6 +43,7 @@ function App() {
         <Route path="/detailUser" element={<DetailUser />} />
         <Route path="/detailProduct/:id" element={<DetailProduct />} />
         <Route path="/detailPayment" element={<DetailPayment />} />
+        <Route path="/newProduct" element={<NewProduct />} />
       </Routes>
     </div>
   );
