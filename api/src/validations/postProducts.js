@@ -11,7 +11,7 @@ const postProductsValidation = (req, res, next) => {
     rate,
   } = req.body;
   const stringVars = [name, description, image, state, category];
-  const numericVars = [price, discount, stock, rate];
+  const numericVars = [price, discount, stock];
 
   //*checking there's no missing data
   if (!stringVars.every(Boolean))
