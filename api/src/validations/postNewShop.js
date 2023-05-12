@@ -47,12 +47,16 @@ const postNewShopValidation = async (req, res, next) => {
     const promises = details.map(async (detail) => {
       const product = await Product.findByPk(detail.productId);
       if (!product) return false;
+
+      if (product.stock < detail.count) return false;
       return true;
     });
 
     const hasDetailProducts = await Promise.all(promises);
     if (!hasDetailProducts.every(Boolean))
-      return res.status(400).json({ error: "Some product wasn't found" });
+      return res
+        .status(400)
+        .json({ error: "Some product wasn't found or has not enough stock" });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
