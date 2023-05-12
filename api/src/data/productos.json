@@ -6,7 +6,7 @@
     "price": 10,
     "discount": 2,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 2.5
   },
@@ -17,7 +17,7 @@
     "price": 30,
     "discount": 0,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 5
   },
@@ -28,7 +28,7 @@
     "price": 10,
     "discount": 0,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "quitaesmaltes",
     "rate": 4.3
   },
@@ -39,7 +39,7 @@
     "price": 50,
     "discount": 2,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 3.23
   },
@@ -50,7 +50,7 @@
     "price": 100,
     "discount": 0,
     "stock": 0,
-    "state": "active",
+    "state": true,
     "category": "lima de uñas",
     "rate": 2.53
   },
@@ -61,7 +61,7 @@
     "price": 80,
     "discount": 2,
     "stock": 2,
-    "state": "active",
+    "state": true,
     "category": "lima de uñas",
     "rate": 1
   },
@@ -72,7 +72,7 @@
     "price": 1000,
     "discount": 0,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "sales de baño",
     "rate": 0
   },
@@ -83,7 +83,7 @@
     "price": 100,
     "discount": 0,
     "stock": 0,
-    "state": "active",
+    "state": true,
     "category": "sales de baño",
     "rate": 2.5
   },
@@ -94,7 +94,7 @@
     "price": 10,
     "discount": 2,
     "stock": 30,
-    "state": "inactive",
+    "state": true,
     "category": "otra categoría",
     "rate": 5
   },
@@ -105,7 +105,7 @@
     "price": 10,
     "discount": 2,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "otra categoría",
     "rate": 4
   },
@@ -116,7 +116,7 @@
     "price": 15,
     "discount": 0,
     "stock": 20,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 4.5
   },
@@ -127,7 +127,7 @@
     "price": 25,
     "discount": 5,
     "stock": 15,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 3.8
   },
@@ -138,7 +138,7 @@
     "price": 18,
     "discount": 0,
     "stock": 10,
-    "state": "active",
+    "state": false,
     "category": "esmalte",
     "rate": 4.2
   },
@@ -149,7 +149,7 @@
     "price": 30,
     "discount": 0,
     "stock": 25,
-    "state": "active",
+    "state": false,
     "category": "esmalte",
     "rate": 4.7
   },
@@ -160,7 +160,7 @@
     "price": 22,
     "discount": 3,
     "stock": 18,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 3.5
   },
@@ -171,7 +171,7 @@
     "price": 28,
     "discount": 0,
     "stock": 12,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 4.0
   },
@@ -182,7 +182,7 @@
     "price": 20,
     "discount": 0,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 4.8
   },
@@ -193,7 +193,7 @@
     "price": 35,
     "discount": 0,
     "stock": 20,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 4.2
   }
