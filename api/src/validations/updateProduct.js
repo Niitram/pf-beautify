@@ -11,7 +11,7 @@ const updateProductValidation = async (req, res, next) => {
     return res.status(400).json({ error: "Nothing to update" });
 
   for (const property in propertys) {
-    if (["name", "description", "image", "state"].includes(property)) {
+    if (["name", "description", "image"].includes(property)) {
       if (typeof propertys[property] !== "string")
         return res.status(400).json({ error: `${property} must be a string` });
 
@@ -31,6 +31,8 @@ const updateProductValidation = async (req, res, next) => {
         return res.status(400).json({ error: "stock must be an integer" });
     }
   }
+  if (typeof propertys.state !== "boolean")
+    return res.status(400).json({ error: "state must be a boolean" });
 
   if (propertys.rate)
     return res
