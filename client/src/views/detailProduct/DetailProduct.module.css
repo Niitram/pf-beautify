@@ -6,7 +6,18 @@
     margin-top: 2rem;
     
 }
+.containerImagen{
+   display: flex;
+   flex-direction: column;
+}
+.containerImagen > a {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-decoration: none;
 
+
+}
 .imgProduct{
     width: 19rem;
     margin-top: 1rem;

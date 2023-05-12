@@ -2,16 +2,24 @@ import { Stack, Rating } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import styles from "./DetailProduct.module.css";
+import { NavLink } from "react-router-dom";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 
 function DetailProduct() {
   let cantStock = 20;
   return (
     <div className={styles.container}>
-      <img
-        className={styles.imgProduct}
-        src="../src/assets/images/surtido-productos-cuidado-alto-angulo.jpg"
-        alt="Product"
-      />
+      <div className={styles.containerImagen}>
+        <NavLink to="/products">
+          <ArrowLeftIcon />
+          Regresar
+        </NavLink>
+        <img
+          className={styles.imgProduct}
+          src="../src/assets/images/surtido-productos-cuidado-alto-angulo.jpg"
+          alt="Product"
+        />
+      </div>
       <div className={styles.containerDetails}>
         <h1 className={styles.nombreProduct}>Nombre del producto</h1>
         <h3 className={styles.descripcionProduct}>DESCRIPCION DEL PRODUCTO</h3>
