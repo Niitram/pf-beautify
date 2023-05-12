@@ -1,4 +1,5 @@
 const postFavorite = require("../controllers/Favorites/postFavorite");
+const { Client } = require("../db");
 
 const favorites = [
   { clientId: 1, productId: 1 },
@@ -25,6 +26,8 @@ const favorites = [
 
 const bulckCreateFavorites = async () => {
   try {
+    const oldClients = await Client.findAll();
+    if (oldClients.length) return;
     const promises = favorites.map(async ({ clientId, productId }) => {
       await postFavorite(clientId, productId);
     });

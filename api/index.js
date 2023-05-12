@@ -5,7 +5,7 @@ const bulckCreateFavorites = require("./src/data/favorites.js");
 const bulkCreateProducts = require("./src/data/productsData.js");
 const bulkCreateShops = require("./src/data/shops.js");
 const { conn } = require("./src/db.js");
-const bulkCreateProfesionalsAndServices = require("./src/data/services.js")
+const bulkCreateProfesionalsAndServices = require("./src/data/services.js");
 // Syncing all the models at once.
 
 conn.sync({ force: true }).then(() => {
@@ -17,6 +17,5 @@ conn.sync({ force: true }).then(() => {
     await bulkCreateClients();
     await bulkCreateShops();
     await bulckCreateFavorites();
-
   });
 });
