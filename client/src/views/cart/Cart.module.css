@@ -1,0 +1,267 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+.containerGlobal{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.containerArticulos{
+    width: 40%;
+    height: 150px;
+    padding: 70px;
+}
+.continuarComprando{
+    display: flex;
+    align-items: start;
+    flex-direction: row;
+    margin: 0px 0px 20px 0px;
+}
+.continuarComprando>a{
+    text-decoration: none;
+}
+.textArticulo{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.txtCarrito{
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight:bold;
+    margin-top: 1rem;
+}
+.cantCart{
+    font-family: 'Nunito';
+    font-size: 12px;
+    font-weight: 500;
+}
+.detallesCompra{
+    width: 60%;
+}
+
+.articulo{
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+    border-color: black;
+    border-radius: 15px;
+    background-color: var(--accent2);
+    margin-top: 1.5rem;
+}
+.imagenArticulo img{
+    width: 3rem;
+    border-radius: 5px;
+}
+
+.detallesArticulo{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+.nameProduct{
+    font-size: 12px;
+    margin-bottom: 3%;
+    font-family: 'Poppins';
+}
+.descriptionProduct{
+ font-size: 9px;
+ font-family: 'Nunito';
+}
+.btnupdown{
+    display: flex;
+    flex-direction: column;
+}
+.precio{
+    font-family: 'Poppins';
+    font-size: small;
+}
+.cantidad{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+}
+.cantidad label{
+    margin-right: 20%;
+}
+.detallesCompra{
+    margin-top: 3rem;
+    height: 28rem;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: var(--accent2);
+    width: 20rem;
+    margin: 30px;
+}
+.detallesPago{
+    display: flex;
+    flex-direction: column;
+}
+.textTarjeta{
+    display: flex;
+    align-items: start;
+    font-family: 'Poppins';
+    margin: 8px;
+}
+.tipoTarjeta{
+    display: flex;
+    align-items: start;
+    font-family: 'Nunito';
+    margin-left: 8px;
+    font-size: 10px;
+}
+.imagenMercadoPago{
+    display: flex;
+    align-items: start;
+    border-radius: 5px;
+    background-color: rgb(148, 148, 148);
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border: 2px;
+    width: 60px;
+}
+.imagenMercadoPago img{
+    width: 60px;
+}
+.datosTarjeta{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    margin-top: 3%;
+}
+.nombreTarjeta{
+    font-family: 'Poppins';
+    font-size: 9px;
+}
+
+.datosTarjeta input{
+    width: 97%;
+    height: 30px;
+    border-radius: 5px;
+    border: 0px;
+    font-family: 'Poppins';
+    font-size: 9px;
+}
+
+.datosTarjeta input::placeholder{
+    font-family: 'Poppins';
+    font-size: 9px;
+    color: var(--text);
+}
+.datosTarjeta input[type=text]
+{
+padding-left:2%;
+}
+.datosTarjeta input[type=number]
+{
+padding-left:2%;
+}
+
+.containerdata{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+.fechaTarjeta{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 50%;
+}
+.fechaTarjeta label{
+    font-size: 10px;
+    margin-bottom: 2%;
+}
+.fechaTarjeta input{
+    width: 97%;
+    height: 30px;
+    border: 0px;
+    border-radius: 5px;
+    margin-right: 6px;
+    font-family: 'Poppins';
+    font-size: 9px;
+}
+.fechaTarjeta input[type=month]
+{
+padding-left:3%;
+}
+
+.cvv{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 50%;
+}
+.cvv label{
+    font-size: 10px;
+    margin-left: 6px;
+    margin-bottom: 2%;
+}
+.cvv input{
+    width: 90%;
+    height: 30px;
+    border: 0px;
+    border-radius: 5px;
+    margin-left: 6px;
+    font-family: 'Poppins';
+    font-size: 9px;
+}
+.cvv input[type=number]
+{
+padding-left:3%;
+}
+.cvv input::placeholder{
+    font-family: 'Poppins';
+    font-size: 9px;
+    color: var(--text);
+}
+
+.datosPagos{
+    margin-top: 5%;
+}
+.text{
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+.text label{
+    font-family: 'Poppins';
+}
+
+.total{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    padding: 5%;
+    border-radius: 10px;
+    background-color: var(--background);
+}
+.total label{
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+
+.total button{
+    font-family: 'Poppins';
+    font-size: 12px;
+    padding: 2px 15px 2px 15px;
+    background-color: var(--accent2);
+    border-radius: 5px;
+    border: 0px;
+}
+
+.total button:hover{
+    font-family: 'Poppins';
+    font-size: 12px;
+    padding: 2px 15px 2px 15px;
+    background-color: var(--accent1);
+    color: var(--background);
+    border-radius: 5px;
+    border: 0px;
+}

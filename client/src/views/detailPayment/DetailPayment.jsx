@@ -1,8 +1,5 @@
-
 function DetailPayment() {
-    return (
-        <div>DetailPayment</div>
-    )
+  return <div>DetailPayment</div>;
 }
 
-export default DetailPayment
+export default DetailPayment;

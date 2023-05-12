@@ -8,7 +8,9 @@ function Nav() {
   return (
     <nav className={styles.navBar}>
       <NavLink to="/home">
-        <img className={styles.logo} src={logo} alt="logo" />
+        <div className={styles.imagen}>
+          <img className={styles.logo} src={logo} alt="logo" />
+        </div>
       </NavLink>
       {/* <ButtonNav text={"Home"} route={"/home"}></ButtonNav> */}
 
