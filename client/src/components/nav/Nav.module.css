@@ -21,11 +21,11 @@
     background-color: transparent;
     overflow: hidden;
 }
-img{
-    display: block;
+.imagen{
+    display: flex;
     width: 35%;
     justify-content: start;
-    margin-left: 1rem;
+    margin-left: 2rem;
 }
 
 
