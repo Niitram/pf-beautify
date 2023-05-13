@@ -52,6 +52,7 @@ function Paginations({ currentPage, setCurrentPage }) {
         </button>
       </div>
       <div className={styles.containerShowCards}>
+        <div>Found products {copyAllProducts.length}</div>
         <ShowCardsProduct currentPage={currentPage} />
       </div>
     </div>
