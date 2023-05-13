@@ -3,9 +3,6 @@ const { Appointment, Client, Service, Profesional } = require('../../db.js')
 const createAppointment = async (profesionalId, clientId, serviceId, date, hour) => {
     const appointment = await Appointment.create({
 
-        profesionalId,
-        clientId,
-        serviceId,
         date,
         hour
     });
