@@ -16,14 +16,14 @@ function Paginations({ currentPage, setCurrentPage }) {
   };
 
   return (
-    <div>
+    <div className={styles.Container}>
       <div>
         <button
           className={styles.buttonPages}
           disabled={currentPage === 1}
           onClick={prevPage}
         >
-          Previous Page
+          Prev
         </button>
         {arrayWithPages.map((page, index) => {
           if (arrayWithPages.length - 1) {
@@ -48,7 +48,7 @@ function Paginations({ currentPage, setCurrentPage }) {
           }
           onClick={nextPage}
         >
-          Next Page
+          Next 
         </button>
       </div>
       <div className={styles.containerShowCards}>

@@ -1,0 +1,13 @@
+.Order :global .MuiSelect-standard::after{
+    background-color: #f5b7b179;
+    border-radius: 5px;
+    border-style: none;
+    /* border:1px solid red; */
+    width:150px;
+    /* border-bottom: red; */
+}
+
+.Order .MuiInputBase-root-MuiInput-root-MuiSelect-root{
+    color:red;
+    background-color: red;
+  }

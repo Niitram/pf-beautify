@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { orderProductsByPrice, orderProductsByRate } from "../../redux/actions";
+import styles from './Order.module.css'
 
 function Order({ ordered, setOrdered }) {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function Order({ ordered, setOrdered }) {
           value={ordered.price}
           name="price"
           onChange={handleChangeOrder}
+          className={styles.Order}
         >
           <MenuItem value={"maxPrice"} name="price">
             Max price
@@ -33,17 +35,18 @@ function Order({ ordered, setOrdered }) {
             Min price
           </MenuItem>
         </Select>
-      </FormControl>
+      </FormControl><br></br>
       <FormControl variant="standard" sx={{ m: 5, minWidth: 120 }}>
         <InputLabel id="demo2-simple-select-standard-label">
           Order by rate
         </InputLabel>
         <Select
-          labelId="demo2-simple-select-standard-label"
-          id="demo2-simple-select-standard"
+          labelId="demo-simple-select-filled-label"
+          id="demo-simple-select-filled"
           value={ordered.rate}
           name="rate"
           onChange={handleChangeOrder}
+          className={styles.Order}
         >
           <MenuItem value={"maxRate"} name="rate">
             Max rate

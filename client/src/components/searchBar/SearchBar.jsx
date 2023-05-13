@@ -20,7 +20,7 @@ function SearchBar({ setCurrentPage, setFilter, setOrdered }) {
     });
   };
   return (
-    <div>
+    <div className={styles.Container}>
       <form
         onSubmit={(e) => {
           handlerSearch(
