@@ -11,10 +11,7 @@ function Products() {
     category: "all",
     price: [1, 1000],
   });
-  const [ordered, setOrdered] = useState({
-    price: "",
-    rate: "",
-  });
+  const [ordered, setOrdered] = useState("");
 
   return (
     <section>

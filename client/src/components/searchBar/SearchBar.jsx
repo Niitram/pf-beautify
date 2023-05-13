@@ -14,10 +14,7 @@ function SearchBar({ setCurrentPage, setFilter, setOrdered }) {
       category: "all",
       price: [1, 1000],
     });
-    setOrdered({
-      price: "",
-      rate: "",
-    });
+    setOrdered("");
   };
   return (
     <div>
