@@ -5,8 +5,8 @@ const {validationSaveClient, validationPutClient}= require('../validations/valid
 
 router.post("/", validationSaveClient, async (req, res) => {
   try {
-    const { password, email, name } = req.body;
-    const client = await postClient(password, email, name);
+    const { password, email, fullName } = req.body;
+    const client = await postClient(password, email, fullName);
     res.json(client);
   } catch (error) {
     res.json({ error: error.message });

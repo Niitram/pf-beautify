@@ -36,8 +36,4 @@ const bulkCreateProfesionalsAndServices = async () => {
   }
 };
 
-
-module.exports =  bulkCreateProfesionalsAndServices
-
-
-
+module.exports = bulkCreateProfesionalsAndServices;

@@ -1,6 +1,12 @@
 const { Product, Category } = require("../../db");
 
 const postProduct = async (product) => {
+  product.name = product.name[0].toUpperCase() + product.name.slice(1);
+  product.category =
+    product.category[0].toUpperCase() + product.category.slice(1);
+  product.description =
+    product.description[0].toUpperCase() + product.description.slice(1);
+
   let newProduct = await Product.create(product);
   if (product.rate) {
     await Product.update(
@@ -15,7 +21,8 @@ const postProduct = async (product) => {
   const productCategory = await Category.findOne({
     where: { name: product.category },
   });
-  if (productCategory) newProduct.setCategory(productCategory.dataValues.id);
+  if (productCategory)
+    await newProduct.setCategory(productCategory.dataValues.id);
   else await newProduct.createCategory({ name: product.category });
 
   return newProduct;

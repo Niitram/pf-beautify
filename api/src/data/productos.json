@@ -6,7 +6,7 @@
     "price": 10,
     "discount": 2,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 2.5
   },
@@ -17,7 +17,7 @@
     "price": 30,
     "discount": 0,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 5
   },
@@ -28,8 +28,13 @@
     "price": 10,
     "discount": 0,
     "stock": 30,
+<<<<<<< HEAD
     "state": "active",
     "category": "Quita Esmaltes",
+=======
+    "state": true,
+    "category": "quitaesmaltes",
+>>>>>>> 44d0cb2ba1cbd8de19ed042aae7e078772f0e7e5
     "rate": 4.3
   },
   {
@@ -39,7 +44,7 @@
     "price": 50,
     "discount": 2,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "esmalte",
     "rate": 3.23
   },
@@ -50,7 +55,7 @@
     "price": 100,
     "discount": 0,
     "stock": 0,
-    "state": "active",
+    "state": true,
     "category": "lima de uñas",
     "rate": 2.53
   },
@@ -61,7 +66,7 @@
     "price": 80,
     "discount": 2,
     "stock": 2,
-    "state": "active",
+    "state": true,
     "category": "lima de uñas",
     "rate": 1
   },
@@ -72,7 +77,7 @@
     "price": 1000,
     "discount": 0,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "sales de baño",
     "rate": 0
   },
@@ -83,7 +88,7 @@
     "price": 100,
     "discount": 0,
     "stock": 0,
-    "state": "active",
+    "state": true,
     "category": "sales de baño",
     "rate": 2.5
   },
@@ -94,7 +99,7 @@
     "price": 10,
     "discount": 2,
     "stock": 30,
-    "state": "inactive",
+    "state": true,
     "category": "otra categoría",
     "rate": 5
   },
@@ -105,8 +110,96 @@
     "price": 10,
     "discount": 2,
     "stock": 30,
-    "state": "active",
+    "state": true,
     "category": "otra categoría",
     "rate": 4
+  },
+  {
+    "name": "Producto 1",
+    "description": "Descripción del producto 1",
+    "image": "https://www.ponds.com.ar/sk-eu/content/dam/brands/ponds/3779-1236355-productos-380x293_0000_H.png.rendition.380.380.png",
+    "price": 15,
+    "discount": 0,
+    "stock": 20,
+    "state": true,
+    "category": "esmalte",
+    "rate": 4.5
+  },
+  {
+    "name": "Producto 2",
+    "description": "Descripción del producto 2",
+    "image": "https://smoda.elpais.com/wp-content/uploads/2020/03/aveeno.jpg",
+    "price": 25,
+    "discount": 5,
+    "stock": 15,
+    "state": true,
+    "category": "esmalte",
+    "rate": 3.8
+  },
+  {
+    "name": "Producto 3",
+    "description": "Descripción del producto 3",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrbmWR0GHSLHyROlAXQcB_XgoHoyJJmhy3HA&usqp=CAU",
+    "price": 18,
+    "discount": 0,
+    "stock": 10,
+    "state": false,
+    "category": "esmalte",
+    "rate": 4.2
+  },
+  {
+    "name": "Producto 4",
+    "description": "Descripción del producto 4",
+    "image": "https://d22fxaf9t8d39k.cloudfront.net/b0ebec251d750034fa346c948dcf2555f839ea3b2afd0d083d46efd6cc84d2b046573.jpeg",
+    "price": 30,
+    "discount": 0,
+    "stock": 25,
+    "state": false,
+    "category": "esmalte",
+    "rate": 4.7
+  },
+  {
+    "name": "Producto 5",
+    "description": "Descripción del producto 5",
+    "image": "https://villeneuve.com.ar/wp-content/uploads/2022/02/vnv-crema-palta-400ml.png",
+    "price": 22,
+    "discount": 3,
+    "stock": 18,
+    "state": true,
+    "category": "esmalte",
+    "rate": 3.5
+  },
+  {
+    "name": "Producto 6",
+    "description": "Descripción del producto 6",
+    "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/034/306/products/crema-de-lapacho-rosado_mesa-de-trabajo-1_mesa-de-trabajo-11-e3b4ef25257c8afa2e16222264929679-640-0.jpg",
+    "price": 28,
+    "discount": 0,
+    "stock": 12,
+    "state": true,
+    "category": "esmalte",
+    "rate": 4.0
+  },
+  {
+    "name": "Producto 7",
+    "description": "Descripción del producto 7",
+    "image": "https://imagenes.elpais.com/resizer/Whce5A_cTmyjNLKKTcTNECIsfro=/1960x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/FRUQGRNJX5NMMHMP5XIVDNANA4.jpg",
+    "price": 20,
+    "discount": 0,
+    "stock": 30,
+    "state": true,
+    "category": "esmalte",
+    "rate": 4.8
+  },
+  {
+    "name": "Producto 8",
+    "description": "Descripción del producto 8",
+    "image": "https://i.blogs.es/34f05b/kiehlsspain_60934209_159424461760957_6653188046886115625_n/450_1000.jpeg",
+    "price": 35,
+    "discount": 0,
+    "stock": 20,
+    "state": true,
+    "category": "esmalte",
+    "rate": 4.2
   }
 ]

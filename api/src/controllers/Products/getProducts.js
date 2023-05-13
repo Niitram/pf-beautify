@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Product, Category } = require("../../db");
 
 const getProducts = async (name) => {
@@ -19,7 +20,17 @@ const getProducts = async (name) => {
       });
 
   const filteredProducts = products.map(
-    ({ id, name, image, price, discount, Category, stock, finalRate }) => {
+    ({
+      id,
+      name,
+      image,
+      price,
+      discount,
+      Category,
+      stock,
+      finalRate,
+      state,
+    }) => {
       return {
         id,
         name,
@@ -29,6 +40,7 @@ const getProducts = async (name) => {
         category: Category.name,
         stock,
         rate: finalRate,
+        state,
       };
     }
   );
