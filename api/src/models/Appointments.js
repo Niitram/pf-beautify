@@ -11,18 +11,6 @@ module.exports = (sequelize) => {
                 primaryKey: true,
                 autoIncrement: true
             },
-            profesionalId:{
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
-            clientId:{
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
-            serviceId:{
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
             date: {
                 type: DataTypes.DATEONLY,
                 allowNull: false
