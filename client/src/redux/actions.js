@@ -2,8 +2,7 @@ export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const SEARCH_PRODUCT_BY_NAME = "SEARCH_PRODUCT_BY_NAME";
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
-export const ORDER_PRODUCTS_BY_PRICE = "ORDER_PRODUCTS_BY_PRICE";
-export const ORDER_PRODUCTS_BY_RATE = "ORDER_PRODUCTS_BY_RATE";
+export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const RESET_FILTERS_ORDER = "RESET_FILTERS_ORDER";
 
 /* Actions */
@@ -38,15 +37,9 @@ export const filterProducts = (data) => {
     payload: data,
   };
 };
-export const orderProductsByPrice = (data) => {
+export const orderProducts = (data) => {
   return {
-    type: ORDER_PRODUCTS_BY_PRICE,
-    payload: data,
-  };
-};
-export const orderProductsByRate = (data) => {
-  return {
-    type: ORDER_PRODUCTS_BY_RATE,
+    type: ORDER_PRODUCTS,
     payload: data,
   };
 };
