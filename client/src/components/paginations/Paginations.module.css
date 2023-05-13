@@ -1,9 +1,18 @@
+.Container{
+    /* border:1px solid green; */
+     padding:0px;
+    width:100%;
+    overflow: hidden;
+}
+
 .buttonPages{
     padding: 3px 8px;
     background-color: var(--accent2);
     border-radius: 8px;
     border: none;
     margin: 1px;
+    padding:0.4rem 0.8rem;
+    margin:0 3px
 }
 .buttonPages:hover{
     background-color: #EE9890;
@@ -14,15 +23,27 @@
     background-color: #EE9890;
 }
 
-.buttonPages:not(:disabled):hover {
-    background-color: var(--muted);
-    color: var(--text-alt);
+.buttonPages:disabled:hover{
+    background: var(--accent2);
+   
 }
+
+/* .buttonPages:disabled {
+    background-color: var(--muted   );
+    color: var(--text-alt);
+} */
+
 .containerShowCards{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     padding: 10px;
     
+}
+.found{
+    font-family: 'Josefin Sans',sans-serif;
+    color: var(--text-alt);
+    font-weight: lighter;
+    align-self: center;
 }

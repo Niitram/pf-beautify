@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { orderProducts } from "../../redux/actions";
+import styles from './Order.module.css'
+
 
 function Order({ ordered, setOrdered }) {
   const dispatch = useDispatch();
@@ -20,6 +22,7 @@ function Order({ ordered, setOrdered }) {
           value={ordered.price}
           name="price"
           onChange={handleChangeOrder}
+          className={styles.Order}
         >
           <MenuItem value={"maxPrice"} name="price">
             Max price

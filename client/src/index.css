@@ -15,7 +15,7 @@
   --gradient: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
 }
 :root{
-  overflow: scroll;
+overflow: auto;
 }
 :root::-webkit-scrollbar{
   width: 3px;
