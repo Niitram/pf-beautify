@@ -28,6 +28,7 @@
     width:100%;
     height: 100%;
     filter: blur(60px);
+    transition: 1s;
 }
 .noBlur {
     color:aliceblue;
@@ -36,4 +37,13 @@
 .splide__arrow{
     z-index: 60;
     background-color: red;
+}
+.link{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration: none;
 }

@@ -35,7 +35,7 @@ function Home() {
             arrows:true,
             arrowPath:'',
             pagination:true,
-            lazyLoad:'nearby',
+            // lazyLoad:'nearby',
             classes:{
               arrows: 'splide__arrows customArrows',
               arrow : 'splide__arrow customArrow',
