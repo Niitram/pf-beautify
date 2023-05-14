@@ -1,5 +1,6 @@
 const validateCreateProduct = (product, setErrors) => {
-    const regexString = /^[a-zA-Z][a-zA-Z\s]*$/;
+
+    const regexString = /^(?!\s)[a-zA-Z0-9][a-zA-Z0-9\s]*$/;
     if (!product.name)
         setErrors((prevState) => {
             return { ...prevState, name: "Required" };
