@@ -1,0 +1,186 @@
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 2rem;
+    
+}
+.containerImagen{
+   display: flex;
+   flex-direction: column;
+}
+.containerImagen > a {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-decoration: none;
+
+
+}
+.imgProduct{
+    width: 19rem;
+    margin-top: 1rem;
+    margin-right: 6rem;
+    margin-bottom: 1rem;
+    border-radius: 15px;
+    -webkit-box-shadow: 7px 6px 21px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 6px 21px -9px rgba(0,0,0,0.75);
+    box-shadow: 7px 6px 21px -9px rgba(0,0,0,0.75);
+}
+
+.containerDetails{
+    width: 387px;
+}
+.nombreProduct{
+    display: flex;
+    justify-content: start;
+    font-family: 'Hind Siliguri';
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+.descripcionProduct{
+    display: flex;
+    justify-content: start;
+    font-family: 'Hind Siliguri';
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--accent1);
+    margin-bottom: 3%;
+}
+.descuento{
+    display: flex;
+    align-items: center;
+    color: #828282;
+    font-family: 'Hind Siliguri';
+    font-weight: 900;
+    text-decoration:line-through 1px;
+
+}
+.precio{
+    justify-content: start;
+    color: var(--accent1);
+    font-family: 'Hind Siliguri';
+    font-weight:900px;
+    margin: 2%;
+    font-size: 30px;
+}
+.precios{
+    display: flex;
+    flex-direction: row;
+}
+
+.stock{
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    font-size: 14px;
+    font-family: 'Hind Siliguri';
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+.progressBar{
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+.descripcionDetailProduct{
+        display: flex;
+        justify-content: start;
+        flex-direction: row;
+        font-size: 18px;
+        font-family: 'Hind Siliguri';
+        font-weight: bold;
+        margin-top: 2%;
+        margin-bottom: 1%;
+}
+.descripction{
+    text-align: justify;
+}
+.apartadoCompras{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 20px;
+}
+.cantidad{
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    margin-bottom: 1%;
+    font-family: 'Hind Siliguri';
+    font-size: 18px;
+    font-weight: 900;
+}
+.inputCantidad{
+    height: 40px;
+    font-size: 18px;
+
+}
+.shopMax{
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    margin-top: 1%;
+    font-family: 'Hind Siliguri';
+    font-size: 12px;
+    font-weight: 100;
+    color: var(--text-alt);
+}
+.btnShopNow{
+    width: 100%;
+    height: 40px;
+    font-family: 'Hind Siliguri';
+    font-weight: 900;
+    font-size: 18px;
+    background-color: var(--accent1);
+    color: var(--background);
+    border-radius: 5px;
+    margin-top: 1rem;
+    border: 0px;
+}
+.btnShopNow:hover{
+    background-color: var(--accent2);
+    color: var(--text);
+}
+.btnCartAndList{
+    display: flex;
+    margin-top: 1rem;
+}
+.addCart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 40px;
+    margin-right: 7px;
+    color: var(--accent1);
+    border-color: var(--accent1);
+    border-radius: 5px;
+    
+}
+.addCart:hover{
+    color: var(--text);
+    background-color: var(--accent2);
+}
+.listWish{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 40px;
+    margin-left: 7px;
+    color: var(--accent1);
+    border-color: var(--accent1);
+    border-radius: 5px;
+}
+
+.listWish:hover{
+    color: var(--text);
+    background-color: var(--accent2);
+}
+
+

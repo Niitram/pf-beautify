@@ -1,6 +1,6 @@
-const { Op } = require("sequelize");
-const { Product, Category } = require("../../db");
 
+const { Product, Category } = require("../../db");
+const { Op } = require("sequelize");
 const getProducts = async (name) => {
   const products = name
     ? await Product.findAll({
@@ -20,17 +20,7 @@ const getProducts = async (name) => {
       });
 
   const filteredProducts = products.map(
-    ({
-      id,
-      name,
-      image,
-      price,
-      discount,
-      Category,
-      stock,
-      finalRate,
-      state,
-    }) => {
+    ({ id, name, image, price, discount, Category, stock, finalRate }) => {
       return {
         id,
         name,
@@ -40,7 +30,6 @@ const getProducts = async (name) => {
         category: Category.name,
         stock,
         rate: finalRate,
-        state,
       };
     }
   );

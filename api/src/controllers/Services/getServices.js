@@ -17,4 +17,3 @@ const getService = async () => {
 };
 
 module.exports = getService;
-

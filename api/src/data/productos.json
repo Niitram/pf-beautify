@@ -28,8 +28,8 @@
     "price": 10,
     "discount": 0,
     "stock": 30,
-    "state": "active",
-    "category": "Quita Esmaltes",
+    "state": true,
+    "category": "quitaesmaltes",
     "rate": 4.3
   },
   {

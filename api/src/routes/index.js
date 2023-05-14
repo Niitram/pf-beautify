@@ -10,7 +10,6 @@ const shopsRouter = require("../handlers/shops-routes");
 const favoritesRouter = require("../handlers/favorites-routes");
 const appointmentsRouter = require('../handlers/appointments-routes');
 
-
 const router = Router();
 
 
@@ -24,5 +23,15 @@ router.use("/developers", developersRouter);
 router.use("/shops", shopsRouter);
 router.use("/favorites", favoritesRouter);
 router.use('/appointments',appointmentsRouter);
+
+
+router.get("/holis", (req, res) => {
+  try {
+    res.status(200).send("tukis");
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
+
 
 module.exports = router;
