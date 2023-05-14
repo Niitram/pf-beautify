@@ -13,7 +13,9 @@
     border:0px;
     padding: 10px 35px 10px 35px;
     justify-content: center;
-    cursor:pointer
+    cursor:pointer;
+    font-size:1rem;
+    font-weight:lighter
 }
 .Container:hover{
     background-color: var(--accent2);
@@ -29,4 +31,6 @@
     padding: 10px 35px 10px 35px;
     justify-content: center;
     border-radius: 10px;
+     font-size:1rem;
+    font-weight:lighter
 }
