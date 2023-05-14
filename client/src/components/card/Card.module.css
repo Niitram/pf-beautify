@@ -9,11 +9,13 @@
 .cardContainer{
     display: flex;
     flex-direction: column;
-    width: 150px;
-    height: 15rem;
+    width: 180px;
+    height: 16rem;
     background-color: #F9F6F6;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0px 1px 13px rgba(0,0,0,0.1);
+    border:none;
 }
 .imagen{
     width: 100%;
@@ -25,5 +27,11 @@
     width: 100%;
 }
 .nombre{
-    font-weight: 900;
+    font-weight: lighter;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+}
+.precio {
+    color:rgba(182, 23, 23, 0.986)
 }

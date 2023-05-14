@@ -7,12 +7,12 @@
 
 .input{
     font-family: 'Josefin Sans',sans-serif;
-    background-color: var(--accent2);
+    background-color: rgb(224, 215, 215);
     border: none;
     padding: 8px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    height: 3rem;
+    height: 2.5rem;
     width: 20rem;
 }
 .input:hover,
@@ -22,8 +22,8 @@
 }
 .buttonSubmit{
     font-family: 'Josefin Sans',sans-serif;
-    height: 3rem;
-    background-color: #EE9890;
+    height: 2.5rem;
+    background-color:#eeaa88;
     border: none;
     font-weight: bold;
     padding: 8px;
@@ -34,7 +34,7 @@
     font-family: 'Josefin Sans',sans-serif;
     height: 2.5rem;
     margin: 10px;
-    background-color: #EE9890;
+    background-color: #eeaa88;
     border: none;
     font-weight: bold;
     padding: 8px;

@@ -16,9 +16,10 @@
     padding: 10px 35px 10px 35px;
     justify-content: center;
     border-radius: 10px ;
+    cursor:pointer
 }
 .Container:hover{
-    background: var(--gradient);
+    /* background: var(--gradient); */
     color:var(--text);
     border:0px;
     padding: 10px 35px 10px 35px;
@@ -34,4 +35,5 @@
 }
 .cart{
     margin-left: 5px;
+    color:white
 }

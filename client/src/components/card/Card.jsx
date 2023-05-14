@@ -17,7 +17,7 @@ function Card({ image, price, name, rate, id }) {
         </div>
         <div className={styles.detailsCard}>
           <div className={styles.nombre}>{name}</div>
-          <Rating name="size-small" defaultValue={rate} size="small" readOnly />
+          <Rating name="read-only" defaultValue={rate} size="small" readOnly  />
           <div className={styles.precio}>${price}</div>
         </div>
       </div>

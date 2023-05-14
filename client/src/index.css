@@ -6,13 +6,14 @@
   margin: 0px;
   --background: #fef2f4;
   /* --background: #7c7677; */
-  --accent1: #d14d72;
-  --accent2: #f5b7b1;
+  --accent1: #c42311;
+  --accent2: #eeaa88;
   --text: #3d3b54;
   --text-alt: #a2a0bb;
   --muted: #d3d3de;
   --background-alt: #FBF4F5;
   --gradient: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
+  font-family:"Roboto",sans-serif;
 }
 :root{
 overflow: auto;
