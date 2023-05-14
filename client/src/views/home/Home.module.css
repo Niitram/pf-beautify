@@ -39,3 +39,20 @@
 .Next:hover{
     cursor: pointer;
 }
+.promoCard{
+    background-color: var(--accent1);
+    height: 50vh;
+    width:50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:1rem 0rem 
+}
+.customPrevArrow{
+    color:red;
+    padding: 40rem;
+}
+.customArrow{
+    background-color: red;
+}
