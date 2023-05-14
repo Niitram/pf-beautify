@@ -4,8 +4,7 @@ import {
   SEARCH_PRODUCT_BY_NAME,
   GET_ALL_CATEGORIES,
   FILTER_PRODUCTS,
-  ORDER_PRODUCTS_BY_PRICE,
-  ORDER_PRODUCTS_BY_RATE,
+  ORDER_PRODUCTS,
 } from "./actions";
 
 const initialState = {
@@ -42,8 +41,8 @@ const rootReducer = (state = initialState, action) => {
         category === "all"
           ? state.allProducts
           : state.allProducts.filter(
-              (product) => product.category === category
-            );
+            (product) => product.category === category
+          );
 
       return {
         ...state,
@@ -52,37 +51,32 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
     }
-    case ORDER_PRODUCTS_BY_PRICE: {
+
+    //Ordenar productos
+    case ORDER_PRODUCTS: {
       let ordered;
       let orderedAll;
       if (action.payload === "maxPrice") {
-        //ordenar ascendente
+        //ordenar ascendente por precio
         ordered = [...state.copyAllProducts].sort((a, b) => b.price - a.price);
         orderedAll = [...state.allProducts].sort((a, b) => b.price - a.price);
-      }
-      if (action.payload === "minPrice") {
-        //ordenar descendente
+      } else if (action.payload === "minPrice") {
+        //ordenar descendente por precio
         ordered = [...state.copyAllProducts].sort((a, b) => a.price - b.price);
         orderedAll = [...state.allProducts].sort((a, b) => a.price - b.price);
-      }
-      return {
-        ...state,
-        copyAllProducts: [...ordered],
-        allProducts: [...orderedAll],
-      };
-    }
-    case ORDER_PRODUCTS_BY_RATE: {
-      let ordered;
-      let orderedAll;
-      if (action.payload === "maxRate") {
-        //ordenar ascendente
+      } else if (action.payload === "maxRate") {
+        //ordenar ascendente por rate
         ordered = [...state.copyAllProducts].sort((a, b) => b.rate - a.rate);
         orderedAll = [...state.allProducts].sort((a, b) => b.rate - a.rate);
-      }
-      if (action.payload === "minRate") {
-        //ordenar descendente
+      } else if (action.payload === "minRate") {
+        //ordenar descendente por rate
         ordered = [...state.copyAllProducts].sort((a, b) => a.rate - b.rate);
         orderedAll = [...state.allProducts].sort((a, b) => a.rate - b.rate);
+      } else {
+        //en el caso de que no traiga lo que se espera
+        ordered = [...state.copyAllProducts]
+        orderedAll = [...state.allProducts]
+
       }
       return {
         ...state,
@@ -90,6 +84,7 @@ const rootReducer = (state = initialState, action) => {
         allProducts: [...orderedAll],
       };
     }
+
 
     default:
       return { ...state };

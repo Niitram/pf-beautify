@@ -2,6 +2,8 @@ import { useSelector } from "react-redux";
 import productsForPage from "../../utils/productsForPage";
 import ShowCardsProduct from "../showCardsProduct/ShowCardsProduct";
 import styles from "./Paginations.module.css";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 function Paginations({ currentPage, setCurrentPage }) {
   const copyAllProducts = useSelector((state) => state.copyAllProducts);
@@ -16,14 +18,14 @@ function Paginations({ currentPage, setCurrentPage }) {
   };
 
   return (
-    <div>
+    <div className={styles.Container}>
       <div>
         <button
           className={styles.buttonPages}
           disabled={currentPage === 1}
           onClick={prevPage}
         >
-          Previous Page
+          <ArrowBackIosNewIcon sx={{fontSize: 10,fontWeight:600}}/>
         </button>
         {arrayWithPages.map((page, index) => {
           if (arrayWithPages.length - 1) {
@@ -48,10 +50,12 @@ function Paginations({ currentPage, setCurrentPage }) {
           }
           onClick={nextPage}
         >
-          Next Page
+          <ArrowForwardIosIcon sx={{fontSize: 10,fontWeight:600}}/>
         </button>
       </div>
       <div className={styles.containerShowCards}>
+        <div className={styles.found}>Found products {copyAllProducts.length}</div>
+
         <ShowCardsProduct currentPage={currentPage} />
       </div>
     </div>

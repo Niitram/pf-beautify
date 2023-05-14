@@ -11,25 +11,27 @@ function Products() {
     category: "all",
     price: [1, 1000],
   });
-  const [ordered, setOrdered] = useState({
-    price: "",
-    rate: "",
-  });
+  const [ordered, setOrdered] = useState("");
 
   return (
-    <section>
+    <section className={styles.Container}>
       <SearchBar
         setFilter={setFilter}
         setOrdered={setOrdered}
         setCurrentPage={setCurrentPage}
       />
+      <div style={{display:'flex', height:'100%'}}>
+      <div className={styles.Sidebar}>
+
       <Filter filter={filter} setFilter={setFilter} />
       <Order ordered={ordered} setOrdered={setOrdered} />
+      </div>
       <div className={styles.containerPaginations}>
         <Paginations
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
+      </div>
       </div>
     </section>
   );

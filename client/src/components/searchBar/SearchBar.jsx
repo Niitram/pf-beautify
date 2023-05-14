@@ -14,13 +14,10 @@ function SearchBar({ setCurrentPage, setFilter, setOrdered }) {
       category: "all",
       price: [1, 1000],
     });
-    setOrdered({
-      price: "",
-      rate: "",
-    });
+    setOrdered("");
   };
   return (
-    <div>
+    <div className={styles.Container}>
       <form
         onSubmit={(e) => {
           handlerSearch(

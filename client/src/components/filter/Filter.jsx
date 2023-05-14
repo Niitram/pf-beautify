@@ -29,7 +29,7 @@ function Filter({ setFilter, filter }) {
     }
   };
   return (
-    <div>
+    <div className={styles.Container}>
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-standard-label">
           Categories
@@ -53,8 +53,6 @@ function Filter({ setFilter, filter }) {
             );
           })}
         </Select>
-        <span>{`$ ${filter.price[0]}`}</span>
-        <span>{`$ ${filter.price[1]}`}</span>
         <Box className={styles.boxSlider} sx={{ width: 300 }}>
           <Slider
             className={styles.Slider}
@@ -64,7 +62,12 @@ function Filter({ setFilter, filter }) {
             name="price"
             valueLabelDisplay="auto"
             getAriaValueText={valuetext}
-          />
+            />
+            <div  style={{display:'flex',justifyContent:'space-between'}}>
+            <p>{`$ ${filter.price[0]}`}</p>
+            <p>{`$ ${filter.price[1]}`}</p>
+              
+            </div>
         </Box>
       </FormControl>
     </div>
