@@ -3,6 +3,7 @@
     margin-bottom:2rem ;
     z-index: 8;
     height: 5rem;
+    
 }
 
 .input{
@@ -15,10 +16,15 @@
     height: 2.5rem;
     width: 20rem;
 }
+.input:focus {
+    outline: 2px solid pink;
+  }
+  
 .input:hover,
 .buttonSubmit:hover,
 .buttonReset:hover{
     cursor: pointer;
+    
 }
 .buttonSubmit{
     font-family: 'Josefin Sans',sans-serif;
