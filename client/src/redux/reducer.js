@@ -26,6 +26,7 @@ const rootReducer = (state = initialState, action) => {
     case SEARCH_PRODUCT_BY_NAME:
       return {
         ...state,
+        allProducts: [...action.payload],
         copyAllProducts: [...action.payload],
       };
     //CATEGORIES
