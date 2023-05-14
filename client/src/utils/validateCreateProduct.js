@@ -91,20 +91,6 @@ const validateCreateProduct = (product, setErrors) => {
                 return { ...prevState, category: "" };
             });
     }
-    if (!product.state)
-        setErrors((prevState) => {
-            return { ...prevState, state: "Required" };
-        });
-    if (product.state) {
-        if (!regexString.test(product.state)) {
-            setErrors((prevState) => {
-                return { ...prevState, state: "Invalid" };
-            });
-        } else
-            setErrors((prevState) => {
-                return { ...prevState, state: "" };
-            });
-    }
 };
 
 export default validateCreateProduct;

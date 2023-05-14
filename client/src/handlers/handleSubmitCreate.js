@@ -1,7 +1,7 @@
 import { createProduct } from "../request/product";
 import validateCreateProduct from "../utils/validateCreateProduct";
 
-const handleSubmitCreate = async (e, productData, setErrors, errors, setProductData) => {
+const handleSubmitCreate = async (e, productData, setErrors, errors, setProductData, setCreated, setIdProduct) => {
     e.preventDefault();
     validateCreateProduct(
         {
@@ -17,11 +17,14 @@ const handleSubmitCreate = async (e, productData, setErrors, errors, setProductD
         !errors.price &&
         !errors.discount &&
         !errors.stock &&
-        !errors.state &&
         !errors.category
     ) {
         try {
             const response = await createProduct(productData);
+            if (response.request.status === 201) {
+                setCreated(true)
+                setIdProduct(response.data.id)
+            }
             setProductData({
                 name: "",
                 description: "",
@@ -29,10 +32,10 @@ const handleSubmitCreate = async (e, productData, setErrors, errors, setProductD
                 price: 0,
                 discount: 0,
                 stock: 0,
-                state: "",
+                rate: 1,
+                state: "true",
                 category: "",
             });
-            console.log(response);
         } catch (error) {
             console.log(error.message);
         }

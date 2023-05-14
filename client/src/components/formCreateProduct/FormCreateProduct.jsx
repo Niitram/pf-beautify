@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validateCreateProduct from "../../utils/validateCreateProduct";
 import styles from "./FormCreateProduct.module.css";
 import ErrorInputMessage from "../errorInputMessage/ErrorInputMessage";
 import InputForm from "../inputForm/InputForm";
 import handleInputChange from "../../handlers/handleInputChange";
 import handleSubmitCreate from "../../handlers/handleSubmitCreate";
+import useToggle from "../../hooks/useToggle";
+import { Link } from "react-router-dom";
 
 function FormCreateProduct() {
   const [productData, setProductData] = useState({
@@ -15,20 +17,74 @@ function FormCreateProduct() {
     discount: 0,
     stock: 0,
     rate: 1,
-    state: "",
+    state: "true",
     category: "",
   });
   const [errors, setErrors] = useState({
-    name: "",
-    description: "",
-    image: "",
-    price: "",
+    name: "*",
+    description: "*",
+    image: "*",
+    price: "*",
     discount: "",
-    stock: "",
+    stock: "*",
     rate: "",
     state: "",
-    category: "",
+    category: "*",
   });
+  const [idProduct, setIdProduct] = useState("");
+  const [created, setCreated] = useToggle(false);
+  useEffect(() => {
+    return () => {
+      setCreated(false);
+      setProductData({
+        name: "",
+        description: "",
+        image: "",
+        price: 0,
+        discount: 0,
+        stock: 0,
+        rate: 1,
+        state: "true",
+        category: "",
+      });
+      setErrors({
+        name: "*",
+        description: "*",
+        image: "*",
+        price: "*",
+        discount: "",
+        stock: "*",
+        rate: "",
+        state: "",
+        category: "*",
+      });
+    };
+  }, [setCreated]);
+  const handlerReset = () => {
+    setCreated(false);
+    setProductData({
+      name: "",
+      description: "",
+      image: "",
+      price: 0,
+      discount: 0,
+      stock: 0,
+      rate: 1,
+      state: "true",
+      category: "",
+    });
+    setErrors({
+      name: "*",
+      description: "*",
+      image: "*",
+      price: "*",
+      discount: "",
+      stock: "*",
+      rate: "",
+      state: "",
+      category: "*",
+    });
+  };
 
   return (
     <div>
@@ -36,7 +92,15 @@ function FormCreateProduct() {
       <form
         className={styles.formCreateProduct}
         onSubmit={(e) => {
-          handleSubmitCreate(e, productData, setErrors, errors, setProductData);
+          handleSubmitCreate(
+            e,
+            productData,
+            setErrors,
+            errors,
+            setProductData,
+            setCreated,
+            setIdProduct
+          );
         }}
       >
         <div className={styles.containerInputs}>
@@ -168,8 +232,21 @@ function FormCreateProduct() {
           <ErrorInputMessage errors={errors.category} text={errors.category} />
         </div>
 
-        <button type="submit">Create</button>
+        <button type="submit" disabled={created}>
+          Create
+        </button>
       </form>
+      {created && (
+        <Link
+          style={{ textDecoration: "none" }}
+          to={`/detailProduct/${idProduct}`}
+        >
+          <button>View product</button>
+        </Link>
+      )}
+      {created && (
+        <button onClick={handlerReset}>Create another product</button>
+      )}
     </div>
   );
 }
