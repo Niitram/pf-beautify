@@ -52,7 +52,7 @@ function DetailProduct() {
           ) : (
             <Skeleton />
           )}
-          {discount ? (
+          {price ? (
             <h3 className={styles.precio}> ${price - discount} </h3>
           ) : (
             <Skeleton />

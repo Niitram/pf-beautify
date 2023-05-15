@@ -8,8 +8,10 @@ import handleSubmitCreate from "../../handlers/handleSubmitCreate";
 import useToggle from "../../hooks/useToggle";
 import { Link } from "react-router-dom";
 import cameraIcon from "../../assets/images/camera-icon.png";
+import { useDispatch } from "react-redux";
 
 function FormCreateProduct() {
+  const dispatch = useDispatch();
   const [productData, setProductData] = useState({
     name: "",
     description: "",
@@ -99,7 +101,8 @@ function FormCreateProduct() {
             errors,
             setProductData,
             setCreated,
-            setIdProduct
+            setIdProduct,
+            dispatch
           );
         }}
       >

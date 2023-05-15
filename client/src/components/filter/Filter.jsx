@@ -4,8 +4,10 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Slider } from "@mui/material";
-import { filterProducts } from "../../redux/actions";
+import { filterProducts, getAllCategories } from "../../redux/actions";
 import styles from "./Filter.module.css";
+import { useEffect } from "react";
+import { getCategories } from "../../request/category";
 
 function valuetext(value) {
   return `$ ${value}`;
@@ -15,7 +17,11 @@ function Filter({ setFilter, filter }) {
   const dispatch = useDispatch();
 
   const allCategories = useSelector((state) => state.allCategories);
-
+  useEffect(() => {
+    getCategories().then((res) => {
+      dispatch(getAllCategories(res.data));
+    });
+  }, [dispatch]);
   const handleChangeFilter = (e, newValue) => {
     if (e.target.name === "price") {
       setFilter({ ...filter, price: newValue });
@@ -62,12 +68,11 @@ function Filter({ setFilter, filter }) {
             name="price"
             valueLabelDisplay="auto"
             getAriaValueText={valuetext}
-            />
-            <div  style={{display:'flex',justifyContent:'space-between'}}>
+          />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <p>{`$ ${filter.price[0]}`}</p>
             <p>{`$ ${filter.price[1]}`}</p>
-              
-            </div>
+          </div>
         </Box>
       </FormControl>
     </div>

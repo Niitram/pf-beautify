@@ -4,6 +4,7 @@ export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const RESET_FILTERS_ORDER = "RESET_FILTERS_ORDER";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
 
 /* Actions */
 
@@ -40,6 +41,12 @@ export const filterProducts = (data) => {
 export const orderProducts = (data) => {
   return {
     type: ORDER_PRODUCTS,
+    payload: data,
+  };
+};
+export const addProduct = (data) => {
+  return {
+    type: CREATE_PRODUCT,
     payload: data,
   };
 };

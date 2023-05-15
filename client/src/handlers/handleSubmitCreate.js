@@ -1,7 +1,8 @@
-import { createProduct } from "../request/product";
+import { addProduct } from "../redux/actions";
 import validateCreateProduct from "../utils/validateCreateProduct";
+import { createProduct } from "../request/product"
 
-const handleSubmitCreate = async (e, productData, setErrors, errors, setProductData, setCreated, setIdProduct) => {
+const handleSubmitCreate = async (e, productData, setErrors, errors, setProductData, setCreated, setIdProduct, dispatch) => {
     e.preventDefault();
     validateCreateProduct(
         {
@@ -24,6 +25,9 @@ const handleSubmitCreate = async (e, productData, setErrors, errors, setProductD
             if (response.request.status === 201) {
                 setCreated(true)
                 setIdProduct(response.data.id)
+
+                dispatch(addProduct(response.data))
+
             }
             setProductData({
                 name: "",
