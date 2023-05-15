@@ -7,6 +7,7 @@ import handleInputChange from "../../handlers/handleInputChange";
 import handleSubmitCreate from "../../handlers/handleSubmitCreate";
 import useToggle from "../../hooks/useToggle";
 import { Link } from "react-router-dom";
+import cameraIcon from "../../assets/images/camera-icon.png";
 
 function FormCreateProduct() {
   const [productData, setProductData] = useState({
@@ -251,7 +252,16 @@ function FormCreateProduct() {
         </div>
       </form>
       <div className={styles.preview}>
-        <img src="" alt="Preview" />
+        <div
+          style={{
+            backgroundImage: `url(${
+              productData.image.length > 1 && !errors.image
+                ? productData.image
+                : cameraIcon
+            })`,
+          }}
+          className={styles.containerImg}
+        ></div>
       </div>
     </div>
   );
