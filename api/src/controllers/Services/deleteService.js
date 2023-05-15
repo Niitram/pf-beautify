@@ -1,6 +1,6 @@
 const { Service } = require("../../db");
 
-const deleteService = async () => {
+const deleteService = async (id) => {
     const toDelService = await Service.findByPk(id)
     toDelService.destroy()
     return 'Deleted sucessfully'
