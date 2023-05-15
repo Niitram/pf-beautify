@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import { getProductById } from "../../request/product";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ImageComponent from "../../components/imageComponent/ImageComponent";
+import productDefault from "../../assets/images/camera-icon.png";
 
 function DetailProduct() {
   const { id } = useParams();
@@ -29,7 +31,7 @@ function DetailProduct() {
         <Link to={"/home"}>
           <ArrowBackIosNewIcon />
         </Link>
-        <img src={image} alt={name} />
+        <ImageComponent src={image} alt={name} notFoundSrc={productDefault} />
       </div>
       <div className={styles.containerDetails}>
         {name ? (

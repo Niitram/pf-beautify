@@ -2,9 +2,9 @@ import { Rating } from "@mui/material";
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
 import ImageComponent from "../imageComponent/ImageComponent";
+import productDefault from "../../assets/images/camera-icon.png";
 
 function Card({ image, price, name, rate, id }) {
-  const productDefault = "../../assets/images/camera-icon.png";
   return (
     <Link
       className={styles.link}
