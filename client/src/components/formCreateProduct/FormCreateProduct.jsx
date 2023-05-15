@@ -9,6 +9,7 @@ import useToggle from "../../hooks/useToggle";
 import { Link } from "react-router-dom";
 import cameraIcon from "../../assets/images/camera-icon.png";
 import { useDispatch } from "react-redux";
+import InputImage from "../inputImage/inputImage";
 
 function FormCreateProduct() {
   const dispatch = useDispatch();
@@ -156,7 +157,7 @@ function FormCreateProduct() {
 
         <div className={styles.containerInputs}>
           {/* <label htmlFor="image">Image</label> */}
-          <InputForm
+          {/* <InputForm
             placeholder="Image"
             type="text"
             id="image-input"
@@ -171,6 +172,13 @@ function FormCreateProduct() {
                 setErrors
               );
             }}
+          /> */}
+          <InputImage
+            name="image"
+            setProductData={setProductData}
+            productData={productData}
+            validateCreateProduct={validateCreateProduct}
+            setErrors={setErrors}
           />
           <ErrorInputMessage errors={errors.image} text={errors.image} />
         </div>
