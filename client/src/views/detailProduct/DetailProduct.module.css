@@ -6,20 +6,11 @@
     margin-top: 2rem;
     
 }
-.containerImagen{
+.container img{
    display: flex;
    flex-direction: column;
-}
-.containerImagen > a {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    text-decoration: none;
-
-
-}
-.imgProduct{
-    width: 19rem;
+   width: 20rem;
+   height: 27rem;
     margin-top: 1rem;
     margin-right: 6rem;
     margin-bottom: 1rem;
@@ -29,6 +20,17 @@
     box-shadow: 7px 6px 21px -9px rgba(0,0,0,0.75);
 }
 
+.containerBack{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+.containerBack > a {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-decoration: none;
+}
 .containerDetails{
     width: 387px;
 }
