@@ -16,7 +16,7 @@ const productAddRate = async (req, res, next) => {
 
   //* chequea que el producto exista
   const product = await Product.findByPk(productId);
-  if (!product) return res.status(400).json({ error: "Product not found" });
+  if (!product) return res.status(404).json({ error: "Product not found" });
 
   next();
 };

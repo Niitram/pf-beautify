@@ -10,7 +10,7 @@ const validationSaveClient = async (req, res, next) => {
         if(!fullName) throw new Error(`Unable to save user in database, not name provided`)
         next()
     } catch (error) {
-        res.json({error: error.message})
+        res.status(400).json({error: error.message})
     }
 }
 
@@ -25,7 +25,7 @@ const validationPutClient = async (req, res, next) => {
         if(phone && phone === toModify.phone) throw new Error(`Phone value alredy set to ${phone}`)
         next()
     } catch (error) {
-        res.json({error: error.message})
+        res.status(400).json({error: error.message})
     }
 }
 

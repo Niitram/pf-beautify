@@ -7,7 +7,7 @@ const validateCategoriesExistence = async (req, res, next) => {
         if(!categories.length) throw new Error('No categories found')
         next()
     } catch (error) {
-        res.json({error: error.message})
+        res.status(404).json({error: error.message})
     }
 
 }
