@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Product } = require("../db");
 
 const updateProductValidation = async (req, res, next) => {
@@ -41,7 +42,18 @@ const updateProductValidation = async (req, res, next) => {
 
   try {
     const product = await Product.findByPk(id);
+
+
     if (!product) return res.status(404).json({ error: "product not found" });
+
+    if (propertys.name) {
+      const oldProduct = await Product.findOne({
+        where: { name: { [Op.iLike]: propertys.name } },
+      });
+      if (oldProduct && oldProduct.id !== id)
+        return res.status(400).json({ error: "Product name alredy exists" });
+    }
+
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

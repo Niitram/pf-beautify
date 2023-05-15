@@ -1,4 +1,7 @@
-const postProductsValidation = (req, res, next) => {
+const { Op } = require("sequelize");
+const { Product } = require("../db");
+
+const postProductsValidation = async (req, res, next) => {
   const {
     name,
     description,
@@ -38,6 +41,18 @@ const postProductsValidation = (req, res, next) => {
   //* checking stock is an integer
   if (stock !== Math.floor(stock))
     return res.status(400).json({ error: "stock must be an integer number" });
+
+  //* checking name is unique
+
+  try {
+    const oldProduct = await Product.findOne({
+      where: { name: { [Op.iLike]: name } },
+    });
+    if (oldProduct)
+      return res.status(400).json({ error: "product alredy exists" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 
   next();
 };
