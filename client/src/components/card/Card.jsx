@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ImageComponent from "../imageComponent/ImageComponent";
 
 function Card({ image, price, name, rate, id }) {
-  const productDefault = "../../assets/images/productDefault.jpg";
+  const productDefault = "../../assets/images/camera-icon.png";
   return (
     <Link
       className={styles.link}
