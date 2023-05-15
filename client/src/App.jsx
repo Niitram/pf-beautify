@@ -6,8 +6,8 @@ import About from "./views/about/About";
 import Cart from "./views/cart/Cart";
 import Products from "./views/products/Products";
 import Services from "./views/services/Services";
-import DashboardAdmin from "./views/dashboardAdmin/DashboardAdmin";
-import DashboardClient from "./views/dashboardClient/DashboardClient";
+// import DashboardAdmin from "./views/dashboardAdmin/DashboardAdmin";
+// import DashboardClient from "./views/dashboardClient/DashboardClient";
 import DetailProduct from "./views/detailProduct/DetailProduct";
 import DetailPayment from "./views/detailPayment/DetailPayment";
 import DetailUser from "./views/detailUser/DetailUser";
@@ -40,8 +40,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<Products />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-        <Route path="/dashboard/client/:id" element={<DashboardClient/>} />
+        {/* <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+        <Route path="/dashboard/client/:id" element={<DashboardClient/>} /> */}
         <Route path="/detailUser" element={<DetailUser />} />
         <Route path="/detailProduct/:id" element={<DetailProduct />} />
         <Route path="/detailPayment" element={<DetailPayment />} />
