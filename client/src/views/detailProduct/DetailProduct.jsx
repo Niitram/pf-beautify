@@ -31,7 +31,9 @@ function DetailProduct() {
         <Link to={"/home"}>
           <ArrowBackIosNewIcon />
         </Link>
-        <ImageComponent src={image} alt={name} notFoundSrc={productDefault} />
+        {image && (
+          <ImageComponent src={image} alt={name} notFoundSrc={productDefault} />
+        )}
       </div>
       <div className={styles.containerDetails}>
         {name ? (
