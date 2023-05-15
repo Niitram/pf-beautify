@@ -12,4 +12,6 @@ const validateCategoriesExistence = async (req, res, next) => {
 
 }
 
+
+
 module.exports = validateCategoriesExistence
