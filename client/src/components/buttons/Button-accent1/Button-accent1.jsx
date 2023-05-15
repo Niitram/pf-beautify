@@ -7,7 +7,7 @@ function ButtonAccent1({ text, route }) {
     <Link to={`${route}`}>
       <button className={styles.Container}>
         {text}
-        <ShoppingCartOutlinedIcon className={styles.cart} fontSize="small"  />
+        <ShoppingCartOutlinedIcon className={styles.cart} fontSize="small" />
       </button>
     </Link>
   );
