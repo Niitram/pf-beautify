@@ -87,8 +87,7 @@ function FormCreateProduct() {
   };
 
   return (
-    <div>
-      <h1>Create product</h1>
+    <div className={styles.containerGlobal}>
       <form
         className={styles.formCreateProduct}
         onSubmit={(e) => {
@@ -103,10 +102,13 @@ function FormCreateProduct() {
           );
         }}
       >
+        <h1>
+          Add <label>Product</label>
+        </h1>
         <div className={styles.containerInputs}>
-          <label htmlFor="name">Name</label>
+          {/* <label htmlFor="name">Name</label> */}
           <InputForm
-            placeholder="nails..."
+            placeholder="Name"
             type="text"
             id="name-input"
             name="name"
@@ -125,9 +127,9 @@ function FormCreateProduct() {
         </div>
 
         <div className={styles.containerInputs}>
-          <label htmlFor="description">Description</label>
+          {/* <label htmlFor="description">Description</label> */}
           <InputForm
-            placeholder="Nice product..."
+            placeholder="Description"
             type="text"
             id="description-input"
             name="description"
@@ -149,9 +151,9 @@ function FormCreateProduct() {
         </div>
 
         <div className={styles.containerInputs}>
-          <label htmlFor="image">Image</label>
+          {/* <label htmlFor="image">Image</label> */}
           <InputForm
-            placeholder="Nice product..."
+            placeholder="Image"
             type="text"
             id="image-input"
             name="image"
@@ -168,53 +170,53 @@ function FormCreateProduct() {
           />
           <ErrorInputMessage errors={errors.image} text={errors.image} />
         </div>
+        <div className={styles.priceAndStock}>
+          <div className={styles.containerInputs}>
+            <label htmlFor="price">Price</label>
+            <InputForm
+              placeholder="Price"
+              type="number"
+              id="price-input"
+              name="price"
+              value={productData.price}
+              handler={(e) => {
+                handleInputChange(
+                  e,
+                  setProductData,
+                  validateCreateProduct,
+                  productData,
+                  setErrors
+                );
+              }}
+            />
+            <ErrorInputMessage errors={errors.price} text={errors.price} />
+          </div>
 
-        <div className={styles.containerInputs}>
-          <label htmlFor="price">Price</label>
-          <InputForm
-            placeholder="$12"
-            type="number"
-            id="price-input"
-            name="price"
-            value={productData.price}
-            handler={(e) => {
-              handleInputChange(
-                e,
-                setProductData,
-                validateCreateProduct,
-                productData,
-                setErrors
-              );
-            }}
-          />
-          <ErrorInputMessage errors={errors.price} text={errors.price} />
+          <div className={styles.containerInputs}>
+            <label htmlFor="stock">Stock</label>
+            <InputForm
+              placeholder="Stock"
+              type="number"
+              id="stock-input"
+              name="stock"
+              value={productData.stock}
+              handler={(e) => {
+                handleInputChange(
+                  e,
+                  setProductData,
+                  validateCreateProduct,
+                  productData,
+                  setErrors
+                );
+              }}
+            />
+            <ErrorInputMessage errors={errors.stock} text={errors.stock} />
+          </div>
         </div>
-
         <div className={styles.containerInputs}>
-          <label htmlFor="stock">Stock</label>
+          {/* <label htmlFor="category">Category</label> */}
           <InputForm
-            placeholder="Stock"
-            type="number"
-            id="stock-input"
-            name="stock"
-            value={productData.stock}
-            handler={(e) => {
-              handleInputChange(
-                e,
-                setProductData,
-                validateCreateProduct,
-                productData,
-                setErrors
-              );
-            }}
-          />
-          <ErrorInputMessage errors={errors.stock} text={errors.stock} />
-        </div>
-
-        <div className={styles.containerInputs}>
-          <label htmlFor="category">Category</label>
-          <InputForm
-            placeholder="lotion"
+            placeholder="Category"
             type="text"
             id="category-input"
             name="category"
@@ -231,22 +233,26 @@ function FormCreateProduct() {
           />
           <ErrorInputMessage errors={errors.category} text={errors.category} />
         </div>
-
-        <button type="submit" disabled={created}>
-          Create
-        </button>
+        <div className={styles.btnCreate}>
+          <button type="submit" disabled={created}>
+            Create
+          </button>
+          {created && (
+            <Link
+              style={{ textDecoration: "none" }}
+              to={`/detailProduct/${idProduct}`}
+            >
+              <button>View product</button>
+            </Link>
+          )}
+          {created && (
+            <button onClick={handlerReset}>Create another product</button>
+          )}
+        </div>
       </form>
-      {created && (
-        <Link
-          style={{ textDecoration: "none" }}
-          to={`/detailProduct/${idProduct}`}
-        >
-          <button>View product</button>
-        </Link>
-      )}
-      {created && (
-        <button onClick={handlerReset}>Create another product</button>
-      )}
+      <div className={styles.preview}>
+        <img src="" alt="Preview" />
+      </div>
     </div>
   );
 }

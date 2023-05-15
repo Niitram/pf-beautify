@@ -5,6 +5,8 @@ import styles from "./DetailProduct.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../request/product";
+import { Link } from "react-router-dom";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 function DetailProduct() {
   const { id } = useParams();
@@ -23,7 +25,12 @@ function DetailProduct() {
   const { name, image, description, price, stock, rate, discount } = product;
   return (
     <div className={styles.container}>
-      <img className={styles.imgProduct} src={image} alt={name} />
+      <div className={styles.containerBack}>
+        <Link to={"/home"}>
+          <ArrowBackIosNewIcon />
+        </Link>
+        <img src={image} alt={name} />
+      </div>
       <div className={styles.containerDetails}>
         {name ? (
           <h1 className={styles.nombreProduct}>{name}</h1>

@@ -18,7 +18,7 @@ function Nav() {
         <ButtonNav text={"About"} route={"/about"}></ButtonNav>
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
         <ButtonNav text={"Services"} route={"/services"}></ButtonNav>
-        <ButtonAccent1 text={"Cart"} route={"/cart"}></ButtonAccent1>
+        <ButtonAccent1 text={""} route={"/cart"}></ButtonAccent1>
         {/* <Link to={`/detailUser`}>detailUser</Link>
       <Link to={`/dashboardAdmin`}>dashboardAdmin</Link> */}
       </div>
