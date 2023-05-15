@@ -37,12 +37,14 @@ const updateProductValidation = async (req, res, next) => {
 
   if (propertys.rate)
     return res
-      .status(400)
+      .status(401)
       .json({ error: "Don't have permission to change rate" });
 
   try {
     const product = await Product.findByPk(id);
-    if (!product) return res.status(400).json({ error: "product not found" });
+
+
+    if (!product) return res.status(404).json({ error: "product not found" });
 
     if (propertys.name) {
       const oldProduct = await Product.findOne({
@@ -51,6 +53,7 @@ const updateProductValidation = async (req, res, next) => {
       if (oldProduct && oldProduct.id !== id)
         return res.status(400).json({ error: "Product name alredy exists" });
     }
+
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

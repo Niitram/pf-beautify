@@ -6,7 +6,7 @@ const getShopsByClientIdValidation = async (req, res, next) => {
     return res.status(400).json({ error: "Client Id must be an integer" });
 
   const client = await Client.findByPk(clientId);
-  if (!client) return res.status(400).json({ error: "Client not found" });
+  if (!client) return res.status(404).json({ error: "Client not found" });
   next();
 };
 

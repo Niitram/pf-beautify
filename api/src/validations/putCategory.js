@@ -21,7 +21,7 @@ const putCategoryValidation = async (req, res, next) => {
 
   const oldCategory = await Category.findByPk(id);
   if (!oldCategory)
-    return res.status(400).json({ error: "category doesn't exists" });
+    return res.status(404).json({ error: "category doesn't exists" });
 
   next();
 };

@@ -11,7 +11,7 @@ const validatePostService = (req, res, next) => {
         if(!rate) throw new Error('Require rate to create')
         next()
     } catch (error) {
-        res.json({error: error.message})
+        res.status(406).json({error: error.message})
     }
 }
 
@@ -22,7 +22,7 @@ const validateServiceExistence = async (req, res, next) => {
         if (!services.length) throw new Error('No services found')
         next()
     } catch (error) {
-        res.json({error: error.message})
+        res.status(404).json({error: error.message})
     }
 }
 

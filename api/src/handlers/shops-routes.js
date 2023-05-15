@@ -37,7 +37,7 @@ shopsRouter.post("/", postNewShopValidation, async (req, res) => {
   try {
     const shop = req.body;
     const newShop = await postNewShop(shop);
-    res.status(200).json(newShop);
+    res.status(201).json(newShop);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

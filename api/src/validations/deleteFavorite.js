@@ -15,8 +15,8 @@ const deleteFavoritesValidation = async (req, res, next) => {
   const product = await Product.findByPk(productId);
   const client = await Client.findByPk(clientId);
 
-  if (!product) return res.status(400).json({ error: "Product not found" });
-  if (!client) return res.status(400).json({ error: "Client not found" });
+  if (!product) return res.status(404).json({ error: "Product not found" });
+  if (!client) return res.status(404).json({ error: "Client not found" });
 
   const favorites = await client.getProducts({
     attributes: ["id"],
@@ -27,7 +27,7 @@ const deleteFavoritesValidation = async (req, res, next) => {
   for (const favorite of favorites) {
     if (favorite.id === productId) existent = true;
   }
-  if (!existent) return res.status(400).json({ error: "Favorite not found" });
+  if (!existent) return res.status(404).json({ error: "Favorite not found" });
 
   next();
 };
