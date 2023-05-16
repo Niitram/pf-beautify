@@ -1,3 +1,7 @@
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Slider } from "@mui/material";
 import { filterProducts, getAllCategories } from "../../redux/actions";
