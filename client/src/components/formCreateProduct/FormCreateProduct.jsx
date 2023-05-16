@@ -22,7 +22,7 @@ function FormCreateProduct() {
     discount: 0,
     stock: 0,
     rate: 1,
-    state: "true",
+    state: true,
     category: "",
   });
   const [errors, setErrors] = useState({
@@ -49,7 +49,7 @@ function FormCreateProduct() {
         discount: 0,
         stock: 0,
         rate: 1,
-        state: "true",
+        state: true,
         category: "",
       });
       setErrors({
@@ -75,7 +75,7 @@ function FormCreateProduct() {
       discount: 0,
       stock: 0,
       rate: 1,
-      state: "true",
+      state: true,
       category: "",
     });
     setErrors({

@@ -37,7 +37,7 @@ const handleSubmitCreate = async (e, productData, setErrors, errors, setProductD
                 discount: 0,
                 stock: 0,
                 rate: 1,
-                state: "true",
+                state: true,
                 category: "",
             });
         } catch (error) {

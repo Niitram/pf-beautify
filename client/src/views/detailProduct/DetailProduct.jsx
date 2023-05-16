@@ -44,7 +44,6 @@ function DetailProduct() {
         <h3 className={styles.descripcionProduct}>Description</h3>
         {rate ? (
           <Stack>
-            {console.log(rate)}
             <Rating value={rate < 1 ? 1 : rate} precision={0.5} readOnly />
           </Stack>
         ) : (
