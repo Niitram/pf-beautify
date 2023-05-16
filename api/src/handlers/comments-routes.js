@@ -9,9 +9,9 @@ router.post("/:productId/:clientId", validationComment, async (req, res) => {
     const {productId, clientId} = req.params
     const {content} = req.body;
     const response = await postComment(content, productId, clientId);
-    res.json(response);
+    res.status(201).json(response);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -32,9 +32,9 @@ router.put("/:id", validateCommentModification, async (req, res) => {
         const {content} = req.body;
         const {id} = req.params
         const modified = await putComment(id, content)
-        res.json(modified)
+        res.status(200).json(modified)
     } catch (error) {
-        res.json({error: error.message})
+        res.status(500).json({error: error.message})
     }
 });
 
@@ -42,9 +42,9 @@ router.delete('/:id', validateCommentModification, async (req,res) => {
     try {
         const {id} = req.params
         const deleted = await deleteComment(id)
-        res.send(deleted)
+        res.status(200).send(deleted)
     } catch (error) {
-        res.json({error: error.message})
+        res.status(500).json({error: error.message})
     }
 })
 

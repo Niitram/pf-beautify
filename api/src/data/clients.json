@@ -1,0 +1,32 @@
+[
+  {
+    "password": "ernestoperez",
+    "email": "ernestoperez@mail.com",
+    "fullName": "Ernesto Pérez"
+  },
+  {
+    "password": "lucaslopez",
+    "email": "lucaslopez@mail.com",
+    "fullName": "Lucas Lopez"
+  },
+  {
+    "password": "lorenaorozco",
+    "email": "lorenaorozco@mail.com",
+    "fullName": "Lorena Orozco"
+  },
+  {
+    "password": "claramartinez",
+    "email": "claramartinez@mail.com",
+    "fullName": "Claram Martinez"
+  },
+  {
+    "password": "eugeniamontes",
+    "email": "eugeniamontes@mail.com",
+    "fullName": "Eugenia Montes"
+  },
+  {
+    "password": "giovanabatista",
+    "email": "giovanabatista@mail.com",
+    "fullName": "Giovana Batista"
+  }
+]

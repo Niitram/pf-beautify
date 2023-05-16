@@ -1,0 +1,42 @@
+.Container{
+    margin-top: 2rem;
+    margin-bottom:2rem ;
+    z-index: 8;
+    height: 5rem;
+}
+
+.input{
+    font-family: 'Josefin Sans',sans-serif;
+    background-color: var(--accent2);
+    border: none;
+    padding: 8px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 3rem;
+    width: 20rem;
+}
+.input:hover,
+.buttonSubmit:hover,
+.buttonReset:hover{
+    cursor: pointer;
+}
+.buttonSubmit{
+    font-family: 'Josefin Sans',sans-serif;
+    height: 3rem;
+    background-color: #EE9890;
+    border: none;
+    font-weight: bold;
+    padding: 8px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.buttonReset{
+    font-family: 'Josefin Sans',sans-serif;
+    height: 2.5rem;
+    margin: 10px;
+    background-color: #EE9890;
+    border: none;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 10px;
+}

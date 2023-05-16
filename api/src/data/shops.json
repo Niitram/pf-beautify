@@ -1,0 +1,189 @@
+[
+  {
+    "amount": 3,
+    "discount": 3,
+    "clientId": 1,
+    "details": [
+      {
+        "price": 2,
+        "count": 2,
+        "productId": 1
+      },
+      {
+        "price": 20,
+        "count": 7,
+        "productId": 3
+      }
+    ]
+  },
+  {
+    "amount": 30,
+    "discount": 0,
+    "clientId": 1,
+    "details": [
+      {
+        "price": 22,
+        "count": 2,
+        "productId": 1
+      },
+      {
+        "price": 230,
+        "count": 27,
+        "productId": 2
+      }
+    ]
+  },
+  {
+    "amount": 300,
+    "discount": 323,
+    "clientId": 2,
+    "details": [
+      {
+        "price": 2123,
+        "count": 0,
+        "productId": 3
+      },
+      {
+        "price": 20,
+        "count": 7,
+        "productId": 4
+      }
+    ]
+  },
+  {
+    "amount": 389,
+    "discount": 3,
+    "clientId": 4,
+    "details": [
+      {
+        "price": 22,
+        "count": 1,
+        "productId": 5
+      },
+      {
+        "price": 245,
+        "count": 1,
+        "productId": 4
+      }
+    ]
+  },
+  {
+    "amount": 3432,
+    "discount": 3,
+    "clientId": 6,
+    "details": [
+      {
+        "price": 22,
+        "count": 2,
+        "productId": 7
+      },
+      {
+        "price": 203,
+        "count": 1,
+        "productId": 9
+      }
+    ]
+  },
+  {
+    "amount": 3234,
+    "discount": 0,
+    "clientId": 5,
+    "details": [
+      {
+        "price": 223,
+        "count": 1,
+        "productId": 2
+      },
+      {
+        "price": 2023,
+        "count": 1,
+        "productId": 2
+      }
+    ]
+  },
+  {
+    "amount": 5,
+    "discount": 1,
+    "clientId": 2,
+    "details": [
+      {
+        "price": 232,
+        "count": 1,
+        "productId": 1
+      },
+      {
+        "price": 220,
+        "count": 2,
+        "productId": 6
+      }
+    ]
+  },
+  {
+    "amount": 234,
+    "discount": 0,
+    "clientId": 3,
+    "details": [
+      {
+        "price": 2432,
+        "count": 2,
+        "productId": 3
+      },
+      {
+        "price": 20,
+        "count": 7,
+        "productId": 10
+      }
+    ]
+  },
+  {
+    "amount": 323,
+    "discount": 0,
+    "clientId": 1,
+    "details": [
+      {
+        "price": 223,
+        "count": 2,
+        "productId": 3
+      },
+      {
+        "price": 20,
+        "count": 7,
+        "productId": 10
+      }
+    ]
+  },
+  {
+    "amount": 323,
+    "discount": 3,
+    "clientId": 4,
+    "details": [
+      {
+        "price": 2123,
+        "count": 1,
+        "productId": 3
+      },
+      {
+        "price": 202,
+        "count": 1,
+        "productId": 4
+      }
+    ]
+  },
+  {
+    "amount": 323,
+    "discount": 3,
+    "clientId": 5,
+    "details": [
+      {
+        "price": 3,
+        "count": 4,
+        "productId": 5
+      },
+      {
+        "price": 20,
+        "count": 7,
+        "productId": 3
+      }
+    ]
+  }
+]

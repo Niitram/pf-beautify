@@ -37,8 +37,19 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 //Creamos relaciones de la bdd
 
-const { Product, Category, Client, Comment, Profesional, Service } =
-  sequelize.models;
+
+const {
+  Product,
+  Category,
+  Client,
+  Comment,
+  Profesional,
+  Service,
+  ShopsDetail,
+  Shop,
+  Appointment
+} = sequelize.models;
+
 
 //*Relaciones entre los modelos Category y Product
 Category.hasMany(Product);
@@ -57,6 +68,28 @@ Profesional.hasMany(Service);
 //*Relaciones entre modelo Clients y modelo Products a través de Favorites
 Client.belongsToMany(Product, { through: "Favorites" });
 Product.belongsToMany(Client, { through: "Favorites" });
+
+
+//* Relaciones entre Appoinments y Service/ Profesional y Client: un profesional puede tener muchas citas, un cliente puede tener muchas citas y un servicio puede tener muchas citas. A su vez, cada cita pertenece a un profesional, un cliente y un servicio específico.
+Profesional.hasMany(Appointment);
+Client.hasMany(Appointment);
+Service.hasMany(Appointment);
+Appointment.belongsTo(Profesional);
+Appointment.belongsTo(Client);
+Appointment.belongsTo(Service);
+
+//*Relaciones entre ShopsDetails-Products
+ShopsDetail.belongsTo(Product);
+Product.hasMany(ShopsDetail);
+
+//*Relaciones entre Shops y ShopsDetails
+ShopsDetail.belongsTo(Shop);
+Shop.hasMany(ShopsDetail);
+
+//*Relaciones entre Shops y Clients
+Shop.belongsTo(Client);
+Client.hasMany(Shop);
+
 
 module.exports = {
   ...sequelize.models,
