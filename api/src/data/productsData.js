@@ -26,24 +26,40 @@ const bulkCreateProducts = async (req, res) => {
         else newProduct.setCategory(category.dataValues.id);
       }
     }
-
+    let a = 0;
     const promise = apiProducts.data.map(
       async ({ name, price, image_link, description, category }) => {
-        const apiPropertys = [name, price, image_link, description, category];
+        if (!description) a++;
+
+        const apiPropertys = [name, image_link, category];
         if (!apiPropertys.every(Boolean)) return [null, null];
+        apiPropertys.push(description);
         if (!apiPropertys.every((property) => property.length < 255))
           return [null, null];
 
+        const fakeImages = [
+          "benefitcosmetics",
+          "imancosmetics",
+          "amazonaws",
+          "dior",
+          "fentybeauty",
+          "purpicks",
+        ];
+        for (const fakeImage of fakeImages) {
+          if (image_link.includes(fakeImage)) return [null, null];
+        }
+
         const random = Math.floor(Math.random() * 100);
         const productCategory = category[0].toUpperCase() + category.slice(1);
+        const numericPrice = Number(price);
 
         const product = {
           name,
-          price: Number(price),
-          description,
+          price: numericPrice ? numericPrice : Math.random() * 15,
+          description: description ? description : name,
           category: productCategory,
           image: image_link,
-          discount: random > 50 ? null : random,
+          discount: random > 50 ? null : numericPrice / 10,
           state: random > 950 ? false : true,
           stock: random,
           rate: Math.random() * 5,
