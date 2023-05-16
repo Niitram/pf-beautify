@@ -25,7 +25,18 @@ const postProduct = async (product) => {
     await newProduct.setCategory(productCategory.dataValues.id);
   else await newProduct.createCategory({ name: product.category });
 
-  return newProduct;
+  return {
+    id: newProduct.id,
+    name: newProduct.name,
+    description: newProduct.description,
+    image: newProduct.image,
+    price: newProduct.price,
+    discount: newProduct.discount,
+    stock: newProduct.stock,
+    state: newProduct.state,
+    rate: newProduct.finalRate,
+    category: product.category,
+  };
 };
 
 module.exports = postProduct;

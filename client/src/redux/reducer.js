@@ -5,6 +5,7 @@ import {
   GET_ALL_CATEGORIES,
   FILTER_PRODUCTS,
   ORDER_PRODUCTS,
+  CREATE_PRODUCT,
 } from "./actions";
 
 const initialState = {
@@ -26,7 +27,15 @@ const rootReducer = (state = initialState, action) => {
     case SEARCH_PRODUCT_BY_NAME:
       return {
         ...state,
+        allProducts: [...action.payload],
         copyAllProducts: [...action.payload],
+      };
+    //Create product
+    case CREATE_PRODUCT:
+      return {
+        ...state,
+        allProducts: [...state.allProducts, action.payload],
+        copyAllProducts: [...state.copyAllProducts, action.payload],
       };
     //CATEGORIES
     case GET_ALL_CATEGORIES:

@@ -1,3 +1,4 @@
+
 {
     "name": "client",
     "private": true,
@@ -16,6 +17,8 @@
         "@mui/icons-material": "^5.11.16",
         "@mui/material": "^5.12.3",
         "@reduxjs/toolkit": "^1.9.3",
+        "@splidejs/react-splide": "^0.7.12",
+        "@splidejs/splide": "^4.1.4",
         "@testing-library/jest-dom": "^5.11.10",
         "@testing-library/react": "^11.2.6",
         "@testing-library/user-event": "^13.1.1",

@@ -1,4 +1,3 @@
-
 const { Product, Category } = require("../../db");
 const { Op } = require("sequelize");
 const getProducts = async (name) => {

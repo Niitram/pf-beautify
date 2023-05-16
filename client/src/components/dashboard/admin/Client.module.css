@@ -1,0 +1,14 @@
+.lista_clientes{
+    border-radius: 21px;
+    background: #e0e0e0;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+.table {
+    padding: 1rem;
+    padding-top: 0;
+    border-spacing: 1rem;
+    text-align: center;
+    font-family:0.5rem
+  }
+  
