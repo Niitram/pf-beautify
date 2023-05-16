@@ -1,7 +1,7 @@
 .link{
-    -webkit-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.54);
-    -moz-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.54);
-    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.54);
+    box-shadow: 3px 3px 17px 0px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 3px 3px 17px 0px rgba(0,0,0,0.54);
+    -moz-box-shadow:3px 3px 17px 0px rgba(0,0,0,0.54);
     border-radius: 10px;
     margin:1rem 0rem;
 }
