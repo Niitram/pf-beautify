@@ -9,3 +9,10 @@ export const createNewClient = async (clientData) => {
         console.log(error.message);
     }
 }
+export const getClient = async (mail) => {
+    try {
+        return await axios.get(`${URL_BASE}/client`, mail)
+    } catch (error) {
+        console.log(error.message);
+    }
+}
