@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import cameraIcon from "../../assets/images/camera-icon.png";
 import { useDispatch } from "react-redux";
 import InputImage from "../inputImage/inputImage";
+import DragImage from "../dragImage/DragImage";
 
 function FormCreateProduct() {
   const dispatch = useDispatch();
@@ -177,7 +178,6 @@ function FormCreateProduct() {
             name="image"
             setProductData={setProductData}
             productData={productData}
-            validateCreateProduct={validateCreateProduct}
             setErrors={setErrors}
           />
           <ErrorInputMessage errors={errors.image} text={errors.image} />
@@ -263,16 +263,13 @@ function FormCreateProduct() {
         </div>
       </form>
       <div className={styles.preview}>
-        <div
-          style={{
-            backgroundImage: `url(${
-              productData.image.length > 1 && !errors.image
-                ? productData.image
-                : cameraIcon
-            })`,
-          }}
-          className={styles.containerImg}
-        ></div>
+        <DragImage
+          productData={productData}
+          errors={errors}
+          cameraIcon={cameraIcon}
+          setProductData={setProductData}
+          setErrors={setErrors}
+        />
       </div>
     </div>
   );

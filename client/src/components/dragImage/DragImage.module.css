@@ -1,0 +1,10 @@
+.containerImg {
+  width: 20rem;
+  height: 30rem;
+  border: 1px;
+  border-style: dotted;
+  border-radius: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

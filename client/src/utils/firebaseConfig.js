@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import validateCreateProduct from "./validateCreateProduct";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
@@ -12,4 +14,21 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-export default firebaseApp;
+const storage = getStorage(firebaseApp);
+
+export const upload = async (
+  archivo,
+  setProductData,
+  productData,
+  setErrors
+) => {
+  // crea una referencia al archivo
+  const archivoRef = ref(storage, `images/${archivo.name}`);
+  // sube el archivo a esa referencia
+  await uploadBytes(archivoRef, archivo);
+  // devuelve la url del archivo
+  const url = await getDownloadURL(archivoRef);
+
+  setProductData({ ...productData, image: url });
+  validateCreateProduct({ ...productData, image: url }, setErrors);
+};
