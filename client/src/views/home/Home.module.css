@@ -1,0 +1,58 @@
+.Container{
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 1rem;
+    background-color: var(--background);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.Title{
+    margin: 20px;
+    padding: 10px;
+}
+.description{
+    margin: 20px;
+    padding: 10px;
+}
+.Promos{
+    margin: 30px;
+    display: flex;
+    padding: 5rem;
+    transition: 1.5s;
+
+}
+.Slider{
+    position:relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width:200vw;
+}
+
+.Next{
+    border: none;
+    background-color: transparent;
+}
+.Next:hover{
+    cursor: pointer;
+}
+.promoCard{
+    background-color: var(--accent1);
+    height: 50vh;
+    width:50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:1rem 0rem 
+}
+.customPrevArrow{
+    color:red;
+    padding: 40rem;
+}
+.customArrow{
+    background-color: red;
+}

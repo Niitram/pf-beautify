@@ -1,7 +1,5 @@
-function Button() {
-    return (
-        <div>Button</div>
-    )
+function Button({ text, onClick, id }) {
+  return <button>{text}</button>;
 }
 
-export default Button
+export default Button;
