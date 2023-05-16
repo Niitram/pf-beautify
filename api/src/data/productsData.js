@@ -26,11 +26,9 @@ const bulkCreateProducts = async (req, res) => {
         else newProduct.setCategory(category.dataValues.id);
       }
     }
-    let a = 0;
+
     const promise = apiProducts.data.map(
       async ({ name, price, image_link, description, category }) => {
-        if (!description) a++;
-
         const apiPropertys = [name, image_link, category];
         if (!apiPropertys.every(Boolean)) return [null, null];
         apiPropertys.push(description);
