@@ -29,4 +29,18 @@ const validationPutClient = async (req, res, next) => {
     }
 }
 
-module.exports = {validationSaveClient, validationPutClient}
+
+
+
+const validateClientExistence = async (req, res, next) => {
+   try {
+    const {id} = req.params
+    const client = await Client.findByPk(id)
+    if(!client) throw new Error('Client not found')
+    next()
+   } catch (error) {
+    res.status(404).json({error: error.message})
+   }
+}
+
+module.exports = {validationSaveClient, validationPutClient, validateClientExistence}
