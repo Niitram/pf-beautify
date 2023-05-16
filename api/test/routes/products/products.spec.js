@@ -21,7 +21,7 @@ describe("Test for products routes", () => {
     const products = generateProducts();
     for (let i = 0; i < products.length; i++){
         const response = await router.post('/products').send(products[i])
-        expect(response.body.CategoryId).toEqual(testCategory.id)
+        expect(response.body.Category).toEqual(testCategory.name)
         expect(response.body.name).toEqual(products[i].name)
         expect(response.body.description).toEqual(products[i].description)
     }
