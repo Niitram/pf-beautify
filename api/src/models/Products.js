@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       state: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
       finalRate: {

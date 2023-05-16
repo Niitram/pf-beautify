@@ -6,7 +6,7 @@ const profesionalGetValidation = async (req, res, next) => {
     if (!Profesionals.length) throw new Error("No Profesionals found");
     next();
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 
@@ -17,7 +17,7 @@ const profesionalGetIdValidation = async (req, res, next) => {
     if (!ProfesionalDetail) throw new Error("No Profesional found");
     next();
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -32,7 +32,7 @@ const profesionalPostValidation = async (req, res, next) => {
     if (DBCheck) throw new Error("Profesional already exist");
     next();
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -51,7 +51,7 @@ const profesionalPutValidation = async (req, res, next) => {
       throw new Error(`Image value alredy set to ${image}`);
     next();
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 

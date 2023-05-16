@@ -15,18 +15,17 @@ router.get("/", profesionalGetValidation, async (req, res) => {
     const response = await getProfesionals();
     res.json(response);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
 router.get("/:id", profesionalGetIdValidation, async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const response = await getProfesionalDetail(id);
     res.json(response);
   } catch (error) {
-    res.send({ error: error.message });
+    res.status(500).send({ error: error.message });
   }
 });
 
@@ -34,20 +33,20 @@ router.post("/", profesionalPostValidation,  async (req, res) => {
   try {
     const { fullname, mail, direction, image } = req.body;
     const response = await postProfesional(fullname, mail, direction, image);
-    res.json(response);
+    res.status(201).json(response);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
 router.put("/:id", profesionalPutValidation, async (req, res) => {
   try {
-    const { fullName, mail, direction, image } = req.body;
+    const { fullname, mail, direction, image } = req.body;
     const { id } = req.params;
-    await putProfesional(id, fullName, mail, direction, image);
-    res.send("successfully modified");
+    const response = await putProfesional(id, fullname, mail, direction, image);
+    res.send(response);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
