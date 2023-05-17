@@ -1,29 +1,34 @@
 const router = require("express").Router();
 const postClient = require("../controllers/Clients/postClient");
-const putClientInfo = require('../controllers/Clients/putClientInfo')
-const getClients = require("../controllers/Clients/getClients")
-const getClientByEmail = require("../controllers/Clients/getClientByEmail")
-const { validationSaveClient, validationPutClient, validateClientExistence } = require('../validations/validationClient')
 
+const putClientInfo = require("../controllers/Clients/putClientInfo");
+const getClients = require("../controllers/Clients/getClients");
+const getClientByEmail = require("../controllers/Clients/getClientByEmail");
+const {
+  validationSaveClient,
+  validationPutClient,
+  validateClientExistence,
+} = require("../validations/validationClient");
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const response = await getClients()
-    res.status(200).json(response)
+    const response = await getClients();
+    res.status(200).json(response);
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    res.status(500).json({ error: error.message });
   }
-})
+});
 
-router.get('/:email', validateClientExistence, async (req, res) => {
+router.get("/:email", validateClientExistence, async (req, res) => {
   try {
-    const { email } = req.params
+    const { email } = req.params;
     const response = await getClientByEmail(email);
-    res.status(200).json(response)
+    res.status(200).json(response);
   } catch (error) {
-    res.status(500).json({ error: error })
+    res.status(500).json({ error: error });
   }
-})
+});
+
 
 router.post("/", validationSaveClient, async (req, res) => {
   try {
@@ -35,15 +40,17 @@ router.post("/", validationSaveClient, async (req, res) => {
   }
 });
 
-router.put('/:id', validationPutClient, async (req, res) => {
+
+router.put("/:id", validationPutClient, async (req, res) => {
   try {
-    const toModify = req.body
-    const { id } = req.params
-    const modifyConfirmation = await putClientInfo(id, toModify)
-    res.json(modifyConfirmation)
+    const toModify = req.body;
+    const { id } = req.params;
+    const modifyConfirmation = await putClientInfo(id, toModify);
+    res.json(modifyConfirmation);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-})
+});
+
 
 module.exports = router;
