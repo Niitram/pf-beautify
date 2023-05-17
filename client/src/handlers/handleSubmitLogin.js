@@ -8,12 +8,15 @@ const handleSubmitLogin = async (
   dispatch,
   setUserInfo,
   creatingAccount,
-  navigate
+  navigate,
+  location,
+  handleLoginClick
 ) => {
   e.preventDefault();
   const name = e.target.name.value;
   const password = e.target.password.value;
   const email = e.target.email.value;
+  console.log(email, password);
   setUserInfo({ name: "", password: "", email: "" });
   try {
     // distinga si estamos creando una cuenta o haciendo el login
@@ -23,7 +26,7 @@ const handleSubmitLogin = async (
       const createUser = {
         fullName: name,
         email: email,
-        password: response.user.reloadUserInfo.passwordHash,
+        // password: response.user.reloadUserInfo.passwordHash,
       };
 
       // corroboramos que el usuario no exista en la base de datos
@@ -40,7 +43,8 @@ const handleSubmitLogin = async (
         })
       );
 
-      navigate("/home");
+      // handleLoginClick();
+      if (location.pathname === "/") navigate("/home");
     } else {
       // se loguea en firebase
       await singUpWithMail(email, password);
@@ -56,7 +60,8 @@ const handleSubmitLogin = async (
         })
       );
     }
-    navigate("/home");
+    handleLoginClick();
+    if (location.pathname === "/") navigate("/home");
   } catch (error) {
     // mensajes de error personalizados
     const ingresaConGooglePelotudo = "Firebase: Error (auth/wrong-password).";

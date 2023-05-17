@@ -4,13 +4,13 @@ import useToggle from "../../hooks/useToggle";
 import { useNavigate } from "react-router-dom";
 import Login from "../../components/login/Login";
 
-export default function Landing() {
+export default function Landing({ loginVisible, handleLoginClick }) {
   const navigate = useNavigate();
-  const [loginVisible, setLoginVisible] = useToggle(false);
+  // const [loginVisible, setLoginVisible] = useToggle(false);
 
-  const handleLoginClick = () => {
-    setLoginVisible(!loginVisible);
-  };
+  // const handleLoginClick = () => {
+  //   setLoginVisible(!loginVisible);
+  // };
 
   return (
     <div className={styles.Container}>
@@ -40,7 +40,7 @@ export default function Landing() {
         </button>
       </div>
 
-      {loginVisible && <Login loginVisible={loginVisible} />}
+      {/* {loginVisible && <Login loginVisible={loginVisible} />} */}
 
       <div
         style={
