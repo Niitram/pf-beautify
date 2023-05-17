@@ -11,6 +11,7 @@ import { postFindOrCreate } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
 import { CLIENT } from "./roles";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
   authDomain: "beautify-386112.firebaseapp.com",
@@ -22,12 +23,15 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
+
 const auth = getAuth(firebaseApp);
 export const googleProvider = new GoogleAuthProvider();
+
 
 const storage = getStorage(firebaseApp);
 
 export const createUserWithMail = async (username, password) => {
+
   return await createUserWithEmailAndPassword(auth, username, password);
 };
 
@@ -36,6 +40,7 @@ export const singUpWithMail = async (username, password) => {
 };
 
 // para subir una imagen al storage
+
 export const upload = async (
   archivo,
   setProductData,
@@ -75,3 +80,4 @@ export const loginWithGoogleFirebase = async (
   );
   navigate("/home");
 };
+

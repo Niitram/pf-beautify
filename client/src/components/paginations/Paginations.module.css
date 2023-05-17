@@ -16,7 +16,7 @@
     box-shadow: -1px 2px 7px 0px rgba(0, 0, 0, 0.331);
     -webkit-box-shadow: -1px 2px 7px 0px rgba(0, 0, 0, 0.331);
     -moz-box-shadow: -1px 2px 7px 0px rgba(0, 0, 0, 0.331);
-    
+    margin:8px 2px
 }
 .buttonPages:hover{
     background-color: #EE9890;

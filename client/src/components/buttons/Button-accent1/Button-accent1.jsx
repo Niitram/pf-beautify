@@ -4,10 +4,9 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 function ButtonAccent1({ text, route }) {
   return (
-    <Link to={`${route}`}>
+    <Link to={`${route}`} style={{textDecoration:'none'}}>
       <button className={styles.Container}>
         {text}
-        <ShoppingCartOutlinedIcon className={styles.cart} fontSize="small" />
       </button>
     </Link>
   );

@@ -1,5 +1,6 @@
 import logo from "../../assets/images/LandingImg.svg";
 import styles from "./Landing.module.css";
+
 import useToggle from "../../hooks/useToggle";
 import { useNavigate } from "react-router-dom";
 import Login from "../../components/login/Login";
@@ -8,12 +9,24 @@ export default function Landing() {
   const navigate = useNavigate();
   const [loginVisible, setLoginVisible] = useToggle(false);
 
+
   const handleLoginClick = () => {
     setLoginVisible(!loginVisible);
   };
 
   return (
-    <div className={styles.Container}>
+    <form
+      onSubmit={(e) => {
+        handleSubmitLogin(
+          e,
+          dispatch,
+          setUserInfo,
+          creatingAccount,
+          setCreatedUser
+        );
+      }}
+      className={styles.Container}
+    >
       <div className={styles.EmbraceYourBeauty}>
         <h2>
           <strong>Embrace your</strong>
@@ -26,6 +39,7 @@ export default function Landing() {
             /*  navigate("/home"); */
           }}
           className={styles.Login}
+
         >
           Login / Register
         </button>
@@ -35,10 +49,12 @@ export default function Landing() {
             navigate("/home");
           }}
           className={styles.Login}
+
         >
           Invited
         </button>
       </div>
+
 
       {loginVisible && <Login loginVisible={loginVisible} />}
 
@@ -52,6 +68,17 @@ export default function Landing() {
         onClick={handleLoginClick}
       ></div>
       <img src={logo} alt="logo" />
-    </div>
+      {createdUser && (
+        <Stack
+          sx={{ width: "300px", position: "absolute", bottom: 10, right: 10 }}
+          spacing={2}
+        >
+          <Alert severity="success">
+            <AlertTitle>Success</AlertTitle>
+            User <strong>created</strong>
+          </Alert>
+        </Stack>
+      )}
+    </form>
   );
 }

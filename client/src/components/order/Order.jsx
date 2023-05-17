@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, FormControlLabel, Radio, RadioGroup, FormLabel } from "@mui/material";
 import { orderProducts } from "../../redux/actions";
 import styles from './Order.module.css'
 
@@ -12,31 +12,22 @@ function Order({ ordered, setOrdered }) {
   };
   return (
     <div>
-      <FormControl variant="standard" sx={{ m: 5, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-standard-label">
-          Order by price
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
+      <FormControl>
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          defaultValue="female"
           value={ordered.price}
-          name="price"
+          name="radio-buttons-group"
           onChange={handleChangeOrder}
           className={styles.Order}
         >
-          <MenuItem value={"maxPrice"} name="price">
-            Max price
-          </MenuItem>
-          <MenuItem value={"minPrice"} name="price">
-            Min price
-          </MenuItem>
-          <MenuItem value={"maxRate"} name="rate">
-            Max rate
-          </MenuItem>
-          <MenuItem value={"minRate"} name="rate">
-            Min rate
-          </MenuItem>
-        </Select>
+          <FormLabel id="demo-radio-buttons-group-label">Order by price</FormLabel>
+          <FormControlLabel value={"maxPrice"} name="price" control={<Radio />} label="Max price" />
+          <FormControlLabel value={"minPrice"} name="price" control={<Radio />} label="Min price" />
+          <FormLabel id="demo-radio-buttons-group-label">Order by rating</FormLabel>
+          <FormControlLabel value={"maxRate"} name="rate" control={<Radio />} label="Max rate" />
+          <FormControlLabel value={"minRate"} name="rate" control={<Radio />} label="Min rate" />
+        </RadioGroup>
       </FormControl>
     </div>
   );
