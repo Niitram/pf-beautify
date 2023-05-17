@@ -8,7 +8,9 @@ const {
   validationSaveClient,
   validationPutClient,
   validateClientExistence,
+  validateFindOrCreate,
 } = require("../validations/validationClient");
+const findOrCreateClient = require("../controllers/Clients/findOrCreateClient");
 
 router.get("/", async (req, res) => {
   try {
@@ -29,7 +31,6 @@ router.get("/:email", validateClientExistence, async (req, res) => {
   }
 });
 
-
 router.post("/", validationSaveClient, async (req, res) => {
   try {
     const { password, email, fullName } = req.body;
@@ -39,7 +40,6 @@ router.post("/", validationSaveClient, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 
 router.put("/:id", validationPutClient, async (req, res) => {
   try {
@@ -52,5 +52,14 @@ router.put("/:id", validationPutClient, async (req, res) => {
   }
 });
 
+router.post("/findOrCreate", validateFindOrCreate, async (req, res) => {
+  try {
+    const { email, fullName } = req.body;
+    const [client, created] = await findOrCreateClient(email, fullName);
+    res.status(200).json({ client, created });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 module.exports = router;
