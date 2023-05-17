@@ -6,9 +6,9 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import axios from "axios";
 import { useState } from "react";
-// import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
+import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 
-// initMercadoPago("TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1");
+initMercadoPago("TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1");
 function Cart() {
   let cantArticulos = 3;
   const [preferenceId, setPreferenceId] = useState(0);
