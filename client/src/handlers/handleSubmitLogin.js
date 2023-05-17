@@ -1,6 +1,7 @@
 import { createUserWithMail, singUpWithMail } from "../utils/firebaseConfig";
 import { createNewClient, getClient } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
+import { CLIENT } from "../utils/roles";
 
 const handleSubmitLogin = async (
   e,
@@ -36,6 +37,7 @@ const handleSubmitLogin = async (
         setUserInfoAction({
           id: userCreated.data.id,
           name: userCreated.data.fullName,
+          rol: CLIENT,
         })
       );
 
@@ -43,21 +45,16 @@ const handleSubmitLogin = async (
       setCreatedUser(true);
     } else {
       // se loguea en firebase
-      const response = await singUpWithMail(email, password);
-
-      const createUser = {
-        fullName: name,
-        email: email,
-        password: response.user.reloadUserInfo.passwordHash,
-      };
+      await singUpWithMail(email, password);
 
       // trae la info del usuario de la base de datos
-      const userCreated = await getClient(createUser.email);
+      const userCreated = await getClient(email);
       // envía esa info al estado global
       dispatch(
         setUserInfoAction({
           id: userCreated.data.id,
           name: userCreated.data.fullName,
+          rol: CLIENT,
         })
       );
     }

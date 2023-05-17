@@ -24,6 +24,7 @@ router.get("/", async (req, res) => {
 router.get("/:email", validateClientExistence, async (req, res) => {
   try {
     const { email } = req.params;
+
     const response = await getClientByEmail(email);
     res.status(200).json(response);
   } catch (error) {

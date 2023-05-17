@@ -2,7 +2,7 @@ const { Client } = require("../db");
 
 const validationSaveClient = async (req, res, next) => {
   try {
-    const { password, email, fullName } = req.body;
+    const { email, fullName } = req.body;
     if (!email)
       throw new Error(`Unable to save user in database, no email provided`);
     const regex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/;

@@ -104,6 +104,10 @@
   transition: 200ms;
   color: var(--text);
 }
+.BotonLogin:disabled {
+  background-color: var(--muted);
+  color: var(--text);
+}
 .BotonLogin:hover {
   background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
   color: #fef2f4;

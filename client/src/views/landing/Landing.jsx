@@ -10,25 +10,42 @@ import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import { googleProvider, firebaseApp } from "../../utils/firebaseConfig";
 import { signInWithRedirect, getAuth, onAuthStateChanged } from "firebase/auth";
+import { ADMIN, INVITED, CLIENT } from "../../utils/roles";
+import validateCreateUser from "../../utils/validateCreateUser";
+import ErrorInputMessage from "../../components/errorInputMessage/ErrorInputMessage";
 const auth = getAuth(firebaseApp);
 
-onAuthStateChanged(auth, (usuarioFirebase) => {
+onAuthStateChanged(auth, async (usuarioFirebase) => {
   if (usuarioFirebase && usuarioFirebase.displayName) {
     console.log("me loguee");
     console.log(usuarioFirebase.displayName);
     console.log(usuarioFirebase.email);
 
     // traer o crear el usuario de la bdd
+    const response = await getClient(createUser.email);
     // setear el estado global
     // navegar al home
   }
 });
+const loginWithGoogle = async () => {
+  try {
+    await signInWithRedirect(auth, googleProvider);
+  } catch (error) {
+    window.alert(error.message);
+    console.log(error.message);
+  }
+};
 
 export default function Landing() {
   const navigate = useNavigate();
   const [loginVisible, setLoginVisible] = useToggle(false);
   const [creatingAccount, setCreatingAccount] = useToggle(false);
   const [createdUser, setCreatedUser] = useToggle(false);
+  const [errors, setErrors] = useState({
+    email: "Email required",
+    password: "Password required",
+    name: "",
+  });
   const dispatch = useDispatch();
 
   const [userInfo, setUserInfo] = useState({
@@ -41,20 +58,15 @@ export default function Landing() {
     const property = event.target.name;
     const value = event.target.value;
     setUserInfo({ ...userInfo, [property]: value });
+    setErrors(
+      validateCreateUser({ ...userInfo, [property]: value }, creatingAccount)
+    );
   };
 
   const handleLoginClick = () => {
     setLoginVisible(!loginVisible);
   };
 
-  const loginWithGoogle = async () => {
-    try {
-      await signInWithRedirect(auth, googleProvider);
-    } catch (error) {
-      window.alert(error.message);
-      console.log(error.message);
-    }
-  };
   return (
     <form
       onSubmit={(e) => {
@@ -84,6 +96,15 @@ export default function Landing() {
         >
           Login / Register
         </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/home");
+          }}
+          className={styles.Login}
+        >
+          Invited
+        </button>
       </div>
       <div
         className={styles.LoginForm}
@@ -96,14 +117,17 @@ export default function Landing() {
         <h4>Welcome</h4>
         <span>Log in or Sign up to continue</span>
         <div className={styles.Inputs}>
-          <input
-            value={userInfo.name}
-            type="text"
-            name="name"
-            placeholder="Name"
-            className="Username"
-            onChange={handleChange}
-          />
+          {creatingAccount && (
+            <input
+              value={userInfo.name}
+              type="text"
+              name="name"
+              placeholder="Name"
+              className="Username"
+              onChange={handleChange}
+            />
+          )}
+          <ErrorInputMessage errors={errors.email} text={errors.name} />
           <input
             value={userInfo.email}
             type="text"
@@ -112,6 +136,7 @@ export default function Landing() {
             className="Username"
             onChange={handleChange}
           />
+          <ErrorInputMessage errors={errors.email} text={errors.email} />
           <input
             value={userInfo.password}
             type="text"
@@ -120,13 +145,21 @@ export default function Landing() {
             className="Password"
             onChange={handleChange}
           />
+          <ErrorInputMessage errors={errors.password} text={errors.password} />
         </div>
-        <button type="submit" className={styles.BotonLogin}>
+        <button
+          disabled={errors.email && errors.password}
+          type="submit"
+          className={styles.BotonLogin}
+        >
           {creatingAccount ? "Register" : "Login"}
         </button>
         <button
           onClick={(e) => {
             e.preventDefault();
+            !creatingAccount
+              ? setErrors({ ...errors, name: "Name required" })
+              : "";
             setCreatingAccount(!creatingAccount);
           }}
         >
