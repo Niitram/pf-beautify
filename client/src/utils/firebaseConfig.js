@@ -7,6 +7,9 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
 } from "firebase/auth";
+import { postFindOrCreate } from "../request/clients";
+import { setUserInfoAction } from "../redux/actions";
+import { CLIENT } from "./roles";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
@@ -32,6 +35,7 @@ export const singUpWithMail = async (username, password) => {
   return await signInWithEmailAndPassword(auth, username, password);
 };
 
+// para subir una imagen al storage
 export const upload = async (
   archivo,
   setProductData,
@@ -47,4 +51,26 @@ export const upload = async (
 
   setProductData({ ...productData, image: url });
   validateCreateProduct({ ...productData, image: url }, setErrors);
+};
+
+export const loginWithGoogleFirebase = async (
+  usuarioFirebase,
+  dispatch,
+  navigate
+) => {
+  const response = await postFindOrCreate({
+    email: usuarioFirebase.email,
+    fullName: usuarioFirebase.displayName,
+  });
+  const dbClient = response.data.client;
+
+  // setear el estado global
+  dispatch(
+    setUserInfoAction({
+      id: dbClient.id,
+      name: dbClient.fullName,
+      rol: CLIENT,
+    })
+  );
+  navigate("/home");
 };

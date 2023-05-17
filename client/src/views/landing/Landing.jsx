@@ -2,31 +2,25 @@ import logo from "../../assets/images/LandingImg.svg";
 import styles from "./Landing.module.css";
 import useToggle from "../../hooks/useToggle";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import handleSubmitLogin from "../../handlers/handleSubmitLogin";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
-import { googleProvider, firebaseApp } from "../../utils/firebaseConfig";
+import {
+  googleProvider,
+  firebaseApp,
+  loginWithGoogleFirebase,
+} from "../../utils/firebaseConfig";
 import { signInWithRedirect, getAuth, onAuthStateChanged } from "firebase/auth";
-import { ADMIN, INVITED, CLIENT } from "../../utils/roles";
+import { CLIENT } from "../../utils/roles";
 import validateCreateUser from "../../utils/validateCreateUser";
 import ErrorInputMessage from "../../components/errorInputMessage/ErrorInputMessage";
+import { postFindOrCreate } from "../../request/clients";
+import { setUserInfoAction } from "../../redux/actions";
 const auth = getAuth(firebaseApp);
 
-onAuthStateChanged(auth, async (usuarioFirebase) => {
-  if (usuarioFirebase && usuarioFirebase.displayName) {
-    console.log("me loguee");
-    console.log(usuarioFirebase.displayName);
-    console.log(usuarioFirebase.email);
-
-    // traer o crear el usuario de la bdd
-    const response = await getClient(createUser.email);
-    // setear el estado global
-    // navegar al home
-  }
-});
 const loginWithGoogle = async () => {
   try {
     await signInWithRedirect(auth, googleProvider);
@@ -38,9 +32,11 @@ const loginWithGoogle = async () => {
 
 export default function Landing() {
   const navigate = useNavigate();
+  const userRedux = useSelector((state) => state.userData);
   const [loginVisible, setLoginVisible] = useToggle(false);
   const [creatingAccount, setCreatingAccount] = useToggle(false);
   const [createdUser, setCreatedUser] = useToggle(false);
+  const [logout, setLogout] = useToggle(true);
   const [errors, setErrors] = useState({
     email: "Email required",
     password: "Password required",
@@ -66,6 +62,13 @@ export default function Landing() {
   const handleLoginClick = () => {
     setLoginVisible(!loginVisible);
   };
+
+  onAuthStateChanged(auth, async (usuarioFirebase) => {
+    // las tres condiciones: hubo un cambio en la auth, el usuario recibido es de google, antes no había usuario logueado
+    if (usuarioFirebase && usuarioFirebase.displayName && logout) {
+      await loginWithGoogleFirebase(usuarioFirebase, dispatch, navigate);
+    } else if (!logout) setLogout(true);
+  });
 
   return (
     <form

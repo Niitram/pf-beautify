@@ -18,7 +18,7 @@ export const getClient = async (mail) => {
 };
 export const postFindOrCreate = async (userData) => {
   try {
-    return await axios.post(`${URL_BASE}/client/findorcreate`);
+    return await axios.post(`${URL_BASE}/client/findOrCreate`, userData);
   } catch (error) {
     console.log(error.message);
   }
