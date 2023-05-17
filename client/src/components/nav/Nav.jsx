@@ -19,7 +19,6 @@ function Nav() {
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
         <ButtonNav text={"Services"} route={"/services"}></ButtonNav>
         <ButtonNav text={"Dashboard"} route={"/services"}></ButtonNav>
-        <ButtonAccent1 text={"Cart"} route={"/cart"}></ButtonAccent1>
         <ButtonAccent1 text={""} route={"/cart"}></ButtonAccent1>
 
         {/* <Link to={`/detailUser`}>detailUser</Link>
