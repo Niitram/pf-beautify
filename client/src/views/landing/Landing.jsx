@@ -1,6 +1,5 @@
 import logo from "../../assets/images/LandingImg.svg";
 import styles from "./Landing.module.css";
-//import { useNavigate } from "react-router-dom";
 import useToggle from "../../hooks/useToggle";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -8,12 +7,17 @@ import handleSubmitLogin from "../../handlers/handleSubmitLogin";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Stack from "@mui/material/Stack";
+import { useNavigate } from "react-router-dom";
+// import { googleProvider, firebaseApp } from "../../utils/firebaseConfig";
+// import { signInWithRedirect, getAuth } from "firebase/auth";
 
 export default function Landing() {
+  const navigate = useNavigate();
   const [loginVisible, setLoginVisible] = useToggle(false);
   const [creatingAccount, setCreatingAccount] = useToggle(false);
   const [createdUser, setCreatedUser] = useToggle(false);
   const dispatch = useDispatch();
+  // const auth = getAuth(firebaseApp);
 
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -27,12 +31,18 @@ export default function Landing() {
     setUserInfo({ ...userInfo, [property]: value });
   };
 
-  //const navigate = useNavigate();
-
   const handleLoginClick = () => {
     setLoginVisible(!loginVisible);
   };
 
+  // const loginWithGoogle = async () => {
+  //   try {
+  //     signInWithRedirect(auth, googleProvider);
+  //   } catch (error) {
+  //     window.alert(error.message);
+  //     console.log(error.message);
+  //   }
+  // };
   return (
     <form
       onSubmit={(e) => {
@@ -41,7 +51,8 @@ export default function Landing() {
           dispatch,
           setUserInfo,
           creatingAccount,
-          setCreatedUser
+          setCreatedUser,
+          navigate
         );
       }}
       className={styles.Container}
@@ -116,10 +127,10 @@ export default function Landing() {
         <button
           onClick={(e) => {
             e.preventDefault();
-            window.open("http://localhost:3001/auth/google");
+            // loginWithGoogle();
           }}
         >
-          boton google
+          Google
         </button>
       </div>
       <div

@@ -7,6 +7,7 @@ import {
   ORDER_PRODUCTS,
   CREATE_PRODUCT,
   SET_USER_INFO,
+  LOGOUT
 } from "./actions";
 
 const initialState = {
@@ -108,6 +109,16 @@ const rootReducer = (state = initialState, action) => {
           name: action.payload.name,
         }
       };
+
+    //LOGOUT
+    case LOGOUT:
+      return {
+        ...state,
+        userData: {
+          id: null,
+          name: null
+        }
+      }
 
 
 

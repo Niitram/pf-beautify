@@ -2,18 +2,18 @@ import { createUserWithMail, singUpWithMail } from "../utils/firebaseConfig";
 import { createNewClient, getClient } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
 
-const handleSubmitLogin = async (e, dispatch, setUserInfo, creatingAccount, setCreatedUser) => {
+const handleSubmitLogin = async (e, dispatch, setUserInfo, creatingAccount, setCreatedUser, navigate) => {
     e.preventDefault();
     const name = e.target.name.value;
     const password = e.target.password.value;
     const email = e.target.email.value;
     setUserInfo({ name: "", password: "", email: "" });
-
     try {
         // distinga si estamos creando una cuenta o haciendo el login
         if (creatingAccount) {
             //* creamos el usuario en firebase
             const response = await createUserWithMail(email, password);
+            console.log(response);
             const createUser = {
                 fullName: name,
                 email: email,
@@ -22,10 +22,12 @@ const handleSubmitLogin = async (e, dispatch, setUserInfo, creatingAccount, setC
 
             // corroboramos que el usuario no exista en la base de datos
             const oldUser = await getClient(createUser.email);
+            console.log(createUser);
             if (oldUser.data.fullName) throw Error("User alredy exists in database")
 
             // crea el usuario en la base de datos
             const userCreated = await createNewClient(createUser);
+            console.log(userCreated);
             dispatch(
                 setUserInfoAction({
                     id: userCreated.data.id,
@@ -55,6 +57,7 @@ const handleSubmitLogin = async (e, dispatch, setUserInfo, creatingAccount, setC
                 })
             );
         }
+        navigate("/home")
     } catch (error) {
         // mensajes de error personalizados
         const userNotFound = "Firebase: Error (auth/user-not-found)."
