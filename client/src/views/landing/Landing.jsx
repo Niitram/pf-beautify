@@ -13,7 +13,7 @@ export default function Landing() {
   };
 
   return (
-    <>
+    <div className={styles.Container}>
       <div className={styles.EmbraceYourBeauty}>
         <h2>
           <strong>Embrace your</strong>
@@ -52,6 +52,6 @@ export default function Landing() {
         onClick={handleLoginClick}
       ></div>
       <img src={logo} alt="logo" />
-    </>
+    </div>
   );
 }

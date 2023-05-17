@@ -112,6 +112,7 @@ const Login = ({ loginVisible }) => {
             {creatingAccount ? "Register" : "Login"}
           </button>
           <button
+            className={styles.BotonLogin}
             onClick={(e) => {
               e.preventDefault();
               !creatingAccount
@@ -121,12 +122,12 @@ const Login = ({ loginVisible }) => {
             }}
           >
             {creatingAccount
-              ? "You are already a member"
-              : "You are not a member"}
+              ? "You are already a member?"
+              : "You are not a member?"}
           </button>
 
-          <hr></hr>
           <button
+            className={styles.BotonLogin}
             onClick={(e) => {
               e.preventDefault();
               loginWithGoogle();
@@ -135,7 +136,7 @@ const Login = ({ loginVisible }) => {
             Google
           </button>
         </div>
-        {createdUser && (
+        {/* {createdUser && (
           <Stack
             sx={{ width: "300px", position: "absolute", bottom: 10, right: 10 }}
             spacing={2}
@@ -145,7 +146,7 @@ const Login = ({ loginVisible }) => {
               User <strong>created</strong>
             </Alert>
           </Stack>
-        )}
+        )} */}
       </form>
     </>
   );
