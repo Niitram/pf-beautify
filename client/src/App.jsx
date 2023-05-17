@@ -12,7 +12,11 @@ import DetailPayment from "./views/detailPayment/DetailPayment";
 import DetailUser from "./views/detailUser/DetailUser";
 import Nav from "./components/nav/Nav";
 import { useDispatch } from "react-redux";
-import { getAllCategories, getAllProducts } from "./redux/actions";
+import {
+  getAllCategories,
+  getAllProducts,
+  setUserInfoAction,
+} from "./redux/actions";
 import useGetProducts from "./hooks/useGetProducts";
 import { useEffect } from "react";
 import useGetCategories from "./hooks/useGetCategories";
@@ -20,6 +24,8 @@ import NewProduct from "./views/newProduct/NewProduct";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import useToggle from "./hooks/useToggle";
 import { loginWithGoogleFirebase } from "./utils/firebaseConfig";
+import { getClient } from "./request/clients";
+import { CLIENT } from "./utils/roles";
 
 function App() {
   const locationNow = useLocation();
@@ -36,13 +42,22 @@ function App() {
   }, [dispatch, products, categories]);
 
   onAuthStateChanged(auth, async (usuarioFirebase) => {
-    console.log("onAuth");
     // las tres condiciones: hubo un cambio en la auth, el usuario recibido es de google, antes no había usuario logueado
     if (usuarioFirebase && usuarioFirebase.displayName) {
       if (logout) {
         await loginWithGoogleFirebase(usuarioFirebase, dispatch, navigate);
         setLogout(false);
       }
+    } else if (usuarioFirebase && !usuarioFirebase.displayName) {
+      const userCreated = await getClient(usuarioFirebase.email);
+      // envía esa info al estado global
+      dispatch(
+        setUserInfoAction({
+          id: userCreated.data.id,
+          name: userCreated.data.fullName,
+          rol: CLIENT,
+        })
+      );
     } else if (!logout) setLogout(true);
   });
 
