@@ -8,8 +8,21 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
-// import { googleProvider, firebaseApp } from "../../utils/firebaseConfig";
-// import { signInWithRedirect, getAuth } from "firebase/auth";
+import { googleProvider, firebaseApp } from "../../utils/firebaseConfig";
+import { signInWithRedirect, getAuth, onAuthStateChanged } from "firebase/auth";
+const auth = getAuth(firebaseApp);
+
+onAuthStateChanged(auth, (usuarioFirebase) => {
+  if (usuarioFirebase && usuarioFirebase.displayName) {
+    console.log("me loguee");
+    console.log(usuarioFirebase.displayName);
+    console.log(usuarioFirebase.email);
+
+    // traer o crear el usuario de la bdd
+    // setear el estado global
+    // navegar al home
+  }
+});
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -17,7 +30,6 @@ export default function Landing() {
   const [creatingAccount, setCreatingAccount] = useToggle(false);
   const [createdUser, setCreatedUser] = useToggle(false);
   const dispatch = useDispatch();
-  // const auth = getAuth(firebaseApp);
 
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -35,14 +47,14 @@ export default function Landing() {
     setLoginVisible(!loginVisible);
   };
 
-  // const loginWithGoogle = async () => {
-  //   try {
-  //     signInWithRedirect(auth, googleProvider);
-  //   } catch (error) {
-  //     window.alert(error.message);
-  //     console.log(error.message);
-  //   }
-  // };
+  const loginWithGoogle = async () => {
+    try {
+      await signInWithRedirect(auth, googleProvider);
+    } catch (error) {
+      window.alert(error.message);
+      console.log(error.message);
+    }
+  };
   return (
     <form
       onSubmit={(e) => {
@@ -70,7 +82,7 @@ export default function Landing() {
           }}
           className={styles.Login}
         >
-          Login
+          Login / Register
         </button>
       </div>
       <div
@@ -127,7 +139,7 @@ export default function Landing() {
         <button
           onClick={(e) => {
             e.preventDefault();
-            // loginWithGoogle();
+            loginWithGoogle();
           }}
         >
           Google

@@ -1,8 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import validateCreateProduct from "./validateCreateProduct";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
-
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
@@ -15,18 +19,18 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp)
-// export const googleProvider = new GoogleAuthProvider()
+const auth = getAuth(firebaseApp);
+export const googleProvider = new GoogleAuthProvider();
 
 const storage = getStorage(firebaseApp);
 
 export const createUserWithMail = async (username, password) => {
-  return await createUserWithEmailAndPassword(auth, username, password)
-}
+  return await createUserWithEmailAndPassword(auth, username, password);
+};
 
 export const singUpWithMail = async (username, password) => {
-  return await signInWithEmailAndPassword(auth, username, password)
-}
+  return await signInWithEmailAndPassword(auth, username, password);
+};
 
 export const upload = async (
   archivo,
@@ -44,4 +48,3 @@ export const upload = async (
   setProductData({ ...productData, image: url });
   validateCreateProduct({ ...productData, image: url }, setErrors);
 };
-
