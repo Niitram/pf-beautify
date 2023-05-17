@@ -6,6 +6,8 @@ import {
   FILTER_PRODUCTS,
   ORDER_PRODUCTS,
   CREATE_PRODUCT,
+  SET_USER_INFO,
+  LOGOUT
 } from "./actions";
 
 const initialState = {
@@ -14,6 +16,10 @@ const initialState = {
   allCategories: [],
   allServices: [],
   allProfessionals: [],
+  userData: {
+    id: null,
+    name: null,
+  }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -93,6 +99,27 @@ const rootReducer = (state = initialState, action) => {
         allProducts: [...orderedAll],
       };
     }
+
+    //SET_USER_INFO
+    case SET_USER_INFO:
+      return {
+        ...state,
+        userData: {
+          id: action.payload.id,
+          name: action.payload.name,
+        }
+      };
+
+    //LOGOUT
+    case LOGOUT:
+      return {
+        ...state,
+        userData: {
+          id: null,
+          name: null
+        }
+      }
+
 
 
     default:

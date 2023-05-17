@@ -1,3 +1,4 @@
+
 const { Client } = require("../db");
 
 const validationSaveClient = async (req, res, next) => {
@@ -48,3 +49,4 @@ module.exports = {
   validationPutClient,
   validateClientExistence,
 };
+
