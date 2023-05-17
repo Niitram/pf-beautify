@@ -60,6 +60,7 @@ const getProductsId = async () => {
     const product = await Product.findOne({
       where: { name: `ProductTest${i + 1}` },
     });
+    
     arrayId.push(product.dataValues.id);
   }
   return arrayId;
