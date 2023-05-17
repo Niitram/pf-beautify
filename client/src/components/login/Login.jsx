@@ -54,7 +54,6 @@ const Login = ({ loginVisible }) => {
             dispatch,
             setUserInfo,
             creatingAccount,
-            setCreatedUser,
             navigate
           );
         }}

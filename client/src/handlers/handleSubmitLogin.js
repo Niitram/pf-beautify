@@ -8,7 +8,6 @@ const handleSubmitLogin = async (
   dispatch,
   setUserInfo,
   creatingAccount,
-  setCreatedUser,
   navigate
 ) => {
   e.preventDefault();
@@ -28,8 +27,8 @@ const handleSubmitLogin = async (
       };
 
       // corroboramos que el usuario no exista en la base de datos
-      const oldUser = await getClient(createUser.email);
-      if (oldUser) throw Error("User alredy exists in database");
+      // const oldUser = await getClient(createUser.email);
+      // if (oldUser) throw Error("User alredy exists in database");
 
       // crea el usuario en la base de datos
       const userCreated = await createNewClient(createUser);
@@ -41,8 +40,7 @@ const handleSubmitLogin = async (
         })
       );
 
-      // setea el estado Created User para disparar el mensaje de éxito
-      setCreatedUser(true);
+      navigate("/home");
     } else {
       // se loguea en firebase
       await singUpWithMail(email, password);
@@ -80,4 +78,3 @@ const handleSubmitLogin = async (
 };
 
 export default handleSubmitLogin;
-
