@@ -1,4 +1,3 @@
-
 *{
     font-family: "Playfair Display", serif;
     font-weight: bold;
@@ -16,6 +15,7 @@
     padding: 10px 35px 10px 35px;
     justify-content: center;
     border-radius: 10px ;
+
 }
 .Container:hover{
     background: var(--gradient);
@@ -34,4 +34,5 @@
 }
 .cart{
     margin-left: 5px;
+
 }
