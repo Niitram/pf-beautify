@@ -104,7 +104,11 @@ const Login = ({ loginVisible }) => {
             />
           </div>
           <button
-            disabled={errors.email && errors.password}
+            disabled={
+              creatingAccount
+                ? errors.email || errors.password || errors.name
+                : errors.email || errors.password
+            }
             type="submit"
             className={styles.BotonLogin}
           >
@@ -115,8 +119,11 @@ const Login = ({ loginVisible }) => {
             onClick={(e) => {
               e.preventDefault();
               !creatingAccount
-                ? setErrors({ ...errors, name: "Name required" })
-                : "";
+                ? setErrors({
+                    ...errors,
+                    name: userInfo.name.length ? "" : "Name required",
+                  })
+                : setErrors({ ...errors, name: "" });
               setCreatingAccount(!creatingAccount);
             }}
           >
