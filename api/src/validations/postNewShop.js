@@ -41,7 +41,7 @@ const postNewShopValidation = async (req, res, next) => {
     //*chequea que el cliente exista
     const client = await Client.findByPk(clientId);
     if (!client)
-      return res.status(400).json({ error: "Client doesn't exists" });
+      return res.status(404).json({ error: "Client doesn't exists" });
 
     //* en cada detalle de producto, chequea que el producto exista
     const promises = details.map(async (detail) => {
@@ -55,7 +55,7 @@ const postNewShopValidation = async (req, res, next) => {
     const hasDetailProducts = await Promise.all(promises);
     if (!hasDetailProducts.every(Boolean))
       return res
-        .status(400)
+        .status(409)
         .json({ error: "Some product wasn't found or has not enough stock" });
   } catch (error) {
     return res.status(500).json({ error: error.message });

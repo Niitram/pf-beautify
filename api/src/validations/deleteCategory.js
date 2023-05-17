@@ -10,11 +10,11 @@ const deleteCategoryValidation = async (req, res, next) => {
 
   const oldCategory = await Category.findByPk(id);
   if (!oldCategory)
-    return res.status(400).json({ error: "category not found" });
+    return res.status(404).json({ error: "category not found" });
 
   const relatedProducts = await Product.findAll({ where: { CategoryId: id } });
   if (relatedProducts.length)
-    return res.status(400).json({ error: "category has related products" });
+    return res.status(409).json({ error: "category has related products" });
 
   next();
 };

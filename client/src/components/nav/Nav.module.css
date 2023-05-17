@@ -5,13 +5,13 @@
     justify-content: end;
     align-items: center;
     background-color: #FBF4F5;
-    box-shadow: 0px 1px 13px rgba(0,0,0,0.1);
-    border-bottom: rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
     z-index: 4;
-   
+    text-decoration: none;
 }
 .navBar a {
-    padding:0.25rem;
+    padding: 1%;
 }
 
 .botones{
@@ -21,7 +21,6 @@
     align-items: center;
     background-color: transparent;
     overflow: hidden;
-    padding-right: 2rem;
 }
 .imagen{
     display: flex;
@@ -29,5 +28,4 @@
     justify-content: start;
     margin-left: 2rem;
 }
-
 

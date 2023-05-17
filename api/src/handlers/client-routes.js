@@ -7,9 +7,9 @@ router.post("/", validationSaveClient, async (req, res) => {
   try {
     const { password, email, fullName } = req.body;
     const client = await postClient(password, email, fullName);
-    res.json(client);
+    res.status(201).json(client);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -20,7 +20,7 @@ router.put('/:id', validationPutClient, async (req,res) => {
       const modifyConfirmation = await putClientInfo(id, adress, phone)
       res.json(modifyConfirmation)
     } catch (error) {
-      res.json({error: error.message});
+      res.status(500).json({error: error.message});
     }
 })
 

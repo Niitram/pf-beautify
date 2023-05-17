@@ -7,6 +7,8 @@ const addRate = require("../controllers/Products/addRate");
 const productAddRate = require("../validations/productAddRate");
 const updateProduct = require("../controllers/Products/updateProduct");
 const updateProductValidation = require("../validations/updateProduct");
+const addStock = require("../controllers/Products/addStock");
+const productAddStock = require("../validations/productAddStock");
 
 const productsRouter = Router();
 
@@ -58,6 +60,21 @@ productsRouter.put("/addRate/:productId", productAddRate, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+productsRouter.put(
+  "/addStock/:productId",
+  productAddStock,
+  async (req, res) => {
+    try {
+      const { productId } = req.params;
+      const { load } = req.body;
+      const updatedProduct = await addStock(productId, load);
+      res.status(200).json(updatedProduct);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+);
 
 productsRouter.put("/:id", updateProductValidation, async (req, res) => {
   try {

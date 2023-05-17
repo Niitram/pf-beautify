@@ -9,7 +9,7 @@ const validationComment = async (req, res, next) => {
         if(validateProduct && validateClient) return next()
         else throw new Error('Product or client not found')
     } catch (error) {
-        res.json({error: error.message})
+        res.status(400).json({error: error.message})
     }
     
 }
@@ -22,7 +22,7 @@ const validateCommentModification = async (req, res, next) => {
         if(exist) next()
         else throw new Error('Comment do not exist')
     } catch (error) {
-        res.json({error: error.message})
+        res.status(404).json({error: error.message})
     }
 }
 

@@ -21,7 +21,7 @@ favoritesRouter.post("/", postFavoritesValidation, async (req, res) => {
   try {
     const { clientId, productId } = req.body;
     const newFavorite = await postFavorite(clientId, productId);
-    res.status(200).json(newFavorite);
+    res.status(201).json(newFavorite);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

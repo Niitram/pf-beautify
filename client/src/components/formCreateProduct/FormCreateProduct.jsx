@@ -9,6 +9,8 @@ import useToggle from "../../hooks/useToggle";
 import { Link } from "react-router-dom";
 import cameraIcon from "../../assets/images/camera-icon.png";
 import { useDispatch } from "react-redux";
+import InputImage from "../inputImage/inputImage";
+import DragImage from "../dragImage/DragImage";
 
 function FormCreateProduct() {
   const dispatch = useDispatch();
@@ -20,7 +22,7 @@ function FormCreateProduct() {
     discount: 0,
     stock: 0,
     rate: 1,
-    state: "true",
+    state: true,
     category: "",
   });
   const [errors, setErrors] = useState({
@@ -47,7 +49,7 @@ function FormCreateProduct() {
         discount: 0,
         stock: 0,
         rate: 1,
-        state: "true",
+        state: true,
         category: "",
       });
       setErrors({
@@ -73,7 +75,7 @@ function FormCreateProduct() {
       discount: 0,
       stock: 0,
       rate: 1,
-      state: "true",
+      state: true,
       category: "",
     });
     setErrors({
@@ -156,7 +158,7 @@ function FormCreateProduct() {
 
         <div className={styles.containerInputs}>
           {/* <label htmlFor="image">Image</label> */}
-          <InputForm
+          {/* <InputForm
             placeholder="Image"
             type="text"
             id="image-input"
@@ -171,6 +173,12 @@ function FormCreateProduct() {
                 setErrors
               );
             }}
+          /> */}
+          <InputImage
+            name="image"
+            setProductData={setProductData}
+            productData={productData}
+            setErrors={setErrors}
           />
           <ErrorInputMessage errors={errors.image} text={errors.image} />
         </div>
@@ -255,16 +263,13 @@ function FormCreateProduct() {
         </div>
       </form>
       <div className={styles.preview}>
-        <div
-          style={{
-            backgroundImage: `url(${
-              productData.image.length > 1 && !errors.image
-                ? productData.image
-                : cameraIcon
-            })`,
-          }}
-          className={styles.containerImg}
-        ></div>
+        <DragImage
+          productData={productData}
+          errors={errors}
+          cameraIcon={cameraIcon}
+          setProductData={setProductData}
+          setErrors={setErrors}
+        />
       </div>
     </div>
   );
