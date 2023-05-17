@@ -58,6 +58,7 @@ export const loginWithGoogleFirebase = async (
   dispatch,
   navigate
 ) => {
+  console.log("login with google firebase");
   const response = await postFindOrCreate({
     email: usuarioFirebase.email,
     fullName: usuarioFirebase.displayName,

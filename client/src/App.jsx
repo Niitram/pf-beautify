@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Landing from "./views/landing/Landing";
 import Home from "./views/home/Home";
 import About from "./views/about/About";
@@ -17,17 +17,34 @@ import useGetProducts from "./hooks/useGetProducts";
 import { useEffect } from "react";
 import useGetCategories from "./hooks/useGetCategories";
 import NewProduct from "./views/newProduct/NewProduct";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import useToggle from "./hooks/useToggle";
+import { loginWithGoogleFirebase } from "./utils/firebaseConfig";
 
 function App() {
   const locationNow = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [products] = useGetProducts();
   const [categories] = useGetCategories();
+  const [logout, setLogout] = useToggle(true);
+  const auth = getAuth();
 
   useEffect(() => {
     dispatch(getAllCategories(categories));
     dispatch(getAllProducts(products));
   }, [dispatch, products, categories]);
+
+  onAuthStateChanged(auth, async (usuarioFirebase) => {
+    console.log("onAuth");
+    // las tres condiciones: hubo un cambio en la auth, el usuario recibido es de google, antes no había usuario logueado
+    if (usuarioFirebase && usuarioFirebase.displayName) {
+      if (logout) {
+        await loginWithGoogleFirebase(usuarioFirebase, dispatch, navigate);
+        setLogout(false);
+      }
+    } else if (!logout) setLogout(true);
+  });
 
   return (
     <div className="App">
