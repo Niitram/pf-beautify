@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { getClient } from "../../request/clients";
 import { useSelector } from "react-redux";
@@ -6,23 +5,18 @@ import { getAuth, signOut } from "firebase/auth";
 import { firebaseApp } from "../../utils/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { logout } from "../../redux/actions";
 
 function DetailUser() {
   const globalUserData = useSelector((state) => state.userData);
+  const auth = getAuth(firebaseApp);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const getDataFromDb = async (email) => {
     const data = await getClient(email);
     const userFromDb = data.data;
-     const auth = getAuth(firebaseApp);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-    import { logout } from "../../redux/actions";
-    
-  const onLogout = async () => {
-      dispatch(logout());
-      await signOut(auth);
-      navigate("/");
-  };
-    console.log(userFromDb);
+    // console.log(userFromDb);
     setUserData({
       name: userFromDb.fullName,
       email: userFromDb.email,
@@ -30,6 +24,12 @@ function DetailUser() {
       phone: userFromDb.phone,
       image: userFromDb.image,
     });
+  };
+
+  const onLogout = async () => {
+    dispatch(logout());
+    await signOut(auth);
+    navigate("/");
   };
   useEffect(() => {
     getDataFromDb(globalUserData.email);
@@ -49,3 +49,6 @@ function DetailUser() {
       <img src={userData.image} />
     </div>
   );
+}
+
+export default DetailUser;
