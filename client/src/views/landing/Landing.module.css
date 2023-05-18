@@ -6,9 +6,10 @@
   align-items: center;
   width: 100%;
   font-size: 60px;
-  background-color: var(--background);
+  /* background-color: var(--background); */
+  background-color: transparent;
   height: 100vh;
-  /* z-index: 100; */
+  /* z-index: 0; */
 }
 .landingContainer {
   /* position: absolute; */

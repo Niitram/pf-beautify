@@ -3,7 +3,6 @@ import axios from "axios";
 const URL_BASE = "http://localhost:3001";
 
 export const createNewClient = async (clientData) => {
-
   try {
     return await axios.post(`${URL_BASE}/client`, clientData);
   } catch (error) {
@@ -12,7 +11,7 @@ export const createNewClient = async (clientData) => {
 };
 export const getClient = async (mail) => {
   try {
-    return await axios.get(`${URL_BASE}/client/${mail}`);
+    return await axios.get(`${URL_BASE}/client/byEmail/${mail}`);
   } catch (error) {
     console.log(error.message);
   }
@@ -24,4 +23,3 @@ export const postFindOrCreate = async (userData) => {
     console.log(error.message);
   }
 };
-

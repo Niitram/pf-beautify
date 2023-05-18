@@ -9,7 +9,7 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import LoginIcon from "@mui/icons-material/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions";
-import { INVITED } from "../../utils/roles";
+import { INVITED, CLIENT } from "../../utils/roles";
 
 function Nav({ handleLoginClick }) {
   const userData = useSelector((state) => state.userData);
@@ -39,7 +39,9 @@ function Nav({ handleLoginClick }) {
         <ButtonNav text={"About"} route={"/about"}></ButtonNav>
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
         <ButtonNav text={"Services"} route={"/services"}></ButtonNav>
-
+        {userData.rol === CLIENT && (
+          <ButtonNav text={"My Profile"} route={"/detailUser"}></ButtonNav>
+        )}
         <button onClick={onLogoutOrIn} className={styles.logoutButton}>
           {userData.rol === INVITED ? "Login" : <LogoutOutlinedIcon />}
         </button>
