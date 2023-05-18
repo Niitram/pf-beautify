@@ -5,12 +5,10 @@ const postClient = async (password, email, name) => {
     where: { email: email },
     defaults: {
       fullName: name[0].toUpperCase() + name.slice(1),
-      password: password,
     },
   });
 
   return client[0].dataValues;
-
 };
 
 module.exports = postClient;
