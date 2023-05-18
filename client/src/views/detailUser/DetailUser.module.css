@@ -1,0 +1,142 @@
+.overlay {
+  z-index: 99;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+}
+
+.Container {
+  z-index: 100;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 27vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--background);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.emailContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.emailTitle {
+  text-align: left;
+}
+
+.emailPropertys {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.namePropertys {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.propertys {
+  display: flex;
+  flex-direction: row;
+  /* text-align: left; */
+}
+
+.Container img {
+  /* width: 250px;
+  height: 250px; */
+  align-self: center;
+  overflow: hidden;
+  position: absolute;
+  height: 15em;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  min-height: 100%;
+  min-width: 100%;
+  border-radius: 15px;
+}
+
+.imageContainer {
+  position: relative;
+  align-self: center;
+  width: 190px;
+  height: 250px;
+  border-radius: 15px;
+}
+
+/* .imageContainer {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin: 30px;
+  position: relative;
+  border: 1px solid black;
+  min-height: 50vh;
+} */
+/* .imageContainer > .image {
+  position: absolute;
+  height: 15em;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  min-height: 100%;
+  min-width: 100%;
+} */
+
+/* .image {
+  margin-bottom: 300px;
+} */
+
+.dragContainer {
+  border: 1px dotted black;
+  width: 98%;
+  height: 98%;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.updateImageButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.closeDetailButton {
+  background-color: transparent;
+  border: none;
+  align-self: flex-end;
+  margin: 5px;
+  padding: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: 10px;
+}
+.closeDetailButton:hover {
+  background-color: var(--accent2);
+  cursor: pointer;
+  border-radius: 3px;
+}
