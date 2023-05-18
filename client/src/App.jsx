@@ -42,7 +42,6 @@ function App() {
   const [creatingAccount, setCreatingAccount] = useToggle(false);
 
   const handleLoginClick = () => {
-    console.log("handleClick");
     setLoginVisible(!loginVisible);
   };
 
@@ -61,7 +60,6 @@ function App() {
     ) {
       if (logout) {
         await loginWithGoogleFirebase(usuarioFirebase, dispatch, navigate);
-        console.log(usuarioFirebase);
         setLogout(false);
       }
     } else if (
