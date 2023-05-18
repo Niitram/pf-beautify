@@ -47,8 +47,7 @@ const {
   Service,
   ShopsDetail,
   Shop,
-  Appointment,
-  Purchase
+  Appointment
 } = sequelize.models;
 
 
