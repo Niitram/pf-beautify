@@ -23,6 +23,7 @@
   align-items: center;
   background-color: transparent;
   overflow: hidden;
+  margin-right: 5px;
 }
 .imagen {
   display: flex;
@@ -38,18 +39,23 @@
   overflow: hidden;
 }
 
-.logoutButton {
-  background-color: transparent;
-  color: var(--text);
-  transition: 200ms;
-  border: 0px;
+.LogInBtn{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background: var(--accent1);
+  color: var(--background);
+  transition:200ms;
+  border:0px;
   padding: 10px 35px 10px 35px;
   justify-content: center;
+  border-radius: 10px ;
+
 }
-.logoutButton:hover {
-  background-color: var(--accent2);
-  color: var(--text);
-  border: 0px;
+.LogInBtn:hover{
+  background: var(--gradient);
+  color:var(--text);
+  border:0px;
   padding: 10px 35px 10px 35px;
   border-radius: 10px;
 }

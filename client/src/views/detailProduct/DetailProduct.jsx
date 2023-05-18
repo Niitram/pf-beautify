@@ -35,7 +35,7 @@ function DetailProduct({ handleLoginClick }) {
   return (
     <div className={styles.container}>
       <div className={styles.containerBack}>
-        <Link to={"/home"}>
+        <Link to={"/products"}>
           <ArrowBackIosNewIcon />
         </Link>
         {image && (
