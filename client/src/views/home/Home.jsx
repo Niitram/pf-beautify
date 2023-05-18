@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-// import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PromoCard from "../../components/promo card/PromoCard";
 import styles from "./Home.module.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -11,7 +9,6 @@ import "@splidejs/react-splide/css";
 function Home() {
   const [products, setProducts] = useState([]);
 
-  // const [current, setCurrent] = useState(0);
   useEffect(() => {
     try {
       axios
@@ -31,7 +28,7 @@ function Home() {
             aria-label="My Favorite Images"
             options={{
               type: "loop",
-              fixedWidth: "50 vw",
+              fixedWidth: "50vw",
               fixedHeight: "50vw",
               perPage: 3,
               focus: "center",
@@ -58,12 +55,12 @@ function Home() {
           <div>waiting...</div>
         )}
       </div>
-      <span className={styles.description}>
+      <footer className={styles.description}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quae
         laudantium aliquam ducimus atque impedit doloribus. Voluptatibus aliquid
         modi amet quasi reiciendis rem dolorum! Iste consectetur delectus
         dignissimos explicabo facilis.
-      </span>
+      </footer>
     </div>
   );
 }
