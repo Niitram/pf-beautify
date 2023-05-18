@@ -11,9 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions";
 import { INVITED, CLIENT } from "../../utils/roles";
 
-function Nav({ handleLoginClick }) {
+function Nav({ handleLoginClick, handleDetailClick }) {
   const userData = useSelector((state) => state.userData);
- 
 
   return (
     <nav className={styles.navBar}>
@@ -28,15 +27,19 @@ function Nav({ handleLoginClick }) {
         <ButtonNav text={"About"} route={"/about"}></ButtonNav>
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
         <ButtonNav text={"Services"} route={"/services"}></ButtonNav>
-        {userData.rol === INVITED ?
-          <button className={styles.LogInBtn}> Log In</button>
-          :<>
-          <ButtonNav text={"My Profile"} route={"/detailUser"}></ButtonNav>
-          <ButtonAccent1 text={"Carrito"} route={"/cart"}></ButtonAccent1>
+        {userData.rol === INVITED ? (
+          <button className={styles.LogInBtn} onClick={handleLoginClick}>
+            {" "}
+            Log In
+          </button>
+        ) : (
+          <>
+            <button className={styles.myProfile} onClick={handleDetailClick}>
+              My Profile
+            </button>
+            <ButtonAccent1 text={"Carrito"} route={"/cart"}></ButtonAccent1>
           </>
-          
-        }
-          
+        )}
       </div>
     </nav>
   );

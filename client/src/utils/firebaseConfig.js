@@ -58,9 +58,10 @@ export const upload = async (
 export const loginWithGoogleFirebase = async (
   usuarioFirebase,
   dispatch,
-  navigate
+  navigate,
+  locationNow
 ) => {
-  console.log(usuarioFirebase);
+  // recibe el usuario de google y lo busca/crea en la bdd
   const response = await postFindOrCreate({
     email: usuarioFirebase.email,
     fullName: usuarioFirebase.displayName,
@@ -78,5 +79,5 @@ export const loginWithGoogleFirebase = async (
       rol: CLIENT,
     })
   );
-  navigate("/home");
+  locationNow.pathname === "/" && navigate("/home");
 };
