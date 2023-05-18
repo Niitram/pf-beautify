@@ -1,22 +1,42 @@
+*{
+  background-color: var(--background);
+}
 .Container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  font-size: 60px;
+  width: fit-content;
+  height: fit-content;
+  font-size: 50px;
   background-color: var(--background);
-  height: 100vh;
+  transition: 0.4ms;
 }
 .Container img {
-  scale: 90%;
-  margin-right: 5%;
+  width: 35%;
+  height: fit-content;
+  padding: 8%;
 }
-.EmbraceYourBeauty {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  margin-left: 12%;
+
+@media (max-width: 900px) {
+  .Container{
+    display: flex;
+    flex-direction: column;
+    
+  }
+}
+@media (max-width: 601px) {
+  .EmbraceYourBeauty h2{
+    font-size: 50px;
+  }
+}
+@media (max-width: 320px) {
+  .EmbraceYourBeauty h2{
+    font-size: 30px;
+  }
+  .EmbraceYourBeauty button{
+    font-size: small;
+    padding: 5px 15px 5px 15px;
+  }
 }
 
 .Login {
@@ -30,6 +50,24 @@
   transition: 200ms;
   color: var(--background);
 }
+.logo{
+  width: fit-content;
+  height: fit-content;
+}
+
+
+.EmbraceYourBeauty {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-left: 12%;
+}
+.EmbraceYourBeauty h2{
+  text-align: justify;
+  width: 100%;
+}
+
+
 .beauty {
   background: var(--gradient);
   -webkit-background-clip: text;
