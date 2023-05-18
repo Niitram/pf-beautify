@@ -1,11 +1,33 @@
 const { Product, Client } = require("../db");
 
 const postNewShopValidation = async (req, res, next) => {
-  const { amount, discount, clientId, details } = req.body;
-  const numericVars = [amount, discount, clientId];
+ /* if(req.headers.origin === 'http://localhost:5173'){
+   
+    let finalAmount = 0
+    const email = req.body.pop()
+    const items = req.body
+    const client = await Client.findOne({where: {email: email}})
+    items.forEach(item => {
+      finalAmount = finalAmount + item.unit_price
+      item.productId = Number(item.id)
+    })
+    const infoToSend = {
+      amount: finalAmount,
+      discount: 0,
+      clientId: client.dataValues.id,
+      details: items,
+    };
+    var {amount, discount, clientId, details } = infoToSend;
+    var numericVars = [amount, discount, clientId];
+  } */
+    const { amount, discount, clientId, details } = req.body;
+    const numericVars = [amount, discount, clientId];
+  
+ 
 
   //* chequea que amount, discount y clientId sean variables numéricas
   if (!numericVars.every((element) => String(Number(element)) !== "NaN"))
+
     return res
       .status(400)
       .json({ error: "amount, discount and clientId must be numbers" });
