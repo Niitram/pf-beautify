@@ -9,23 +9,22 @@ import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ImageComponent from "../../components/imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
+import { useSelector } from "react-redux";
 
-function DetailProduct() {
-
+function DetailProduct({ handleLoginClick }) {
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
-    console.log(quantity)
-  }
+    console.log(quantity);
+  };
 
   const handleAddToCart = (event) => {
-
-    const cart = JSON.parse(localStorage.getItem("cart")) || []
-    const productExist = cart.find(cartItem => cartItem.id == product.id)
+    if (!userData.id) handleLoginClick();
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const productExist = cart.find((cartItem) => cartItem.id == product.id);
 
     if (productExist)
-      cart.map(cartItem => {
-        if (cartItem.id == product.id)
-          cartItem.quantity+=quantity;
+      cart.map((cartItem) => {
+        if (cartItem.id == product.id) cartItem.quantity += quantity;
       });
     else {
       cart.push({
@@ -39,17 +38,22 @@ function DetailProduct() {
         rate: product.rate,
         state: product.state,
         stock: product.stock,
-        quantity: quantity
-      })
+        quantity: quantity,
+      });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
-    if (event.target.name==="buyNow")
-      true
+    if (event.target.name === "buyNow") true;
   };
-  
+
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const userData = useSelector((state) => state.userData);
+
+  const handleClick = () => {
+    if (!userData.id) handleLoginClick();
+  };
+
   useEffect(() => {
     try {
       getProductById(id).then((res) => {
@@ -121,14 +125,23 @@ function DetailProduct() {
             defaultValue="1"
           />
           <label className={styles.shopMax}>Max 5</label>
-          <button onClick={handleAddToCart} name="buyNow" className={styles.btnShopNow} type="submit">
+          <button
+            onClick={handleAddToCart}
+            name="buyNow"
+            className={styles.btnShopNow}
+            type="submit"
+          >
             Buy now
           </button>
           <div className={styles.btnCartAndList}>
-            <button onClick={handleAddToCart} name='addToCart'className={styles.addCart}>
+            <button
+              onClick={handleAddToCart}
+              name="addToCart"
+              className={styles.addCart}
+            >
               <ShoppingCartOutlinedIcon /> Add to cart
             </button>
-            <button className={styles.listWish}>
+            <button className={styles.listWish} onClick={handleClick}>
               <FavoriteBorderIcon />
               Favorite
             </button>

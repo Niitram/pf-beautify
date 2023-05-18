@@ -64,4 +64,8 @@ export const setUserInfoAction = (dataUser) => {
   };
 };
 
-
+export const logout = () => {
+  return {
+    type: LOGOUT,
+  };
+};

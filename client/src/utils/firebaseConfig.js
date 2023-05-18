@@ -1,7 +1,15 @@
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import validateCreateProduct from "./validateCreateProduct";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+} from "firebase/auth";
+import { postFindOrCreate } from "../request/clients";
+import { setUserInfoAction } from "../redux/actions";
+import { CLIENT } from "./roles";
 
 
 const firebaseConfig = {
@@ -16,17 +24,22 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 
-const auth = getAuth(firebaseApp)
+const auth = getAuth(firebaseApp);
+export const googleProvider = new GoogleAuthProvider();
+
 
 const storage = getStorage(firebaseApp);
 
 export const createUserWithMail = async (username, password) => {
-  return await createUserWithEmailAndPassword(auth, username, password)
-}
+
+  return await createUserWithEmailAndPassword(auth, username, password);
+};
 
 export const singUpWithMail = async (username, password) => {
-  return await signInWithEmailAndPassword(auth, username, password)
-}
+  return await signInWithEmailAndPassword(auth, username, password);
+};
+
+// para subir una imagen al storage
 
 export const upload = async (
   archivo,
@@ -43,5 +56,28 @@ export const upload = async (
 
   setProductData({ ...productData, image: url });
   validateCreateProduct({ ...productData, image: url }, setErrors);
+};
+
+export const loginWithGoogleFirebase = async (
+  usuarioFirebase,
+  dispatch,
+  navigate
+) => {
+  console.log("login with google firebase");
+  const response = await postFindOrCreate({
+    email: usuarioFirebase.email,
+    fullName: usuarioFirebase.displayName,
+  });
+  const dbClient = response.data.client;
+
+  // setear el estado global
+  dispatch(
+    setUserInfoAction({
+      id: dbClient.id,
+      name: dbClient.fullName,
+      rol: CLIENT,
+    })
+  );
+  navigate("/home");
 };
 

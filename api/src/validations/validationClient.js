@@ -2,11 +2,12 @@ const { Client } = require("../db");
 
 const validationSaveClient = async (req, res, next) => {
   try {
-    const { password, email, fullName } = req.body;
-    if (!password)
-      throw new Error(`Unable to save user in database, no password provided`);
+    const { email, fullName } = req.body;
     if (!email)
       throw new Error(`Unable to save user in database, no email provided`);
+    const regex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/;
+    if (!email.match(regex))
+      throw new Error("Unable to save user in database, invalid email");
     if (!fullName)
       throw new Error(`Unable to save user in database, not name provided`);
     next();
@@ -34,9 +35,30 @@ const validationPutClient = async (req, res, next) => {
 const validateClientExistence = async (req, res, next) => {
   try {
     const { email } = req.params;
-    console.log(email);
+    const regex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/;
+    if (!email.match(regex)) throw new Error("InvalidEmail");
     const client = await Client.findOne({ where: { email } });
     if (!client) throw new Error("Client not found");
+    next();
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const validateFindOrCreate = async (req, res, next) => {
+  try {
+    const { email, fullName } = req.body;
+    if (!email) throw new Error("EmailRequired");
+    const regex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/;
+    if (!email.match(regex)) throw new Error("InvalidEmail");
+    if (email.length > 255) throw new Error("InvalidEmail");
+
+    if (fullName) {
+      if (fullName.length > 255) throw new Error("Name's too long");
+      const client = await Client.findOne({ where: { email } });
+      if (client && client.fullName !== fullName)
+        throw new Error("Incorrect name");
+    }
     next();
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -47,4 +69,5 @@ module.exports = {
   validationSaveClient,
   validationPutClient,
   validateClientExistence,
+  validateFindOrCreate,
 };

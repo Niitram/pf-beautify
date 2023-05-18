@@ -4,29 +4,28 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import axios from 'axios'
+import axios from "axios";
 import { useState } from "react";
-import {Wallet, initMercadoPago} from '@mercadopago/sdk-react'
+import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 
-
-initMercadoPago('TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1')
+initMercadoPago("TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1");
 function Cart() {
   let cantArticulos = 3;
   const [preferenceId, setPreferenceId] = useState(0);
 
-  const handleCheckOut = ()=>{
-    const items = JSON.parse(localStorage.getItem('cart'))
+  const handleCheckOut = () => {
+    const items = JSON.parse(localStorage.getItem("cart"));
 
-
-
-    axios.post('http://localhost:3001/mercadopago/create_preference',items)
-    .then(({data})=>{
-      setPreferenceId(data.id);
-      console.log(data.id)})
-      .catch((error)=>{
-        console.log(error.message)
+    axios
+      .post("http://localhost:3001/mercadopago/create_preference", items)
+      .then(({ data }) => {
+        setPreferenceId(data.id);
+        console.log(data.id);
       })
-  }
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <div className={styles.containerGlobal}>
@@ -64,7 +63,7 @@ function Cart() {
         </div>
       </div>
       <button onClick={handleCheckOut}> CHECKOUT PROVISORIO</button>
-      <Wallet initialization={{ preferenceId: `${preferenceId}`}} />
+      <Wallet initialization={{ preferenceId: `${preferenceId}` }} />
 
       {/* <div className={styles.detallesCompra}>
         <div className={styles.detallesPago}>
@@ -113,7 +112,6 @@ function Cart() {
           <button>Verificar</button>
         </div>
       </div> */}
-      
     </div>
   );
 }
