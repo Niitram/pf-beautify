@@ -18,13 +18,22 @@ function DetailProduct({ handleLoginClick }) {
   };
 
   const handleAddToCart = (event) => {
-    if (!userData.id) handleLoginClick();
+    if (!userData.id) return handleLoginClick();
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const productExist = cart.find((cartItem) => cartItem.id == product.id);
 
     if (productExist)
       cart.map((cartItem) => {
-        if (cartItem.id == product.id) cartItem.quantity += quantity;
+        if (cartItem.id == product.id) {
+          //Si la cantidad es mayor al stock le asigno el valor del stock
+          if (cartItem.quantity + quantity >= cartItem.stock) {
+            cartItem.quantity = cartItem.stock;
+          }
+          //Sino sumo la cantidad guardada mas la cantidad pedida
+          else {
+            cartItem.quantity += quantity;
+          }
+        }
       });
     else {
       cart.push({
