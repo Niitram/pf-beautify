@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { getClient } from "../../request/clients";
+import { getClient, updateClient } from "../../request/clients";
 import { useSelector } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
-import { firebaseApp } from "../../utils/firebaseConfig";
+import { firebaseApp, uploadProfilePicture } from "../../utils/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions";
 import styles from "./DetailUser.module.css";
 import ImageComponent from "../../components/imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
+import cameraIcon from "../../assets/images/camera-icon.png";
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
@@ -21,6 +22,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     const userFromDb = data.data;
 
     setUserData({
+      id: userFromDb.id,
       name: userFromDb.fullName,
       email: userFromDb.email,
       adress: userFromDb.adress,
@@ -31,15 +33,18 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
 
   const onLogout = async () => {
     setLogout(false);
+    handleDetailClick();
     dispatch(logout());
     navigate("/");
     await signOut(auth);
   };
+
   useEffect(() => {
     getDataFromDb(globalUserData.email);
   }, []);
 
   const [userData, setUserData] = useState({
+    id: "",
     name: "",
     email: "",
     adress: "",
@@ -69,8 +74,38 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const response = await updateClient(updatedData, userData.id);
+    const userFromDb = response.data;
+    setUserData({
+      id: userFromDb.id,
+      name: userFromDb.fullName,
+      email: userFromDb.email,
+      adress: userFromDb.adress,
+      phone: userFromDb.phone,
+      image: userFromDb.image,
+    });
+    setVisibleInputs({
+      name: false,
+      email: false,
+      adress: false,
+      phone: false,
+      image: false,
+    });
+    setUpdatedData({ ...updatedData, image: "" });
+  };
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const archivo = event.dataTransfer.files[0];
+    uploadProfilePicture(archivo, setUpdatedData, updatedData);
   };
 
   const handleChange = (event) => {
@@ -140,8 +175,17 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
 
         <div className={styles.imageContainer}>
           {visibleInputs.image ? (
-            <div className={styles.dragContainer}>
-              <p>Drag image here</p>
+            <div
+              style={{
+                backgroundImage: `url(${
+                  updatedData.image.length && updatedData.image
+                })`,
+              }}
+              className={styles.dragContainer}
+              onDrop={(event) => handleDrop(event)}
+              onDragOver={(e) => handleDragOver(e)}
+            >
+              {!updatedData.image && <p>Drag image here</p>}
               <button
                 name="image"
                 className={styles.updateImageButton}
@@ -175,35 +219,12 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
 
         <div className={styles.emailContainer}>
           <h3 className={styles.emailTitle}>Email</h3>
-          {visibleInputs.email ? (
-            <div className={styles.emailPropertys}>
-              <input onChange={handleChange} type="text" name="email"></input>
-              <button
-                name="email"
-                onClick={(event) => {
-                  event.preventDefault();
-                  handleVisibleInputs(event, true);
-                }}
-              >
-                x
-              </button>
-            </div>
-          ) : (
-            <div className={styles.emailPropertys}>
-              <h3 className={styles.value}>
-                {userData.email ? userData.email : "Unknown"}
-              </h3>
-              <button
-                name="email"
-                onClick={(event) => {
-                  event.preventDefault();
-                  handleVisibleInputs(event);
-                }}
-              >
-                Update
-              </button>
-            </div>
-          )}
+
+          <div className={styles.emailPropertys}>
+            <h3 className={styles.value}>
+              {userData.email ? userData.email : "Unknown"}
+            </h3>
+          </div>
         </div>
 
         <div className={styles.textContainer}>

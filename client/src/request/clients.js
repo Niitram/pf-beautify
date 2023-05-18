@@ -23,3 +23,15 @@ export const postFindOrCreate = async (userData) => {
     console.log(error.message);
   }
 };
+
+export const updateClient = async (data, id) => {
+  try {
+    const dataToUpdate = {};
+    for (const property in data) {
+      if (data[property]) dataToUpdate[property] = data[property];
+    }
+    return await axios.put(`${URL_BASE}/client/${id}`, dataToUpdate);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

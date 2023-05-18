@@ -55,6 +55,22 @@ export const upload = async (
   validateCreateProduct({ ...productData, image: url }, setErrors);
 };
 
+export const uploadProfilePicture = async (
+  archivo,
+  setUpdatedData,
+  updatedData
+) => {
+  // crea una referencia al archivo
+  const archivoRef = ref(storage, `images/${archivo.name}`);
+  // sube el archivo a esa referencia
+  await uploadBytes(archivoRef, archivo);
+  // devuelve la url del archivo
+  const url = await getDownloadURL(archivoRef);
+
+  setUpdatedData({ ...updatedData, image: url });
+  console.log(url);
+};
+
 export const loginWithGoogleFirebase = async (
   usuarioFirebase,
   dispatch,
