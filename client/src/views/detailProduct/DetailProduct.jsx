@@ -11,6 +11,43 @@ import ImageComponent from "../../components/imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
 
 function DetailProduct() {
+
+  const handleQuantity = (event) => {
+    setQuantity(Number(event.target.value));
+    console.log(quantity)
+  }
+
+  const handleAddToCart = (event) => {
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || []
+    const productExist = cart.find(cartItem => cartItem.id == product.id)
+
+    if (productExist)
+      cart.map(cartItem => {
+        if (cartItem.id == product.id)
+          cartItem.quantity+=quantity;
+      });
+    else {
+      cart.push({
+        category: product.category,
+        description: product.description,
+        discount: product.discount,
+        id: product.id,
+        image: product.image,
+        name: product.name,
+        price: product.price,
+        rate: product.rate,
+        state: product.state,
+        stock: product.stock,
+        quantity: quantity
+      })
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    if (event.target.name==="buyNow")
+      true
+  };
+  
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const [product, setProduct] = useState({});
   useEffect(() => {
@@ -77,17 +114,18 @@ function DetailProduct() {
           <label className={styles.cantidad}>quantity</label>
           <input
             className={styles.inputCantidad}
+            onChange={handleQuantity}
             type="number"
             min="1"
             max="5"
             defaultValue="1"
           />
           <label className={styles.shopMax}>Max 5</label>
-          <button className={styles.btnShopNow} type="submit">
+          <button onClick={handleAddToCart} name="buyNow" className={styles.btnShopNow} type="submit">
             Buy now
           </button>
           <div className={styles.btnCartAndList}>
-            <button className={styles.addCart}>
+            <button onClick={handleAddToCart} name='addToCart'className={styles.addCart}>
               <ShoppingCartOutlinedIcon /> Add to cart
             </button>
             <button className={styles.listWish}>
