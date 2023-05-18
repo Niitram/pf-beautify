@@ -14,12 +14,13 @@ function Cart() {
   let cantArticulos =3;
 
     const emailUsuario = useSelector((state)=>state.userData.email)
-  let localCarrito = JSON.parse(localStorage.getItem('cart'))
-  let carrito = localCarrito.map(element=>{
+  const localCarrito = JSON.parse(localStorage.getItem('cart'))
+  const carrito = localCarrito.map(element=>{
     return{
       title:element.name,
       quantity:element.quantity,
-      unit_price:element.price
+      unit_price:element.price,
+      id:element.id
     }
   })
   const [preferenceId,setPreferenceId] = useState(0)
