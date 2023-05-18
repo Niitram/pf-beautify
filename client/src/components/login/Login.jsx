@@ -51,6 +51,15 @@ const Login = ({
 
   return (
     <>
+      <div
+        style={
+          loginVisible
+            ? { display: "flex", transition: "400ms" }
+            : { display: "none", transition: "400ms" }
+        }
+        className={styles.overlay}
+        onClick={handleLoginClick}
+      ></div>
       <form
         onSubmit={(e) => {
           handleSubmitLogin(
@@ -75,7 +84,9 @@ const Login = ({
               : { display: "none", transition: "400ms" }
           }
         >
-          <button onClick={handleLoginClick}>X</button>
+          <button className={styles.closeButton} onClick={handleLoginClick}>
+            x
+          </button>
           <h4>Welcome</h4>
           <span>Log in or Sign up to continue</span>
           <div className={styles.Inputs}>

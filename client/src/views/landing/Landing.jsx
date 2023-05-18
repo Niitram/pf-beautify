@@ -42,7 +42,7 @@ export default function Landing({ loginVisible, handleLoginClick }) {
 
       {/* {loginVisible && <Login loginVisible={loginVisible} />} */}
 
-      <div
+      {/* <div
         style={
           loginVisible
             ? { display: "flex", transition: "400ms" }
@@ -50,7 +50,7 @@ export default function Landing({ loginVisible, handleLoginClick }) {
         }
         className={styles.overlay}
         onClick={handleLoginClick}
-      ></div>
+      ></div> */}
       <img src={logo} alt="logo" />
     </div>
   );
