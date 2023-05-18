@@ -13,18 +13,7 @@ import { INVITED, CLIENT } from "../../utils/roles";
 
 function Nav({ handleLoginClick }) {
   const userData = useSelector((state) => state.userData);
-  const auth = getAuth(firebaseApp);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const onLogoutOrIn = async () => {
-    if (userData.rol === INVITED) {
-      handleLoginClick();
-    } else {
-      dispatch(logout());
-      await signOut(auth);
-      navigate("/");
-    }
-  };
+ 
 
   return (
     <nav className={styles.navBar}>
@@ -40,25 +29,14 @@ function Nav({ handleLoginClick }) {
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
         <ButtonNav text={"Services"} route={"/services"}></ButtonNav>
         {userData.rol === INVITED ?
-          <button> Log In</button>
+          <button className={styles.LogInBtn}> Log In</button>
           :<>
           <ButtonNav text={"My Profile"} route={"/detailUser"}></ButtonNav>
           <ButtonAccent1 text={"Carrito"} route={"/cart"}></ButtonAccent1>
           </>
           
         }
-           
-        {/* {userData.rol === CLIENT && (
-        )}
-        <button onClick={onLogoutOrIn} className={styles.logoutButton}>
-          {userData.rol === INVITED ? "Login" : <LogoutOutlinedIcon />}
-        </button>
-        <Link to={userData.rol ===INVITED }>
-        <button >{userData.rol === INVITED? "Log In" : "Carrito"}</button>
-        </Link> */}
-
-        {/* <Link to={`/detailUser`}>detailUser</Link>
-      <Link to={`/dashboardAdmin`}>dashboardAdmin</Link> */}
+          
       </div>
     </nav>
   );
