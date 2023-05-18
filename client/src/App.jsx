@@ -42,7 +42,6 @@ function App() {
   const [creatingAccount, setCreatingAccount] = useToggle(false);
 
   const handleLoginClick = () => {
-    console.log("handleClick");
     setLoginVisible(!loginVisible);
   };
 
