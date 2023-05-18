@@ -11,7 +11,6 @@ import { postFindOrCreate } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
 import { CLIENT } from "./roles";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
   authDomain: "beautify-386112.firebaseapp.com",
@@ -27,11 +26,9 @@ export const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 export const googleProvider = new GoogleAuthProvider();
 
-
 const storage = getStorage(firebaseApp);
 
 export const createUserWithMail = async (username, password) => {
-
   return await createUserWithEmailAndPassword(auth, username, password);
 };
 
@@ -75,9 +72,9 @@ export const loginWithGoogleFirebase = async (
     setUserInfoAction({
       id: dbClient.id,
       name: dbClient.fullName,
+      email: usuarioFirebase.email,
       rol: CLIENT,
     })
   );
   navigate("/home");
 };
-

@@ -20,6 +20,7 @@ const initialState = {
   userData: {
     id: null,
     name: null,
+    email: null,
     rol: INVITED,
   },
 };
@@ -108,7 +109,7 @@ const rootReducer = (state = initialState, action) => {
         userData: {
           id: action.payload.id,
           name: action.payload.name,
-
+          email: action.payload.email,
           rol: action.payload.rol,
         },
       };
@@ -120,6 +121,7 @@ const rootReducer = (state = initialState, action) => {
         userData: {
           id: null,
           name: null,
+          email: null,
           rol: INVITED,
         },
       };

@@ -1,8 +1,15 @@
+import { useState } from "react";
 
 function DetailUser() {
-    return (
-        <div>DetailUser</div>
-    )
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    adress: "",
+    phone: "",
+    image: "",
+  });
+  const getUserData = () => {};
+  return <div>DetailUser</div>;
 }
 
-export default DetailUser
+export default DetailUser;

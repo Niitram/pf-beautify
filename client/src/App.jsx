@@ -42,7 +42,6 @@ function App() {
   const [creatingAccount, setCreatingAccount] = useToggle(false);
 
   const handleLoginClick = () => {
-    console.log("handleClick");
     setLoginVisible(!loginVisible);
   };
 
@@ -71,18 +70,17 @@ function App() {
       !creatingAccount
     ) {
       //! esto trae muchas alertas en la consola cuando se crea un usuario, podríamos eliminar este else if
-      const userCreated = await getClient(usuarioFirebase.email);
-
-      // envía esa info al estado global
-      if (userCreated.data) {
-        dispatch(
-          setUserInfoAction({
-            id: userCreated.data.id,
-            name: userCreated.data.fullName,
-            rol: CLIENT,
-          })
-        );
-      }
+      // const userCreated = await getClient(usuarioFirebase.email);
+      // // envía esa info al estado global
+      // if (userCreated.data) {
+      //   dispatch(
+      //     setUserInfoAction({
+      //       id: userCreated.data.id,
+      //       name: userCreated.data.fullName,
+      //       rol: CLIENT,
+      //     })
+      //   );
+      // }
     } else if (!logout) {
       setLogout(true);
     }

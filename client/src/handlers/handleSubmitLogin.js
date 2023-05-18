@@ -39,6 +39,7 @@ const handleSubmitLogin = async (
         setUserInfoAction({
           id: userCreated.data.id,
           name: userCreated.data.fullName,
+          email: createUser.email,
           rol: CLIENT,
         })
       );
@@ -56,6 +57,7 @@ const handleSubmitLogin = async (
         setUserInfoAction({
           id: userCreated.data.id,
           name: userCreated.data.fullName,
+          email: email,
           rol: CLIENT,
         })
       );
