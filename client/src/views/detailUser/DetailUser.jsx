@@ -91,9 +91,14 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       email: false,
       adress: false,
       phone: false,
-      image: false,
     });
-    setUpdatedData({ ...updatedData, image: "" });
+    setUpdatedData({
+      name: "",
+      email: "",
+      adress: "",
+      phone: "",
+      image: "",
+    });
   };
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -199,10 +204,11 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
             </div>
           ) : (
             <div className={styles.image}>
-              <ImageComponent
+              <img src={userData.image ? userData.image : productDefault} />
+              {/* <ImageComponent
                 src={userData.image}
                 notFoundSrc={productDefault}
-              />
+              /> */}
               <button
                 name="image"
                 className={styles.updateImageButton}
