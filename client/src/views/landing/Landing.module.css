@@ -2,6 +2,19 @@
   background-color: var(--background);
 }
 .Container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 60px;
+  background-color: var(--background);
+  height: 100vh;
+  /* z-index: 100; */
+}
+.landingContainer {
+  /* position: absolute; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -41,7 +54,7 @@
 
 .Login {
   background-color: var(--accent1);
-  border: 0px;
+  border: none;
   font-family: "Playfair Display", serif;
   font-size: large;
   border-radius: 5px;
@@ -49,6 +62,7 @@
   cursor: pointer;
   transition: 200ms;
   color: var(--background);
+  margin: 5px 0px;
 }
 .logo{
   width: fit-content;
@@ -90,8 +104,8 @@
   font-weight: bold;
 }
 .overlay {
-  z-index: 2;
-  position: absolute;
+  z-index: 99;
+  position: fixed;
   top: 0px;
   left: 0px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -99,11 +113,10 @@
   height: 100vh;
 }
 .LoginForm {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 3;
   background-color: var(--background);
   transition: 200ms;
   width: 20%;
@@ -112,6 +125,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  z-index: 999;
 }
 .Inputs {
   display: flex;
@@ -142,6 +156,10 @@
   transition: 200ms;
   color: var(--text);
 }
+.BotonLogin:disabled {
+  background-color: var(--muted);
+  color: var(--text);
+}
 .BotonLogin:hover {
   background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
   color: #fef2f4;
@@ -152,4 +170,15 @@
 }
 .LoginForm p:nth-child(6) {
   color: var(--accent1);
+}
+
+.closeButton {
+  background-color: transparent;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border: none;
+  color: var(--text-alt);
+  font-size: large;
+  cursor: pointer;
 }

@@ -9,10 +9,17 @@ import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ImageComponent from "../../components/imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
+import { useSelector } from "react-redux";
 
-function DetailProduct() {
+function DetailProduct({ handleLoginClick }) {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const userData = useSelector((state) => state.userData);
+
+  const handleClick = () => {
+    if (!userData.id) handleLoginClick();
+  };
+
   useEffect(() => {
     try {
       getProductById(id).then((res) => {
@@ -83,14 +90,18 @@ function DetailProduct() {
             defaultValue="1"
           />
           <label className={styles.shopMax}>Max 5</label>
-          <button className={styles.btnShopNow} type="submit">
+          <button
+            className={styles.btnShopNow}
+            type="submit"
+            onClick={handleClick}
+          >
             Buy now
           </button>
           <div className={styles.btnCartAndList}>
-            <button className={styles.addCart}>
+            <button className={styles.addCart} onClick={handleClick}>
               <ShoppingCartOutlinedIcon /> Add to cart
             </button>
-            <button className={styles.listWish}>
+            <button className={styles.listWish} onClick={handleClick}>
               <FavoriteBorderIcon />
               Favorite
             </button>
