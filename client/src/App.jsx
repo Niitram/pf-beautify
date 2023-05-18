@@ -141,16 +141,7 @@ function App() {
           }
         >
           <Route path="/detailPayment" element={<DetailPayment />} />
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute
-                isAllowed={userData.rol === CLIENT || userData.rol === ADMIN}
-              >
-                <Cart />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
     </div>
