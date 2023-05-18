@@ -34,8 +34,8 @@ router.get("/:email", validateClientExistence, async (req, res) => {
 
 router.post("/", validationSaveClient, async (req, res) => {
   try {
-    const { password, email, fullName } = req.body;
-    const client = await postClient(password, email, fullName);
+    const { email, fullName } = req.body;
+    const client = await postClient(email, fullName);
     res.status(201).json(client);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -55,9 +55,15 @@ router.put("/:id", validationPutClient, async (req, res) => {
 
 router.post("/findOrCreate", validateFindOrCreate, async (req, res) => {
   try {
-    const { email, fullName } = req.body;
-    const [client, created] = await findOrCreateClient(email, fullName);
-    res.status(200).json({ client, created });
+    const { email, fullName, image, phone, adress } = req.body;
+    const client = await findOrCreateClient(
+      email,
+      fullName,
+      image,
+      phone,
+      adress
+    );
+    res.status(200).json(client);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

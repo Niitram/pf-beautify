@@ -60,12 +60,14 @@ export const loginWithGoogleFirebase = async (
   dispatch,
   navigate
 ) => {
-  console.log("login with google firebase");
+  console.log(usuarioFirebase);
   const response = await postFindOrCreate({
     email: usuarioFirebase.email,
     fullName: usuarioFirebase.displayName,
+    phone: usuarioFirebase.phoneNumber,
+    image: usuarioFirebase.photoURL,
   });
-  const dbClient = response.data.client;
+  const dbClient = response.data;
 
   // setear el estado global
   dispatch(
