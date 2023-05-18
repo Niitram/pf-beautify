@@ -9,8 +9,6 @@ import {
   CREATE_PRODUCT,
   SET_USER_INFO,
   LOGOUT,
-
-
 } from "./actions";
 
 const initialState = {
@@ -22,7 +20,6 @@ const initialState = {
   userData: {
     id: null,
     name: null,
-
     rol: INVITED,
   },
 };

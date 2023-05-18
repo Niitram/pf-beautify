@@ -11,15 +11,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions";
 import { INVITED } from "../../utils/roles";
 
-function Nav() {
+function Nav({ handleLoginClick }) {
   const userData = useSelector((state) => state.userData);
   const auth = getAuth(firebaseApp);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const onLogout = async () => {
-    await signOut(auth);
-    dispatch(logout());
-    navigate("/");
+  const onLogoutOrIn = async () => {
+    if (userData.rol === INVITED) {
+      handleLoginClick();
+    } else {
+      dispatch(logout());
+      await signOut(auth);
+      navigate("/");
+    }
   };
 
   return (
@@ -36,7 +40,7 @@ function Nav() {
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
         <ButtonNav text={"Services"} route={"/services"}></ButtonNav>
 
-        <button onClick={onLogout} className={styles.logoutButton}>
+        <button onClick={onLogoutOrIn} className={styles.logoutButton}>
           {userData.rol === INVITED ? "Login" : <LogoutOutlinedIcon />}
         </button>
         <ButtonAccent1 text={""} route={"/cart"}></ButtonAccent1>

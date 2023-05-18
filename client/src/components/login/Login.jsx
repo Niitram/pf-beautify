@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useToggle from "../../hooks/useToggle";
 import { googleProvider } from "../../utils/firebaseConfig";
@@ -9,12 +9,16 @@ import { getAuth, signInWithRedirect } from "firebase/auth";
 import validateCreateUser from "../../utils/validateCreateUser";
 import styles from "../../views/landing/Landing.module.css";
 
-const Login = ({ loginVisible }) => {
+const Login = ({
+  loginVisible,
+  handleLoginClick,
+  creatingAccount,
+  setCreatingAccount,
+}) => {
   const auth = getAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [createdUser, setCreatedUser] = useToggle(false);
-  const [creatingAccount, setCreatingAccount] = useToggle(false);
+  const location = useLocation();
 
   const [errors, setErrors] = useState({
     email: "Email required",
@@ -47,6 +51,15 @@ const Login = ({ loginVisible }) => {
 
   return (
     <>
+      <div
+        style={
+          loginVisible
+            ? { display: "flex", transition: "400ms" }
+            : { display: "none", transition: "400ms" }
+        }
+        className={styles.overlay}
+        onClick={handleLoginClick}
+      ></div>
       <form
         onSubmit={(e) => {
           handleSubmitLogin(
@@ -54,10 +67,14 @@ const Login = ({ loginVisible }) => {
             dispatch,
             setUserInfo,
             creatingAccount,
-            navigate
+            navigate,
+            location,
+            handleLoginClick
           );
         }}
-        className={styles.Container}
+        className={
+          location.pathname !== "/" ? styles.Container : styles.landingContainer
+        }
       >
         <div
           className={styles.LoginForm}
@@ -67,6 +84,9 @@ const Login = ({ loginVisible }) => {
               : { display: "none", transition: "400ms" }
           }
         >
+          <button className={styles.closeButton} onClick={handleLoginClick}>
+            x
+          </button>
           <h4>Welcome</h4>
           <span>Log in or Sign up to continue</span>
           <div className={styles.Inputs}>
