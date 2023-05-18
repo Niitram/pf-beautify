@@ -8,8 +8,10 @@ const profesionalsRouter = require("../handlers/profesionals-routes");
 const commentsRouter = require("../handlers/comments-routes");
 const shopsRouter = require("../handlers/shops-routes");
 const favoritesRouter = require("../handlers/favorites-routes");
+const mercadoPago = require('../handlers/mercadoPago-routes')
 const router = Router();
 
+router.use('/mercadopago', mercadoPago)
 router.use("/comments", commentsRouter);
 router.use("/profesionals", profesionalsRouter);
 router.use("/client", usersRouter);

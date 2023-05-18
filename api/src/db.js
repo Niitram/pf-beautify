@@ -46,6 +46,7 @@ const {
   Service,
   ShopsDetail,
   Shop,
+  Cart,
 } = sequelize.models;
 
 //*Relaciones entre los modelos Category y Product
