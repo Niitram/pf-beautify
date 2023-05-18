@@ -61,7 +61,6 @@ function App() {
     ) {
       if (logout) {
         await loginWithGoogleFirebase(usuarioFirebase, dispatch, navigate);
-        console.log(usuarioFirebase);
         setLogout(false);
       }
     } else if (

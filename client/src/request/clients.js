@@ -11,7 +11,7 @@ export const createNewClient = async (clientData) => {
 };
 export const getClient = async (mail) => {
   try {
-    return await axios.get(`${URL_BASE}/client/byEmail/${mail}`);
+    return await axios.get(`${URL_BASE}/client/${mail}`);
   } catch (error) {
     console.log(error.message);
   }

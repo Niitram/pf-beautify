@@ -47,7 +47,7 @@ const validateClientExistence = async (req, res, next) => {
 
 const validateFindOrCreate = async (req, res, next) => {
   try {
-    const { email, fullName } = req.body;
+    const { email, fullName, adress, phone, image } = req.body;
     if (!email) throw new Error("EmailRequired");
     const regex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/;
     if (!email.match(regex)) throw new Error("InvalidEmail");
@@ -59,6 +59,11 @@ const validateFindOrCreate = async (req, res, next) => {
       if (client && client.fullName !== fullName)
         throw new Error("Incorrect name");
     }
+
+    if (adress && adress.length > 255) throw new Error("Name's too long");
+
+    if (phone && phone.length > 255) throw new Error("Name's too long");
+    if (image && image.length > 255) throw new Error("Name's too long");
     next();
   } catch (error) {
     res.status(404).json({ error: error.message });
