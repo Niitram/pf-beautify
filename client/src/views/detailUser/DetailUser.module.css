@@ -5,7 +5,7 @@
   left: 0px;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
 }
 
 .Container {
@@ -21,14 +21,20 @@
   background-color: var(--background);
   padding-top: 5px;
   padding-bottom: 5px;
+  /* overflow: auto; */
+}
+
+.loginForm {
+  overflow: scroll;
 }
 
 .textContainer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-right: 15px;
-  margin-left: 15px;
+  flex-direction: column;
+
+  margin-right: 25px;
+  margin-left: 25px;
+  /* background-color: red; */
 }
 
 .emailContainer {
@@ -43,8 +49,9 @@
 
 .emailPropertys {
   display: flex;
-  flex-direction: row;
-  justify-content: right;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 .namePropertys {
@@ -56,7 +63,13 @@
 .propertys {
   display: flex;
   flex-direction: row;
-  /* text-align: left; */
+  justify-content: space-between;
+}
+
+.propertysContainer {
+  display: block;
+  margin: 0px;
+  padding: 0px;
 }
 
 .Container img {
@@ -74,14 +87,16 @@
   min-height: 100%;
   min-width: 100%;
   border-radius: 15px;
+  z-index: -10;
 }
 
 .imageContainer {
   position: relative;
   align-self: center;
-  width: 190px;
-  height: 250px;
+  width: 140px;
+  height: 200px;
   border-radius: 15px;
+  z-index: -10;
 }
 
 /* .imageContainer {
@@ -139,4 +154,105 @@
   background-color: var(--accent2);
   cursor: pointer;
   border-radius: 3px;
+}
+.editBtn {
+  background-color: red;
+}
+
+.closeImageButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: red;
+}
+
+.inputs {
+  justify-self: center;
+}
+
+input {
+  margin: 2% 0%;
+  height: 2rem;
+  width: 100%;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #f5b7b171;
+  border: 0px solid var(--text-alt);
+  border-radius: 10px;
+}
+
+.name {
+  color: var(--accent1);
+}
+
+.button {
+  background-color: transparent;
+  color: var(--text);
+  transition: 200ms;
+  border: 0px;
+  padding: 10px 35px 10px 35px;
+  justify-content: center;
+  align-self: center;
+  margin: 5px;
+  font-size: medium;
+}
+
+.button:hover {
+  background-color: var(--accent2);
+  color: var(--text);
+  border: 0px;
+  padding: 10px 35px 10px 35px;
+  border-radius: 10px;
+}
+
+.importantButton {
+  width: 50%;
+  align-self: center;
+  background-color: var(--accent1);
+  border: 0px;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 35px 10px 35px;
+  cursor: pointer;
+  transition: 200ms;
+  color: var(--background);
+}
+.importantButton:hover {
+  background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
+  color: #fef2f4;
+}
+
+.propertysContainer h4 {
+  font-size: medium;
+  color: var(--accent1);
+  z-index: 2123123;
+}
+
+.propertysContainer h3 {
+  font-size: medium;
+  margin: 2% 0%;
+}
+
+.hr {
+  width: 80%;
+  border-color: #d14d7246;
+  align-self: center;
+  margin-top: 5px;
+  opacity: 50%;
+}
+
+.closeButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  align-self: center;
+}
+
+.finalButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  align-self: center;
 }
