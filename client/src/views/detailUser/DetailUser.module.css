@@ -25,11 +25,11 @@
 
 .textContainer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-right: 15px;
-  margin-left: 15px;
+  flex-direction: column;
 
+  margin-right: 25px;
+  margin-left: 25px;
+  /* background-color: red; */
 }
 
 .emailContainer {
@@ -44,8 +44,9 @@
 
 .emailPropertys {
   display: flex;
-  flex-direction: row;
-  justify-content: right;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 .namePropertys {
@@ -57,7 +58,11 @@
 .propertys {
   display: flex;
   flex-direction: row;
-  /* text-align: left; */
+  justify-content: space-between;
+}
+
+.propertysContainer {
+  display: block;
 }
 
 .Container img {
@@ -75,14 +80,16 @@
   min-height: 100%;
   min-width: 100%;
   border-radius: 15px;
+  z-index: -10;
 }
 
 .imageContainer {
   position: relative;
   align-self: center;
-  width: 190px;
-  height: 250px;
+  width: 140px;
+  height: 200px;
   border-radius: 15px;
+  z-index: -10;
 }
 
 /* .imageContainer {
@@ -141,6 +148,80 @@
   cursor: pointer;
   border-radius: 3px;
 }
-.editBtn{
+.editBtn {
   background-color: red;
+}
+
+.closeImageButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: red;
+}
+
+.inputs {
+  justify-self: center;
+}
+
+input {
+  margin-top: 2%;
+  height: 2rem;
+  width: 100%;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: transparent;
+  border: 2px solid var(--text-alt);
+  border-radius: 10px;
+}
+
+.name {
+  color: var(--accent1);
+}
+
+.button {
+  background-color: transparent;
+  color: var(--text);
+  transition: 200ms;
+  border: 0px;
+  padding: 10px 35px 10px 35px;
+  justify-content: center;
+  align-self: center;
+  margin: 5px;
+  font-size: medium;
+}
+
+.button:hover {
+  background-color: var(--accent2);
+  color: var(--text);
+  border: 0px;
+  padding: 10px 35px 10px 35px;
+  border-radius: 10px;
+}
+
+.importantButton {
+  margin-bottom: 5%;
+  width: 50%;
+  align-self: center;
+  background-color: var(--accent1);
+  border: 0px;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 35px 10px 35px;
+  cursor: pointer;
+  transition: 200ms;
+  color: var(--background);
+}
+.importantButton:hover {
+  background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
+  color: #fef2f4;
+}
+
+h4 {
+  color: var(--accent1);
+  font-size: medium;
+  margin: 10px;
+}
+
+h3 {
+  font-size: medium;
 }
