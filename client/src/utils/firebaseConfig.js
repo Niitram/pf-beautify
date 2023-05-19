@@ -86,14 +86,16 @@ export const loginWithGoogleFirebase = async (
   });
   const dbClient = response.data;
 
+  const userData = {
+    id: dbClient.id,
+    name: dbClient.fullName,
+    email: usuarioFirebase.email,
+    rol: CLIENT,
+  };
+
+  localStorage.setItem("userData", JSON.stringify(userData));
+
   // setear el estado global
-  dispatch(
-    setUserInfoAction({
-      id: dbClient.id,
-      name: dbClient.fullName,
-      email: usuarioFirebase.email,
-      rol: CLIENT,
-    })
-  );
+  dispatch(setUserInfoAction(userData));
   locationNow.pathname === "/" && navigate("/home");
 };
