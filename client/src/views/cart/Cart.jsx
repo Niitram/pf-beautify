@@ -7,25 +7,31 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import axios from "axios";
 import { useState } from "react";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
+import { useSelector } from "react-redux";
 
 initMercadoPago("TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1");
 function Cart() {
-  let cantArticulos = 3;
-  const [preferenceId, setPreferenceId] = useState(0);
+  let cantArticulos =3;
+
+    const emailUsuario = useSelector((state)=>state.userData.email)
+  const localCarrito = JSON.parse(localStorage.getItem('cart'))
+  const carrito = localCarrito.map(element=>{
+    return{
+      title:element.name,
+      quantity:element.quantity,
+      unit_price:element.price,
+      id:element.id
+    }
+  })
+  const [preferenceId,setPreferenceId] = useState(0)
 
   const handleCheckOut = () => {
-    const items = JSON.parse(localStorage.getItem("cart"));
-
-    axios
-      .post("http://localhost:3001/mercadopago/create_preference", items)
-      .then(({ data }) => {
-        setPreferenceId(data.id);
-        console.log(data.id);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    let aux = [...carrito,emailUsuario]
+    axios.post('http://localhost:3001/mercadopago/create_preference',aux)
+    .then(({data})=>setPreferenceId(data.id))
+    .catch((error)=>alert('Hubo un error al procesar el carrito, por favor intenta mas tarde'))
   };
+  
 
   return (
     <div className={styles.containerGlobal}>
