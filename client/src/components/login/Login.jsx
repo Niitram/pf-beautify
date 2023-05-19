@@ -49,6 +49,11 @@ const Login = ({
     }
   };
 
+  const handleClose = () => {
+    handleLoginClick();
+    setCreatingAccount(false);
+  };
+
   return (
     <>
       <div
@@ -58,7 +63,7 @@ const Login = ({
             : { display: "none", transition: "400ms" }
         }
         className={styles.overlay}
-        onClick={handleLoginClick}
+        onClick={handleClose}
       ></div>
       <form
         onSubmit={(e) => {
@@ -84,7 +89,7 @@ const Login = ({
               : { display: "none", transition: "400ms" }
           }
         >
-          <button className={styles.closeButton} onClick={handleLoginClick}>
+          <button className={styles.closeButton} onClick={handleClose}>
             x
           </button>
           <h4>Welcome</h4>
@@ -162,17 +167,6 @@ const Login = ({
             Google
           </button>
         </div>
-        {/* {createdUser && (
-          <Stack
-            sx={{ width: "300px", position: "absolute", bottom: 10, right: 10 }}
-            spacing={2}
-          >
-            <Alert severity="success">
-              <AlertTitle>Success</AlertTitle>
-              User <strong>created</strong>
-            </Alert>
-          </Stack>
-        )} */}
       </form>
     </>
   );

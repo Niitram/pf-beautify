@@ -16,7 +16,7 @@ const handleSubmitLogin = async (
   const name = e.target.name.value;
   const password = e.target.password.value;
   const email = e.target.email.value;
-  console.log(email, password);
+
   setUserInfo({ name: "", password: "", email: "" });
   try {
     // distinga si estamos creando una cuenta o haciendo el login
@@ -35,14 +35,18 @@ const handleSubmitLogin = async (
 
       // crea el usuario en la base de datos
       const userCreated = await createNewClient(createUser);
-      dispatch(
-        setUserInfoAction({
-          id: userCreated.data.id,
-          name: userCreated.data.fullName,
-          email: createUser.email,
-          rol: CLIENT,
-        })
-      );
+
+      const userData = {
+        id: userCreated.data.id,
+        name: userCreated.data.fullName,
+        email: createUser.email,
+        rol: CLIENT,
+      };
+
+      localStorage.setItem("userData", JSON.stringify(userData));
+      JSON.parse(localStorage.getItem("userData"));
+
+      dispatch(setUserInfoAction(userData));
 
       // handleLoginClick();
       if (location.pathname === "/") navigate("/home");
@@ -52,15 +56,21 @@ const handleSubmitLogin = async (
 
       // trae la info del usuario de la base de datos
       const userCreated = await getClient(email);
+
+      const userData = {
+        id: userCreated.data.id,
+        name: userCreated.data.fullName,
+        email: email,
+        rol: CLIENT,
+      };
+
+      localStorage.setItem("userData", JSON.stringify(userData));
+      JSON.parse(localStorage.getItem("userData"));
+
+      dispatch(setUserInfoAction(userData));
+
       // envía esa info al estado global
-      dispatch(
-        setUserInfoAction({
-          id: userCreated.data.id,
-          name: userCreated.data.fullName,
-          email: email,
-          rol: CLIENT,
-        })
-      );
+      dispatch(setUserInfoAction(userData));
     }
     handleLoginClick();
     if (location.pathname === "/") navigate("/home");
