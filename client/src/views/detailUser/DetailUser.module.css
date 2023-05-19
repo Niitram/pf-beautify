@@ -5,7 +5,7 @@
   left: 0px;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
 }
 
 .Container {
@@ -21,6 +21,11 @@
   background-color: var(--background);
   padding-top: 5px;
   padding-bottom: 5px;
+  /* overflow: auto; */
+}
+
+.loginForm {
+  overflow: scroll;
 }
 
 .textContainer {
@@ -63,6 +68,8 @@
 
 .propertysContainer {
   display: block;
+  margin: 0px;
+  padding: 0px;
 }
 
 .Container img {
@@ -164,12 +171,12 @@
 }
 
 input {
-  margin-top: 2%;
+  margin: 2% 0%;
   height: 2rem;
   width: 100%;
   font-family: "Josefin Sans", sans-serif;
-  background-color: transparent;
-  border: 2px solid var(--text-alt);
+  background-color: #f5b7b171;
+  border: 0px solid var(--text-alt);
   border-radius: 10px;
 }
 
@@ -198,7 +205,6 @@ input {
 }
 
 .importantButton {
-  margin-bottom: 5%;
   width: 50%;
   align-self: center;
   background-color: var(--accent1);
@@ -216,12 +222,37 @@ input {
   color: #fef2f4;
 }
 
-h4 {
+.propertysContainer h4 {
   font-size: medium;
-  margin: 10px;
   color: var(--accent1);
+  z-index: 2123123;
 }
 
-h3 {
+.propertysContainer h3 {
   font-size: medium;
+  margin: 2% 0%;
+}
+
+.hr {
+  width: 80%;
+  border-color: #d14d7246;
+  align-self: center;
+  margin-top: 5px;
+  opacity: 50%;
+}
+
+.closeButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  align-self: center;
+}
+
+.finalButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  align-self: center;
 }

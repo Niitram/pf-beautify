@@ -145,12 +145,17 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       ></div>
 
       <form onSubmit={handleSubmit} className={styles.Container}>
-        <button
-          onClick={handleDetailClick}
-          className={styles.closeDetailButton}
-        >
-          {"< Close"}
-        </button>
+        <div className={styles.closeButtons}>
+          <button onClick={onLogout} className={styles.closeDetailButton}>
+            Logout
+          </button>
+          <button
+            onClick={handleDetailClick}
+            className={styles.closeDetailButton}
+          >
+            {"< Close"}
+          </button>
+        </div>
         <div className={styles.textContainer}>
           {visibleInputs.name ? (
             <div className={styles.namePropertys}>
@@ -266,7 +271,12 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
                     handleVisibleInputs(event);
                   }}
                 >
-                  <EditIcon style={{ fill: paleta.accent1, zIndex: -1 }} />
+                  <EditIcon
+                    style={{
+                      fill: paleta.accent1,
+                      zIndex: -1,
+                    }}
+                  />
                 </IconButton>
               </div>
               <h3 className={styles.value}>
@@ -288,7 +298,12 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
                     handleVisibleInputs(event, true);
                   }}
                 >
-                  <CloseIcon style={{ fill: paleta.accent1, zIndex: -1 }} />
+                  <CloseIcon
+                    style={{
+                      fill: paleta.accent1,
+                      zIndex: -1,
+                    }}
+                  />
                 </IconButton>
               </div>
               <input onChange={handleChange} type="text" name="adress"></input>
@@ -314,21 +329,24 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
             </div>
           )}
         </div>
+
         {anyUpdatedData() && (
           <button type="submit" className={styles.importantButton}>
             Submit changes
           </button>
         )}
-
-        <button onClick={onLogout} className={styles.button}>
-          My favorites
-        </button>
-        <button onClick={onLogout} className={styles.button}>
-          My history
-        </button>
-        <button onClick={onLogout} className={styles.importantButton}>
+        <hr className={styles.hr} />
+        <div className={styles.finalButtons}>
+          <button onClick={onLogout} className={styles.button}>
+            My favorites
+          </button>
+          <button onClick={onLogout} className={styles.button}>
+            My history
+          </button>
+        </div>
+        {/* <button onClick={onLogout} className={styles.button}>
           Log out
-        </button>
+        </button> */}
       </form>
     </div>
   );
