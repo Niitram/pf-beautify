@@ -7,9 +7,11 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
+import { useSelector } from "react-redux";
 
 initMercadoPago("TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1");
 function Cart() {
+
   console.log('hola')
 
   const [cart, setCart] = useState([]);
@@ -59,16 +61,28 @@ function Cart() {
   const handleCheckOut = () => {
     const items = JSON.parse(localStorage.getItem("cart"));
 
-    axios
-      .post("http://localhost:3001/mercadopago/create_preference", items)
-      .then(({ data }) => {
-        setPreferenceId(data.id);
-        console.log(data.id);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+  let cantArticulos =3;
+
+    const emailUsuario = useSelector((state)=>state.userData.email)
+  const localCarrito = JSON.parse(localStorage.getItem('cart'))
+  const carrito = localCarrito.map(element=>{
+    return{
+      title:element.name,
+      quantity:element.quantity,
+      unit_price:element.price,
+      id:element.id
+    }
+  })
+  
+
+
+  const handleCheckOut = () => {
+    let aux = [...carrito,emailUsuario]
+    axios.post('http://localhost:3001/mercadopago/create_preference',aux)
+    .then(({data})=>setPreferenceId(data.id))
+    .catch((error)=>alert('Hubo un error al procesar el carrito, por favor intenta mas tarde'))
   };
+  
 
   return (
     <div className={styles.containerGlobal}>
