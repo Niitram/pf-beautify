@@ -217,9 +217,9 @@ input {
 }
 
 h4 {
-  color: var(--accent1);
   font-size: medium;
   margin: 10px;
+  color: var(--accent1);
 }
 
 h3 {
