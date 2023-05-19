@@ -10,6 +10,10 @@ import styles from "./DetailUser.module.css";
 import ImageComponent from "../../components/imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
 import cameraIcon from "../../assets/images/camera-icon.png";
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton } from "@mui/material";
+import paleta from "../../assets/images/Paleta";
+import CloseIcon from '@mui/icons-material/Close';
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
@@ -127,6 +131,8 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     });
     if (close) setUpdatedData({ ...updatedData, [property]: "" });
   };
+
+
   return (
     <div className={styles.loginForm}>
       <div
@@ -174,6 +180,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
               >
                 Update
               </button>
+                
             </div>
           )}
         </div>
@@ -239,64 +246,63 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
           {visibleInputs.phone ? (
             <div className={styles.propertys}>
               <input onChange={handleChange} type="text" name="phone"></input>
-              <button
+              <IconButton
                 name="phone"
                 onClick={(event) => {
                   event.preventDefault();
                   handleVisibleInputs(event, true);
                 }}
               >
-                x
-              </button>
+                 <CloseIcon style={{fill:paleta.accent1,zIndex:-1}}/>
+              </IconButton>
             </div>
           ) : (
             <div className={styles.propertys}>
               <h3 className={styles.value}>
                 {userData.phone ? userData.phone : "Unknown"}
               </h3>
-              <button
+              <IconButton
                 name="phone"
                 onClick={(event) => {
                   event.preventDefault();
                   handleVisibleInputs(event);
                 }}
               >
-                Update
-              </button>
+              <EditIcon style={{fill:paleta.accent1,zIndex:-1}}/>
+              </IconButton> 
             </div>
           )}
         </div>
 
         <div className={styles.textContainer}>
           <h3>Adress:</h3>
-
           {visibleInputs.adress ? (
             <div className={styles.propertys}>
               <input onChange={handleChange} type="text" name="adress"></input>
-              <button
+              <IconButton
                 name="adress"
                 onClick={(event) => {
                   event.preventDefault();
                   handleVisibleInputs(event, true);
                 }}
               >
-                x
-              </button>
+                <CloseIcon style={{fill:paleta.accent1,zIndex:-1}}/>
+              </IconButton>
             </div>
           ) : (
             <div className={styles.propertys}>
               <h3 className={styles.value}>
                 {userData.adress ? userData.adress : "Unknown"}
               </h3>
-              <button
+              <IconButton
                 name="adress"
                 onClick={(event) => {
                   event.preventDefault();
                   handleVisibleInputs(event);
                 }}
               >
-                Update
-              </button>
+                <EditIcon style={{fill:paleta.accent1,zIndex:-1}}/>
+              </IconButton>
             </div>
           )}
         </div>

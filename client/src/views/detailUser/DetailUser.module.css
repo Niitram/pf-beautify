@@ -29,6 +29,7 @@
   justify-content: space-between;
   margin-right: 15px;
   margin-left: 15px;
+
 }
 
 .emailContainer {
@@ -139,4 +140,7 @@
   background-color: var(--accent2);
   cursor: pointer;
   border-radius: 3px;
+}
+.editBtn{
+  background-color: red;
 }
