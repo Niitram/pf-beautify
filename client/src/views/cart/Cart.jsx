@@ -127,8 +127,8 @@ function Cart() {
         }
       </div>
 
-      {/* <button onClick={handleCheckOut}> CHECKOUT PROVISORIO</button>
-      <Wallet initialization={{ preferenceId: `${preferenceId}` }} /> */}
+      <button onClick={handleCheckOut}> CHECKOUT PROVISORIO</button>
+      <Wallet initialization={{ preferenceId: `${preferenceId}` }} />
 
       {/* <div className={styles.detallesCompra}>
         <div className={styles.detallesPago}>
