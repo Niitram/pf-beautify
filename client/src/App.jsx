@@ -85,18 +85,12 @@ function App() {
       !userData.email &&
       !creatingAccount
     ) {
-      //! esto trae muchas alertas en la consola cuando se crea un usuario, podríamos eliminar este else if
-      // const userCreated = await getClient(usuarioFirebase.email);
-      // // envía esa info al estado global
-      // if (userCreated.data) {
-      //   dispatch(
-      //     setUserInfoAction({
-      //       id: userCreated.data.id,
-      //       name: userCreated.data.fullName,
-      //       rol: CLIENT,
-      //     })
-      //   );
-      // }
+      // esto trae la info desde el local storage cuando se relodea la pag y la manda al estado local
+      const userData = JSON.parse(localStorage.getItem("userData")) || {};
+
+      if (userData) {
+        dispatch(setUserInfoAction(userData));
+      }
     }
   });
 

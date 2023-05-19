@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions";
 import styles from "./DetailUser.module.css";
-import ImageComponent from "../../components/imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
 import cameraIcon from "../../assets/images/camera-icon.png";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 import paleta from "../../assets/images/Paleta";
 import CloseIcon from "@mui/icons-material/Close";
+import { getProductById } from "../../request/product";
+
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
@@ -37,6 +38,9 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
 
   const onLogout = async () => {
     setLogout(false);
+    // mandar al back la info del carrito
+    await getProductById(1); // esta petición es cualquier cosa, pero necesito el await. Va a ser reemplazada por la petición que guarda el carrito
+    localStorage.clear();
     handleDetailClick();
     dispatch(logout());
     navigate("/");
@@ -47,30 +51,20 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     getDataFromDb(globalUserData.email);
   }, []);
 
-  const [userData, setUserData] = useState({
+  const initialState = {
     id: "",
     name: "",
     email: "",
     adress: "",
     phone: "",
     image: "",
-  });
+  };
 
-  const [updatedData, setUpdatedData] = useState({
-    name: "",
-    email: "",
-    adress: "",
-    phone: "",
-    image: "",
-  });
+  const [userData, setUserData] = useState(initialState);
 
-  const [visibleInputs, setVisibleInputs] = useState({
-    name: false,
-    email: false,
-    adress: false,
-    phone: false,
-    image: false,
-  });
+  const [updatedData, setUpdatedData] = useState(initialState);
+
+  const [visibleInputs, setVisibleInputs] = useState(initialState);
 
   const anyUpdatedData = () => {
     for (const property in updatedData) {
@@ -90,19 +84,8 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       phone: userFromDb.phone,
       image: userFromDb.image,
     });
-    setVisibleInputs({
-      name: false,
-      email: false,
-      adress: false,
-      phone: false,
-    });
-    setUpdatedData({
-      name: "",
-      email: "",
-      adress: "",
-      phone: "",
-      image: "",
-    });
+    setVisibleInputs(initialState);
+    setUpdatedData(initialState);
   };
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -225,6 +208,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
           ) : (
             <div className={styles.image}>
               <img src={userData.image ? userData.image : productDefault} />
+
               <IconButton
                 name="image"
                 onClick={(event) => {
