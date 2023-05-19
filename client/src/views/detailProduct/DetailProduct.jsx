@@ -12,6 +12,7 @@ import productDefault from "../../assets/images/camera-icon.png";
 import { useSelector } from "react-redux";
 
 function DetailProduct({ handleLoginClick }) {
+  
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
     console.log(quantity);
@@ -51,7 +52,6 @@ function DetailProduct({ handleLoginClick }) {
       });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
-    if (event.target.name === "buyNow") true;
   };
 
   const [quantity, setQuantity] = useState(1);
@@ -134,14 +134,16 @@ function DetailProduct({ handleLoginClick }) {
             defaultValue="1"
           />
           <label className={styles.shopMax}>Max 5</label>
-          <button
-            onClick={handleAddToCart}
-            name="buyNow"
-            className={styles.btnShopNow}
-            type="submit"
-          >
-            Buy now
-          </button>
+          <Link to="/cart">
+            <button
+              onClick={handleAddToCart}
+              name="buyNow"
+              className={styles.btnShopNow}
+              type="submit"
+            >
+              Buy now
+            </button>
+          </Link>
           <div className={styles.btnCartAndList}>
             <button
               onClick={handleAddToCart}
