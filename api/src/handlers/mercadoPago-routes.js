@@ -1,12 +1,11 @@
 const express = require("express");
 const { Purchase } = require("../db");
-const axios = require("axios");
 require("dotenv").config();
-const postNewShopValidation = require('../validations/postNewShop')
 const { ACESS_TOKEN } = process.env;
 const approved = require("../controllers/MercadoPago/approved");
 const router = express();
 const mercadopago = require("mercadopago");
+
 mercadopago.configure({
   access_token: `${ACESS_TOKEN}`,
 });
