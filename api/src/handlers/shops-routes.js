@@ -5,6 +5,7 @@ const postNewShop = require("../controllers/Shops/postNewShop");
 const postNewShopValidation = require("../validations/postNewShop");
 const getShopsByClientIdValidation = require("../validations/getShopsByClientId");
 
+
 const shopsRouter = Router();
 
 //* esta ruta está pensada para que los clientes tengan acceso a su historial de compras
@@ -37,6 +38,7 @@ shopsRouter.post("/", postNewShopValidation, async (req, res) => {
   try {
     const shop = req.body;
     const newShop = await postNewShop(shop);
+
     res.status(201).json(newShop);
   } catch (error) {
     res.status(500).json({ error: error.message });
