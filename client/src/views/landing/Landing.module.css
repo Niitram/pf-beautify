@@ -137,7 +137,13 @@
   background-color: var(--muted);
   color: var(--text);
 }
-.BotonLogin:hover {
+
+.BotonLogin:hover:disabled {
+  background-color: var(--muted);
+  color: var(--text);
+}
+
+.BotonLogin:not(:disabled):hover {
   background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
   color: #fef2f4;
 }
