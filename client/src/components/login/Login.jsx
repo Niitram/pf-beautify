@@ -43,6 +43,7 @@ const Login = ({
   const loginWithGoogle = async () => {
     try {
       await signInWithRedirect(auth, googleProvider);
+      setCreatingAccount(false);
     } catch (error) {
       window.alert(error.message);
       console.log(error.message);
@@ -51,7 +52,7 @@ const Login = ({
 
   const handleClose = () => {
     handleLoginClick();
-    setCreatingAccount(false);
+    creatingAccount && setCreatingAccount(false);
   };
 
   return (
@@ -74,11 +75,14 @@ const Login = ({
             creatingAccount,
             navigate,
             location,
-            handleLoginClick
+            handleLoginClick,
+            setCreatingAccount
           );
         }}
         className={
-          location.pathname !== "/" ? styles.Container : styles.landingContainer
+          location.pathname !== "/"
+            ? styles.loginContainer
+            : styles.landingContainer
         }
       >
         <div
