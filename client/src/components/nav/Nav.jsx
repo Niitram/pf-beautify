@@ -6,7 +6,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { firebaseApp } from "../../utils/firebaseConfig";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import LoginIcon from "@mui/icons-material/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions";
 import { INVITED } from "../../utils/roles";
