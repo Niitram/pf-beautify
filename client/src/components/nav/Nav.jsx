@@ -19,6 +19,7 @@ function Nav({ handleLoginClick, handleDetailClick }) {
       {/* <ButtonNav text={"Home"} route={"/home"}></ButtonNav> */}
 
       <div className={styles.botones}>
+        <ButtonNav text={"Home"} route={"/home"}></ButtonNav>
         <ButtonNav text={"About"} route={"/about"}></ButtonNav>
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
         <ButtonNav text={"Services"} route={"/services"}></ButtonNav>
