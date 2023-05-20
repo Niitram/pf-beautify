@@ -12,7 +12,6 @@ import productDefault from "../../assets/images/camera-icon.png";
 import { useSelector } from "react-redux";
 
 function DetailProduct({ handleLoginClick }) {
-
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
     console.log(quantity);
@@ -145,7 +144,7 @@ function DetailProduct({ handleLoginClick }) {
             </button>
           </Link>
           <div className={styles.btnCartAndList}>
-            <button 
+            <button
               onClick={handleAddToCart}
               name="addToCart"
               className={styles.addCart}
