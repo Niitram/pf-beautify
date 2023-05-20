@@ -6,9 +6,14 @@ export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const RESET_FILTERS_ORDER = "RESET_FILTERS_ORDER";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 
-/* Actions */
+//login
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const START_LOADING = "START_LOADING";
+export const FINISH_LOADING = "FINISH_LOADING";
+export const SET_USER_INFO = "SET_USER_INFO";
 
-//const URL_BASE = "http://localhost:3001"
+/* Actions */
 
 export const getAllProducts = (data) => {
   return {
@@ -48,5 +53,19 @@ export const addProduct = (data) => {
   return {
     type: CREATE_PRODUCT,
     payload: data,
+  };
+};
+
+//Login
+export const setUserInfoAction = (dataUser) => {
+  return {
+    type: SET_USER_INFO,
+    payload: dataUser,
+  };
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT,
   };
 };

@@ -1,4 +1,5 @@
 import comparePrice from "../utils/filterProducts";
+import { ADMIN, INVITED, CLIENT } from "../utils/roles";
 import {
   GET_ALL_PRODUCTS,
   SEARCH_PRODUCT_BY_NAME,
@@ -6,6 +7,8 @@ import {
   FILTER_PRODUCTS,
   ORDER_PRODUCTS,
   CREATE_PRODUCT,
+  SET_USER_INFO,
+  LOGOUT,
 } from "./actions";
 
 const initialState = {
@@ -14,6 +17,12 @@ const initialState = {
   allCategories: [],
   allServices: [],
   allProfessionals: [],
+  userData: {
+    id: null,
+    name: null,
+    email: null,
+    rol: INVITED,
+  },
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -50,8 +59,8 @@ const rootReducer = (state = initialState, action) => {
         category === "all"
           ? state.allProducts
           : state.allProducts.filter(
-            (product) => product.category === category
-          );
+              (product) => product.category === category
+            );
 
       return {
         ...state,
@@ -83,9 +92,8 @@ const rootReducer = (state = initialState, action) => {
         orderedAll = [...state.allProducts].sort((a, b) => a.rate - b.rate);
       } else {
         //en el caso de que no traiga lo que se espera
-        ordered = [...state.copyAllProducts]
-        orderedAll = [...state.allProducts]
-
+        ordered = [...state.copyAllProducts];
+        orderedAll = [...state.allProducts];
       }
       return {
         ...state,
@@ -94,6 +102,29 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
+    //SET_USER_INFO
+    case SET_USER_INFO:
+      return {
+        ...state,
+        userData: {
+          id: action.payload.id,
+          name: action.payload.name,
+          email: action.payload.email,
+          rol: action.payload.rol,
+        },
+      };
+
+    //LOGOUT
+    case LOGOUT:
+      return {
+        ...state,
+        userData: {
+          id: null,
+          name: null,
+          email: null,
+          rol: INVITED,
+        },
+      };
 
     default:
       return { ...state };

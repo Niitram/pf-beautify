@@ -1,18 +1,16 @@
 import logo from "../../assets/images/LandingImg.svg";
-// import { useState } from "react";
 import styles from "./Landing.module.css";
-// import { useNavigate } from "react-router-dom";
+import useToggle from "../../hooks/useToggle";
 import { useNavigate } from "react-router-dom";
+import Login from "../../components/login/Login";
 
-export default function Landing() {
-  //   const [loginVisible, setLoginVisible] = useState(false);
-  //   const navigate = useNavigate();
-
-  //   const handleLoginClick = () => {
-  //     setLoginVisible(!loginVisible);
-  //   };
-
+export default function Landing({ loginVisible, handleLoginClick }) {
   const navigate = useNavigate();
+  // const [loginVisible, setLoginVisible] = useToggle(false);
+
+  // const handleLoginClick = () => {
+  //   setLoginVisible(!loginVisible);
+  // };
 
   return (
     <div className={styles.Container}>
@@ -22,44 +20,28 @@ export default function Landing() {
         </h2>
         <h2 className={styles.beauty}>beauty</h2>
         <button
-          onClick={() => navigate("/home")}
+          onClick={(e) => {
+            e.preventDefault();
+            handleLoginClick();
+            /*  navigate("/home"); */
+          }}
           className={styles.Login}
-          // onClick={handleLoginClick}
         >
-          Log in
+          Login / Register
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/home");
+          }}
+          className={styles.Login}
+        >
+          Invited
         </button>
       </div>
-      {/* <div
-        className={styles.LoginForm}
-        style={
-          loginVisible
-            ? { display: "flex", transition: "400ms" }
-            : { display: "none", transition: "400ms" }
-        }
-      >
-        <h4>Welcome</h4>
-        <span>Log in or Sign up to continue</span>
-        <div className={styles.Inputs}>
-          <input type="text" placeholder="Username" className="Username" />
-          <input type="text" placeholder="Password" className="Password" />
-        </div>
-        <button
-          onClick={() => navigate("/services")}
-          className={styles.BotonLogin}
-        >
-          Log in
-        </button>
-        <p>If you do not have an account please</p>
-        <p>
-          <strong>register</strong>
-        </p>
-        <hr></hr>
-        <button
-          onClick={() => window.open("http://localhost:3001/auth/google")}
-        >
-          boton google
-        </button>
-      </div> */}
+
+      {/* {loginVisible && <Login loginVisible={loginVisible} />} */}
+
       {/* <div
         style={
           loginVisible
