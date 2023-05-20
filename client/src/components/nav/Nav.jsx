@@ -5,6 +5,8 @@ import logo from "../../assets/images/logo-beautify-500x500.png";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { INVITED } from "../../utils/roles";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 function Nav({ handleLoginClick, handleDetailClick }) {
   const userData = useSelector((state) => state.userData);
@@ -12,12 +14,12 @@ function Nav({ handleLoginClick, handleDetailClick }) {
   return (
     <nav className={styles.navBar}>
       <NavLink to="/home">
-        <div className={styles.imagen}>
-          <img className={styles.logo} src={logo} alt="logo" />
-        </div>
+        <img className={styles.logo} src={logo} alt="logo" />
       </NavLink>
-      {/* <ButtonNav text={"Home"} route={"/home"}></ButtonNav> */}
-
+      <input type="checkbox" id="check" className={styles.check} />
+      <label htmlFor="check" className={styles.mostrarmenu}>
+        <MenuIcon />
+      </label>
       <div className={styles.botones}>
         <ButtonNav text={"About"} route={"/about"}></ButtonNav>
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
@@ -35,6 +37,9 @@ function Nav({ handleLoginClick, handleDetailClick }) {
             <ButtonAccent1 text={"Carrito"} route={"/cart"}></ButtonAccent1>
           </>
         )}
+        <label htmlFor="check" className={styles.ocultarmenu}>
+          <CloseIcon />
+        </label>
       </div>
     </nav>
   );
