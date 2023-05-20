@@ -8,7 +8,7 @@ import PromoCard from "../../components/promo card/PromoCard";
 import styles from "./Home.module.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
-import SectionCards from "../../components/sectionCards/sectionCards";
+import SectionCards from "../../components/sectionCards/SectionCards";
 import { showError } from "../../redux/actions";
 
 function Home() {
