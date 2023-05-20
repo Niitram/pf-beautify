@@ -24,10 +24,9 @@ import NewProduct from "./views/newProduct/NewProduct";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import useToggle from "./hooks/useToggle";
 import { loginWithGoogleFirebase } from "./utils/firebaseConfig";
-import { getClient } from "./request/clients";
 import Login from "./components/login/Login";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
-import { CLIENT, INVITED, ADMIN } from "./utils/roles";
+import { CLIENT, ADMIN } from "./utils/roles";
 
 function App() {
   const locationNow = useLocation();
