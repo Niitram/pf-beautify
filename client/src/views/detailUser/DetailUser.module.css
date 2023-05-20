@@ -24,10 +24,6 @@
   /* overflow: auto; */
 }
 
-.loginForm {
-  overflow: scroll;
-}
-
 .textContainer {
   display: flex;
   flex-direction: column;
@@ -222,6 +218,11 @@ input {
   color: #fef2f4;
 }
 
+.importantButton:disabled {
+  background-color: var(--muted);
+  color: var(--text);
+}
+
 .propertysContainer h4 {
   font-size: medium;
   color: var(--accent1);
@@ -255,4 +256,23 @@ input {
   justify-content: space-between;
   width: 90%;
   align-self: center;
+}
+
+.inputError {
+  color: rgb(97, 3, 3);
+  position: absolute;
+  right: 25px;
+  top: 8px;
+
+  /* z-index: 1000000; */
+}
+
+.imageInputError {
+  color: rgb(97, 3, 3);
+}
+.inputDiv {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }

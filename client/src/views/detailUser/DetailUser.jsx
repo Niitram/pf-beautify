@@ -14,7 +14,7 @@ import { IconButton } from "@mui/material";
 import paleta from "../../assets/images/Paleta";
 import CloseIcon from "@mui/icons-material/Close";
 import { getProductById } from "../../request/product";
-
+import { anyErrors, validateUpdateUser } from "../../utils/validateUpdateUser";
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
@@ -64,11 +64,13 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
 
   const [updatedData, setUpdatedData] = useState(initialState);
 
+  const [errors, setErrors] = useState(initialState);
+
   const [visibleInputs, setVisibleInputs] = useState(initialState);
 
   const anyUpdatedData = () => {
     for (const property in updatedData) {
-      if (updatedData[property]) return true;
+      if (visibleInputs[property]) return true;
     }
   };
 
@@ -104,6 +106,9 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     const property = event.target.name;
     const value = event.target.value;
     setUpdatedData({ ...updatedData, [property]: value });
+    setErrors(
+      validateUpdateUser({ ...updatedData, [property]: value }, visibleInputs)
+    );
   };
 
   const handleVisibleInputs = (event, close) => {
@@ -112,7 +117,10 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       ...visibleInputs,
       [property]: !visibleInputs[property],
     });
-    if (close) setUpdatedData({ ...updatedData, [property]: "" });
+    if (close) {
+      setUpdatedData({ ...updatedData, [property]: "" });
+      setErrors({ ...errors, [property]: "" });
+    } else setErrors({ ...errors, [property]: true }, visibleInputs);
   };
 
   return (
@@ -142,7 +150,10 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
         <div className={styles.textContainer}>
           {visibleInputs.name ? (
             <div className={styles.namePropertys}>
-              <input onChange={handleChange} type="text" name="name"></input>
+              <div className={styles.inputDiv}>
+                <input onChange={handleChange} type="text" name="name"></input>
+                {errors.name && <p className={styles.inputError}>*</p>}
+              </div>
               <IconButton
                 name="name"
                 className={styles.closeImageButton}
@@ -190,8 +201,10 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
               onDragOver={(e) => handleDragOver(e)}
             >
               {!updatedData.image && <p>Drag image here</p>}
+              {errors.image && <p className={styles.imageInputError}>*</p>}
               <IconButton
                 name="image"
+                style={{ position: "absolute", top: "5px", right: "5px" }}
                 onClick={(event) => {
                   event.preventDefault();
                   handleVisibleInputs(event, true);
@@ -211,12 +224,18 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
 
               <IconButton
                 name="image"
+                style={{ position: "absolute", top: "5px", right: "5px" }}
                 onClick={(event) => {
                   event.preventDefault();
                   handleVisibleInputs(event);
                 }}
               >
-                <EditIcon style={{ fill: paleta.accent1, zIndex: -1 }} />
+                <EditIcon
+                  style={{
+                    fill: paleta.accent1,
+                    zIndex: -1,
+                  }}
+                />
               </IconButton>
             </div>
           )}
@@ -237,12 +256,15 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
                   <CloseIcon style={{ fill: paleta.accent1, zIndex: -1 }} />
                 </IconButton>
               </div>
-              <input
-                onChange={handleChange}
-                type="text"
-                name="phone"
-                className={styles.inputs}
-              ></input>
+              <div className={styles.inputDiv}>
+                <input
+                  onChange={handleChange}
+                  type="text"
+                  name="phone"
+                  className={styles.inputs}
+                ></input>
+                {errors.phone && <p className={styles.inputError}>*</p>}
+              </div>
             </div>
           ) : (
             <div className={styles.propertysContainer}>
@@ -290,7 +312,14 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
                   />
                 </IconButton>
               </div>
-              <input onChange={handleChange} type="text" name="adress"></input>
+              <div className={styles.inputDiv}>
+                <input
+                  onChange={handleChange}
+                  type="text"
+                  name="adress"
+                ></input>
+                {errors.adress && <p className={styles.inputError}>*</p>}
+              </div>
             </div>
           ) : (
             <div className={styles.propertysContainer}>
@@ -315,7 +344,11 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
         </div>
 
         {anyUpdatedData() && (
-          <button type="submit" className={styles.importantButton}>
+          <button
+            type="submit"
+            className={styles.importantButton}
+            disabled={anyErrors(errors)}
+          >
             Submit changes
           </button>
         )}
@@ -328,9 +361,6 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
             My history
           </button>
         </div>
-        {/* <button onClick={onLogout} className={styles.button}>
-          Log out
-        </button> */}
       </form>
     </div>
   );
