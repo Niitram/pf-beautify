@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -9,10 +9,12 @@ import styles from "./Home.module.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import SectionCards from "../../components/sectionCards/sectionCards";
+import { showError } from "../../redux/actions";
 
 function Home() {
   const [products, setProducts] = useState([]);
   const allProducts = useSelector((state) => state.allProducts);
+  const dispatch = useDispatch();
 
   // const [current, setCurrent] = useState(0);
   useEffect(() => {
@@ -21,6 +23,7 @@ function Home() {
         .get("http://localhost:3001/products")
         .then(({ data }) => setProducts(data));
     } catch (error) {
+      dispatch(showError({ tittle: "Error", message: error.message }));
       console.log(error.message);
     }
   }, []);
@@ -67,24 +70,20 @@ function Home() {
         modi amet quasi reiciendis rem dolorum! Iste consectetur delectus
         dignissimos explicabo facilis.
       </span>
-      {allProducts ? (
+      {allProducts && (
         <SectionCards
           nameSection={"Most populars"}
           arrayProducts={allProducts}
           populars={true}
         />
-      ) : (
-        <div>waiting...</div>
       )}
-      {allProducts ? (
+      {allProducts && (
         <SectionCards
           nameSection={"Pencil"}
           arrayProducts={allProducts}
           category={"Pencil"}
           isCategory={true}
         />
-      ) : (
-        <div>waiting...</div>
       )}
     </div>
   );
