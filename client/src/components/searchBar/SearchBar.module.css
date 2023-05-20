@@ -3,6 +3,11 @@
     margin-bottom:2rem ;
     z-index: 8;
     height: 5rem;
+    align-items: center;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .input{
@@ -10,6 +15,7 @@
     background-color: var(--accent2);
     border: none;
     padding: 8px;
+    border-radius: 0px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     height: 3rem;
