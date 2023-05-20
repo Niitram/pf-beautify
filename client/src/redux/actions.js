@@ -5,6 +5,9 @@ export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const RESET_FILTERS_ORDER = "RESET_FILTERS_ORDER";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
+//Errors
+export const SHOW_ERROR = "SHOW_ERROR";
+export const CLEAR_ERROR = "CLEAR_ERROR";
 
 //login
 export const LOGIN = "LOGIN";
@@ -64,4 +67,22 @@ export const setUserInfoAction = (dataUser) => {
   };
 };
 
+export const logout = () => {
+  return {
+    type: LOGOUT,
+  };
+};
 
+//Errors
+
+export const showError = (errorData) => {
+  return {
+    type: SHOW_ERROR,
+    payload: errorData,
+  };
+};
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR,
+  };
+};

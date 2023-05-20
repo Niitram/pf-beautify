@@ -1,36 +1,98 @@
 import { createUserWithMail, singUpWithMail } from "../utils/firebaseConfig";
-import { createNewClient } from "../request/clients";
-import { setUserInfoAction } from "../redux/actions";
+import { createNewClient, getClient } from "../request/clients";
+import { setUserInfoAction, showError } from "../redux/actions";
+import { CLIENT } from "../utils/roles";
 
-const handleSubmitLogin = async (e, dispatch, setUserInfo, creatingAccount, setCreatedUser) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const password = e.target.password.value;
-    const email = e.target.email.value;
-    setUserInfo({ name: "", password: "", email: "" });
+const handleSubmitLogin = async (
+  e,
+  dispatch,
+  setUserInfo,
+  creatingAccount,
+  navigate,
+  location,
+  handleLoginClick
+) => {
+  e.preventDefault();
+  const name = e.target.name.value;
+  const password = e.target.password.value;
+  const email = e.target.email.value;
 
-    try {
-        if (creatingAccount) {
-            const response = await createUserWithMail(email, password);
-            const createUser = {
-                fullName: name,
-                email: email,
-                password: response.user.reloadUserInfo.passwordHash,
-            };
+  setUserInfo({ name: "", password: "", email: "" });
+  try {
+    // distinga si estamos creando una cuenta o haciendo el login
+    if (creatingAccount) {
+      //* creamos el usuario en firebase
+      await createUserWithMail(email, password);
+      const createUser = {
+        fullName: name,
+        email: email,
+        // password: response.user.reloadUserInfo.passwordHash,
+      };
 
-            const userCreated = await createNewClient(createUser);
-            dispatch(
-                setUserInfoAction({
-                    id: userCreated.data.id,
-                    name: userCreated.data.fullName,
-                })
-            );
-            setCreatedUser(true)
-        } else await singUpWithMail(email, password);
-    } catch (error) {
-        window.alert("An error has ocurred")
-        console.log(error.message)
+      // corroboramos que el usuario no exista en la base de datos
+      // const oldUser = await getClient(createUser.email);
+      // if (oldUser) throw Error("User alredy exists in database");
+
+      // crea el usuario en la base de datos
+      const userCreated = await createNewClient(createUser);
+
+      const userData = {
+        id: userCreated.data.id,
+        name: userCreated.data.fullName,
+        email: createUser.email,
+        rol: CLIENT,
+      };
+
+      localStorage.setItem("userData", JSON.stringify(userData));
+      JSON.parse(localStorage.getItem("userData"));
+
+      dispatch(setUserInfoAction(userData));
+
+      // handleLoginClick();
+      if (location.pathname === "/") navigate("/home");
+    } else {
+      // se loguea en firebase
+      await singUpWithMail(email, password);
+
+      // trae la info del usuario de la base de datos
+      const userCreated = await getClient(email);
+
+      const userData = {
+        id: userCreated.data.id,
+        name: userCreated.data.fullName,
+        email: email,
+        rol: CLIENT,
+      };
+
+      localStorage.setItem("userData", JSON.stringify(userData));
+      JSON.parse(localStorage.getItem("userData"));
+
+      dispatch(setUserInfoAction(userData));
+
+      // envía esa info al estado global
+      dispatch(setUserInfoAction(userData));
     }
+    handleLoginClick();
+    if (location.pathname === "/") navigate("/home");
+  } catch (error) {
+    // mensajes de error personalizados
+    const ingresaConGooglePelotudo = "Firebase: Error (auth/wrong-password).";
+    const userNotFound = "Firebase: Error (auth/user-not-found).";
+    const emailInUse = "Firebase: Error (auth/email-already-in-use).";
+    const emailInDb = "User alredy exists in database";
+    if (error.message.includes(userNotFound)) {
+      dispatch(showError({ tittle: "Wrong-user", message: "User not found" }))
+    } else if (
+      error.message.includes(emailInUse) ||
+      error.message.includes(emailInDb)
+    ) {
+      dispatch(showError({ tittle: "Wrong-user", message: "User alredy exists" }))
+    } else if (error.message.includes(ingresaConGooglePelotudo)) {
+      dispatch(showError({ tittle: "Wrong-password", message: "Wrong data. Try loging in with google or another account" }))
+    } else dispatch(showError({ tittle: "An error has ocurred", message: "Please try again" }))
+
+    console.log(error.message);
+  }
 };
 
 export default handleSubmitLogin;

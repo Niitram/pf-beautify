@@ -1,11 +1,14 @@
 const { Client } = require("../../db");
 
-const putClientInfo = async (id, adress, phone) => {
+const putClientInfo = async (id, newValues) => {
     const toModifyclient = await Client.findByPk(id)
-    toModifyclient.update({
-        adress,
-        phone
-    })
+    for (key in newValues){
+        await toModifyclient.update(
+             {
+                 [key]: newValues[key]
+             }
+         )
+ }
     return toModifyclient
   };
 
