@@ -11,6 +11,7 @@ const ImageComponent = (props) => {
       onError={() => {
         setImgSrc(notFoundSrc);
       }}
+      style={{transition:'400ms'}}
     />
   );
 };

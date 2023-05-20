@@ -11,7 +11,6 @@ import { postFindOrCreate } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
 import { CLIENT } from "./roles";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
   authDomain: "beautify-386112.firebaseapp.com",
@@ -27,11 +26,9 @@ export const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 export const googleProvider = new GoogleAuthProvider();
 
-
 const storage = getStorage(firebaseApp);
 
 export const createUserWithMail = async (username, password) => {
-
   return await createUserWithEmailAndPassword(auth, username, password);
 };
 
@@ -58,26 +55,47 @@ export const upload = async (
   validateCreateProduct({ ...productData, image: url }, setErrors);
 };
 
+export const uploadProfilePicture = async (
+  archivo,
+  setUpdatedData,
+  updatedData
+) => {
+  // crea una referencia al archivo
+  const archivoRef = ref(storage, `images/${archivo.name}`);
+  // sube el archivo a esa referencia
+  await uploadBytes(archivoRef, archivo);
+  // devuelve la url del archivo
+  const url = await getDownloadURL(archivoRef);
+
+  setUpdatedData({ ...updatedData, image: url });
+  console.log(url);
+};
+
 export const loginWithGoogleFirebase = async (
   usuarioFirebase,
   dispatch,
-  navigate
+  navigate,
+  locationNow
 ) => {
-  console.log("login with google firebase");
+  // recibe el usuario de google y lo busca/crea en la bdd
   const response = await postFindOrCreate({
     email: usuarioFirebase.email,
     fullName: usuarioFirebase.displayName,
+    phone: usuarioFirebase.phoneNumber,
+    image: usuarioFirebase.photoURL,
   });
-  const dbClient = response.data.client;
+  const dbClient = response.data;
+
+  const userData = {
+    id: dbClient.id,
+    name: dbClient.fullName,
+    email: usuarioFirebase.email,
+    rol: CLIENT,
+  };
+
+  localStorage.setItem("userData", JSON.stringify(userData));
 
   // setear el estado global
-  dispatch(
-    setUserInfoAction({
-      id: dbClient.id,
-      name: dbClient.fullName,
-      rol: CLIENT,
-    })
-  );
-  navigate("/home");
+  dispatch(setUserInfoAction(userData));
+  locationNow.pathname === "/" && navigate("/home");
 };
-
