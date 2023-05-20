@@ -10,7 +10,8 @@ const handleSubmitLogin = async (
   creatingAccount,
   navigate,
   location,
-  handleLoginClick
+  handleLoginClick,
+  setCreatingAccount
 ) => {
   e.preventDefault();
   const name = e.target.name.value;
@@ -50,6 +51,7 @@ const handleSubmitLogin = async (
 
       // handleLoginClick();
       if (location.pathname === "/") navigate("/home");
+      setCreatingAccount(false);
     } else {
       // se loguea en firebase
       await singUpWithMail(email, password);
@@ -66,8 +68,6 @@ const handleSubmitLogin = async (
 
       localStorage.setItem("userData", JSON.stringify(userData));
       JSON.parse(localStorage.getItem("userData"));
-
-      dispatch(setUserInfoAction(userData));
 
       // envía esa info al estado global
       dispatch(setUserInfoAction(userData));

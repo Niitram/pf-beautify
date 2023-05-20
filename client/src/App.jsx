@@ -62,6 +62,14 @@ function App() {
     dispatch(getAllProducts(products));
   }, [dispatch, products, categories]);
 
+  // este useEffect trae la info del usuario desde el local Storage al estado global
+  useEffect(() => {
+    if (!userData.id) {
+      const userInfo = JSON.parse(localStorage.getItem("userData")) || {};
+      dispatch(setUserInfoAction(userInfo));
+    }
+  }, [dispatch]);
+
   // esta función se ejecuta cuando detecta un cambio en el usuario de firebase
   onAuthStateChanged(auth, async (usuarioFirebase) => {
     // las tres condiciones: hubo un cambio en la auth, el usuario recibido es de google, antes no había usuario logueado
@@ -79,19 +87,6 @@ function App() {
         locationNow
       );
       setLogout(false);
-    } else if (
-      // login usuarios de mail
-      usuarioFirebase &&
-      !usuarioFirebase.displayName &&
-      !userData.email &&
-      !creatingAccount
-    ) {
-      // esto trae la info desde el local storage cuando se relodea la pag y la manda al estado local
-      const userData = JSON.parse(localStorage.getItem("userData")) || {};
-
-      if (userData) {
-        dispatch(setUserInfoAction(userData));
-      }
     }
   });
 

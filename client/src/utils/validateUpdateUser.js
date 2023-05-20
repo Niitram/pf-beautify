@@ -1,5 +1,3 @@
-const regexUrlImage = /(https?:\/\/.*\.(?:png|jpg|jpeg))/;
-
 export const validateUpdateUser = (user, visibleInputs) => {
   const errors = {
     name: "",
@@ -15,7 +13,6 @@ export const validateUpdateUser = (user, visibleInputs) => {
     errors.phone = true;
   if (visibleInputs.image) {
     if (!user.image.length) errors.image = true;
-    if (!user.image.match(regexUrlImage)) errors.image = true;
     if (user.image.length > 255) errors.image = true;
   }
 

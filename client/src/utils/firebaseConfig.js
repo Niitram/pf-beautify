@@ -10,6 +10,7 @@ import {
 import { postFindOrCreate } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
 import { CLIENT } from "./roles";
+import { validateUpdateUser } from "./validateUpdateUser";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
@@ -58,7 +59,9 @@ export const upload = async (
 export const uploadProfilePicture = async (
   archivo,
   setUpdatedData,
-  updatedData
+  updatedData,
+  setErrors,
+  visibleInputs
 ) => {
   // crea una referencia al archivo
   const archivoRef = ref(storage, `images/${archivo.name}`);
@@ -68,7 +71,8 @@ export const uploadProfilePicture = async (
   const url = await getDownloadURL(archivoRef);
 
   setUpdatedData({ ...updatedData, image: url });
-  console.log(url);
+  setErrors(validateUpdateUser({ ...updatedData, image: url }, visibleInputs));
+  // console.log(url);
 };
 
 export const loginWithGoogleFirebase = async (
