@@ -1,5 +1,5 @@
 import comparePrice from "../utils/filterProducts";
-import { ADMIN, INVITED, CLIENT } from "../utils/roles";
+import { INVITED } from "../utils/roles";
 import {
   GET_ALL_PRODUCTS,
   SEARCH_PRODUCT_BY_NAME,
@@ -9,6 +9,8 @@ import {
   CREATE_PRODUCT,
   SET_USER_INFO,
   LOGOUT,
+  SHOW_ERROR,
+  CLEAR_ERROR,
 } from "./actions";
 
 const initialState = {
@@ -23,6 +25,10 @@ const initialState = {
     email: null,
     rol: INVITED,
   },
+  errorState: {
+    tittle: null,
+    message: null
+  }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -59,8 +65,8 @@ const rootReducer = (state = initialState, action) => {
         category === "all"
           ? state.allProducts
           : state.allProducts.filter(
-              (product) => product.category === category
-            );
+            (product) => product.category === category
+          );
 
       return {
         ...state,
@@ -123,6 +129,23 @@ const rootReducer = (state = initialState, action) => {
           name: null,
           email: null,
           rol: INVITED,
+        },
+      };
+    //Errors
+    case SHOW_ERROR:
+      return {
+        ...state,
+        errorState: {
+          tittle: action.payload.tittle,
+          message: action.payload.message
+        },
+      };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        errorState: {
+          tittle: null,
+          message: null
         },
       };
 

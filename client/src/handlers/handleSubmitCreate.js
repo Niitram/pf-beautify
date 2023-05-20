@@ -1,4 +1,4 @@
-import { addProduct } from "../redux/actions";
+import { addProduct, showError } from "../redux/actions";
 import validateCreateProduct from "../utils/validateCreateProduct";
 import { createProduct } from "../request/product"
 
@@ -41,6 +41,7 @@ const handleSubmitCreate = async (e, productData, setErrors, errors, setProductD
                 category: "",
             });
         } catch (error) {
+            dispatch(showError({ tittle: "Error", message: error.message }))
             console.log(error.message);
         }
     }

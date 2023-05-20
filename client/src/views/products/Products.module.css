@@ -5,11 +5,13 @@
 }
 .Container{
     background-color: var(--background  );
+    /* background-color: red; */
     min-height: 92vh;
     width:100%;
     display: flex;
     flex-direction: column;
     overflow: auto;
+    
 }
 .containerPaginations{
     width:65%;

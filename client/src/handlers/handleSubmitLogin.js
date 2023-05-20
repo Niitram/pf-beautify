@@ -1,6 +1,6 @@
 import { createUserWithMail, singUpWithMail } from "../utils/firebaseConfig";
 import { createNewClient, getClient } from "../request/clients";
-import { setUserInfoAction } from "../redux/actions";
+import { setUserInfoAction, showError } from "../redux/actions";
 import { CLIENT } from "../utils/roles";
 
 const handleSubmitLogin = async (
@@ -23,7 +23,7 @@ const handleSubmitLogin = async (
     // distinga si estamos creando una cuenta o haciendo el login
     if (creatingAccount) {
       //* creamos el usuario en firebase
-      const response = await createUserWithMail(email, password);
+      await createUserWithMail(email, password);
       const createUser = {
         fullName: name,
         email: email,
@@ -81,15 +81,16 @@ const handleSubmitLogin = async (
     const emailInUse = "Firebase: Error (auth/email-already-in-use).";
     const emailInDb = "User alredy exists in database";
     if (error.message.includes(userNotFound)) {
-      window.alert("User not found");
+      dispatch(showError({ tittle: "Wrong-user", message: "User not found" }))
     } else if (
       error.message.includes(emailInUse) ||
       error.message.includes(emailInDb)
     ) {
-      window.alert("User alredy exists");
+      dispatch(showError({ tittle: "Wrong-user", message: "User alredy exists" }))
     } else if (error.message.includes(ingresaConGooglePelotudo)) {
-      window.alert("Wrong data. Try loging in with google");
-    } else window.alert("An error has ocurred");
+      dispatch(showError({ tittle: "Wrong-password", message: "Wrong data. Try loging in with google or another account" }))
+    } else dispatch(showError({ tittle: "An error has ocurred", message: "Please try again" }))
+
     console.log(error.message);
   }
 };

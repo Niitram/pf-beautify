@@ -11,14 +11,15 @@ const favoritesRouter = require("../handlers/favorites-routes");
 const appointmentsRouter = require('../handlers/appointments-routes');
 
 
+const mercadoPago = require('../handlers/mercadoPago-routes')
 const router = Router();
 
-
-router.use('/comments', commentsRouter)
-router.use('/profesionals', profesionalsRouter)
-router.use('/client', usersRouter)
-router.use('/categories', categoriesRoutes)
-router.use('/services', servicesRoutes);
+router.use('/mercadopago', mercadoPago)
+router.use("/comments", commentsRouter);
+router.use("/profesionals", profesionalsRouter);
+router.use("/client", usersRouter);
+router.use("/categories", categoriesRoutes);
+router.use("/services", servicesRoutes);
 router.use("/products", productsRouter);
 router.use("/developers", developersRouter);
 router.use("/shops", shopsRouter);

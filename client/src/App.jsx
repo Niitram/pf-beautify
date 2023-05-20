@@ -24,10 +24,10 @@ import NewProduct from "./views/newProduct/NewProduct";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import useToggle from "./hooks/useToggle";
 import { loginWithGoogleFirebase } from "./utils/firebaseConfig";
-import { getClient } from "./request/clients";
 import Login from "./components/login/Login";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
-import { CLIENT, INVITED, ADMIN } from "./utils/roles";
+import { CLIENT, ADMIN } from "./utils/roles";
+import AlertWarning from "./components/AlertWarning/AlertWarning";
 
 function App() {
   const locationNow = useLocation();
@@ -35,6 +35,7 @@ function App() {
   const navigate = useNavigate();
   const [products] = useGetProducts();
   const [categories] = useGetCategories();
+  const errorState = useSelector((state) => state.errorState);
 
   // sirve para saber si el usuario no está logueado (true), se usa para prevenir que se guarde la información del usuario cuando este se está deslogueando (archivo firebaseConfig)
   const [logout, setLogout] = useToggle(true);
@@ -97,7 +98,12 @@ function App() {
           handleDetailClick={handleDetailClick}
         />
       )}
-
+      {errorState.tittle && (
+        <AlertWarning
+          tittleAlert={errorState.tittle}
+          messageAlert={errorState.message}
+        />
+      )}
       {loginVisible && (
         <Login
           loginVisible={loginVisible}
