@@ -1,8 +1,6 @@
 import styles from "./Cart.module.css";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-// import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-// import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
@@ -105,37 +103,49 @@ function Cart() {
         {cart.map((cartItem) => (
           <div key={cartItem.id} className={styles.articulo}>
             <div className={styles.imagenArticulo}>
-              <img src={cartItem.image} />
+              <Link to={`/detailProduct/${cartItem.id}`}>
+                <img src={cartItem.image} />
+              </Link>
             </div>
             <div className={styles.detallesArticulo}>
               <label className={styles.nameProduct}>{cartItem.name}</label>
               <label className={styles.descriptionProduct}>
-                {cartItem.description.slice(0, 60)}...
+                {cartItem.description.slice(0, 50)}...
               </label>
             </div>
             <div className={styles.cantidad}>
               <div className={styles.btnupdown}>
-                {/* <ArrowDropUpIcon /> */}
-                <button onClick={handleQuantity} name="add" value={cartItem.id}>
+                <button
+                  disabled={cartItem.quantity === cartItem.stock}
+                  className={styles.btnCart}
+                  onClick={handleQuantity}
+                  name="add"
+                  value={cartItem.id}
+                >
                   +
                 </button>
-                <label>{cartItem.quantity}</label>
+                <label className={styles.cantidadProduct}>
+                  {cartItem.quantity}
+                </label>
                 <button
+                  disabled={cartItem.quantity === 1}
+                  className={styles.btnCart}
                   onClick={handleQuantity}
                   name="less"
                   value={cartItem.id}
                 >
                   -
                 </button>
-                {/* <ArrowDropDownIcon /> */}
               </div>
             </div>
             <div className={styles.precio}>
               $ {cartItem.price - cartItem.discount}
             </div>
-            <button onClick={handleDelete} value={cartItem.id}>
-              delete
-            </button>
+            <button
+              className={styles.btnDelete}
+              onClick={handleDelete}
+              value={cartItem.id}
+            ></button>
           </div>
         ))}
       </div>

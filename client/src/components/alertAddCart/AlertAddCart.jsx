@@ -11,7 +11,7 @@ function AlertAddCart({ setAddProduct, addProduct }) {
         open={addProduct}
         autoHideDuration={4000}
         onClose={() => {
-          setAddProduct(!addProduct);
+          setAddProduct(false);
         }}
       >
         <Alert style={{ backgroundColor: "#f5b7b1" }} severity="success">
