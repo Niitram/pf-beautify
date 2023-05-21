@@ -1,3 +1,8 @@
+.backButton{
+    background-color: transparent;
+    border: none;
+    z-index: 9999;
+}
 .container{
     display: flex;
     justify-content: center;
@@ -10,10 +15,10 @@
     background-color: var(--background);
 }
 .container img{
-   display: flex;
-   flex-direction: column;
-   width: 20rem;
-   height: 27rem;
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    height: 27rem;
     margin-top: 1rem;
     margin-right: 6rem;
     margin-bottom: 1rem;
@@ -103,6 +108,7 @@
 }
 .descripction{
     text-align: justify;
+    font-weight: lighter;
 }
 .apartadoCompras{
     display: flex;
@@ -123,7 +129,7 @@
 .inputCantidad{
     height: 40px;
     font-size: 18px;
-
+    padding-left: 1rem;
 }
 .shopMax{
     display: flex;
