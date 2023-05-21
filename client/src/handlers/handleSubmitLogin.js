@@ -11,12 +11,13 @@ const handleSubmitLogin = async (
   navigate,
   location,
   handleLoginClick,
-  setCreatingAccount
+  setCreatingAccount,
+  userInfo
 ) => {
   e.preventDefault();
-  const name = e.target.name.value;
-  const password = e.target.password.value;
-  const email = e.target.email.value;
+  const name = userInfo.name;
+  const password = userInfo.password;
+  const email = userInfo.email;
 
   setUserInfo({ name: "", password: "", email: "" });
   try {
@@ -81,15 +82,28 @@ const handleSubmitLogin = async (
     const emailInUse = "Firebase: Error (auth/email-already-in-use).";
     const emailInDb = "User alredy exists in database";
     if (error.message.includes(userNotFound)) {
-      dispatch(showError({ tittle: "Wrong-user", message: "User not found" }))
+      dispatch(showError({ tittle: "Wrong-user", message: "User not found" }));
     } else if (
       error.message.includes(emailInUse) ||
       error.message.includes(emailInDb)
     ) {
-      dispatch(showError({ tittle: "Wrong-user", message: "User alredy exists" }))
+      dispatch(
+        showError({ tittle: "Wrong-user", message: "User alredy exists" })
+      );
     } else if (error.message.includes(ingresaConGooglePelotudo)) {
-      dispatch(showError({ tittle: "Wrong-password", message: "Wrong data. Try loging in with google or another account" }))
-    } else dispatch(showError({ tittle: "An error has ocurred", message: "Please try again" }))
+      dispatch(
+        showError({
+          tittle: "Wrong-password",
+          message: "Wrong data. Try loging in with google or another account",
+        })
+      );
+    } else
+      dispatch(
+        showError({
+          tittle: "An error has ocurred",
+          message: "Please try again",
+        })
+      );
 
     console.log(error.message);
   }

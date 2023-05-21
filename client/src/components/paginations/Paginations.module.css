@@ -23,10 +23,6 @@
     cursor: pointer;
 }
 
-.buttonPages:focus{
-    background-color: #EE9890;
-}
-
 .buttonPages:disabled:hover{
     background: var(--accent2);
    

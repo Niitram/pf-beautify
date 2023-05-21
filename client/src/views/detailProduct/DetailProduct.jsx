@@ -77,7 +77,7 @@ function DetailProduct({ handleLoginClick }) {
   const { name, image, description, price, stock, rate, discount } = product;
   console.log(product.category);
   return (
-    <div>
+    <div className={styles.aux}>
       <div className={styles.container}>
         <div className={styles.containerBack}>
           <Link to={"/products"}>
@@ -97,7 +97,7 @@ function DetailProduct({ handleLoginClick }) {
           ) : (
             <Skeleton height={40} />
           )}
-          <h3 className={styles.descripcionProduct}>Description</h3>
+          {/* <h3 className={styles.descripcionProduct}>Description</h3> */}
           {rate ? (
             <Stack>
               <Rating value={rate < 1 ? 1 : rate} precision={0.5} readOnly />
