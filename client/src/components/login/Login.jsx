@@ -7,7 +7,8 @@ import ErrorInputMessage from "../../components/errorInputMessage/ErrorInputMess
 import handleSubmitLogin from "../../handlers/handleSubmitLogin";
 import { getAuth, signInWithRedirect } from "firebase/auth";
 import validateCreateUser from "../../utils/validateCreateUser";
-import styles from "../../views/landing/Landing.module.css";
+import styles from "./Login.module.css";
+import GoogleIcon from '../../assets/images/GoogleIconColored.png'
 
 const Login = ({
   loginVisible,
@@ -80,11 +81,7 @@ const Login = ({
             userInfo
           );
         }}
-        className={
-          location.pathname !== "/"
-            ? styles.loginContainer
-            : styles.landingContainer
-        }
+        className={styles.loginContainer}
       >
         <div
           className={styles.LoginForm}
@@ -189,8 +186,10 @@ const Login = ({
           >
             {creatingAccount ? "Register" : "Login"}
           </button>
+          <div style={{ display:'flex',marginBottom:'0.5rem'}}>
+           <p style={{fontSize:'large'}}>{creatingAccount? 'Already a member?':'Not a member?'}</p> 
           <button
-            className={styles.BotonLogin}
+            className={styles.BotonSwitch}
             onClick={(e) => {
               e.preventDefault();
               !creatingAccount
@@ -202,19 +201,20 @@ const Login = ({
               setCreatingAccount(!creatingAccount);
             }}
           >
-            {creatingAccount
-              ? "You are already a member?"
-              : "You are not a member?"}
+           <p style={{color:"#d14d72",fontSize:'large'}} className={styles.Switch}>{creatingAccount
+              ? 'Log in'
+              : 'Register'}</p> 
           </button>
-
+          </div>
           <button
-            className={styles.BotonLogin}
+            className={styles.BotonGoogle}
             onClick={(e) => {
               e.preventDefault();
               loginWithGoogle();
             }}
           >
-            Google
+            <p >Log in with Google</p>
+            <img src={GoogleIcon}/>
           </button>
         </div>
       </form>
