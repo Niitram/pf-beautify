@@ -3,7 +3,6 @@ const nodemailer = require('nodemailer');
 const { Client } = require("../db");
 
 
-
 const sendMailByShop = async (clientId, shop, callback = mail) => {
     const client = await Client.findByPk(clientId);
 

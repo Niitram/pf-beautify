@@ -2,7 +2,6 @@ const mail = require('./nodemailer.js');
 const nodemailer = require('nodemailer');
 
 
-
 const sendMail = async (email,name, callback=mail) => {
 
     const mailOptions = {

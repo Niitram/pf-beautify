@@ -13,7 +13,6 @@ const postClient = async (password, email, name) => {
 
   sendMail(email,client[0].fullName)
 
-
   return client[0].dataValues;
 };
 

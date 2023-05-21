@@ -45,6 +45,7 @@ const postNewShop = async (shopData) => {
     clientId: newShop.ClientId,
     details,
   };
+  
   sendMailByShop(finalShop.clientId,finalShop)
   return finalShop;
 };
