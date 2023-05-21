@@ -1,13 +1,14 @@
 const { Shop, ShopsDetail, Product } = require("../../db");
 
 const postNewShop = async (shopData) => {
+  console.log('POST NEW SHOP',shopData)
   //* creamos la compra general y la asociamos con el cliente
   const newShop = await Shop.create({
     amount: shopData.amount,
     discount: shopData.discount,
   });
   newShop.setClient(shopData.clientId);
-
+  
   //* por cada producto comprado creamos un detalle, al que asociamos con la compra general y el producto
   //* lo devolvemos de manera organizada en un nuevo objeto
 
