@@ -35,4 +35,5 @@ const mail = async (callback, mailOptions) => {
   callback(accountTransport);
 };
 
+
 module.exports = mail;
