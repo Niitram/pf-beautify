@@ -50,13 +50,13 @@ router.get("/feedback", async (req, res) => {
 
     if (req.query.status === "approved") {
       const response = await approved(products.preferenceId, email);
-      res.status(200).redirect(`${products.returnUrl}/#/home`);
+      res.status(200).redirect(`${products.returnUrl}/#/purchaseSuccess`);
     } else {
       const purchase = await Purchase.findAll({ where: { clientMail: email } });
       purchase.forEach(async (each) => {
         await each.destroy();
       });
-      res.status(402).redirect(`${products.returnUrl}/#/home`);
+      res.status(402).redirect(`${products.returnUrl}/#/purchaseError`);
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
