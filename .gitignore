@@ -105,3 +105,6 @@ dist
 
 # package-lock.json
 package-lock.json
+
+#json que contiene los datos de acceso para enviar correos
+account-transporter.json
