@@ -13,6 +13,7 @@ import Name from "../../components/detailUserForm/name";
 import Image from "../../components/detailUserForm/image";
 import Phone from "../../components/detailUserForm/phone";
 import Adress from "../../components/detailUserForm/adress";
+import zIndex from "@mui/material/styles/zIndex";
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
@@ -125,78 +126,84 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       ></div>
 
       <form onSubmit={handleSubmit} className={styles.Container}>
-        <div className={styles.closeButtons}>
-          <button onClick={onLogout} className={styles.closeDetailButton}>
-            Logout
-          </button>
-          <button
-            onClick={handleDetailClick}
-            className={styles.closeDetailButton}
-          >
-            {"< Close"}
-          </button>
-        </div>
+        {!userData.email ? (
+          <h1 styles={{ zIndex: 1000 }}>Loading</h1>
+        ) : (
+          <>
+            <div className={styles.closeButtons}>
+              <button onClick={onLogout} className={styles.closeDetailButton}>
+                Logout
+              </button>
+              <button
+                onClick={handleDetailClick}
+                className={styles.closeDetailButton}
+              >
+                {"< Close"}
+              </button>
+            </div>
 
-        <Name
-          visibleInputs={visibleInputs}
-          handleVisibleInputs={handleVisibleInputs}
-          handleChange={handleChange}
-          userData={userData}
-          errors={errors}
-          handleSubmit={handleSubmit}
-        />
+            <Name
+              visibleInputs={visibleInputs}
+              handleVisibleInputs={handleVisibleInputs}
+              handleChange={handleChange}
+              userData={userData}
+              errors={errors}
+              handleSubmit={handleSubmit}
+            />
 
-        <div className={styles.emailPropertys}>
-          <h3 className={styles.value}>
-            {userData.email ? userData.email : "Unknown"}
-          </h3>
-        </div>
+            <div className={styles.emailPropertys}>
+              <h3 className={styles.value}>
+                {userData.email ? userData.email : "Unknown"}
+              </h3>
+            </div>
 
-        <Image
-          updatedData={updatedData}
-          visibleInputs={visibleInputs}
-          handleVisibleInputs={handleVisibleInputs}
-          userData={userData}
-          errors={errors}
-          setUpdatedData={setUpdatedData}
-          setErrors={setErrors}
-        />
+            <Image
+              updatedData={updatedData}
+              visibleInputs={visibleInputs}
+              handleVisibleInputs={handleVisibleInputs}
+              userData={userData}
+              errors={errors}
+              setUpdatedData={setUpdatedData}
+              setErrors={setErrors}
+            />
 
-        <Phone
-          visibleInputs={visibleInputs}
-          handleVisibleInputs={handleVisibleInputs}
-          handleChange={handleChange}
-          userData={userData}
-          errors={errors}
-          handleSubmit={handleSubmit}
-        />
+            <Phone
+              visibleInputs={visibleInputs}
+              handleVisibleInputs={handleVisibleInputs}
+              handleChange={handleChange}
+              userData={userData}
+              errors={errors}
+              handleSubmit={handleSubmit}
+            />
 
-        <Adress
-          visibleInputs={visibleInputs}
-          handleVisibleInputs={handleVisibleInputs}
-          handleChange={handleChange}
-          userData={userData}
-          errors={errors}
-          handleSubmit={handleSubmit}
-        />
+            <Adress
+              visibleInputs={visibleInputs}
+              handleVisibleInputs={handleVisibleInputs}
+              handleChange={handleChange}
+              userData={userData}
+              errors={errors}
+              handleSubmit={handleSubmit}
+            />
 
-        {anyUpdatedData() && (
-          <button
-            type="submit"
-            className={styles.importantButton}
-            disabled={anyErrors(errors)}
-          >
-            Submit changes
-          </button>
+            {anyUpdatedData() && (
+              <button
+                type="submit"
+                className={styles.importantButton}
+                disabled={anyErrors(errors)}
+              >
+                Submit changes
+              </button>
+            )}
+
+            <hr className={styles.hr} />
+
+            <div className={styles.finalButtons}>
+              <button className={styles.button}>My favorites</button>
+
+              <button className={styles.button}>My history</button>
+            </div>
+          </>
         )}
-
-        <hr className={styles.hr} />
-
-        <div className={styles.finalButtons}>
-          <button className={styles.button}>My favorites</button>
-
-          <button className={styles.button}>My history</button>
-        </div>
       </form>
     </div>
   );
