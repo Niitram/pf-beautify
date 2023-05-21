@@ -12,6 +12,8 @@ export default function Landing({ loginVisible, handleLoginClick }) {
           <strong>Embrace your</strong>
         </h2>
         <h2 className={styles.beauty}>beauty</h2>
+        <div style={{display:"flex",flexDirection:"column"}}>
+
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -20,17 +22,18 @@ export default function Landing({ loginVisible, handleLoginClick }) {
           }}
           className={styles.Login}
         >
-          Login / Register
+          <p>Continue</p>
         </button>
         <button
           onClick={(e) => {
             e.preventDefault();
             navigate("/home");
           }}
-          className={styles.Login}
+          className={styles.guest}
         >
-          Invited
+          <p>Guest</p>
         </button>
+        </div>
       </div>
 
       <img src={logo} alt="logo" />

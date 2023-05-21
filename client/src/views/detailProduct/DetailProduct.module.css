@@ -4,7 +4,10 @@
     flex-direction: row;
     width: 100%;
     margin-top: 2rem;
-    
+}
+
+.aux{
+    background-color: var(--background);
 }
 .container img{
    display: flex;

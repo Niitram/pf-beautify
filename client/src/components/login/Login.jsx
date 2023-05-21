@@ -76,7 +76,8 @@ const Login = ({
             navigate,
             location,
             handleLoginClick,
-            setCreatingAccount
+            setCreatingAccount,
+            userInfo
           );
         }}
         className={
@@ -107,6 +108,21 @@ const Login = ({
                 placeholder="Name"
                 className="Username"
                 onChange={handleChange}
+                onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSubmitLogin(
+                    e,
+                    dispatch,
+                    setUserInfo,
+                    creatingAccount,
+                    navigate,
+                    location,
+                    handleLoginClick,
+                    setCreatingAccount,
+                    userInfo
+                  );
+                }
+              }}
               />
             )}
             <ErrorInputMessage errors={errors.email} text={errors.name} />
@@ -117,6 +133,21 @@ const Login = ({
               placeholder="email@example.com"
               className="Username"
               onChange={handleChange}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSubmitLogin(
+                    e,
+                    dispatch,
+                    setUserInfo,
+                    creatingAccount,
+                    navigate,
+                    location,
+                    handleLoginClick,
+                    setCreatingAccount,
+                    userInfo
+                  );
+                }
+              }}
             />
             <ErrorInputMessage errors={errors.email} text={errors.email} />
             <input
@@ -126,6 +157,21 @@ const Login = ({
               placeholder="Password"
               className="Password"
               onChange={handleChange}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSubmitLogin(
+                    e,
+                    dispatch,
+                    setUserInfo,
+                    creatingAccount,
+                    navigate,
+                    location,
+                    handleLoginClick,
+                    setCreatingAccount,
+                    userInfo
+                  );
+                }
+              }}
             />
             <ErrorInputMessage
               errors={errors.password}
