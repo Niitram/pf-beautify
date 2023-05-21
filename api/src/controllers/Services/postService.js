@@ -16,4 +16,3 @@ const postService = async (name, price, description, image, rate) => {
 
 module.exports = postService;
 
-module.exports = postService;
