@@ -55,9 +55,6 @@ const validateFindOrCreate = async (req, res, next) => {
 
     if (fullName) {
       if (fullName.length > 255) throw new Error("Name's too long");
-      const client = await Client.findOne({ where: { email } });
-      if (client && client.fullName !== fullName)
-        throw new Error("Incorrect name");
     }
 
     if (adress && adress.length > 255) throw new Error("Name's too long");

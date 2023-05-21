@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import useToggle from "../../hooks/useToggle";
 import { googleProvider } from "../../utils/firebaseConfig";
 import ErrorInputMessage from "../../components/errorInputMessage/ErrorInputMessage";
 import handleSubmitLogin from "../../handlers/handleSubmitLogin";
@@ -76,7 +75,8 @@ const Login = ({
             navigate,
             location,
             handleLoginClick,
-            setCreatingAccount
+            setCreatingAccount,
+            userInfo
           );
         }}
         className={
@@ -107,6 +107,21 @@ const Login = ({
                 placeholder="Name"
                 className="Username"
                 onChange={handleChange}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmitLogin(
+                      e,
+                      dispatch,
+                      setUserInfo,
+                      creatingAccount,
+                      navigate,
+                      location,
+                      handleLoginClick,
+                      setCreatingAccount,
+                      userInfo
+                    );
+                  }
+                }}
               />
             )}
             <ErrorInputMessage errors={errors.email} text={errors.name} />
@@ -117,6 +132,21 @@ const Login = ({
               placeholder="email@example.com"
               className="Username"
               onChange={handleChange}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSubmitLogin(
+                    e,
+                    dispatch,
+                    setUserInfo,
+                    creatingAccount,
+                    navigate,
+                    location,
+                    handleLoginClick,
+                    setCreatingAccount,
+                    userInfo
+                  );
+                }
+              }}
             />
             <ErrorInputMessage errors={errors.email} text={errors.email} />
             <input
@@ -126,6 +156,21 @@ const Login = ({
               placeholder="Password"
               className="Password"
               onChange={handleChange}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSubmitLogin(
+                    e,
+                    dispatch,
+                    setUserInfo,
+                    creatingAccount,
+                    navigate,
+                    location,
+                    handleLoginClick,
+                    setCreatingAccount,
+                    userInfo
+                  );
+                }
+              }}
             />
             <ErrorInputMessage
               errors={errors.password}

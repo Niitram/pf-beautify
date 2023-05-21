@@ -190,13 +190,9 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
         <hr className={styles.hr} />
 
         <div className={styles.finalButtons}>
-          <button onClick={onLogout} className={styles.button}>
-            My favorites
-          </button>
+          <button className={styles.button}>My favorites</button>
 
-          <button onClick={onLogout} className={styles.button}>
-            My history
-          </button>
+          <button className={styles.button}>My history</button>
         </div>
       </form>
     </div>

@@ -74,6 +74,7 @@ function App() {
   onAuthStateChanged(auth, async (usuarioFirebase) => {
     // las tres condiciones: hubo un cambio en la auth, el usuario recibido es de google, antes no había usuario logueado
     // la intención de estas condiciones es que sólo se ejecute la función cuando el usuario esté logueándose con Google
+
     if (
       usuarioFirebase &&
       usuarioFirebase.displayName &&
