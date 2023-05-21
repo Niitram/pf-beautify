@@ -42,8 +42,9 @@ const Login = ({
 
   const loginWithGoogle = async () => {
     try {
-      signInWithRedirect(auth, googleProvider);
-      if (location.pathname === "/") navigate("/loading");
+      localStorage.setItem("oldLocation", JSON.stringify(location.pathname));
+      navigate("/loading");
+      await signInWithRedirect(auth, googleProvider);
       setCreatingAccount(false);
     } catch (error) {
       window.alert(error.message);

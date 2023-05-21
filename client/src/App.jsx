@@ -48,6 +48,7 @@ function App() {
 
   // sirve para distinguir si el usuario está registrándose (true) o iniciando sesión
   const [creatingAccount, setCreatingAccount] = useToggle(false);
+
   const auth = getAuth();
   const userData = useSelector((state) => state.userData);
 
@@ -91,9 +92,14 @@ function App() {
           locationNow
         );
         setLogout(false);
-        if (locationNow.pathname === "/loading") navigate("/home");
+
+        const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
+        if (!oldLocation || oldLocation === "/") navigate("/home");
+        else navigate(oldLocation);
       } catch (error) {
-        navigate("/");
+        const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
+        if (!oldLocation) navigate("/");
+        else navigate(oldLocation);
         console.log(error.message);
       }
     }

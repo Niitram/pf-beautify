@@ -27,8 +27,9 @@ const initialState = {
   },
   errorState: {
     tittle: null,
-    message: null
-  }
+    message: null,
+  },
+  oldLocation: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -65,8 +66,8 @@ const rootReducer = (state = initialState, action) => {
         category === "all"
           ? state.allProducts
           : state.allProducts.filter(
-            (product) => product.category === category
-          );
+              (product) => product.category === category
+            );
 
       return {
         ...state,
@@ -137,7 +138,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         errorState: {
           tittle: action.payload.tittle,
-          message: action.payload.message
+          message: action.payload.message,
         },
       };
     case CLEAR_ERROR:
@@ -145,7 +146,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         errorState: {
           tittle: null,
-          message: null
+          message: null,
         },
       };
 
