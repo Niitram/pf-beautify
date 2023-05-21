@@ -23,8 +23,8 @@ const Name = ({
               name="name"
               onKeyDown={(e) => {
                 // console.log(e);
-                e.preventDefault();
                 if (e.key === "Enter") {
+                  e.preventDefault();
                   handleSubmit(e);
                 }
               }}
