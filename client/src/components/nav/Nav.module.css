@@ -82,6 +82,7 @@
   border: 0px;
   padding: 10px 35px 10px 35px;
   justify-content: center;
+  cursor: pointer;
 }
 
 .myProfile:hover {
