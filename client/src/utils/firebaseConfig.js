@@ -86,7 +86,7 @@ export const loginWithGoogleFirebase = async (
     email: usuarioFirebase.email,
     fullName: usuarioFirebase.displayName,
     phone: usuarioFirebase.phoneNumber,
-    image: usuarioFirebase.photoURL,
+    image: usuarioFirebase.image || null,
   });
   const dbClient = response.data;
 

@@ -4,7 +4,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import styles from "./DetailProduct.module.css";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../request/product";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ImageComponent from "../../components/imageComponent/ImageComponent";
@@ -16,6 +16,8 @@ import useToggle from "../../hooks/useToggle";
 import { showError } from "../../redux/actions";
 
 function DetailProduct({ handleLoginClick }) {
+
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -26,7 +28,9 @@ function DetailProduct({ handleLoginClick }) {
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
   };
-  const handleAddToCart = () => {
+
+  const handleAddToCart = (e) => {
+
     if (!userData.id) return handleLoginClick();
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const productExist = cart.find((cartItem) => cartItem.id == product.id);
@@ -68,6 +72,7 @@ function DetailProduct({ handleLoginClick }) {
       });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
+    if (e.target.name === "buyNow") navigate("/cart");
   };
 
   const handleFavorite = () => {
@@ -151,17 +156,18 @@ function DetailProduct({ handleLoginClick }) {
               max={stock}
               defaultValue="1"
             />
-            <label className={styles.shopMax}>Max {stock}</label>
-            <Link to="/cart">
-              <button
-                onClick={handleAddToCart}
-                name="buyNow"
-                className={styles.btnShopNow}
-                type="submit"
-              >
-                Buy now
-              </button>
-            </Link>
+            <label className={styles.shopMax}>Max 5</label>
+            {/* <Link to="/cart"> */}
+            <button
+              onClick={handleAddToCart}
+              name="buyNow"
+              className={styles.btnShopNow}
+              type="submit"
+            >
+              Buy now
+            </button>
+            {/* </Link> */}
+
             <div className={styles.btnCartAndList}>
               <button
                 onClick={handleAddToCart}

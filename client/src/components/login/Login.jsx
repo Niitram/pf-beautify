@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import useToggle from "../../hooks/useToggle";
 import { googleProvider } from "../../utils/firebaseConfig";
 import ErrorInputMessage from "../../components/errorInputMessage/ErrorInputMessage";
 import handleSubmitLogin from "../../handlers/handleSubmitLogin";
@@ -43,7 +42,8 @@ const Login = ({
 
   const loginWithGoogle = async () => {
     try {
-      await signInWithRedirect(auth, googleProvider);
+      signInWithRedirect(auth, googleProvider);
+      if (location.pathname === "/") navigate("/loading");
       setCreatingAccount(false);
     } catch (error) {
       window.alert(error.message);
@@ -106,20 +106,21 @@ const Login = ({
                 className="Username"
                 onChange={handleChange}
                 onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSubmitLogin(
-                    e,
-                    dispatch,
-                    setUserInfo,
-                    creatingAccount,
-                    navigate,
-                    location,
-                    handleLoginClick,
-                    setCreatingAccount,
-                    userInfo
-                  );
-                }
-              }}
+                  if (e.key === "Enter") {
+                    handleSubmitLogin(
+                      e,
+                      dispatch,
+                      setUserInfo,
+                      creatingAccount,
+                      navigate,
+                      location,
+                      handleLoginClick,
+                      setCreatingAccount,
+                      userInfo
+                    );
+                  }
+                }}
+
               />
             )}
             <ErrorInputMessage errors={errors.email} text={errors.name} />
@@ -210,6 +211,7 @@ const Login = ({
             className={styles.BotonGoogle}
             onClick={(e) => {
               e.preventDefault();
+              handleLoginClick();
               loginWithGoogle();
             }}
           >
