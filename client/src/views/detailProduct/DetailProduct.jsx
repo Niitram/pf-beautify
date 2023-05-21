@@ -3,9 +3,8 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import styles from "./DetailProduct.module.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getProductById } from "../../request/product";
-import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ImageComponent from "../../components/imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
@@ -15,7 +14,6 @@ import SectionCards from "../../components/sectionCards/SectionCards";
 function DetailProduct({ handleLoginClick }) {
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
-    console.log(quantity);
   };
   const allProducts = useSelector((state) => state.allProducts);
   const handleAddToCart = () => {
@@ -75,14 +73,16 @@ function DetailProduct({ handleLoginClick }) {
   }, [id]);
 
   const { name, image, description, price, stock, rate, discount } = product;
-  console.log(product.category);
   return (
     <div className={styles.aux}>
       <div className={styles.container}>
         <div className={styles.containerBack}>
-          <Link to={"/products"}>
+          <button 
+            className={styles.backButton}
+            onClick={() => history.back()}
+          >
             <ArrowBackIosNewIcon />
-          </Link>
+          </button>
           {image && (
             <ImageComponent
               src={image}
@@ -130,16 +130,16 @@ function DetailProduct({ handleLoginClick }) {
           <p className={styles.descripction}>{description}</p>
           {/* <label className={styles.more}>Leer mas</label> */}
           <div className={styles.apartadoCompras}>
-            <label className={styles.cantidad}>quantity</label>
+            <label className={styles.cantidad}>Quantity</label>
             <input
               className={styles.inputCantidad}
               onChange={handleQuantity}
               type="number"
               min="1"
-              max="5"
+              max={stock}
               defaultValue="1"
             />
-            <label className={styles.shopMax}>Max 5</label>
+            <label className={styles.shopMax}>Max {stock}</label>
             <Link to="/cart">
               <button
                 onClick={handleAddToCart}

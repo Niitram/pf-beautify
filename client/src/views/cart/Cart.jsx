@@ -57,7 +57,7 @@ function Cart() {
   }, []);
 
   const emailUsuario = useSelector((state) => state.userData.email)
-  const localCarrito = JSON.parse(localStorage.getItem('cart'))
+  const localCarrito = JSON.parse(localStorage.getItem("cart")) || [];
   const carrito = localCarrito.map(element => {
     return {
       title: element.name,
