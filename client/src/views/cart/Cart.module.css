@@ -48,6 +48,7 @@
     gap: 30px;
     width: 100%;
     height: 50%;
+    padding: 10px 0px;
     justify-content: center;
     align-items: center;
     border-color: black;
@@ -73,6 +74,8 @@
 .descriptionProduct{
  font-size: 9px;
  font-family: 'Nunito';
+ width: 15rem;
+ text-align: left;
 }
 .btnupdown{
     display: flex;
@@ -81,12 +84,37 @@
 .precio{
     font-family: 'Poppins';
     font-size: small;
+    width: 3rem;
 }
 .cantidad{
     display: flex;
     align-items: center;
     flex-direction: row;
 
+}
+.btnCart{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.btnCart:disabled{
+    cursor: auto;
+    color: transparent;
+}
+.btnDelete{
+    height: 25px;
+    width: 25px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url("../../assets/images/delete_forever_FILL0_wght400_GRAD0_opsz48.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.7;
+}
+.cantidadProduct{
+    padding: 5px;
 }
 .cantidad label{
     margin-right: 20%;

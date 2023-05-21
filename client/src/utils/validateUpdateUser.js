@@ -1,15 +1,17 @@
 export const validateUpdateUser = (user, visibleInputs) => {
+  const regexPhone = /^(?:[0-9] ?){6,14}[0-9]$/;
+  const regexString = /^(?!\s)[a-zA-Z0-9][a-zA-Z0-9\s]*$/;
   const errors = {
     name: "",
     adress: "",
     phone: "",
     image: "",
   };
-  if (visibleInputs.name && (user.name.length > 255 || !user.name.length))
+  if (visibleInputs.name && (!regexString.test(user.name) || user.name.length > 100 || !user.name.length))
     errors.name = true;
-  if (visibleInputs.adress && (user.adress.length > 255 || !user.adress.length))
+  if (visibleInputs.adress && (!regexString.test(user.adress) || user.adress.length > 100 || !user.adress.length))
     errors.adress = true;
-  if (visibleInputs.phone && (user.phone.length > 15 || !user.phone.length))
+  if (visibleInputs.phone && (!regexPhone.test(user.phone) || !user.phone.length))
     errors.phone = true;
   if (visibleInputs.image) {
     if (!user.image.length) errors.image = true;
