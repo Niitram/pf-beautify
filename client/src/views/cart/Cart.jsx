@@ -56,7 +56,6 @@ function Cart() {
     setCart(cartData);
   }, []);
 
-
   const emailUsuario = useSelector((state) => state.userData.email);
   const localCarrito = JSON.parse(localStorage.getItem("cart")) || [];
   const carrito = localCarrito.map((element) => {
@@ -100,7 +99,9 @@ function Cart() {
             You have {cantArticulos} items in your cart
           </label>
         </div>
-        <label className={styles.txtCarrito}>Total price $ {totalPrice}</label>
+        <label className={styles.txtCarrito}>
+          Total price $ {totalPrice.toFixed(2)}
+        </label>
         {cart.map((cartItem) => (
           <div key={cartItem.id} className={styles.articulo}>
             <div className={styles.imagenArticulo}>

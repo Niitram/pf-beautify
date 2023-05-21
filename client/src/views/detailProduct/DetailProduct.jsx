@@ -27,7 +27,7 @@ function DetailProduct({ handleLoginClick }) {
   const [addProduct, setAddProduct] = useToggle(false);
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
-    console.log(Number(event.target.value) > stock);
+    //Se controla que la cantidad ingresada no sea mayor a la cantidad de stock disponible
     if (Number(event.target.value) > stock) {
       setErrorQuantity(true);
       return;
