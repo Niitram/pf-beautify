@@ -6,7 +6,6 @@ import styles from "./DetailProduct.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../request/product";
-import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ImageComponent from "../../components/imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
@@ -95,9 +94,12 @@ function DetailProduct({ handleLoginClick }) {
     <div className={styles.aux}>
       <div className={styles.container}>
         <div className={styles.containerBack}>
-          <Link to={"/products"}>
+          <button 
+            className={styles.backButton}
+            onClick={() => history.back()}
+          >
             <ArrowBackIosNewIcon />
-          </Link>
+          </button>
           {image && (
             <ImageComponent
               src={image}
@@ -145,13 +147,13 @@ function DetailProduct({ handleLoginClick }) {
           <p className={styles.descripction}>{description}</p>
           {/* <label className={styles.more}>Leer mas</label> */}
           <div className={styles.apartadoCompras}>
-            <label className={styles.cantidad}>quantity</label>
+            <label className={styles.cantidad}>Quantity</label>
             <input
               className={styles.inputCantidad}
               onChange={handleQuantity}
               type="number"
               min="1"
-              max="5"
+              max={stock}
               defaultValue="1"
             />
             <label className={styles.shopMax}>Max 5</label>
@@ -165,6 +167,7 @@ function DetailProduct({ handleLoginClick }) {
               Buy now
             </button>
             {/* </Link> */}
+
             <div className={styles.btnCartAndList}>
               <button
                 onClick={handleAddToCart}
