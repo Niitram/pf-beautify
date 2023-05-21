@@ -1,7 +1,6 @@
 const { Shop, ShopsDetail, Product } = require("../../db");
 
 const postNewShop = async (shopData) => {
-  console.log('POST NEW SHOP',shopData)
   //* creamos la compra general y la asociamos con el cliente
   const newShop = await Shop.create({
     amount: shopData.amount,
