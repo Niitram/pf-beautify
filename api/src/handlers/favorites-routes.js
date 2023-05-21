@@ -27,14 +27,18 @@ favoritesRouter.post("/", postFavoritesValidation, async (req, res) => {
   }
 });
 
-favoritesRouter.delete("/", deleteFavoritesValidation, async (req, res) => {
-  try {
-    const { clientId, productId } = req.body;
-    const oldFavorite = await deleteFavorite(productId, clientId);
-    res.status(200).json(oldFavorite);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+favoritesRouter.delete(
+  "/:clientId/:productId",
+  deleteFavoritesValidation,
+  async (req, res) => {
+    try {
+      const { clientId, productId } = req.params;
+      const oldFavorite = await deleteFavorite(productId, clientId);
+      res.status(200).json(oldFavorite);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   }
-});
+);
 
 module.exports = favoritesRouter;

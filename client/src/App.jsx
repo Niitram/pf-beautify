@@ -30,6 +30,7 @@ import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
+import Favorites from "./views/favorites/Favorites";
 
 function App() {
   const locationNow = useLocation();
@@ -148,6 +149,7 @@ function App() {
           }
         />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
