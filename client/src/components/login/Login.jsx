@@ -41,7 +41,8 @@ const Login = ({
 
   const loginWithGoogle = async () => {
     try {
-      await signInWithRedirect(auth, googleProvider);
+      signInWithRedirect(auth, googleProvider);
+      if (location.pathname === "/") navigate("/loading");
       setCreatingAccount(false);
     } catch (error) {
       window.alert(error.message);
@@ -210,6 +211,7 @@ const Login = ({
             className={styles.BotonLogin}
             onClick={(e) => {
               e.preventDefault();
+              handleLoginClick();
               loginWithGoogle();
             }}
           >

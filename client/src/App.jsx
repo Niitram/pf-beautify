@@ -28,6 +28,7 @@ import Login from "./components/login/Login";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
+import Loading from "./views/loading/Loading";
 
 function App() {
   const locationNow = useLocation();
@@ -88,12 +89,13 @@ function App() {
         locationNow
       );
       setLogout(false);
+      if (locationNow.pathname === "/loading") navigate("/home");
     }
   });
 
   return (
     <div className="App">
-      {locationNow.pathname !== "/" && (
+      {locationNow.pathname !== "/" && locationNow.pathname !== "/loading" && (
         <Nav
           handleLoginClick={handleLoginClick}
           handleDetailClick={handleDetailClick}
@@ -133,6 +135,7 @@ function App() {
             />
           }
         />
+        <Route path="/loading" element={<Loading />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />

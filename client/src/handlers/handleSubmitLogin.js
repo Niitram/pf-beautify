@@ -15,6 +15,7 @@ const handleSubmitLogin = async (
   userInfo
 ) => {
   e.preventDefault();
+
   const name = userInfo.name;
   const password = userInfo.password;
   const email = userInfo.email;
@@ -32,6 +33,7 @@ const handleSubmitLogin = async (
       };
 
       // corroboramos que el usuario no exista en la base de datos
+      if (location.pathname === "/") navigate("/home");
       // const oldUser = await getClient(createUser.email);
       // if (oldUser) throw Error("User alredy exists in database");
 
@@ -51,7 +53,6 @@ const handleSubmitLogin = async (
       dispatch(setUserInfoAction(userData));
 
       // handleLoginClick();
-      if (location.pathname === "/") navigate("/home");
       setCreatingAccount(false);
     } else {
       // se loguea en firebase

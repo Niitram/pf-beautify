@@ -13,7 +13,6 @@ import Name from "../../components/detailUserForm/name";
 import Image from "../../components/detailUserForm/image";
 import Phone from "../../components/detailUserForm/phone";
 import Adress from "../../components/detailUserForm/adress";
-import zIndex from "@mui/material/styles/zIndex";
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
