@@ -10,6 +10,7 @@ const Adress = ({
   handleChange,
   userData,
   errors,
+  handleSubmit,
 }) => {
   return (
     <div className={styles.textContainer}>
@@ -33,7 +34,17 @@ const Adress = ({
             </IconButton>
           </div>
           <div className={styles.inputDiv}>
-            <input onChange={handleChange} type="text" name="adress"></input>
+            <input
+              onChange={handleChange}
+              type="text"
+              name="adress"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleSubmit(e);
+                }
+              }}
+            ></input>
             {errors.adress && <p className={styles.inputError}>*</p>}
           </div>
         </div>

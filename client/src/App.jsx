@@ -28,7 +28,11 @@ import Login from "./components/login/Login";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
+<<<<<<< HEAD
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
+=======
+import Loading from "./views/loading/Loading";
+>>>>>>> 814f1ba72e8d9cc2c733ed1211fec95e14d6e9ec
 
 function App() {
   const locationNow = useLocation();
@@ -75,6 +79,7 @@ function App() {
   onAuthStateChanged(auth, async (usuarioFirebase) => {
     // las tres condiciones: hubo un cambio en la auth, el usuario recibido es de google, antes no había usuario logueado
     // la intención de estas condiciones es que sólo se ejecute la función cuando el usuario esté logueándose con Google
+
     if (
       usuarioFirebase &&
       usuarioFirebase.displayName &&
@@ -88,12 +93,13 @@ function App() {
         locationNow
       );
       setLogout(false);
+      if (locationNow.pathname === "/loading") navigate("/home");
     }
   });
 
   return (
     <div className="App">
-      {locationNow.pathname !== "/" && (
+      {locationNow.pathname !== "/" && locationNow.pathname !== "/loading" && (
         <Nav
           handleLoginClick={handleLoginClick}
           handleDetailClick={handleDetailClick}
@@ -133,6 +139,7 @@ function App() {
             />
           }
         />
+        <Route path="/loading" element={<Loading />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
