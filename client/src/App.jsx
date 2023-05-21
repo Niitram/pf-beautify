@@ -30,6 +30,7 @@ import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
+import PurchaseError from "./views/purchaseError/PurchaseError";
 
 function App() {
   const locationNow = useLocation();
@@ -177,6 +178,7 @@ function App() {
             />
           }
         >
+          <Route path="/purchaseError" element={<PurchaseError />} />
           <Route path="/purchaseSuccess" element={<PurchaseSuccess />} />
           <Route path="/detailPayment" element={<DetailPayment />} />
           <Route path="/cart" element={<Cart />} />
