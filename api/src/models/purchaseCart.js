@@ -17,6 +17,10 @@ module.exports = (sequelize) => {
       clientMail: {
         allowNull: false,
         type: DataTypes.STRING
+      },
+      returnUrl: {
+        allowNull: false,
+        type: DataTypes.STRING
       }
     },
     { timestamps: false }
