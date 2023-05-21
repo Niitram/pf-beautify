@@ -10,13 +10,25 @@ const Name = ({
   handleChange,
   userData,
   errors,
+  handleSubmit,
 }) => {
   return (
     <div className={styles.textContainer}>
       {visibleInputs.name ? (
         <div className={styles.namePropertys}>
           <div className={styles.inputDiv}>
-            <input onChange={handleChange} type="text" name="name"></input>
+            <input
+              onChange={handleChange}
+              type="text"
+              name="name"
+              onKeyDown={(e) => {
+                // console.log(e);
+                e.preventDefault();
+                if (e.key === "Enter") {
+                  handleSubmit(e);
+                }
+              }}
+            ></input>
             {errors.name && <p className={styles.inputError}>*</p>}
           </div>
           <IconButton

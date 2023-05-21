@@ -10,6 +10,7 @@ const Phone = ({
   handleChange,
   userData,
   errors,
+  handleSubmit,
 }) => {
   return (
     <div className={styles.textContainer}>
@@ -33,6 +34,12 @@ const Phone = ({
               type="text"
               name="phone"
               className={styles.inputs}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleSubmit(e);
+                }
+              }}
             ></input>
             {errors.phone && <p className={styles.inputError}>*</p>}
           </div>

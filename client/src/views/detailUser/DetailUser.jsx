@@ -143,6 +143,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
           handleChange={handleChange}
           userData={userData}
           errors={errors}
+          handleSubmit={handleSubmit}
         />
 
         <div className={styles.emailPropertys}>
@@ -167,6 +168,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
           handleChange={handleChange}
           userData={userData}
           errors={errors}
+          handleSubmit={handleSubmit}
         />
 
         <Adress
@@ -175,6 +177,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
           handleChange={handleChange}
           userData={userData}
           errors={errors}
+          handleSubmit={handleSubmit}
         />
 
         {anyUpdatedData() && (
