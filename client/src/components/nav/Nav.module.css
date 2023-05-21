@@ -1,34 +1,52 @@
-.navBar {
+.navBar{
   width: 100%;
   height: 5rem;
   display: flex;
   justify-content: end;
   align-items: center;
-  background-color: #fbf4f5;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #FBF4F5;
+  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
   z-index: 4;
   text-decoration: none;
 }
+.check{
+  display: none;
+}
 .navBar a {
-  padding: 1%;
+  display: flex;
+  justify-content: flex-start;
+  text-decoration: none;
+  left: 0;
+}
+.mostrarmenu,
+.ocultarmenu{
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+  transition: 0.4s;
+}
+.mostrarmenu{
+  order: 1;
 }
 
-.botones {
+.botones{
   width: 100%;
   display: flex;
   justify-content: end;
   align-items: center;
   background-color: transparent;
   overflow: hidden;
-  margin-right: 5px;
+  margin-right: 15px;
 }
-.imagen {
+.navBar img{
+  width: 10rem;
   display: flex;
-  width: 35%;
-  justify-content: start;
-  margin-left: 2rem;
+  justify-content: flex-start;
+  margin-left: 15px;
 }
+
+
 
 * {
   font-family: "Playfair Display", serif;
@@ -72,4 +90,42 @@
   border: 0px;
   padding: 10px 35px 10px 35px;
   border-radius: 10px;
+}
+
+@media(max-width: 818px){
+  .mostrarmenu,
+  .ocultarmenu{
+  display: block;
+}
+.mostrarmenu{
+  position: absolute; top: 20px; right: 20px;
+}
+.navBar img{
+  position: absolute;
+  top: 10px;
+  left: 1px;
+  width: 8rem;
+  margin-left: 15px;
+}
+.botones{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: var(--background);
+  right: -100%;
+  top: 0;
+  text-align: center;
+  z-index: 100;
+  transition: 0.8s;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding-top: 5%;
+}
+.ocultarmenu{
+  position: absolute; top: 20px; right: 20px;
+}
+.check:checked ~ .botones{
+  right: -15px;
+}
 }

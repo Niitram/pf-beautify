@@ -15,10 +15,12 @@ const handleSubmitLogin = async (
   userInfo
 ) => {
   e.preventDefault();
+
   handleLoginClick();
 
   const oldLocation = location.pathname;
   navigate("/loading");
+
 
   const name = userInfo.name;
   const password = userInfo.password;

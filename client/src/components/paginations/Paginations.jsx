@@ -4,6 +4,7 @@ import ShowCardsProduct from "../showCardsProduct/ShowCardsProduct";
 import styles from "./Paginations.module.css";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import paleta from "../../assets/images/Paleta";
 
 function Paginations({ currentPage, setCurrentPage }) {
   const copyAllProducts = useSelector((state) => state.copyAllProducts);
@@ -31,6 +32,7 @@ function Paginations({ currentPage, setCurrentPage }) {
           if (arrayWithPages.length - 1) {
             return (
               <button
+                style={currentPage === index +1 ? {backgroundColor:'#EE9890' } : {}}
                 className={styles.buttonPages}
                 disabled={currentPage === index + 1}
                 key={index}
