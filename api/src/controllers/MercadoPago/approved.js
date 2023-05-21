@@ -41,7 +41,6 @@ const approvedFunction = async (id, email) => {
     clientId: client.dataValues.id,
     details: itemsDetails,
   };
-  console.log('APPROVED', infoToSend);
 
   const createPurchaseRecords = await axios.post(
     `${BACK_ROUTE}/shops`,
