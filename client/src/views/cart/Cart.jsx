@@ -7,7 +7,7 @@ import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { showError } from "../../redux/actions";
 
-initMercadoPago("TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1");
+initMercadoPago("TEST-6baebe46-f407-406f-8011-2f812f18a2a3");
 
 function Cart() {
   const dispatch = useDispatch();
@@ -102,55 +102,62 @@ function Cart() {
         </label>
         {cart.map((cartItem) => (
           <div key={cartItem.id} className={styles.articulo}>
-            <div className={styles.imagenArticulo}>
-              <Link to={`/detailProduct/${cartItem.id}`}>
-                <img src={cartItem.image} />
-              </Link>
-            </div>
-            <div className={styles.detallesArticulo}>
-              <label className={styles.nameProduct}>{cartItem.name}</label>
-              <label className={styles.descriptionProduct}>
-                {cartItem.description.slice(0, 50)}...
-              </label>
-            </div>
-            <div className={styles.cantidad}>
-              <div className={styles.btnupdown}>
-                <button
-                  disabled={cartItem.quantity === cartItem.stock}
-                  className={styles.btnCart}
-                  onClick={handleQuantity}
-                  name="add"
-                  value={cartItem.id}
-                >
-                  +
-                </button>
-                <label className={styles.cantidadProduct}>
-                  {cartItem.quantity}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                className={styles.imagenArticulo}
+                style={{ marginRight: "10px" }}
+              >
+                <Link to={`/detailProduct/${cartItem.id}`}>
+                  <img src={cartItem.image} />
+                </Link>
+              </div>
+              <div className={styles.detallesArticulo}>
+                <label className={styles.nameProduct}>{cartItem.name}</label>
+                <label className={styles.descriptionProduct}>
+                  {cartItem.description.slice(0, 50)}...
                 </label>
-                <button
-                  disabled={cartItem.quantity === 1}
-                  className={styles.btnCart}
-                  onClick={handleQuantity}
-                  name="less"
-                  value={cartItem.id}
-                >
-                  -
-                </button>
               </div>
             </div>
-            <div className={styles.precio}>
-              $ {cartItem.price - cartItem.discount}
+            <div className={styles.botonesArticulo}>
+              <div className={styles.cantidad} style={{ marginRight: "10px" }}>
+                <div className={styles.btnupdown}>
+                  <button
+                    disabled={cartItem.quantity === cartItem.stock}
+                    className={styles.btnCart}
+                    onClick={handleQuantity}
+                    name="add"
+                    value={cartItem.id}
+                  >
+                    +
+                  </button>
+                  <h3 className={styles.cantidadProduct}>
+                    {cartItem.quantity}
+                  </h3>
+                  <button
+                    disabled={cartItem.quantity === 1}
+                    className={styles.btnCart}
+                    onClick={handleQuantity}
+                    name="less"
+                    value={cartItem.id}
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+              <div className={styles.precio}>
+                $ {cartItem.price - cartItem.discount}
+              </div>
+              <button
+                className={styles.btnDelete}
+                onClick={handleDelete}
+                value={cartItem.id}
+              ></button>
             </div>
-            <button
-              className={styles.btnDelete}
-              onClick={handleDelete}
-              value={cartItem.id}
-            ></button>
           </div>
         ))}
+        <button className={styles.checkout}>Checkout</button>
       </div>
-      <button onClick={handleCheckOut}> CHECKOUT PROVISORIO</button>
-      <Wallet initialization={{ preferenceId: `${preferenceId}` }} />
+      {/* <Wallet initialization={{ preferenceId: `${preferenceId}` }} /> */}
 
       {/* <div className={styles.detallesCompra}>
         <div className={styles.detallesPago}>
