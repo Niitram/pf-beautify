@@ -101,9 +101,9 @@ export const loginWithGoogleFirebase = async (
 
     // setear el estado global
     dispatch(setUserInfoAction(userData));
-    locationNow.pathname === "/" && navigate("/home");
+    // locationNow.pathname === "/" && navigate("/home");
   } catch (error) {
-    navigate("/")
+    navigate("/");
     console.log(error.message);
   }
 };
