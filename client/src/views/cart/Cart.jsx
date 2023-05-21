@@ -1,15 +1,18 @@
 import styles from "./Cart.module.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { showError } from "../../redux/actions";
+import useToggle from "../../hooks/useToggle";
+import Checkout from "../Checkout/Checkout";
 
 initMercadoPago("TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1");
 
 function Cart() {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [cart, setCart] = useState([]);
   //*** validar el carrito
@@ -65,12 +68,16 @@ function Cart() {
     };
   });
   const [preferenceId, setPreferenceId] = useState(0);
-
   const handleCheckOut = () => {
     let aux = [...carrito, emailUsuario];
     axios
       .post("http://localhost:3001/mercadopago/create_preference", aux)
-      .then(({ data }) => setPreferenceId(data.id))
+      .then(({ data }) => {
+        // setPreferenceId(data.id)
+        console.log(data.id)
+        localStorage.setItem('preference',JSON.stringify(data.id))
+      })
+      .then(navigate('/checkout'))
       .catch((error) => {
         console.log(error.message);
         dispatch(
@@ -81,7 +88,9 @@ function Cart() {
           })
         );
       });
-  };
+    
+    };
+
 
   return (
     <div className={styles.containerGlobal}>
@@ -153,57 +162,8 @@ function Cart() {
             </div>
           </div>
         ))}
-      <button className={styles.checkout}>Checkout</button>
+      <button className={styles.checkout} onClick={()=>{handleCheckOut()}}>Checkout</button>
       </div>
-      {/* <Wallet initialization={{ preferenceId: `${preferenceId}` }} /> */}
-
-      {/* <div className={styles.detallesCompra}>
-        <div className={styles.detallesPago}>
-          <label className={styles.textTarjeta}>Detalles de tarjeta</label>
-          <label className={styles.tipoTarjeta}>Tipo de Pago</label>
-          <div className={styles.imagenMercadoPago}>
-            <img src={mercadopago} alt="Mercado Pago" />
-          </div>
-        </div>
-        <div className={styles.containerDatos}>
-          <div className={styles.datosTarjeta}>
-            <label className={styles.nombreTarjeta}>Nombre de la Tarjeta</label>
-            <input type="text" placeholder="Nombre" />
-          </div>
-          <div className={styles.datosTarjeta}>
-            <label className={styles.nombreTarjeta}>Numero de Tarjeta</label>
-            <input type="number" placeholder="1111111-2222--33333" />
-          </div>
-          <div className={styles.containerdata}>
-            <div className={styles.fechaTarjeta}>
-              <label>Fecha de Expiracion</label>
-              <input type="month" />
-            </div>
-            <div className={styles.cvv}>
-              <label>CVV</label>
-              <input type="number" placeholder="CVV" maxLength={4} />
-            </div>
-          </div>
-        </div>
-        <div className={styles.datosPagos}>
-          <div className={styles.text}>
-            <label>Subtotal</label>
-            <label>$1,072</label>
-          </div>
-          <div className={styles.text}>
-            <label>Envio</label>
-            <label>$4</label>
-          </div>
-          <div className={styles.text}>
-            <label>Total (igv incl.)</label>
-            <label>$1,072</label>
-          </div>
-        </div>
-        <div className={styles.total}>
-          <label>$1,076</label>
-          <button>Verificar</button>
-        </div>
-      </div> */}
     </div>
   );
 }
