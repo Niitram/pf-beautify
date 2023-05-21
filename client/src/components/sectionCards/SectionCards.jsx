@@ -17,7 +17,6 @@ function SectionCards({
     arrayShowProduct = getTopRatedProducts(productsCategorie);
   }
   if (populars) arrayShowProduct = getTopRatedProducts(arrayProducts);
-  console.log(arrayShowProduct);
   return (
     <section className={styles.sectionCards}>
       <Divider textAlign="left" className={styles.divider}>
