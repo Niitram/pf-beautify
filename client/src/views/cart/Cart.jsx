@@ -7,7 +7,7 @@ import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { showError } from "../../redux/actions";
 
-initMercadoPago("TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1");
+initMercadoPago("TEST-6baebe46-f407-406f-8011-2f812f18a2a3");
 
 function Cart() {
   const dispatch = useDispatch();
@@ -102,21 +102,24 @@ function Cart() {
         </label>
         {cart.map((cartItem) => (
           <div key={cartItem.id} className={styles.articulo}>
-            <div style={{display:'flex',alignItems:'center'}}>
-            <div className={styles.imagenArticulo} style={{marginRight:'10px'}}>
-              <Link to={`/detailProduct/${cartItem.id}`}>
-                <img src={cartItem.image} />
-              </Link>
-            </div>
-            <div className={styles.detallesArticulo}>
-              <label className={styles.nameProduct}>{cartItem.name}</label>
-              <label className={styles.descriptionProduct}>
-                {cartItem.description.slice(0, 50)}...
-              </label>
-            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                className={styles.imagenArticulo}
+                style={{ marginRight: "10px" }}
+              >
+                <Link to={`/detailProduct/${cartItem.id}`}>
+                  <img src={cartItem.image} />
+                </Link>
+              </div>
+              <div className={styles.detallesArticulo}>
+                <label className={styles.nameProduct}>{cartItem.name}</label>
+                <label className={styles.descriptionProduct}>
+                  {cartItem.description.slice(0, 50)}...
+                </label>
+              </div>
             </div>
             <div className={styles.botonesArticulo}>
-              <div className={styles.cantidad} style={{marginRight:'10px'}}>
+              <div className={styles.cantidad} style={{ marginRight: "10px" }}>
                 <div className={styles.btnupdown}>
                   <button
                     disabled={cartItem.quantity === cartItem.stock}
@@ -140,7 +143,6 @@ function Cart() {
                     -
                   </button>
                 </div>
-
               </div>
               <div className={styles.precio}>
                 $ {cartItem.price - cartItem.discount}
@@ -153,7 +155,7 @@ function Cart() {
             </div>
           </div>
         ))}
-      <button className={styles.checkout}>Checkout</button>
+        <button className={styles.checkout}>Checkout</button>
       </div>
       {/* <Wallet initialization={{ preferenceId: `${preferenceId}` }} /> */}
 
