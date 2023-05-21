@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { Stack, Rating, Skeleton } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -11,13 +12,21 @@ import ImageComponent from "../../components/imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
 import { useSelector } from "react-redux";
 import SectionCards from "../../components/sectionCards/SectionCards";
+import AlertAddCart from "../../components/alertAddCart/AlertAddCart";
+import useToggle from "../../hooks/useToggle";
+import { showError } from "../../redux/actions";
 
 function DetailProduct({ handleLoginClick }) {
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const userData = useSelector((state) => state.userData);
+  const allProducts = useSelector((state) => state.allProducts);
+  const [addProduct, setAddProduct] = useToggle(false);
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
-    console.log(quantity);
   };
-  const allProducts = useSelector((state) => state.allProducts);
   const handleAddToCart = () => {
     if (!userData.id) return handleLoginClick();
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -29,14 +38,22 @@ function DetailProduct({ handleLoginClick }) {
           //Si la cantidad es mayor al stock le asigno el valor del stock
           if (cartItem.quantity + quantity >= cartItem.stock) {
             cartItem.quantity = cartItem.stock;
+            dispatch(
+              showError({
+                tittle: "Maximum stock reached",
+                message: "You reached the maximum number of units available",
+              })
+            );
           }
           //Sino sumo la cantidad guardada mas la cantidad pedida
           else {
             cartItem.quantity += quantity;
+            setAddProduct(true);
           }
         }
       });
     else {
+      setAddProduct(true);
       cart.push({
         category: product.category,
         description: product.description,
@@ -54,11 +71,6 @@ function DetailProduct({ handleLoginClick }) {
     localStorage.setItem("cart", JSON.stringify(cart));
   };
 
-  const [quantity, setQuantity] = useState(1);
-  const { id } = useParams();
-  const [product, setProduct] = useState({});
-  const userData = useSelector((state) => state.userData);
-
   const handleFavorite = () => {
     if (!userData.id) handleLoginClick();
   };
@@ -73,9 +85,7 @@ function DetailProduct({ handleLoginClick }) {
     }
     return setProduct({});
   }, [id]);
-
   const { name, image, description, price, stock, rate, discount } = product;
-  console.log(product.category);
   return (
     <div className={styles.aux}>
       <div className={styles.container}>
@@ -173,6 +183,9 @@ function DetailProduct({ handleLoginClick }) {
           category={product.category}
           isCategory={true}
         />
+      )}
+      {addProduct && (
+        <AlertAddCart setAddProduct={setAddProduct} addProduct={addProduct} />
       )}
     </div>
   );
