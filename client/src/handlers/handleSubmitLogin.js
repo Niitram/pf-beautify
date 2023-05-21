@@ -15,6 +15,10 @@ const handleSubmitLogin = async (
   userInfo
 ) => {
   e.preventDefault();
+  handleLoginClick();
+
+  const oldLocation = location.pathname;
+  navigate("/loading");
 
   const name = userInfo.name;
   const password = userInfo.password;
@@ -74,8 +78,8 @@ const handleSubmitLogin = async (
       // envía esa info al estado global
       dispatch(setUserInfoAction(userData));
     }
-    handleLoginClick();
-    if (location.pathname === "/") navigate("/home");
+    if (oldLocation === "/") navigate("/home");
+    else navigate(oldLocation);
   } catch (error) {
     // mensajes de error personalizados
     const ingresaConGooglePelotudo = "Firebase: Error (auth/wrong-password).";

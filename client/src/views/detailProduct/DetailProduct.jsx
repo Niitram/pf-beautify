@@ -3,7 +3,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import styles from "./DetailProduct.module.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../request/product";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -13,12 +13,13 @@ import { useSelector } from "react-redux";
 import SectionCards from "../../components/sectionCards/SectionCards";
 
 function DetailProduct({ handleLoginClick }) {
+  const navigate = useNavigate();
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
     console.log(quantity);
   };
   const allProducts = useSelector((state) => state.allProducts);
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
     if (!userData.id) return handleLoginClick();
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const productExist = cart.find((cartItem) => cartItem.id == product.id);
@@ -52,6 +53,7 @@ function DetailProduct({ handleLoginClick }) {
       });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
+    if (e.target.name === "buyNow") navigate("/cart");
   };
 
   const [quantity, setQuantity] = useState(1);
@@ -140,16 +142,16 @@ function DetailProduct({ handleLoginClick }) {
               defaultValue="1"
             />
             <label className={styles.shopMax}>Max 5</label>
-            <Link to="/cart">
-              <button
-                onClick={handleAddToCart}
-                name="buyNow"
-                className={styles.btnShopNow}
-                type="submit"
-              >
-                Buy now
-              </button>
-            </Link>
+            {/* <Link to="/cart"> */}
+            <button
+              onClick={handleAddToCart}
+              name="buyNow"
+              className={styles.btnShopNow}
+              type="submit"
+            >
+              Buy now
+            </button>
+            {/* </Link> */}
             <div className={styles.btnCartAndList}>
               <button
                 onClick={handleAddToCart}
