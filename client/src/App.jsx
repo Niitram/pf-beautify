@@ -83,14 +83,19 @@ function App() {
       !userData.email &&
       logout
     ) {
-      await loginWithGoogleFirebase(
-        usuarioFirebase,
-        dispatch,
-        navigate,
-        locationNow
-      );
-      setLogout(false);
-      if (locationNow.pathname === "/loading") navigate("/home");
+      try {
+        await loginWithGoogleFirebase(
+          usuarioFirebase,
+          dispatch,
+          navigate,
+          locationNow
+        );
+        setLogout(false);
+        if (locationNow.pathname === "/loading") navigate("/home");
+      } catch (error) {
+        navigate("/");
+        console.log(error.message);
+      }
     }
   });
 
