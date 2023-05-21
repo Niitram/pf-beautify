@@ -102,7 +102,8 @@ function Cart() {
         </label>
         {cart.map((cartItem) => (
           <div key={cartItem.id} className={styles.articulo}>
-            <div className={styles.imagenArticulo}>
+            <div style={{display:'flex',alignItems:'center'}}>
+            <div className={styles.imagenArticulo} style={{marginRight:'10px'}}>
               <Link to={`/detailProduct/${cartItem.id}`}>
                 <img src={cartItem.image} />
               </Link>
@@ -113,44 +114,48 @@ function Cart() {
                 {cartItem.description.slice(0, 50)}...
               </label>
             </div>
-            <div className={styles.cantidad}>
-              <div className={styles.btnupdown}>
-                <button
-                  disabled={cartItem.quantity === cartItem.stock}
-                  className={styles.btnCart}
-                  onClick={handleQuantity}
-                  name="add"
-                  value={cartItem.id}
-                >
-                  +
-                </button>
-                <label className={styles.cantidadProduct}>
-                  {cartItem.quantity}
-                </label>
-                <button
-                  disabled={cartItem.quantity === 1}
-                  className={styles.btnCart}
-                  onClick={handleQuantity}
-                  name="less"
-                  value={cartItem.id}
-                >
-                  -
-                </button>
+            </div>
+            <div className={styles.botonesArticulo}>
+              <div className={styles.cantidad} style={{marginRight:'10px'}}>
+                <div className={styles.btnupdown}>
+                  <button
+                    disabled={cartItem.quantity === cartItem.stock}
+                    className={styles.btnCart}
+                    onClick={handleQuantity}
+                    name="add"
+                    value={cartItem.id}
+                  >
+                    +
+                  </button>
+                  <h3 className={styles.cantidadProduct}>
+                    {cartItem.quantity}
+                  </h3>
+                  <button
+                    disabled={cartItem.quantity === 1}
+                    className={styles.btnCart}
+                    onClick={handleQuantity}
+                    name="less"
+                    value={cartItem.id}
+                  >
+                    -
+                  </button>
+                </div>
+
               </div>
+              <div className={styles.precio}>
+                $ {cartItem.price - cartItem.discount}
+              </div>
+              <button
+                className={styles.btnDelete}
+                onClick={handleDelete}
+                value={cartItem.id}
+              ></button>
             </div>
-            <div className={styles.precio}>
-              $ {cartItem.price - cartItem.discount}
-            </div>
-            <button
-              className={styles.btnDelete}
-              onClick={handleDelete}
-              value={cartItem.id}
-            ></button>
           </div>
         ))}
+      <button className={styles.checkout}>Checkout</button>
       </div>
-      <button onClick={handleCheckOut}> CHECKOUT PROVISORIO</button>
-      <Wallet initialization={{ preferenceId: `${preferenceId}` }} />
+      {/* <Wallet initialization={{ preferenceId: `${preferenceId}` }} /> */}
 
       {/* <div className={styles.detallesCompra}>
         <div className={styles.detallesPago}>
