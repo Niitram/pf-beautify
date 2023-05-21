@@ -83,6 +83,7 @@ const handleSubmitLogin = async (
     if (oldLocation === "/") navigate("/home");
     else navigate(oldLocation);
   } catch (error) {
+    navigate("/")
     // mensajes de error personalizados
     const ingresaConGooglePelotudo = "Firebase: Error (auth/wrong-password).";
     const userNotFound = "Firebase: Error (auth/user-not-found).";
