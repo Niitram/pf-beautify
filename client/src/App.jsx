@@ -28,11 +28,8 @@ import Login from "./components/login/Login";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
-<<<<<<< HEAD
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
-=======
 import Loading from "./views/loading/Loading";
->>>>>>> 814f1ba72e8d9cc2c733ed1211fec95e14d6e9ec
 
 function App() {
   const locationNow = useLocation();
