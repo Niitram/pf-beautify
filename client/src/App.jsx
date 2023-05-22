@@ -30,7 +30,7 @@ import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
-
+/* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
 function App() {
   const locationNow = useLocation();
   const dispatch = useDispatch();
