@@ -38,15 +38,11 @@ const Image = ({
     <div className={styles.imageContainer}>
       {visibleInputs.image ? (
         <div
-          style={{
-            backgroundImage: `url(${
-              updatedData.image.length && updatedData.image
-            })`,
-          }}
           className={styles.dragContainer}
           onDrop={(event) => handleDrop(event)}
           onDragOver={(e) => handleDragOver(e)}
         >
+          {updatedData.image && <img src={updatedData.image} />}
           {!updatedData.image && <p>Drag image here</p>}
           {errors.image && <p className={styles.imageInputError}>*</p>}
           <IconButton
