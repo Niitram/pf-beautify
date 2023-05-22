@@ -33,7 +33,6 @@ export const validateUpdateUser = (user, visibleInputs, oldData) => {
   if (visibleInputs.image) {
     if (!user.image.length) errors.image = true;
     if (user.image.length > 255) errors.image = true;
-    console.log(user.image);
   }
 
   return errors;
