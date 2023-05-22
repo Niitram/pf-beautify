@@ -160,7 +160,7 @@ function Cart() {
             </div>
           </div>
         ))}
-      <button className={styles.checkout} onClick={()=>handleCheckOut()}>Checkout</button>
+      {(cantArticulos>0) && <button className={styles.checkout} onClick={()=>handleCheckOut()}>Checkout</button>}
       </div>
     </div>
   );

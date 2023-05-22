@@ -28,7 +28,7 @@ import useToggle from "./hooks/useToggle";
 import { loginWithGoogleFirebase } from "./utils/firebaseConfig";
 import Login from "./components/login/Login";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
-import { CLIENT, ADMIN } from "./utils/roles";
+import { CLIENT, ADMIN, INVITED} from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
@@ -84,7 +84,12 @@ function App() {
   // este useEffect trae la info del usuario desde el local Storage al estado global
   useEffect(() => {
     if (!userData.id) {
-      const userInfo = JSON.parse(localStorage.getItem("userData")) || {};
+      const userInfo = JSON.parse(localStorage.getItem("userData")) || {
+                                                                          id: null,
+                                                                          name: null,
+                                                                          email: null,
+                                                                          rol: INVITED,
+                                                                        };
       dispatch(setUserInfoAction(userInfo));
     }
   }, [dispatch]);
