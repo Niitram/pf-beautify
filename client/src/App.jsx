@@ -28,7 +28,7 @@ import useToggle from "./hooks/useToggle";
 import { loginWithGoogleFirebase } from "./utils/firebaseConfig";
 import Login from "./components/login/Login";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
-import { CLIENT, ADMIN, INVITED} from "./utils/roles";
+import { CLIENT, ADMIN, INVITED } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
@@ -85,11 +85,11 @@ function App() {
   useEffect(() => {
     if (!userData.id) {
       const userInfo = JSON.parse(localStorage.getItem("userData")) || {
-                                                                          id: null,
-                                                                          name: null,
-                                                                          email: null,
-                                                                          rol: INVITED,
-                                                                        };
+        id: null,
+        name: null,
+        email: null,
+        rol: INVITED,
+      };
       dispatch(setUserInfoAction(userInfo));
     }
   }, [dispatch]);
@@ -175,7 +175,6 @@ function App() {
           }
         />
         <Route path="/loading" element={<Loading />} />
-        <Route path="/favorites" element={<Favorites />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
@@ -202,13 +201,16 @@ function App() {
         <Route
           element={
             <ProtectedRoute
-              isAllowed={userData.rol === ADMIN || userData.rol === CLIENT}
+              isAllowed={
+                JSON.parse(localStorage.getItem("userData")).rol === ADMIN ||
+                JSON.parse(localStorage.getItem("userData")).rol === CLIENT
+              }
             />
           }
         >
           <Route path="/cart" element={<Cart />} />
           <Route path="/purchaseError" element={<PurchaseError />} />
-
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/purchaseSuccess" element={<PurchaseSuccess />} />
           <Route path="/detailPayment" element={<DetailPayment />} />
         </Route>
