@@ -30,7 +30,13 @@ import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
+
+
+import Checkout from "./views/Checkout/Checkout";
+
+
 import Favorites from "./views/favorites/Favorites";
+
 import PurchaseError from "./views/purchaseError/PurchaseError";
 
 
@@ -110,7 +116,7 @@ function App() {
 
   return (
     <div className="App">
-      {locationNow.pathname !== "/" && locationNow.pathname !== "/loading" && (
+      {locationNow.pathname !== "/" && locationNow.pathname !== "/loading" && locationNow.pathname !== "/checkout" &&(
         <Nav
           handleLoginClick={handleLoginClick}
           handleDetailClick={handleDetailClick}
@@ -160,6 +166,7 @@ function App() {
           path="/detailProduct/:id"
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
         />
+        <Route path="/checkout" element={<Checkout/>}/>
 
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
