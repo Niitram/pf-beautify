@@ -32,16 +32,12 @@ import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
-<<<<<<< HEAD
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
-=======
 import Favorites from "./views/favorites/Favorites";
 import { getFavorites } from "./request/favorites";
 import Checkout from "./views/Checkout/Checkout";
 import PurchaseError from "./views/purchaseError/PurchaseError";
 
-
->>>>>>> 952c2c6a7b56050b070ac9553728291dae5cada4
 function App() {
   const locationNow = useLocation();
   const dispatch = useDispatch();
@@ -128,12 +124,14 @@ function App() {
 
   return (
     <div className="App">
-      {locationNow.pathname !== "/" && locationNow.pathname !== "/loading" && locationNow.pathname !== "/checkout" &&(
-        <Nav
-          handleLoginClick={handleLoginClick}
-          handleDetailClick={handleDetailClick}
-        />
-      )}
+      {locationNow.pathname !== "/" &&
+        locationNow.pathname !== "/loading" &&
+        locationNow.pathname !== "/checkout" && (
+          <Nav
+            handleLoginClick={handleLoginClick}
+            handleDetailClick={handleDetailClick}
+          />
+        )}
       {errorState.tittle && (
         <AlertWarning
           tittleAlert={errorState.tittle}
@@ -178,7 +176,7 @@ function App() {
           path="/detailProduct/:id"
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
         />
-        <Route path="/checkout" element={<Checkout/>}/>
+        <Route path="/checkout" element={<Checkout />} />
 
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
@@ -200,7 +198,6 @@ function App() {
             />
           }
         >
-
           <Route path="/cart" element={<Cart />} />
           <Route path="/purchaseError" element={<PurchaseError />} />
 
