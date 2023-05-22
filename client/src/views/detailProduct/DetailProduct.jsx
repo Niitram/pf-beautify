@@ -14,23 +14,34 @@ import SectionCards from "../../components/sectionCards/SectionCards";
 import AlertAddCart from "../../components/alertAddCart/AlertAddCart";
 import useToggle from "../../hooks/useToggle";
 import { showError } from "../../redux/actions";
+import { createFavorite } from "../../request/favorites";
+import AlertFavorite from "../../components/alertFavorite/AlertFavorite";
 
 function DetailProduct({ handleLoginClick }) {
-
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
+  const [errorQuantity, setErrorQuantity] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const userData = useSelector((state) => state.userData);
   const allProducts = useSelector((state) => state.allProducts);
   const [addProduct, setAddProduct] = useToggle(false);
+  const [addFavorite, setAddFavorite] = useToggle(false);
+  const [alredyFavorite, setAlredyFavorite] = useToggle(false);
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
+    //Se controla que la cantidad ingresada no sea mayor a la cantidad de stock disponible
+    if (Number(event.target.value) > stock) {
+      setErrorQuantity(true);
+      return;
+    } else {
+      setErrorQuantity(false);
+    }
   };
 
   const handleAddToCart = (e) => {
-
+    if (errorQuantity) return;
     if (!userData.id) return handleLoginClick();
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const productExist = cart.find((cartItem) => cartItem.id == product.id);
@@ -75,8 +86,11 @@ function DetailProduct({ handleLoginClick }) {
     if (e.target.name === "buyNow") navigate("/cart");
   };
 
-  const handleFavorite = () => {
+  const handleFavorite = async () => {
     if (!userData.id) handleLoginClick();
+    const added = await createFavorite(userData.id, id);
+    if (added) setAddFavorite(true);
+    else setAlredyFavorite(true);
   };
 
   useEffect(() => {
@@ -94,10 +108,7 @@ function DetailProduct({ handleLoginClick }) {
     <div className={styles.aux}>
       <div className={styles.container}>
         <div className={styles.containerBack}>
-          <button 
-            className={styles.backButton}
-            onClick={() => history.back()}
-          >
+          <button className={styles.backButton} onClick={() => history.back()}>
             <ArrowBackIosNewIcon />
           </button>
           {image && (
@@ -156,7 +167,10 @@ function DetailProduct({ handleLoginClick }) {
               max={stock}
               defaultValue="1"
             />
-            <label className={styles.shopMax}>Max 5</label>
+            {errorQuantity && (
+              <span>Error: max quantity available {stock}</span>
+            )}
+            <label className={styles.shopMax}>Max {stock}</label>
             {/* <Link to="/cart"> */}
             <button
               onClick={handleAddToCart}
@@ -194,6 +208,20 @@ function DetailProduct({ handleLoginClick }) {
       )}
       {addProduct && (
         <AlertAddCart setAddProduct={setAddProduct} addProduct={addProduct} />
+      )}
+      {alredyFavorite && (
+        <AlertFavorite
+          parametroTrue={alredyFavorite}
+          setParametroTrue={setAlredyFavorite}
+          message={"Product alredy in favorites"}
+        />
+      )}
+      {addFavorite && (
+        <AlertFavorite
+          parametroTrue={addFavorite}
+          setParametroTrue={setAddFavorite}
+          message={"Product added to favorites"}
+        />
       )}
     </div>
   );

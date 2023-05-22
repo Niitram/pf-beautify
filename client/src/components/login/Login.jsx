@@ -7,7 +7,7 @@ import handleSubmitLogin from "../../handlers/handleSubmitLogin";
 import { getAuth, signInWithRedirect } from "firebase/auth";
 import validateCreateUser from "../../utils/validateCreateUser";
 import styles from "./Login.module.css";
-import GoogleIcon from '../../assets/images/GoogleIconColored.png'
+import GoogleIcon from "../../assets/images/GoogleIconColored.png";
 
 const Login = ({
   loginVisible,
@@ -42,8 +42,9 @@ const Login = ({
 
   const loginWithGoogle = async () => {
     try {
-      signInWithRedirect(auth, googleProvider);
-      if (location.pathname === "/") navigate("/loading");
+      localStorage.setItem("oldLocation", JSON.stringify(location.pathname));
+      navigate("/loading");
+      await signInWithRedirect(auth, googleProvider);
       setCreatingAccount(false);
     } catch (error) {
       window.alert(error.message);
@@ -120,7 +121,6 @@ const Login = ({
                     );
                   }
                 }}
-
               />
             )}
             <ErrorInputMessage errors={errors.email} text={errors.name} />
@@ -187,25 +187,30 @@ const Login = ({
           >
             {creatingAccount ? "Register" : "Login"}
           </button>
-          <div style={{ display:'flex',marginBottom:'0.5rem'}}>
-           <p style={{fontSize:'large'}}>{creatingAccount? 'Already a member?':'Not a member?'}</p> 
-          <button
-            className={styles.BotonSwitch}
-            onClick={(e) => {
-              e.preventDefault();
-              !creatingAccount
-                ? setErrors({
-                    ...errors,
-                    name: userInfo.name.length ? "" : "Name required",
-                  })
-                : setErrors({ ...errors, name: "" });
-              setCreatingAccount(!creatingAccount);
-            }}
-          >
-           <p style={{color:"#d14d72",fontSize:'large'}} className={styles.Switch}>{creatingAccount
-              ? 'Log in'
-              : 'Register'}</p> 
-          </button>
+          <div style={{ display: "flex", marginBottom: "0.5rem" }}>
+            <p style={{ fontSize: "large" }}>
+              {creatingAccount ? "Already a member?" : "Not a member?"}
+            </p>
+            <button
+              className={styles.BotonSwitch}
+              onClick={(e) => {
+                e.preventDefault();
+                !creatingAccount
+                  ? setErrors({
+                      ...errors,
+                      name: userInfo.name.length ? "" : "Name required",
+                    })
+                  : setErrors({ ...errors, name: "" });
+                setCreatingAccount(!creatingAccount);
+              }}
+            >
+              <p
+                style={{ color: "#d14d72", fontSize: "large" }}
+                className={styles.Switch}
+              >
+                {creatingAccount ? "Log in" : "Register"}
+              </p>
+            </button>
           </div>
           <button
             className={styles.BotonGoogle}
@@ -215,8 +220,8 @@ const Login = ({
               loginWithGoogle();
             }}
           >
-            <p >Log in with Google</p>
-            <img src={GoogleIcon}/>
+            <p>Log in with Google</p>
+            <img src={GoogleIcon} />
           </button>
         </div>
       </form>

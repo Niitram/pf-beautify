@@ -28,7 +28,17 @@ import Login from "./components/login/Login";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
+import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
+
+
+import Checkout from "./views/Checkout/Checkout";
+
+
+import Favorites from "./views/favorites/Favorites";
+
+import PurchaseError from "./views/purchaseError/PurchaseError";
+
 
 function App() {
   const locationNow = useLocation();
@@ -47,6 +57,7 @@ function App() {
 
   // sirve para distinguir si el usuario está registrándose (true) o iniciando sesión
   const [creatingAccount, setCreatingAccount] = useToggle(false);
+
   const auth = getAuth();
   const userData = useSelector((state) => state.userData);
 
@@ -82,20 +93,30 @@ function App() {
       !userData.email &&
       logout
     ) {
-      await loginWithGoogleFirebase(
-        usuarioFirebase,
-        dispatch,
-        navigate,
-        locationNow
-      );
-      setLogout(false);
-      if (locationNow.pathname === "/loading") navigate("/home");
+      try {
+        await loginWithGoogleFirebase(
+          usuarioFirebase,
+          dispatch,
+          navigate,
+          locationNow
+        );
+        setLogout(false);
+
+        const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
+        if (!oldLocation || oldLocation === "/") navigate("/home");
+        else navigate(oldLocation);
+      } catch (error) {
+        const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
+        if (!oldLocation) navigate("/");
+        else navigate(oldLocation);
+        console.log(error.message);
+      }
     }
   });
 
   return (
     <div className="App">
-      {locationNow.pathname !== "/" && locationNow.pathname !== "/loading" && (
+      {locationNow.pathname !== "/" && locationNow.pathname !== "/loading" && locationNow.pathname !== "/checkout" &&(
         <Nav
           handleLoginClick={handleLoginClick}
           handleDetailClick={handleDetailClick}
@@ -136,6 +157,7 @@ function App() {
           }
         />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
@@ -144,6 +166,7 @@ function App() {
           path="/detailProduct/:id"
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
         />
+        <Route path="/checkout" element={<Checkout/>}/>
 
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
@@ -165,6 +188,8 @@ function App() {
             />
           }
         >
+          <Route path="/purchaseError" element={<PurchaseError />} />
+          <Route path="/purchaseSuccess" element={<PurchaseSuccess />} />
           <Route path="/detailPayment" element={<DetailPayment />} />
           <Route path="/cart" element={<Cart />} />
         </Route>

@@ -1,5 +1,5 @@
 .Slider :global .MuiSlider-thumb{
-    color:var(--accent1)
+    color:var(--accent1);
 }
 .Slider :global .MuiSlider-track{
     color:var(--accent2);

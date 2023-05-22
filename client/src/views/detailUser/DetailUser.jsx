@@ -13,6 +13,8 @@ import Name from "../../components/detailUserForm/name";
 import Image from "../../components/detailUserForm/image";
 import Phone from "../../components/detailUserForm/phone";
 import Adress from "../../components/detailUserForm/adress";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
@@ -126,7 +128,15 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
 
       <form onSubmit={handleSubmit} className={styles.Container}>
         {!userData.email ? (
-          <h1 styles={{ zIndex: 1000 }}>Loading</h1>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <CircularProgress />
+          </Box>
         ) : (
           <>
             <div className={styles.closeButtons}>
@@ -197,9 +207,24 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
             <hr className={styles.hr} />
 
             <div className={styles.finalButtons}>
-              <button className={styles.button}>My favorites</button>
+              <button
+                className={styles.button}
+                onClick={() => {
+                  navigate("/favorites");
+                  handleDetailClick();
+                }}
+              >
+                My favorites
+              </button>
 
-              <button className={styles.button}>My history</button>
+              <button
+                className={styles.button}
+                onClick={() => {
+                  handleDetailClick();
+                }}
+              >
+                My history
+              </button>
             </div>
           </>
         )}

@@ -35,7 +35,7 @@ function Nav({ handleLoginClick, handleDetailClick }) {
             <button className={styles.myProfile} onClick={handleDetailClick}>
               My Profile
             </button>
-            <ButtonAccent1 text={"Carrito"} route={"/cart"}></ButtonAccent1>
+            <ButtonAccent1 text={"Cart"} route={"/cart"}></ButtonAccent1>
           </>
         )}
         <label htmlFor="check" className={styles.ocultarmenu}>

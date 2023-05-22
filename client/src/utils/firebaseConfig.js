@@ -72,7 +72,6 @@ export const uploadProfilePicture = async (
 
   setUpdatedData({ ...updatedData, image: url });
   setErrors(validateUpdateUser({ ...updatedData, image: url }, visibleInputs));
-  // console.log(url);
 };
 
 export const loginWithGoogleFirebase = async (
@@ -81,25 +80,30 @@ export const loginWithGoogleFirebase = async (
   navigate,
   locationNow
 ) => {
-  // recibe el usuario de google y lo busca/crea en la bdd
-  const response = await postFindOrCreate({
-    email: usuarioFirebase.email,
-    fullName: usuarioFirebase.displayName,
-    phone: usuarioFirebase.phoneNumber,
-    image: usuarioFirebase.image || null,
-  });
-  const dbClient = response.data;
+  try {
+    // recibe el usuario de google y lo busca/crea en la bdd
+    const response = await postFindOrCreate({
+      email: usuarioFirebase.email,
+      fullName: usuarioFirebase.displayName,
+      phone: usuarioFirebase.phoneNumber,
+      image: usuarioFirebase.image || null,
+    });
+    const dbClient = response.data;
 
-  const userData = {
-    id: dbClient.id,
-    name: dbClient.fullName,
-    email: usuarioFirebase.email,
-    rol: CLIENT,
-  };
+    const userData = {
+      id: dbClient.id,
+      name: dbClient.fullName,
+      email: usuarioFirebase.email,
+      rol: CLIENT,
+    };
 
-  localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("userData", JSON.stringify(userData));
 
-  // setear el estado global
-  dispatch(setUserInfoAction(userData));
-  locationNow.pathname === "/" && navigate("/home");
+    // setear el estado global
+    dispatch(setUserInfoAction(userData));
+    // locationNow.pathname === "/" && navigate("/home");
+  } catch (error) {
+    navigate("/");
+    console.log(error.message);
+  }
 };

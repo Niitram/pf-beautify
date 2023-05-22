@@ -1,0 +1,21 @@
+.container{
+    width: 100%;
+    min-height: 90vh;
+    padding-top: 1rem;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.iconCheck{
+    height: 100px;
+    width: 100px;
+    background-image: url("../../assets/images/check-circle-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: transparent;
+
+}
