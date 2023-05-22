@@ -13,7 +13,7 @@ function valuetext(value) {
   return `$ ${value}`;
 }
 
-function Filter({ setFilter, filter }) {
+function Filter({ setFilter, filter, setCurrentPage }) {
   const dispatch = useDispatch();
 
   const allCategories = useSelector((state) => state.allCategories);
@@ -33,6 +33,7 @@ function Filter({ setFilter, filter }) {
       });
       dispatch(filterProducts({ ...filter, [e.target.name]: e.target.value }));
     }
+    setCurrentPage(1);
   };
   return (
     <div className={styles.Container}>

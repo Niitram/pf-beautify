@@ -2,8 +2,8 @@ const { Product, Client } = require("../db");
 
 const deleteFavoritesValidation = async (req, res, next) => {
   const [clientId, productId] = [
-    Number(req.body.clientId),
-    Number(req.body.productId),
+    Number(req.params.clientId),
+    Number(req.params.productId),
   ];
 
   if (!clientId || !productId)
