@@ -21,6 +21,7 @@ export const SET_FAVORITES = "SET_FAVORITES";
 export const UNSET_FAVORITES = "UNSET_FAVORITES";
 export const GET_BACKUP_PRODUCTS = "GET_BACKUP_PRODUCTS";
 
+
 /* Actions */
 
 export const getAllProducts = (data) => {
