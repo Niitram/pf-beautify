@@ -34,6 +34,8 @@ import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
 import Favorites from "./views/favorites/Favorites";
 import { getFavorites } from "./request/favorites";
+import PurchaseError from "./views/purchaseError/PurchaseError";
+
 
 function App() {
   const locationNow = useLocation();
@@ -192,7 +194,10 @@ function App() {
             />
           }
         >
+
           <Route path="/cart" element={<Cart />} />
+          <Route path="/purchaseError" element={<PurchaseError />} />
+
           <Route path="/purchaseSuccess" element={<PurchaseSuccess />} />
           <Route path="/detailPayment" element={<DetailPayment />} />
         </Route>
