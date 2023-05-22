@@ -1,6 +1,6 @@
 import Card from "../card/Card";
 import getTopRatedProducts from "../../utils/getTopRatedProducts";
-import styles from "./sectionCards.module.css";
+import styles from "./SectionCards.module.css";
 import { Divider } from "@mui/material";
 import getProductsCategorie from "../../utils/getProductsCategorie";
 
