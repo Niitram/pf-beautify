@@ -14,6 +14,7 @@ import {
   SET_FAVORITES,
   UNSET_FAVORITES,
   RESET_FILTERS_ORDER,
+  GET_BACKUP_PRODUCTS,
 } from "./actions";
 
 const initialState = {
@@ -45,6 +46,13 @@ const rootReducer = (state = initialState, action) => {
         copyAllProducts: [...action.payload],
         backupProducts: [...action.payload],
       };
+
+    case GET_BACKUP_PRODUCTS:
+      return {
+        ...state,
+        backupProducts: [...action.payload],
+      };
+
     case SEARCH_PRODUCT_BY_NAME:
       return {
         ...state,
