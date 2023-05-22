@@ -1,15 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-// import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PromoCard from "../../components/promo card/PromoCard";
 import styles from "./Home.module.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import SectionCards from "../../components/sectionCards/SectionCards";
 import { showError } from "../../redux/actions";
+import FooterAll from "../..//components/footerAll/FooterAll";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -85,6 +83,7 @@ function Home() {
           isCategory={true}
         />
       )}
+      <FooterAll />
     </div>
   );
 }

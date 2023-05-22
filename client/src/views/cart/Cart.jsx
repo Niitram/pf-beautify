@@ -6,7 +6,11 @@ import { useState, useEffect } from "react";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { showError } from "../../redux/actions";
+
+// import Footer from "../../components/footerAll/FooterAll";
+
 import askPreference from "../../request/preference";
+
 
 initMercadoPago("TEST-6baebe46-f407-406f-8011-2f812f18a2a3");
 
