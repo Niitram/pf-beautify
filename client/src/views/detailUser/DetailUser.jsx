@@ -207,9 +207,24 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
             <hr className={styles.hr} />
 
             <div className={styles.finalButtons}>
-              <button className={styles.button}>My favorites</button>
+              <button
+                className={styles.button}
+                onClick={() => {
+                  navigate("/favorites");
+                  handleDetailClick();
+                }}
+              >
+                My favorites
+              </button>
 
-              <button className={styles.button}>My history</button>
+              <button
+                className={styles.button}
+                onClick={() => {
+                  handleDetailClick();
+                }}
+              >
+                My history
+              </button>
             </div>
           </>
         )}

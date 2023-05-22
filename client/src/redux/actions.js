@@ -16,6 +16,12 @@ export const START_LOADING = "START_LOADING";
 export const FINISH_LOADING = "FINISH_LOADING";
 export const SET_USER_INFO = "SET_USER_INFO";
 
+//favorites
+export const SET_FAVORITES = "SET_FAVORITES";
+export const UNSET_FAVORITES = "UNSET_FAVORITES";
+export const GET_BACKUP_PRODUCTS = "GET_BACKUP_PRODUCTS";
+
+
 /* Actions */
 
 export const getAllProducts = (data) => {
@@ -84,5 +90,34 @@ export const showError = (errorData) => {
 export const clearError = () => {
   return {
     type: CLEAR_ERROR,
+  };
+};
+
+// Favorites
+export const setFavorites = (favorites) => {
+  return {
+    type: SET_FAVORITES,
+    payload: favorites,
+  };
+};
+
+export const unsetFavorites = (products) => {
+  return {
+    type: UNSET_FAVORITES,
+    payload: products,
+  };
+};
+
+export const getBackupProducts = (products) => {
+  return {
+    type: GET_BACKUP_PRODUCTS,
+    payload: products,
+  };
+};
+
+export const resetFiltersOrder = (products) => {
+  return {
+    type: RESET_FILTERS_ORDER,
+    payload: products,
   };
 };

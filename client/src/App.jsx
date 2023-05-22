@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAllCategories,
   getAllProducts,
+  getBackupProducts,
+  setFavorites,
   setUserInfoAction,
 } from "./redux/actions";
 import useGetProducts from "./hooks/useGetProducts";
@@ -30,7 +32,16 @@ import { CLIENT, ADMIN } from "./utils/roles";
 import AlertWarning from "./components/AlertWarning/AlertWarning";
 import PurchaseSuccess from "./views/purchaseSuccess/PurchaseSuccess";
 import Loading from "./views/loading/Loading";
+<<<<<<< HEAD
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
+=======
+import Favorites from "./views/favorites/Favorites";
+import { getFavorites } from "./request/favorites";
+import Checkout from "./views/Checkout/Checkout";
+import PurchaseError from "./views/purchaseError/PurchaseError";
+
+
+>>>>>>> 952c2c6a7b56050b070ac9553728291dae5cada4
 function App() {
   const locationNow = useLocation();
   const dispatch = useDispatch();
@@ -62,7 +73,13 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllCategories(categories));
-    dispatch(getAllProducts(products));
+
+    if (locationNow.pathname === "/favorites" && userData.id) {
+      dispatch(getBackupProducts(products));
+      getFavorites(userData.id).then(({ data }) => {
+        dispatch(setFavorites(data));
+      });
+    } else dispatch(getAllProducts(products));
   }, [dispatch, products, categories]);
 
   // este useEffect trae la info del usuario desde el local Storage al estado global
@@ -93,9 +110,13 @@ function App() {
         );
         setLogout(false);
 
+        const currentLocation = locationNow.pathname;
         const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
-        if (!oldLocation || oldLocation === "/") navigate("/home");
-        else navigate(oldLocation);
+
+        if (currentLocation === "/loading") {
+          if (!oldLocation || oldLocation === "/") navigate("/home");
+          else navigate(oldLocation);
+        }
       } catch (error) {
         const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
         if (!oldLocation) navigate("/");
@@ -107,7 +128,7 @@ function App() {
 
   return (
     <div className="App">
-      {locationNow.pathname !== "/" && locationNow.pathname !== "/loading" && (
+      {locationNow.pathname !== "/" && locationNow.pathname !== "/loading" && locationNow.pathname !== "/checkout" &&(
         <Nav
           handleLoginClick={handleLoginClick}
           handleDetailClick={handleDetailClick}
@@ -148,6 +169,7 @@ function App() {
           }
         />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
@@ -156,6 +178,7 @@ function App() {
           path="/detailProduct/:id"
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
         />
+        <Route path="/checkout" element={<Checkout/>}/>
 
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
@@ -165,8 +188,8 @@ function App() {
         {/* Rutas solo para CLIENT */}
         {/* <Route element={<ProtectedRoute isAllowed={userData.rol === CLIENT} />}>
           <Route
-            path="/detailUser"
-            element={<DetailUser setLogout={setLogout} />}
+          path="/detailUser"
+          element={<DetailUser setLogout={setLogout} />}
           />
         </Route> */}
         {/* Rutas para CLIENT Y ADMIN*/}
@@ -177,9 +200,12 @@ function App() {
             />
           }
         >
+
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/purchaseError" element={<PurchaseError />} />
+
           <Route path="/purchaseSuccess" element={<PurchaseSuccess />} />
           <Route path="/detailPayment" element={<DetailPayment />} />
-          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
     </div>

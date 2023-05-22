@@ -3,18 +3,25 @@ import Paginations from "../../components/paginations/Paginations";
 import SearchBar from "../../components/searchBar/SearchBar";
 import Filter from "../../components/filter/Filter";
 import Order from "../../components/order/Order";
-import styles from "./products.module.css";
-
+import styles from "../products/Products.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { unsetFavorites } from "../../redux/actions";
-import Footer from "../../components/footerAll/FooterAll";
+import {
+  getAllProducts,
+  setFavorites,
+  showError,
+  unsetFavorites,
+} from "../../redux/actions";
 
-
-function Products() {
-  const [currentPage, setCurrentPage] = useState(1);
+import { getFavorites } from "../../request/favorites";
+import useGetProducts from "../../hooks/useGetProducts";
+import axios from "axios";
+function Favorites() {
   const dispatch = useDispatch();
+  const clientId = useSelector((state) => state.userData.id);
+  const products = useGetProducts();
   const backupProducts = useSelector((state) => state.backupProducts);
-  const allProducts = useSelector((state) => state.allProducts);
+
+  const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState({
     category: "all",
     price: [4, 95],
@@ -22,9 +29,16 @@ function Products() {
   const [ordered, setOrdered] = useState("");
 
   useEffect(() => {
-    // para que renderize todos los productos si viene desde favoritos
-    allProducts.length !== backupProducts.length &&
-      dispatch(unsetFavorites(backupProducts));
+    try {
+      clientId &&
+        getFavorites(clientId).then(({ data }) => {
+          dispatch(setFavorites(data));
+        });
+
+    } catch (error) {
+      dispatch(showError({ tittle: "Error", message: error.message }));
+      console.log(error.message);
+    }
   }, []);
 
   return (
@@ -50,9 +64,8 @@ function Products() {
           />
         </div>
       </div>
-      <Footer />
     </section>
   );
 }
 
-export default Products;
+export default Favorites;
