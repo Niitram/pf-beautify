@@ -30,6 +30,7 @@ router.post("/create_preference", async (req, res) => {
         clientMail: response.body.external_reference,
         returnUrl: req.headers.origin,
       });
+      console.log(response.body.id)
       res.json({
         id: response.body.id,
       });
