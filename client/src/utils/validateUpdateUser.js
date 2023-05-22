@@ -1,6 +1,7 @@
 export const validateUpdateUser = (user, visibleInputs, oldData) => {
   const regexPhone = /^(?:[0-9] ?){6,14}[0-9]$/;
-  const regexString = /^(?!\s)[a-zA-Z0-9][a-zA-Z0-9\s]*$/;
+  const regexString =
+    /^(?!\s)[a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ][a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ\s]*$/;
   const errors = {
     name: "",
     adress: "",
