@@ -124,7 +124,9 @@ const Login = ({
                 }}
               />
             )}
-            <ErrorInputMessage errors={errors.email} text={errors.name} />
+
+            <ErrorInputMessage errors={errors.name} text={errors.name} />
+
             <input
               value={userInfo.email}
               type="text"
@@ -148,7 +150,13 @@ const Login = ({
                 }
               }}
             />
-            <ErrorInputMessage errors={errors.email} text={errors.email} />
+            {errors.email ? (
+              <ErrorInputMessage errors={errors.email} text={errors.email} />
+            ) : (
+              creatingAccount && (
+                <div className={styles.valideEmail}>Valid Email</div>
+              )
+            )}
             <input
               value={userInfo.password}
               type="password"
@@ -178,7 +186,9 @@ const Login = ({
                 text={errors.password}
               />
             ) : (
-              <PasswordSecurity password={userInfo.password} />
+              creatingAccount && (
+                <PasswordSecurity password={userInfo.password} />
+              )
             )}
           </div>
           <button
