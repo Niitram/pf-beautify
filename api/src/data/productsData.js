@@ -59,7 +59,7 @@ const bulkCreateProducts = async (req, res) => {
           image: image_link,
           discount: random > 50 ? null : numericPrice / 10,
           state: random > 950 ? false : true,
-          stock: random,
+          stock: random < 10 ? random + 10 : random,
           rate: Math.random() * 5,
         };
 

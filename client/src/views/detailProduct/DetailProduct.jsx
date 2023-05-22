@@ -14,6 +14,8 @@ import SectionCards from "../../components/sectionCards/SectionCards";
 import AlertAddCart from "../../components/alertAddCart/AlertAddCart";
 import useToggle from "../../hooks/useToggle";
 import { showError } from "../../redux/actions";
+import { createFavorite } from "../../request/favorites";
+import AlertFavorite from "../../components/alertFavorite/AlertFavorite";
 
 function DetailProduct({ handleLoginClick }) {
   const navigate = useNavigate();
@@ -25,6 +27,8 @@ function DetailProduct({ handleLoginClick }) {
   const userData = useSelector((state) => state.userData);
   const allProducts = useSelector((state) => state.allProducts);
   const [addProduct, setAddProduct] = useToggle(false);
+  const [addFavorite, setAddFavorite] = useToggle(false);
+  const [alredyFavorite, setAlredyFavorite] = useToggle(false);
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
     //Se controla que la cantidad ingresada no sea mayor a la cantidad de stock disponible
@@ -82,8 +86,11 @@ function DetailProduct({ handleLoginClick }) {
     if (e.target.name === "buyNow") navigate("/cart");
   };
 
-  const handleFavorite = () => {
+  const handleFavorite = async () => {
     if (!userData.id) handleLoginClick();
+    const added = await createFavorite(userData.id, id);
+    if (added) setAddFavorite(true);
+    else setAlredyFavorite(true);
   };
 
   useEffect(() => {
@@ -201,6 +208,20 @@ function DetailProduct({ handleLoginClick }) {
       )}
       {addProduct && (
         <AlertAddCart setAddProduct={setAddProduct} addProduct={addProduct} />
+      )}
+      {alredyFavorite && (
+        <AlertFavorite
+          parametroTrue={alredyFavorite}
+          setParametroTrue={setAlredyFavorite}
+          message={"Product alredy in favorites"}
+        />
+      )}
+      {addFavorite && (
+        <AlertFavorite
+          parametroTrue={addFavorite}
+          setParametroTrue={setAddFavorite}
+          message={"Product added to favorites"}
+        />
       )}
     </div>
   );

@@ -11,11 +11,15 @@ import {
   LOGOUT,
   SHOW_ERROR,
   CLEAR_ERROR,
+  SET_FAVORITES,
+  UNSET_FAVORITES,
+  RESET_FILTERS_ORDER,
 } from "./actions";
 
 const initialState = {
   allProducts: [],
   copyAllProducts: [],
+  backupProducts: [],
   allCategories: [],
   allServices: [],
   allProfessionals: [],
@@ -39,11 +43,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allProducts: [...action.payload],
         copyAllProducts: [...action.payload],
+        backupProducts: [...action.payload],
       };
     case SEARCH_PRODUCT_BY_NAME:
       return {
         ...state,
-        allProducts: [...action.payload],
         copyAllProducts: [...action.payload],
       };
     //Create product
@@ -148,6 +152,28 @@ const rootReducer = (state = initialState, action) => {
           tittle: null,
           message: null,
         },
+      };
+
+    // favorites
+    case SET_FAVORITES:
+      return {
+        ...state,
+        allProducts: [...action.payload],
+        copyAllProducts: [...action.payload],
+      };
+
+    case UNSET_FAVORITES:
+      return {
+        ...state,
+        allProducts: [...action.payload],
+        copyAllProducts: [...action.payload],
+      };
+
+    case RESET_FILTERS_ORDER:
+      return {
+        ...state,
+        allProducts: [...action.payload],
+        copyAllProducts: [...action.payload],
       };
 
     default:
