@@ -4,6 +4,7 @@ import SearchBar from "../../components/searchBar/SearchBar";
 import Filter from "../../components/filter/Filter";
 import Order from "../../components/order/Order";
 import styles from "./products.module.css";
+import Footer from "../../components/footerAll/FooterAll";
 
 function Products() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,6 +33,7 @@ function Products() {
           />
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

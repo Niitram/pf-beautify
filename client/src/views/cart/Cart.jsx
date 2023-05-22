@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { showError } from "../../redux/actions";
+// import Footer from "../../components/footerAll/FooterAll";
 
 initMercadoPago("TEST-e111adff-51c1-4945-a5fa-3a3adfb6f8b1");
 
@@ -55,7 +56,6 @@ function Cart() {
     const cartData = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(cartData);
   }, []);
-
 
   const emailUsuario = useSelector((state) => state.userData.email);
   const localCarrito = JSON.parse(localStorage.getItem("cart")) || [];
