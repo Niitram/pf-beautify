@@ -49,7 +49,7 @@ const handleSubmitLogin = async (
       };
 
       localStorage.setItem("userData", JSON.stringify(userData));
-      JSON.parse(localStorage.getItem("userData"));
+      // JSON.parse(localStorage.getItem("userData"));
 
       dispatch(setUserInfoAction(userData));
     } else {
@@ -67,7 +67,7 @@ const handleSubmitLogin = async (
       };
 
       localStorage.setItem("userData", JSON.stringify(userData));
-      JSON.parse(localStorage.getItem("userData"));
+      // JSON.parse(localStorage.getItem("userData"));
 
       // envía esa info al estado global
       dispatch(setUserInfoAction(userData));

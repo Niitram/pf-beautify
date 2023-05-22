@@ -3,12 +3,11 @@ import Paginations from "../../components/paginations/Paginations";
 import SearchBar from "../../components/searchBar/SearchBar";
 import Filter from "../../components/filter/Filter";
 import Order from "../../components/order/Order";
-import styles from "./products.module.css";
+import styles from "./Products.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { unsetFavorites } from "../../redux/actions";
 import Footer from "../../components/footerAll/FooterAll";
-
 
 function Products() {
   const [currentPage, setCurrentPage] = useState(1);

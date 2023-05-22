@@ -5,15 +5,13 @@ function About() {
   return (
     <div className={styles.Container}>
       <div className={styles.QuienesSomos}>
-        <p>¿Quiénes somos?</p>
+        <p>About us</p>
         <p>
           {" "}
-          es una plataforma que conecta millones de clientes y clientas con el
-          fin de otorgar la mejor atencion en distribucion y prestacion de
-          servicios referentes a manicura y cuidado personal femenino.
+          Beautify is a platform that connects millions of clients, both men and women, in order to provide the best attention in the distribution and provision of services related to manicure and female personal care.
         </p>
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   );
 }

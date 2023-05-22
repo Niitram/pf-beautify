@@ -1,9 +1,8 @@
 import styles from "./Cart.module.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
+import { initMercadoPago } from "@mercadopago/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { showError } from "../../redux/actions";
 
@@ -11,11 +10,10 @@ import { showError } from "../../redux/actions";
 
 import askPreference from "../../request/preference";
 
-
 initMercadoPago("TEST-6baebe46-f407-406f-8011-2f812f18a2a3");
 
 function Cart() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [cart, setCart] = useState([]);
   //*** validar el carrito
@@ -74,8 +72,10 @@ function Cart() {
   const handleCheckOut = () => {
     let aux = [...carrito, emailUsuario];
     askPreference(aux)
-      .then(({ data }) => localStorage.setItem('preference',JSON.stringify((data.id))))
-      .then(navigate('/checkout'))
+      .then(({ data }) =>
+        localStorage.setItem("preference", JSON.stringify(data.id))
+      )
+      .then(navigate("/checkout"))
       .catch((error) => {
         console.log(error.message);
         dispatch(
@@ -160,7 +160,11 @@ function Cart() {
             </div>
           </div>
         ))}
-      <button className={styles.checkout} onClick={()=>handleCheckOut()}>Checkout</button>
+        {cantArticulos > 0 && (
+          <button className={styles.checkout} onClick={() => handleCheckOut()}>
+            Checkout
+          </button>
+        )}
       </div>
     </div>
   );

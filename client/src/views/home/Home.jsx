@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import PromoCard from "../../components/promo card/PromoCard";
 import styles from "./Home.module.css";
@@ -8,6 +7,7 @@ import "@splidejs/react-splide/css";
 import SectionCards from "../../components/sectionCards/SectionCards";
 import { showError } from "../../redux/actions";
 import FooterAll from "../..//components/footerAll/FooterAll";
+import { getProducts } from "../../request/product";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -17,9 +17,7 @@ function Home() {
   // const [current, setCurrent] = useState(0);
   useEffect(() => {
     try {
-      axios
-        .get("http://localhost:3001/products")
-        .then(({ data }) => setProducts(data));
+      getProducts().then(({ data }) => setProducts(data));
     } catch (error) {
       dispatch(showError({ tittle: "Error", message: error.message }));
       console.log(error.message);
