@@ -87,7 +87,7 @@ function DetailProduct({ handleLoginClick }) {
   };
 
   const handleFavorite = async () => {
-    if (!userData.id) handleLoginClick();
+    if (!userData.id) return handleLoginClick();
     const added = await createFavorite(userData.id, id);
     if (added) setAddFavorite(true);
     else setAlredyFavorite(true);

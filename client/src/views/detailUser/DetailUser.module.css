@@ -287,6 +287,9 @@ input {
 
 .imageInputError {
   color: rgb(97, 3, 3);
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 .inputDiv {
   position: relative;
