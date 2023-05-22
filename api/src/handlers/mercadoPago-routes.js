@@ -15,9 +15,9 @@ router.post("/create_preference", async (req, res) => {
     external_reference: req.body.pop(),
     items: req.body,
     back_urls: {
-      success: `${BACK_ROUTE}/mercadopago/feedback`,
-      failure: `${BACK_ROUTE}/mercadopago/feedback`,
-      pending: `${BACK_ROUTE}/mercadopago/feedback`,
+      success: `${BACK_ROUTE}mercadopago/feedback`,
+      failure: `${BACK_ROUTE}mercadopago/feedback`,
+      pending: `${BACK_ROUTE}mercadopago/feedback`,
     },
     auto_return: "approved",
   };

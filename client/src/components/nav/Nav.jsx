@@ -21,7 +21,7 @@ function Nav({ handleLoginClick, handleDetailClick }) {
         <MenuIcon />
       </label>
       <div className={styles.botones}>
-        <ButtonNav text={"Home"} route={"/home"}></ButtonNav>
+        <ButtonNav  text={"Home"} route={"/home"}></ButtonNav>
         <ButtonNav text={"About"} route={"/about"}></ButtonNav>
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
         {/* <ButtonNav text={"Services"} route={"/services"}></ButtonNav> */}
@@ -33,7 +33,7 @@ function Nav({ handleLoginClick, handleDetailClick }) {
         ) : (
           <>
             <button className={styles.myProfile} onClick={handleDetailClick}>
-              My Profile
+              Profile
             </button>
             <ButtonAccent1 text={"Cart"} route={"/cart"}></ButtonAccent1>
           </>
