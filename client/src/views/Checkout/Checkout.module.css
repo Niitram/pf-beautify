@@ -1,0 +1,60 @@
+.container {
+  background: var(--gradient);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.493);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+.aux {
+  width: 50%;
+  min-height: 50%;
+  background-color: var(--background);
+  z-index: 1;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+.mercadopago {
+  width: 45%;
+  padding: 2rem;
+  border-right: 1px solid var(--accent1);
+  margin: 15px 0px 15px 0px;
+}
+.pasarela {
+  display: flex;
+  height: 100%;
+}
+.tarjeta {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100%;
+  width: 55%;
+}
+.nombreTarjeta {
+  width: 28rem;
+  border: none;
+  border-bottom: 2px solid var(--text-alt);
+}
+.inputCorto {
+  width: 13rem;
+}
+.expireCVV {
+  display: flex;
+  justify-self: start;
+}
+
+/* style={{display:'flex',backgroundColor:'red',width:'400px',padding:'0px'}} */
