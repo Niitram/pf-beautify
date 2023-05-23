@@ -15,9 +15,9 @@ router.post("/create_preference", async (req, res) => {
     external_reference: req.body.pop(),
     items: req.body,
     back_urls: {
-      success: `${BACK_ROUTE}/mercadopago/feedback`,
-      failure: `${BACK_ROUTE}/mercadopago/feedback`,
-      pending: `${BACK_ROUTE}/mercadopago/feedback`,
+      success: `${BACK_ROUTE}mercadopago/feedback`,
+      failure: `${BACK_ROUTE}mercadopago/feedback`,
+      pending: `${BACK_ROUTE}mercadopago/feedback`,
     },
     auto_return: "approved",
   };
@@ -42,6 +42,7 @@ router.post("/create_preference", async (req, res) => {
 router.get("/feedback", async (req, res) => {
   try {
     const email = req.query.external_reference;
+    console.log(email);
     const toDelete = await Purchase.findAll({ where: { clientMail: email } });
     for (let i = 0; i < toDelete.length - 1; i++) {
       toDelete[i].destroy();
