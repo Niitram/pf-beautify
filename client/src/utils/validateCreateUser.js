@@ -1,4 +1,5 @@
-const regexString = /^(?!\s)[a-zA-Z0-9][a-zA-Z0-9\s]*$/;
+const regexString =
+  /^(?!\s)[a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ][a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ\s]*$/;
 const regexEmail = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/;
 
 const validateCreateUser = ({ email, password, name }, creatingAccount) => {

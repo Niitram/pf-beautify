@@ -98,7 +98,11 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     const value = event.target.value;
     setUpdatedData({ ...updatedData, [property]: value });
     setErrors(
-      validateUpdateUser({ ...updatedData, [property]: value }, visibleInputs)
+      validateUpdateUser(
+        { ...updatedData, [property]: value },
+        visibleInputs,
+        userData
+      )
     );
   };
 

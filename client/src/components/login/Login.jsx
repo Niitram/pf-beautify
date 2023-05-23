@@ -8,6 +8,7 @@ import { getAuth, signInWithRedirect } from "firebase/auth";
 import validateCreateUser from "../../utils/validateCreateUser";
 import styles from "./Login.module.css";
 import GoogleIcon from "../../assets/images/GoogleIconColored.png";
+import PasswordSecurity from "./passwordSecurity/PasswordSecurity";
 
 const Login = ({
   loginVisible,
@@ -123,7 +124,9 @@ const Login = ({
                 }}
               />
             )}
-            <ErrorInputMessage errors={errors.email} text={errors.name} />
+
+            <ErrorInputMessage errors={errors.name} text={errors.name} />
+
             <input
               value={userInfo.email}
               type="text"
@@ -147,10 +150,16 @@ const Login = ({
                 }
               }}
             />
-            <ErrorInputMessage errors={errors.email} text={errors.email} />
+            {errors.email ? (
+              <ErrorInputMessage errors={errors.email} text={errors.email} />
+            ) : (
+              creatingAccount && (
+                <div className={styles.valideEmail}>Valid Email</div>
+              )
+            )}
             <input
               value={userInfo.password}
-              type="text"
+              type="password"
               name="password"
               placeholder="Password"
               className="Password"
@@ -171,10 +180,16 @@ const Login = ({
                 }
               }}
             />
-            <ErrorInputMessage
-              errors={errors.password}
-              text={errors.password}
-            />
+            {errors.password ? (
+              <ErrorInputMessage
+                errors={errors.password}
+                text={errors.password}
+              />
+            ) : (
+              creatingAccount && (
+                <PasswordSecurity password={userInfo.password} />
+              )
+            )}
           </div>
           <button
             disabled={

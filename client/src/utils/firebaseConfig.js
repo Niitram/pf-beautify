@@ -71,7 +71,13 @@ export const uploadProfilePicture = async (
   const url = await getDownloadURL(archivoRef);
 
   setUpdatedData({ ...updatedData, image: url });
-  setErrors(validateUpdateUser({ ...updatedData, image: url }, visibleInputs));
+  setErrors(
+    validateUpdateUser(
+      { ...updatedData, image: url },
+      visibleInputs,
+      updatedData
+    )
+  );
 };
 
 export const loginWithGoogleFirebase = async (

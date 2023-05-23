@@ -87,7 +87,7 @@ function DetailProduct({ handleLoginClick }) {
   };
 
   const handleFavorite = async () => {
-    if (!userData.id) handleLoginClick();
+    if (!userData.id) return handleLoginClick();
     const added = await createFavorite(userData.id, id);
     if (added) setAddFavorite(true);
     else setAlredyFavorite(true);
@@ -108,7 +108,11 @@ function DetailProduct({ handleLoginClick }) {
     <div className={styles.aux}>
       <div className={styles.container}>
         <div className={styles.containerBack}>
-          <button className={styles.backButton} onClick={() => history.back()}>
+          <button
+            className={styles.backButton}
+            onClick={() => history.back()}
+            style={{ zIndex: 1 }}
+          >
             <ArrowBackIosNewIcon />
           </button>
           {image && (

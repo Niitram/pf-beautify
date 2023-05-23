@@ -16,8 +16,8 @@
   width: 100vw;
 }
 .aux {
-  width: 50%;
-  min-height: 50%;
+  width: fit-content;
+  min-height: 45%;
   background-color: var(--background);
   z-index: 1;
   border-radius: 10px;
@@ -25,36 +25,32 @@
   flex-direction: column;
   padding-top: 1rem;
 }
+
 .mercadopago {
-  width: 45%;
+  width: fit-content;
   padding: 2rem;
-  border-right: 1px solid var(--accent1);
-  margin: 15px 0px 15px 0px;
 }
+
 .pasarela {
   display: flex;
   height: 100%;
-}
-.tarjeta {
-  margin-top: 3rem;
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  height: 100%;
-  width: 55%;
-}
-.nombreTarjeta {
-  width: 28rem;
-  border: none;
-  border-bottom: 2px solid var(--text-alt);
-}
-.inputCorto {
-  width: 13rem;
-}
-.expireCVV {
-  display: flex;
-  justify-self: start;
+  width: fit-content;
+  padding: 1rem;
 }
 
-/* style={{display:'flex',backgroundColor:'red',width:'400px',padding:'0px'}} */
+.resumen {
+  width: fit-content;
+  border-bottom: 1px solid var(--accent1);
+  padding: 1rem;
+  align-self: center;
+}
+
+.datos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--muted);
+  border-bottom-style: dashed;
+}
