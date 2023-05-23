@@ -1,6 +1,6 @@
 .Container{
     /* border:1px solid green; */
-     padding:0px;
+    padding:0px;
     width:100%;
     overflow: hidden;
 }
@@ -36,8 +36,8 @@
 .containerShowCards{
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     
 }
