@@ -191,7 +191,7 @@ function DetailProduct({ handleLoginClick }) {
               onClick={handleAddToCart}
               name="buyNow"
               className={styles.btnShopNow}
-              type="submit"
+              // type="submit"
             >
               Buy now
             </button>

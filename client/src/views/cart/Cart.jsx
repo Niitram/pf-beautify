@@ -9,6 +9,7 @@ import { showError } from "../../redux/actions";
 // import Footer from "../../components/footerAll/FooterAll";
 
 import askPreference from "../../request/preference";
+import AlertDialogSlide from "../../components/slideDialog/slideDialog";
 
 initMercadoPago("TEST-6baebe46-f407-406f-8011-2f812f18a2a3");
 
@@ -51,6 +52,14 @@ function Cart() {
     }
     localStorage.setItem("cart", JSON.stringify(newCart));
     setCart(newCart);
+  };
+
+  const [openDialog, setOpenDialog] = useState(false);
+  const handleClickOpenDialog = () => {
+    setOpenDialog(true);
+  };
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
   };
 
   useEffect(() => {
@@ -161,11 +170,17 @@ function Cart() {
           </div>
         ))}
         {cantArticulos > 0 && (
-          <button className={styles.checkout} onClick={() => handleCheckOut()}>
+          <button className={styles.checkout} onClick={handleClickOpenDialog}>
             Checkout
           </button>
         )}
       </div>
+      <AlertDialogSlide
+        handleCloseDialog={handleCloseDialog}
+        openDialog={openDialog}
+        yesCallback={handleCheckOut}
+        questionText={"Are you sure you wanna proceed to purchase?"}
+      />
     </div>
   );
 }
