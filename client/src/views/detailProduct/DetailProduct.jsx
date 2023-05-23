@@ -17,6 +17,7 @@ import useToggle from "../../hooks/useToggle";
 import { showError } from "../../redux/actions";
 import { createFavorite, getFavorites } from "../../request/favorites";
 import AlertFavorite from "../../components/alertFavorite/AlertFavorite";
+import { deleteFavorite } from "../../request/favorites";
 
 function DetailProduct({ handleLoginClick }) {
   const navigate = useNavigate();
@@ -28,8 +29,8 @@ function DetailProduct({ handleLoginClick }) {
   const userData = useSelector((state) => state.userData);
   const allProducts = useSelector((state) => state.allProducts);
   const [addProduct, setAddProduct] = useToggle(false);
-  const [addFavorite, setAddFavorite] = useToggle(false);
-  const [alredyFavorite, setAlredyFavorite] = useToggle(false);
+  const [addedFavorite, setAddedFavorite] = useToggle(false);
+  const [removedFavorite, setRemovedFavorite] = useToggle(false);
   const [userFavorites, setUserFavorites] = useState([]);
 
   const handleQuantity = (event) => {
@@ -93,9 +94,13 @@ function DetailProduct({ handleLoginClick }) {
     if (!userData.id) return handleLoginClick();
     const added = await createFavorite(userData.id, id);
     if (added) {
-      setAddFavorite(true);
+      setAddedFavorite(true);
       setUserFavorites([...userFavorites, Number(id)]);
-    } else setAlredyFavorite(true);
+    } else {
+      setRemovedFavorite(true);
+      await deleteFavorite(userData.id, id);
+      setUserFavorites(userFavorites.filter((fav) => fav !== Number(id)));
+    }
   };
 
   useEffect(() => {
@@ -228,17 +233,17 @@ function DetailProduct({ handleLoginClick }) {
       {addProduct && (
         <AlertAddCart setAddProduct={setAddProduct} addProduct={addProduct} />
       )}
-      {alredyFavorite && (
+      {removedFavorite && (
         <AlertFavorite
-          parametroTrue={alredyFavorite}
-          setParametroTrue={setAlredyFavorite}
-          message={"Product alredy in favorites"}
+          parametroTrue={removedFavorite}
+          setParametroTrue={setRemovedFavorite}
+          message={"Product removed from favorites"}
         />
       )}
-      {addFavorite && (
+      {addedFavorite && (
         <AlertFavorite
-          parametroTrue={addFavorite}
-          setParametroTrue={setAddFavorite}
+          parametroTrue={addedFavorite}
+          setParametroTrue={setAddedFavorite}
           message={"Product added to favorites"}
         />
       )}

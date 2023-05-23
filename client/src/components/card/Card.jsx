@@ -23,16 +23,13 @@ function Card({ image, price, name, rate, id }) {
       getFavorites(clientId).then(({ data }) => {
         dispatch(setFavorites(data));
       });
+      if (location.pathname === "/favorites" && allProducts.length === 1)
+        navigate("/home");
     } catch (error) {
       console.log(error.message);
     }
   };
-  useEffect(() => {
-    return () => {
-      if (location.pathname === "/favorites" && allProducts.length === 1)
-        navigate("/home");
-    };
-  }, []);
+
   return (
     <div className={styles.aux}>
       {location.pathname === "/favorites" && (
