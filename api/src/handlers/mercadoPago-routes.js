@@ -42,6 +42,7 @@ router.post("/create_preference", async (req, res) => {
 router.get("/feedback", async (req, res) => {
   try {
     const email = req.query.external_reference;
+    console.log(email);
     const toDelete = await Purchase.findAll({ where: { clientMail: email } });
     for (let i = 0; i < toDelete.length - 1; i++) {
       toDelete[i].destroy();
