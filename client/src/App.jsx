@@ -202,8 +202,8 @@ function App() {
           element={
             <ProtectedRoute
               isAllowed={
-                JSON.parse(localStorage.getItem("userData")).rol === ADMIN ||
-                JSON.parse(localStorage.getItem("userData")).rol === CLIENT
+                JSON.parse(localStorage.getItem("userData"))?.rol === ADMIN ||
+                JSON.parse(localStorage.getItem("userData"))?.rol === CLIENT
               }
             />
           }
