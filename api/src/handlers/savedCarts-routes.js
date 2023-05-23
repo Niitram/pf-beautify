@@ -1,10 +1,14 @@
 const { Router } = require("express");
 const postSavedCart = require("../controllers/SavedCarts/postSavedCart");
 const getSavedCartByClientId = require("../controllers/SavedCarts/getSavedCartByClientId");
+const {
+  getCartValidation,
+  postCartValidation,
+} = require("../validations/savedCarts");
 
 const savedCartsRouter = Router();
 
-savedCartsRouter.post("/:clientId", async (req, res) => {
+savedCartsRouter.post("/:clientId", postCartValidation, async (req, res) => {
   try {
     const { clientId } = req.params;
     const { products } = req.body;
@@ -15,7 +19,7 @@ savedCartsRouter.post("/:clientId", async (req, res) => {
   }
 });
 
-savedCartsRouter.get("/:clientId", async (req, res) => {
+savedCartsRouter.get("/:clientId", getCartValidation, async (req, res) => {
   try {
     const { clientId } = req.params;
     const cart = await getSavedCartByClientId(clientId);
@@ -24,4 +28,5 @@ savedCartsRouter.get("/:clientId", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 module.exports = savedCartsRouter;

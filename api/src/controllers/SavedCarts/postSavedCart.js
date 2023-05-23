@@ -8,6 +8,7 @@ const postSavedCart = async (clientId, products) => {
   await newCart.setClient(clientId);
 
   products.forEach(async (product) => {
+    if (!product.quantity) return;
     await newCart.addProduct(product.id, {
       through: { quantity: product.quantity },
     });
