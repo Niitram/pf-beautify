@@ -37,6 +37,7 @@ import { getFavorites } from "./request/favorites";
 import Checkout from "./views/Checkout/Checkout";
 import PurchaseError from "./views/purchaseError/PurchaseError";
 import UserHistory from "./views/userHistory/userHistory";
+import ContactForm from "./views/ContactForm/contactForm";
 
 //Para deploy
 /* import axios from "axios"; */
@@ -185,6 +186,7 @@ function App() {
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
         />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path='/contact' element={<ContactForm/>} />
 
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
