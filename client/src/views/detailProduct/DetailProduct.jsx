@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { Stack, Rating, Skeleton } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import styles from "./DetailProduct.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,8 +15,9 @@ import SectionCards from "../../components/sectionCards/SectionCards";
 import AlertAddCart from "../../components/alertAddCart/AlertAddCart";
 import useToggle from "../../hooks/useToggle";
 import { showError } from "../../redux/actions";
-import { createFavorite } from "../../request/favorites";
+import { createFavorite, getFavorites } from "../../request/favorites";
 import AlertFavorite from "../../components/alertFavorite/AlertFavorite";
+import { deleteFavorite } from "../../request/favorites";
 
 function DetailProduct({ handleLoginClick }) {
   const navigate = useNavigate();
@@ -27,8 +29,10 @@ function DetailProduct({ handleLoginClick }) {
   const userData = useSelector((state) => state.userData);
   const allProducts = useSelector((state) => state.allProducts);
   const [addProduct, setAddProduct] = useToggle(false);
-  const [addFavorite, setAddFavorite] = useToggle(false);
-  const [alredyFavorite, setAlredyFavorite] = useToggle(false);
+  const [addedFavorite, setAddedFavorite] = useToggle(false);
+  const [removedFavorite, setRemovedFavorite] = useToggle(false);
+  const [userFavorites, setUserFavorites] = useState([]);
+
   const handleQuantity = (event) => {
     setQuantity(Number(event.target.value));
     //Se controla que la cantidad ingresada no sea mayor a la cantidad de stock disponible
@@ -89,8 +93,14 @@ function DetailProduct({ handleLoginClick }) {
   const handleFavorite = async () => {
     if (!userData.id) return handleLoginClick();
     const added = await createFavorite(userData.id, id);
-    if (added) setAddFavorite(true);
-    else setAlredyFavorite(true);
+    if (added) {
+      setAddedFavorite(true);
+      setUserFavorites([...userFavorites, Number(id)]);
+    } else {
+      setRemovedFavorite(true);
+      await deleteFavorite(userData.id, id);
+      setUserFavorites(userFavorites.filter((fav) => fav !== Number(id)));
+    }
   };
 
   useEffect(() => {
@@ -98,6 +108,12 @@ function DetailProduct({ handleLoginClick }) {
       getProductById(id).then((res) => {
         setProduct(res.data);
       });
+      const clientId = JSON.parse(localStorage.getItem("userData"))?.id;
+      clientId &&
+        getFavorites(clientId).then((res) => {
+          const favoritesIds = res.data.map(({ id }) => id);
+          setUserFavorites(favoritesIds);
+        });
     } catch (error) {
       console.log(error.message);
     }
@@ -180,7 +196,7 @@ function DetailProduct({ handleLoginClick }) {
               onClick={handleAddToCart}
               name="buyNow"
               className={styles.btnShopNow}
-              type="submit"
+              // type="submit"
             >
               Buy now
             </button>
@@ -195,7 +211,11 @@ function DetailProduct({ handleLoginClick }) {
                 <ShoppingCartOutlinedIcon /> Add to cart
               </button>
               <button className={styles.listWish} onClick={handleFavorite}>
-                <FavoriteBorderIcon />
+                {userFavorites.includes(Number(id)) ? (
+                  <FavoriteIcon style={{ fill: "#d14d72" }} />
+                ) : (
+                  <FavoriteBorderIcon />
+                )}
                 Favorite
               </button>
             </div>
@@ -213,17 +233,17 @@ function DetailProduct({ handleLoginClick }) {
       {addProduct && (
         <AlertAddCart setAddProduct={setAddProduct} addProduct={addProduct} />
       )}
-      {alredyFavorite && (
+      {removedFavorite && (
         <AlertFavorite
-          parametroTrue={alredyFavorite}
-          setParametroTrue={setAlredyFavorite}
-          message={"Product alredy in favorites"}
+          parametroTrue={removedFavorite}
+          setParametroTrue={setRemovedFavorite}
+          message={"Product removed from favorites"}
         />
       )}
-      {addFavorite && (
+      {addedFavorite && (
         <AlertFavorite
-          parametroTrue={addFavorite}
-          setParametroTrue={setAddFavorite}
+          parametroTrue={addedFavorite}
+          setParametroTrue={setAddedFavorite}
           message={"Product added to favorites"}
         />
       )}

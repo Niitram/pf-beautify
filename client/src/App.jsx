@@ -40,6 +40,7 @@ import Clients from "./views/clients/Clients";
 import Appointments from "./views/appointments/Appointments";
 import ServicesControl from "./views/Services Control/ServicesControl";
 import Professionals from "./views/Professionals/Professionals";
+import ContactForm from "./views/ContactForm/contactForm";
 
 //Para deploy
 /* import axios from "axios"; */
@@ -189,6 +190,7 @@ function App() {
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
         />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path='/contact' element={<ContactForm/>} />
 
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
