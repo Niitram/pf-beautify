@@ -36,7 +36,7 @@ import Favorites from "./views/favorites/Favorites";
 import { getFavorites } from "./request/favorites";
 import Checkout from "./views/Checkout/Checkout";
 import PurchaseError from "./views/purchaseError/PurchaseError";
-
+import ContactForm from "./views/ContactForm/contactForm";
 //Para deploy
 /* import axios from "axios"; */
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
@@ -184,6 +184,7 @@ function App() {
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
         />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path='/contact' element={<ContactForm/>} />
 
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
