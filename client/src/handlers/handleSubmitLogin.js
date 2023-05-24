@@ -2,7 +2,7 @@ import { createUserWithMail, singUpWithMail } from "../utils/firebaseConfig";
 import { createNewClient, getClient } from "../request/clients";
 import { getCart} from "../request/cart"
 import { setUserInfoAction, showError } from "../redux/actions";
-import { CLIENT } from "../utils/roles";
+import { ADMIN, CLIENT } from "../utils/roles";
 
 const handleSubmitLogin = async (
   e,
@@ -48,6 +48,8 @@ const handleSubmitLogin = async (
         email: createUser.email,
         rol: CLIENT,
       };
+      if (userData.email === "beautifyfinalproyect@gmail.com")
+        userData.rol = ADMIN;
 
       //Guarda el el local la info del usuario creado e inicializa el carrito
       localStorage.setItem("userData", JSON.stringify(userData));
@@ -70,6 +72,9 @@ const handleSubmitLogin = async (
       };
 
       //Guarda el el local la info del usuario y del carrito
+      if (userData.email === "beautifyfinalproyect@gmail.com")
+        userData.rol = ADMIN;
+
       localStorage.setItem("userData", JSON.stringify(userData));
       localStorage.setItem("cart", JSON.stringify(userCart));
 

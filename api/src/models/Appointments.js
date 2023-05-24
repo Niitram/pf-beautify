@@ -18,6 +18,10 @@ module.exports = (sequelize) => {
             hour: {
                 type: DataTypes.TIME,
                 allowNull: false
+            },
+            paid: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false
             }
         },
         { timestamps: false }

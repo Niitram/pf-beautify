@@ -4,6 +4,7 @@ const addStock = async (id, load) => {
   const product = await Product.findByPk(id, {
     include: { model: Category },
   });
+  
   const newStock = product.stock + load;
   await product.update({ stock: newStock });
 

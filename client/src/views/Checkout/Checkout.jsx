@@ -18,9 +18,7 @@ export default function Checkout() {
     cart.forEach((element) => {
       total += element.price * element.quantity;
     });
-  const tax = (total * 0.07).toFixed(2);
-  const shipping = (total * 0.1).toFixed(2);
-  const totalPayment = (total - tax - shipping).toFixed(2);
+ 
   return (
     <div className={styles.container}>
       <div className={styles.aux}>
@@ -32,7 +30,7 @@ export default function Checkout() {
               <h4>Total price:</h4>
               <h4>${total.toFixed(2)}</h4>
             </div>
-            <div className={styles.datos}>
+            {/* <div className={styles.datos}>
               <h4>Shipping:</h4>
               <h4>${shipping}</h4>
             </div>
@@ -43,7 +41,7 @@ export default function Checkout() {
             <div className={styles.datos} style={{ marginTop: "50%" }}>
               <h4>Total Amount to pay:</h4>
               <h4>${totalPayment}</h4>
-            </div>
+            </div> */}
           </div>
           <div className={styles.mercadopago}>
             {preferenceId ? (

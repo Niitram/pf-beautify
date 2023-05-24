@@ -21,6 +21,7 @@ const bulkCreateProfesionalsAndServices = async () => {
             price: service.price,
             image: service.image,
             rate: service.rate,
+            duration: service.duration
           },
         });
 

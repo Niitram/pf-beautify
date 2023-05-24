@@ -17,7 +17,7 @@
 }
 .aux {
   width: fit-content;
-  min-height: 45%;
+  min-height: fit-content;
   background-color: var(--background);
   z-index: 1;
   border-radius: 10px;
@@ -29,6 +29,7 @@
 .mercadopago {
   width: fit-content;
   padding: 2rem;
+  border-top: 1px solid var(--accent1);
 }
 
 .pasarela {
@@ -41,11 +42,10 @@
 
 .resumen {
   width: fit-content;
-  border-bottom: 1px solid var(--accent1);
   padding: 1rem;
   align-self: center;
 }
-
+/* 
 .datos {
   display: flex;
   justify-content: space-between;
@@ -53,4 +53,4 @@
   margin-bottom: 1.5rem;
   border-bottom: 1px solid var(--muted);
   border-bottom-style: dashed;
-}
+} */
