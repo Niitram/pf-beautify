@@ -9,6 +9,7 @@ import { showError } from "../../redux/actions";
 // import Footer from "../../components/footerAll/FooterAll";
 
 import askPreference from "../../request/preference";
+import AlertDialogSlide from "../../components/slideDialog/slideDialog";
 
 initMercadoPago("TEST-6baebe46-f407-406f-8011-2f812f18a2a3");
 
@@ -23,8 +24,7 @@ function Cart() {
     totalPrice += (cart[i].price - cart[i].discount) * cart[i].quantity;
   }
 
-  const handleDelete = (event) => {
-    const id = Number(event.target.value);
+  const handleDelete = (id) => {
     const newCart = cart.filter((cartItem) => cartItem.id != id);
     localStorage.setItem("cart", JSON.stringify(newCart));
     setCart(newCart);
@@ -51,6 +51,24 @@ function Cart() {
     }
     localStorage.setItem("cart", JSON.stringify(newCart));
     setCart(newCart);
+  };
+
+  const [openCheckoutDialog, setOpenCheckoutDialog] = useState(false);
+  const handleClickOpenCheckoutDialog = () => {
+    setOpenCheckoutDialog(true);
+  };
+  const handleCloseCheckoutDialog = () => {
+    setOpenCheckoutDialog(false);
+  };
+
+  const [itemToDelete, setItemToDelete] = useState(false);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const handleClickOpenDeleteDialog = (e) => {
+    setItemToDelete(Number(e.target.value));
+    setOpenDeleteDialog(true);
+  };
+  const handleCloseDeleteDialog = () => {
+    setOpenDeleteDialog(false);
   };
 
   useEffect(() => {
@@ -154,18 +172,37 @@ function Cart() {
               </div>
               <button
                 className={styles.btnDelete}
-                onClick={handleDelete}
+                onClick={handleClickOpenDeleteDialog}
                 value={cartItem.id}
               ></button>
             </div>
           </div>
         ))}
         {cantArticulos > 0 && (
-          <button className={styles.checkout} onClick={() => handleCheckOut()}>
+          <button
+            className={styles.checkout}
+            onClick={handleClickOpenCheckoutDialog}
+          >
             Checkout
           </button>
         )}
       </div>
+      <AlertDialogSlide
+        handleCloseDialog={handleCloseDeleteDialog}
+        openDialog={openDeleteDialog}
+        yesCallback={() => {
+          handleDelete(itemToDelete);
+          handleCloseDeleteDialog();
+        }}
+        questionText={"Are you sure you wanna remove that item from your card?"}
+      />
+
+      <AlertDialogSlide
+        handleCloseDialog={handleCloseCheckoutDialog}
+        openDialog={openCheckoutDialog}
+        yesCallback={handleCheckOut}
+        questionText={"Are you sure you wanna proceed to purchase?"}
+      />
     </div>
   );
 }

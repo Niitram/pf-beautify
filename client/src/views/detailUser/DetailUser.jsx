@@ -15,9 +15,12 @@ import Phone from "../../components/detailUserForm/phone";
 import Adress from "../../components/detailUserForm/adress";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import AlertFavorite from "../../components/alertFavorite/AlertFavorite";
+import { getFavorites } from "../../request/favorites";
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
+
   const auth = getAuth(firebaseApp);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -49,6 +52,12 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
 
   useEffect(() => {
     getDataFromDb(globalUserData.email);
+    const clientId = JSON.parse(localStorage.getItem("userData"))?.id;
+    clientId &&
+      getFavorites(clientId).then((res) => {
+        const favoritesIds = res.data.map(({ id }) => id);
+        setUserFavorites(favoritesIds);
+      });
   }, []);
 
   const initialState = {
@@ -61,17 +70,26 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   };
 
   const [userData, setUserData] = useState(initialState);
-
   const [updatedData, setUpdatedData] = useState(initialState);
-
   const [errors, setErrors] = useState(initialState);
 
   const [visibleInputs, setVisibleInputs] = useState(initialState);
+  const [noFavoritesAlert, setNoFavoritesAlert] = useState(false);
+  const [userFavorites, setUserFavorites] = useState([]);
 
   const anyUpdatedData = () => {
     for (const property in updatedData) {
       if (visibleInputs[property]) return true;
     }
+  };
+
+  const favoritesButton = () => {
+    if (userFavorites.length) {
+      navigate("/favorites");
+      handleDetailClick();
+      return;
+    }
+    setNoFavoritesAlert(true);
   };
 
   const handleSubmit = async (event) => {
@@ -211,13 +229,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
             <hr className={styles.hr} />
 
             <div className={styles.finalButtons}>
-              <button
-                className={styles.button}
-                onClick={() => {
-                  navigate("/favorites");
-                  handleDetailClick();
-                }}
-              >
+              <button className={styles.button} onClick={favoritesButton}>
                 My favorites
               </button>
 
@@ -231,6 +243,14 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
               </button>
             </div>
           </>
+        )}
+
+        {noFavoritesAlert && (
+          <AlertFavorite
+            parametroTrue={noFavoritesAlert}
+            setParametroTrue={setNoFavoritesAlert}
+            message={"You have no favorites"}
+          />
         )}
       </form>
     </div>
