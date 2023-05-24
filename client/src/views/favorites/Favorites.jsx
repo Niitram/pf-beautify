@@ -5,12 +5,7 @@ import Filter from "../../components/filter/Filter";
 import Order from "../../components/order/Order";
 import styles from "../products/Products.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllProducts,
-  setFavorites,
-  showError,
-  unsetFavorites,
-} from "../../redux/actions";
+import { setFavorites, showError } from "../../redux/actions";
 
 import { getFavorites } from "../../request/favorites";
 // import useGetProducts from "../../hooks/useGetProducts";

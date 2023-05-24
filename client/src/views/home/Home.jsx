@@ -6,7 +6,6 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import SectionCards from "../../components/sectionCards/SectionCards";
 import { showError } from "../../redux/actions";
-import FooterAll from "../..//components/footerAll/FooterAll";
 import { getProducts } from "../../request/product";
 
 function Home() {
@@ -81,7 +80,6 @@ function Home() {
           isCategory={true}
         />
       )}
-      <FooterAll />
     </div>
   );
 }
