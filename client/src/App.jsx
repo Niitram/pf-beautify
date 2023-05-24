@@ -36,6 +36,10 @@ import Favorites from "./views/favorites/Favorites";
 import { getFavorites } from "./request/favorites";
 import Checkout from "./views/Checkout/Checkout";
 import PurchaseError from "./views/purchaseError/PurchaseError";
+import Clients from "./views/clients/Clients";
+import Appointments from "./views/appointments/Appointments";
+import ServicesControl from "./views/Services Control/ServicesControl";
+import Professionals from "./views/Professionals/Professionals";
 
 //Para deploy
 /* import axios from "axios"; */
@@ -188,7 +192,11 @@ function App() {
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
           <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
-          <Route path="/newProduct" element={<NewProduct />} />
+          <Route path="/dashbpardAdmin/newProduct" element={<NewProduct />} />
+          <Route path="/dashboardAdmin/clients" element={<Clients/>}/>
+          <Route path="/dashboardAdmin/appointments" element={<Appointments/>}/>
+          <Route path="/dashboardAdmin/services_control" element={<ServicesControl/>}/>
+          <Route path="/dashboardAdmin/professionals" element={<Professionals/>}/>
         </Route>
         {/* Rutas solo para CLIENT */}
         {/* <Route element={<ProtectedRoute isAllowed={userData.rol === CLIENT} />}>
