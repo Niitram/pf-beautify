@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { postFindOrCreate } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
-import { CLIENT } from "./roles";
+import { ADMIN, CLIENT } from "./roles";
 import { validateUpdateUser } from "./validateUpdateUser";
 
 const firebaseConfig = {
@@ -102,6 +102,10 @@ export const loginWithGoogleFirebase = async (
       email: usuarioFirebase.email,
       rol: CLIENT,
     };
+
+    console.log(userData);
+    if (userData.email === "beautifyfinalproyect@gmail.com")
+      userData.rol = ADMIN;
 
     localStorage.setItem("userData", JSON.stringify(userData));
 
