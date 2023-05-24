@@ -8,13 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFavorites, showError } from "../../redux/actions";
 
 import { getFavorites } from "../../request/favorites";
-// import useGetProducts from "../../hooks/useGetProducts";
-// import axios from "axios";
 function Favorites() {
   const dispatch = useDispatch();
   const clientId = useSelector((state) => state.userData.id);
-  // const products = useGetProducts();
-  // const backupProducts = useSelector((state) => state.backupProducts);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState({

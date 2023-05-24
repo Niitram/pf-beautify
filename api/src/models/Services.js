@@ -28,6 +28,10 @@ module.exports = (sequelize) => {
             type: DataTypes.DECIMAL(2, 1),
             allowNull: false,
         },
+        duration: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     },
         { timestamps: false }
     );
