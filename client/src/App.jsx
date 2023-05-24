@@ -138,7 +138,8 @@ function App() {
     <div className="App">
       {locationNow.pathname !== "/" &&
         locationNow.pathname !== "/loading" &&
-        locationNow.pathname !== "/checkout" && (
+        locationNow.pathname !== "/checkout" &&
+        locationNow.pathname !== '/dashboardAdmin'&& (
           <Nav
             handleLoginClick={handleLoginClick}
             handleDetailClick={handleDetailClick}
