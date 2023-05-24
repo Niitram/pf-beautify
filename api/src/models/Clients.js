@@ -31,6 +31,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      balance: {
+        type: DataTypes.FLOAT,
+        allowNull: true
+      },
     },
     { timestamps: false }
   );

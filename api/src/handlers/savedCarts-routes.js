@@ -4,7 +4,9 @@ const getSavedCartByClientId = require("../controllers/SavedCarts/getSavedCartBy
 const {
   getCartValidation,
   postCartValidation,
+  deleteCartValidation,
 } = require("../validations/savedCarts");
+const deleteSavedCart = require("../controllers/SavedCarts/deleteSavedCart");
 
 const savedCartsRouter = Router();
 
@@ -28,5 +30,19 @@ savedCartsRouter.get("/:clientId", getCartValidation, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+savedCartsRouter.delete(
+  "/:clientId",
+  deleteCartValidation,
+  async (req, res) => {
+    try {
+      const { clientId } = req.params;
+      const deleted = await deleteSavedCart(clientId);
+      res.status(200).json({ deleted });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+);
 
 module.exports = savedCartsRouter;
