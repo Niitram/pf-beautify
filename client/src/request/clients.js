@@ -35,3 +35,11 @@ export const updateClient = async (data, id) => {
     console.log(error.message);
   }
 };
+
+export const getClientShops = async (clientId) => {
+  try {
+    return await axios.get(`${URL_BASE}/shops/shopsByClient/${clientId}`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

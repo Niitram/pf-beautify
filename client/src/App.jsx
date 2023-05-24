@@ -36,6 +36,7 @@ import Favorites from "./views/favorites/Favorites";
 import { getFavorites } from "./request/favorites";
 import Checkout from "./views/Checkout/Checkout";
 import PurchaseError from "./views/purchaseError/PurchaseError";
+import UserHistory from "./views/userHistory/userHistory";
 
 //Para deploy
 /* import axios from "axios"; */
@@ -213,6 +214,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/purchaseSuccess" element={<PurchaseSuccess />} />
           <Route path="/detailPayment" element={<DetailPayment />} />
+          <Route path="/userHistory" element={<UserHistory />} />
         </Route>
       </Routes>
     </div>
