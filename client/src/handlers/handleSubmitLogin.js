@@ -1,7 +1,7 @@
 import { createUserWithMail, singUpWithMail } from "../utils/firebaseConfig";
 import { createNewClient, getClient } from "../request/clients";
 import { setUserInfoAction, showError } from "../redux/actions";
-import { CLIENT } from "../utils/roles";
+import { ADMIN, CLIENT } from "../utils/roles";
 
 const handleSubmitLogin = async (
   e,
@@ -47,6 +47,8 @@ const handleSubmitLogin = async (
         email: createUser.email,
         rol: CLIENT,
       };
+      if (userData.email === "beautifyfinalproyect@gmail.com")
+        userData.rol = ADMIN;
 
       localStorage.setItem("userData", JSON.stringify(userData));
       // JSON.parse(localStorage.getItem("userData"));
@@ -65,6 +67,9 @@ const handleSubmitLogin = async (
         email: email,
         rol: CLIENT,
       };
+
+      if (userData.email === "beautifyfinalproyect@gmail.com")
+        userData.rol = ADMIN;
 
       localStorage.setItem("userData", JSON.stringify(userData));
       // JSON.parse(localStorage.getItem("userData"));
