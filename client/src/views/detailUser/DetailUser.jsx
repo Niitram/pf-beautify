@@ -237,6 +237,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
                 className={styles.button}
                 onClick={() => {
                   handleDetailClick();
+                  navigate("/userHistory");
                 }}
               >
                 My history
