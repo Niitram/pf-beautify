@@ -1,4 +1,4 @@
-const { Client } = require("../db");
+const { Client, Shop } = require("../db");
 
 const validationSaveClient = async (req, res, next) => {
   try {
@@ -67,9 +67,21 @@ const validateFindOrCreate = async (req, res, next) => {
   }
 };
 
+
+const validateDevoluton = async (req, res, next) => {
+  try {
+    const {shopId} = req.body
+    const shop = await Shop.findByPk(shopId)
+    if(!shop) throw new Error('Invalid shop id')
+    else next()
+  } catch (error) {
+    res.json({error: error.message})
+  }
+}
 module.exports = {
   validationSaveClient,
   validationPutClient,
   validateClientExistence,
   validateFindOrCreate,
+  validateDevoluton
 };
