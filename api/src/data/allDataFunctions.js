@@ -5,6 +5,7 @@ const bulkCreateProducts = require("./productsData");
 const bulkCreateProfesionalsAndServices = require("./services");
 const bulkCreateShops = require("./shops");
 const { Product } = require("../db");
+const bulkCreateAppointments = require("./appointments");
 
 const allDataFunctions = async () => {
   //* checking there are not products in the database
@@ -19,6 +20,7 @@ const allDataFunctions = async () => {
   await bulkCreateShops();
   await bulckCreateFavorites();
   await bulkCreateProfesionalsAndServices();
+  await bulkCreateAppointments();
 };
 
 module.exports = allDataFunctions;
