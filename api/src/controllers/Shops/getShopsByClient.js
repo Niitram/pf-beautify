@@ -17,6 +17,7 @@ const getShopsByClient = async (clientId) => {
         attributes: ["id", "name", "CategoryId"],
       },
     });
+    // console.log(generalShops);
 
     //* mapea el array con los detalles para devolver otro array con los detalles de las compras pero más ordenados
     const newDetails = shopDetails.map((detail) => {
@@ -42,6 +43,7 @@ const getShopsByClient = async (clientId) => {
       id: generalShop.id,
       amount: generalShop.amount,
       discount: generalShop.discount,
+      date: generalShop.createdAt,
       details: newDetails,
     };
 
