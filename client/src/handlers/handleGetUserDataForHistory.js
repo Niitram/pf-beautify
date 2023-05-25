@@ -20,11 +20,18 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
         amount,
         discount,
         details,
-        prettyDate,
+        date: prettyDate,
         ableToCancelShop: ableToCancelShop(date),
       };
     }
   );
+
+  optimizedShops.sort((a, b) => {
+    if (a.id < b.id) return 1;
+    if (a.id > b.id) return -1;
+    return 0;
+  });
+
   setShops(optimizedShops);
 
   //* trae los appointments del cliente de la base de datos, los embellece y los setea en el estado
@@ -32,11 +39,12 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
   const dbAppointments = dataDbAppointments.data;
 
   const optimizedAppointments = dbAppointments.map(
-    ({ Profesional, Service, date, hour }) => {
+    ({ Profesional, Service, date, hour, id }) => {
       const prettyDate =
         date.slice(8, 10) + "/" + date.slice(5, 7) + "/" + date.slice(0, 4);
 
       return {
+        id,
         profesional: Profesional.fullname,
         service: Service.name,
         date: prettyDate,
@@ -45,6 +53,11 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
       };
     }
   );
+  optimizedAppointments.sort((a, b) => {
+    if (a.id < b.id) return 1;
+    if (a.id > b.id) return -1;
+    return 0;
+  });
   setAppointments(optimizedAppointments);
 };
 
