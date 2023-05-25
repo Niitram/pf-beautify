@@ -7,7 +7,7 @@ const bulkCreateProducts = async (req, res) => {
     const apiProducts = await axios.get(
       "http://makeup-api.herokuapp.com/api/v1/products.json"
     );
-
+    // const apiProducts = 0;
     if (!apiProducts) {
       for (let product of productos) {
         const newProduct = await Product.create(product);
@@ -25,6 +25,7 @@ const bulkCreateProducts = async (req, res) => {
         if (!category) newProduct.createCategory({ name: product.category });
         else newProduct.setCategory(category.dataValues.id);
       }
+      return;
     }
 
     const promise = apiProducts.data.map(

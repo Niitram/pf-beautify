@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { deleteCart } from "../../request/cart";
 import styles from "./PurchaseSuccess.module.css";
 
 function PurchaseSuccess() {
   const [seconds, setSeconds] = useState(5);
   const navigate = useNavigate();
   useEffect(() => {
+    //recupero del localStorage el id de usuario
+    const clientId = JSON.parse(localStorage.getItem("userData"))?.id;
+    //borro el carrito del cliente en la base de datos y del localStorage
+    deleteCart(clientId);
     localStorage.setItem("cart", JSON.stringify([]));
     setTimeout(() => {
       navigate("/home");

@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { postFindOrCreate } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
-import { CLIENT } from "./roles";
+import { ADMIN, CLIENT } from "./roles";
 import { validateUpdateUser } from "./validateUpdateUser";
 
 const firebaseConfig = {
@@ -71,7 +71,13 @@ export const uploadProfilePicture = async (
   const url = await getDownloadURL(archivoRef);
 
   setUpdatedData({ ...updatedData, image: url });
-  setErrors(validateUpdateUser({ ...updatedData, image: url }, visibleInputs));
+  setErrors(
+    validateUpdateUser(
+      { ...updatedData, image: url },
+      visibleInputs,
+      updatedData
+    )
+  );
 };
 
 export const loginWithGoogleFirebase = async (
@@ -96,6 +102,9 @@ export const loginWithGoogleFirebase = async (
       email: usuarioFirebase.email,
       rol: CLIENT,
     };
+
+    if (userData.email === "beautifyfinalproyect@gmail.com")
+      userData.rol = ADMIN;
 
     localStorage.setItem("userData", JSON.stringify(userData));
 
