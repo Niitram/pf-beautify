@@ -1,37 +1,47 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import PromoCard from "../../components/promo card/PromoCard";
+import { useSelector } from "react-redux";
+// import { useEffect, useState } from "react";
+// import PromoCard from "../../components/promo card/PromoCard";
 import styles from "./Home.module.css";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
+// import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import SectionCards from "../../components/sectionCards/SectionCards";
-import { showError } from "../../redux/actions";
-import { getProducts } from "../../request/product";
+// import { showError } from "../../redux/actions";
+// import { getProducts } from "../../request/product";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
+var imagenes = [
+  "client/src/assets/images/5000238.jpg",
+  "client/src/assets/images/5256956.jpg",
+];
 function Home() {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const allProducts = useSelector((state) => state.allProducts);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const [current, setCurrent] = useState(0);
-  useEffect(() => {
-    try {
-      getProducts().then(({ data }) => setProducts(data));
-    } catch (error) {
-      dispatch(showError({ tittle: "Error", message: error.message }));
-      console.log(error.message);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     getProducts().then(({ data }) => setProducts(data));
+  //   } catch (error) {
+  //     dispatch(showError({ tittle: "Error", message: error.message }));
+  //     console.log(error.message);
+  //   }
+  // }, []);
 
   return (
     <div className={styles.Container}>
       <h1 className={styles.Title}>Welcome to our shop</h1>
       <div className={styles.contenedorSlider}>
-        <div className={styles.btnIzquierda}></div>
+        <div className={styles.btnIzquierda}>
+          <KeyboardDoubleArrowLeftIcon />
+        </div>
         <div className={styles.sliderScreen}>
           <img className={styles.imagen} />
         </div>
-        <div className={styles.btnDerecha}></div>
+        <div className={styles.btnDerecha}>
+          <KeyboardDoubleArrowRightIcon />
+        </div>
 
         {/* {products.length ? (
           <Splide
