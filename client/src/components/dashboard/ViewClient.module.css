@@ -1,0 +1,9 @@
+/* .lista_clientes {
+} */
+.table {
+  border-radius: 21px;
+  background: #fca8c2;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  padding: 1rem;
+  border-spacing: 1rem;
+}

@@ -1,0 +1,33 @@
+.container_dashadmin{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width:100%;
+    height:5rem;    
+    margin-top:5px;
+    padding-bottom: 0.5rem;
+    border-bottom: solid 2px rgb(0,0,0,0.1);
+    box-shadow:  -5px 5px 10px #cacaca,
+             5px -5px 10px #f6f6f6;
+}
+.container_logo{
+display:flex;
+justify-content: start;
+height:100%;
+width: 100%;
+}
+.container_img{
+display:flex;
+justify-content: start;
+height: 100%;
+width: 50%;
+}
+.img_logo{
+    width: 100%;
+    height:100%;
+    object-fit: contain;
+}
+.container_btn{
+    display:flex;
+    justify-content: start;
+    align-items: center;
+}
