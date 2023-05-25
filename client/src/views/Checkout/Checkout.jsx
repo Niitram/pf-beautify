@@ -18,7 +18,11 @@ export default function Checkout() {
     cart.forEach((element) => {
       total += element.price * element.quantity;
     });
- 
+  console.log(count);
+  const tax = (total * 0.07).toFixed(2);
+  const shipping = (total * 0.1).toFixed(2);
+  const totalPayment = (total - tax - shipping).toFixed(2);
+
   return (
     <div className={styles.container}>
       <div className={styles.aux}>

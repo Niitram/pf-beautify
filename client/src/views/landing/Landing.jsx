@@ -8,11 +8,13 @@ export default function Landing({ handleLoginClick }) {
   return (
     <div className={styles.Container}>
       <div className={styles.EmbraceYourBeauty}>
-        <h2>
-          <strong>Embrace your</strong>
-        </h2>
-        <h2 className={styles.beauty}>beauty</h2>
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className={styles.containerText}>
+          <h2>
+            <strong className={styles.strong}>Embrace your</strong>
+          </h2>
+          <h2 className={styles.beauty}>beauty</h2>
+        </div>
+        <div className={styles.containerButton}>
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -35,7 +37,7 @@ export default function Landing({ handleLoginClick }) {
         </div>
       </div>
 
-      <img src={logo} alt="logo" />
+      <img className={styles.imagenPrincipal} src={logo} alt="logo" />
     </div>
   );
 }

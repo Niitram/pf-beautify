@@ -2,7 +2,6 @@
   position: absolute;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   font-size: 60px;
@@ -15,15 +14,24 @@ p{
   color: var(--text);
 }
 
-.Container img {
-  scale: 90%;
-  margin-right: 5%;
+.imagenPrincipal {
+  scale: 80%;
 }
 .EmbraceYourBeauty {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  justify-content: center;
   margin-left: 12%;
+  text-align: justify;
+  width: 40%;
+  font-size: 70px;
+}
+.strong{
+  display: flex;
+  justify-content: flex-start;
+}
+.containerText{
+  width: 100%;
 }
 
 .Login {
@@ -39,10 +47,13 @@ p{
   margin: 5px 0px;
 }
 .beauty {
+  display: flex;
+  justify-content: flex-start;
   background: var(--gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+
 }
 .Login:hover {
   background: var(--gradient);
@@ -92,4 +103,140 @@ p{
 .guest:hover p::after {
   content: ' \2192'; 
   opacity: 1;
+}
+.containerButton{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+@media (max-width: 1340px) {
+  .Container{
+    
+    transition: 0.2s;
+  }
+  .EmbraceYourBeauty{
+    font-size: 43px;
+    transition: 0.2s;
+  }
+  .beauty{
+    transition: 0.2s;
+  }
+  .imagenPrincipal{
+    width: 50%;
+    transition: 0.2s;
+  }
+  .containerButton{
+    width: 70%;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 1100px) {
+  .Container{
+    
+    transition: 0.2s;
+  }
+  .EmbraceYourBeauty{
+    font-size: 45px;
+    transition: 0.2s;
+  }
+  .beauty{
+    transition: 0.2s;
+  }
+  .imagenPrincipal{
+    width: 50%;
+    transition: 0.2s;
+  }
+  .containerButton{
+    width: 70%;
+    transition: 0.2s;
+  }
+}
+@media (max-width: 690px) {
+  .Container{
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s;
+  }
+  .EmbraceYourBeauty{
+    font-size: 30px;
+    transition: 0.2s;
+  }
+  .beauty{
+    font-size: 45px;
+    transition: 0.2s;
+  }
+  .imagenPrincipal{
+    width: 70%;
+    transition: 0.2s;
+  }
+  .containerButton{
+    width: 100%;
+  }
+}
+@media (max-width: 540px) {
+  .Container{
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s;
+  }
+  .EmbraceYourBeauty{
+    font-size: 30px;
+    transition: 0.2s;
+  }
+  .beauty{
+    font-size: 45px;
+    transition: 0.2s;
+  }
+  .imagenPrincipal{
+    width: 70%;
+    transition: 0.2s;
+  }
+}
+@media (max-width: 460px) {
+  .Container{
+    display: flex;
+    transition: 0.2s;
+  }
+  .EmbraceYourBeauty{
+    font-size: 24px;
+    transition: 0.2s;
+  }
+  .beauty{
+    font-size: 30px;
+    transition: 0.2s;
+  }
+  .imagenPrincipal{
+    width: 60%;
+    transition: 0.2s;
+  }
+}
+
+@media (min-width: 3320px) {
+  .Container{
+    display: flex;
+    transition: 0.2s;
+  }
+  .EmbraceYourBeauty{
+    font-size: 240px;
+    transition: 0.2s;
+  }
+  .beauty{
+    font-size: 250px;
+    transition: 0.2s;
+  }
+  .imagenPrincipal{
+    width: 60%;
+    transition: 0.2s;
+  }
+  .containerButton{
+    width: 70%;
+    transition: 0.2s;
+  }
+  .Login{
+    font-size: 80px;
+  }
+  .guest{
+    font-size: 80px;
+  }
 }
