@@ -33,7 +33,7 @@ overflow: auto;
   --fc-page-bg-color: #fff;
   --fc-neutral-bg-color: rgba(208, 208, 208, 0.3);
   --fc-neutral-text-color: #808080;
-  --fc-border-color: #817f7f;
+  --fc-border-color: #8884848c;
 
   --fc-button-text-color: #151414;
   --fc-button-bg-color: #F5B7B1;
@@ -74,7 +74,10 @@ overflow: auto;
   background-color: #F5B7B1;
 
 }
-
+/* Celdas con los nombres de los dias */
+.fc-col-header-cell{
+  background-color: #FBF4F5;
+}
 /* contenedor de los numeros para centrarlos */
 .fc-scrollgrid-sync-inner{
   display: flex;

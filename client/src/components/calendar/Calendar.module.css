@@ -1,0 +1,50 @@
+.section{
+    background-color: #FBF4F5;
+    padding: 40px;
+    margin: 20px 0px;
+    border-radius: 10px;
+    box-shadow: -1px -2px 14px 2px rgba(130,127,127,0.75);
+    -webkit-box-shadow: -1px -2px 14px 2px rgba(130,127,127,0.75);
+    -moz-box-shadow: -1px -2px 14px 2px rgba(130,127,127,0.75);
+    width: fit-content;
+    height: fit-content;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.containerLeft{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+}
+.serviceContainerInput{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 200px;
+    margin: 5px;
+}
+
+
+.containerCalendar{
+    width: 600px;
+    height: fit-content;
+}
+
+
+
+.buttonReservation{
+    background-color: #D14D72;
+    color: #FBF4F5;
+    padding: 20px;
+    border: none;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 8px;
+    cursor: pointer;
+}
