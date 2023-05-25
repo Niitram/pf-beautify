@@ -10,10 +10,18 @@ module.exports = (sequelize) => {
                 primaryKey: true,
                 autoIncrement: true
             },
+            tittle: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
             content: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            rating: {
+                type: DataTypes.DECIMAL,
+                defaultValue: 1
+            }
 
         },
         { timestamps: false }
