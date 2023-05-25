@@ -4,6 +4,7 @@ const {validationComment, validateCommentModification} = require('../validations
 const getCommentsByProductId = require('../controllers/Comments/getCommentsByProductId')
 const putComment = require('../controllers/Comments/putComment')
 const deleteComment = require('../controllers/Comments/deleteComment');
+const postServiceComment = require('../controllers/Comments/postServiceComment')
 router.post("/:productId/:clientId", validationComment, async (req, res) => {
   try {
     const {productId, clientId} = req.params
@@ -14,6 +15,18 @@ router.post("/:productId/:clientId", validationComment, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.post('/services/:serviceId/:clientId', async (req,res) => {
+  try {
+    const {serviceId, clientId} = req.params
+    const comment = req.body
+    const response = await postServiceComment(serviceId, clientId, comment)
+    res.json(response)
+  } catch (error) {
+    res.json({error: error.message})
+  }
+})
+
 
 router.get("/:productId", async (req, res) => {
   try {
