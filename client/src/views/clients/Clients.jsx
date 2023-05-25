@@ -1,9 +1,10 @@
+import ClientsTable from '../../components/ClientsTable/ClientsTable'
 import styles from './Clients.module.css'
 
 export default function Clients (){
     return(
         <div className={styles.container}>
-            estamos viendo los clientes
+            <ClientsTable></ClientsTable>
         </div>
     )
 }

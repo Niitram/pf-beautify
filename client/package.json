@@ -21,6 +21,7 @@
     "@mercadopago/sdk-react": "^0.0.9",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.3",
+    "@mui/x-data-grid": "^6.5.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide": "^4.1.4",
