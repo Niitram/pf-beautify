@@ -16,6 +16,13 @@ export const getClient = async (mail) => {
     console.log(error.message);
   }
 };
+export const getAllClients = async () => {
+  try {
+    return await axios.get(`${URL_BASE}/client/`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 export const postFindOrCreate = async (userData) => {
   try {
     return await axios.post(`${URL_BASE}/client/findOrCreate`, userData);
