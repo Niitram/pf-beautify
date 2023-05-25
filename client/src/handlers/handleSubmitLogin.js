@@ -1,5 +1,6 @@
 import { createUserWithMail, singUpWithMail } from "../utils/firebaseConfig";
 import { createNewClient, getClient } from "../request/clients";
+import { getCart} from "../request/cart"
 import { setUserInfoAction, showError } from "../redux/actions";
 import { ADMIN, CLIENT } from "../utils/roles";
 
@@ -50,16 +51,18 @@ const handleSubmitLogin = async (
       if (userData.email === "beautifyfinalproyect@gmail.com")
         userData.rol = ADMIN;
 
+      //Guarda el el local la info del usuario creado e inicializa el carrito
       localStorage.setItem("userData", JSON.stringify(userData));
-      // JSON.parse(localStorage.getItem("userData"));
+      localStorage.setItem("cart", JSON.stringify([]));
 
       dispatch(setUserInfoAction(userData));
     } else {
       // se loguea en firebase
       await singUpWithMail(email, password);
 
-      // trae la info del usuario de la base de datos
+      // trae la info del usuario y de su carrito de la base de datos
       const userCreated = await getClient(email);
+      const userCart = await getCart(userCreated.data.id);
 
       const userData = {
         id: userCreated.data.id,
@@ -68,13 +71,14 @@ const handleSubmitLogin = async (
         rol: CLIENT,
       };
 
+      //Guarda el el local la info del usuario y del carrito
       if (userData.email === "beautifyfinalproyect@gmail.com")
         userData.rol = ADMIN;
 
       localStorage.setItem("userData", JSON.stringify(userData));
-      // JSON.parse(localStorage.getItem("userData"));
+      localStorage.setItem("cart", JSON.stringify(userCart));
 
-      // envía esa info al estado global
+      // envía esa info del usuario al estado global
       dispatch(setUserInfoAction(userData));
     }
     if (oldLocation === "/") navigate("/home");
