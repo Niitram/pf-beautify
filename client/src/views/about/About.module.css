@@ -1,9 +1,10 @@
+
 .Container{
     background-color:var(--background);
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 550px;
+    height:100vh;
 }
 
 .QuienesSomos{
