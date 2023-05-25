@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+
+}
+.containerLeft{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    border: 1px solid red;
+}
+.serviceContainerInput{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 200px;
+    margin: 5px;
+}
+
+
+.containerCalendar{
+    width: 800px;
+    height: fit-content;
+}

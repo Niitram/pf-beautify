@@ -78,7 +78,7 @@ export const loginWithGoogleFirebase = async (
   usuarioFirebase,
   dispatch,
   navigate,
-  locationNow
+  /* locationNow */
 ) => {
   try {
     // recibe el usuario de google y lo busca/crea en la bdd
