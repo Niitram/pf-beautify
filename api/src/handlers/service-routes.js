@@ -3,6 +3,7 @@ const getServices = require("../controllers/Services/getServices");
 const postService = require("../controllers/Services/postService");
 const deleteService = require("../controllers/Services/deleteService");
 const putService = require("../controllers/Services/putService");
+const getServiceData = require("../controllers/Services/getServiceData")
 const {
   validatePostService,
   validateServiceExistence,
@@ -17,6 +18,17 @@ router.get("/", validateServiceExistence, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+
+router.get('/:serviceId', async (req,res) => {
+  try {
+    const {serviceId} = req.params
+    const response = await getServiceData(serviceId)
+    res.json(response)
+  } catch (error) {
+    
+  }
+})
 
 router.post("/", validatePostService, async (req, res) => {
   try {
