@@ -51,7 +51,7 @@ function SearchBar({ setCurrentPage, setFilter, setOrdered }) {
           onChange={(e) => {
             handlerChange(e, setSearched);
           }}
-          placeholder="Nail polish..."
+          placeholder="Nombre de Producto"
         />
         <button className={styles.buttonSubmit} type="submit">
           Search

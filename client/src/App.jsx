@@ -42,7 +42,8 @@ import Appointments from "./views/appointments/Appointments";
 import ServicesControl from "./views/Services Control/ServicesControl";
 import Professionals from "./views/Professionals/Professionals";
 import ContactForm from "./views/ContactForm/contactForm";
-
+import FooterAll from "./components/footerAll/FooterAll";
+import NotFound from "./components/notFound/NotFound";
 //Para deploy
 /* import axios from "axios"; */
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
@@ -141,7 +142,7 @@ function App() {
       {locationNow.pathname !== "/" &&
         locationNow.pathname !== "/loading" &&
         locationNow.pathname !== "/checkout" &&
-        locationNow.pathname !== '/dashboardAdmin'&& (
+        locationNow.pathname !== "/dashboardAdmin" && (
           <Nav
             handleLoginClick={handleLoginClick}
             handleDetailClick={handleDetailClick}
@@ -191,16 +192,25 @@ function App() {
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
         />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path='/contact' element={<ContactForm/>} />
+        <Route path="/contact" element={<ContactForm />} />
 
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
           <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
           <Route path="/dashbpardAdmin/newProduct" element={<NewProduct />} />
-          <Route path="/dashboardAdmin/clients" element={<Clients/>}/>
-          <Route path="/dashboardAdmin/appointments" element={<Appointments/>}/>
-          <Route path="/dashboardAdmin/services_control" element={<ServicesControl/>}/>
-          <Route path="/dashboardAdmin/professionals" element={<Professionals/>}/>
+          <Route path="/dashboardAdmin/clients" element={<Clients />} />
+          <Route
+            path="/dashboardAdmin/appointments"
+            element={<Appointments />}
+          />
+          <Route
+            path="/dashboardAdmin/services_control"
+            element={<ServicesControl />}
+          />
+          <Route
+            path="/dashboardAdmin/professionals"
+            element={<Professionals />}
+          />
         </Route>
         {/* Rutas solo para CLIENT */}
         {/* <Route element={<ProtectedRoute isAllowed={userData.rol === CLIENT} />}>
@@ -227,7 +237,14 @@ function App() {
           <Route path="/detailPayment" element={<DetailPayment />} />
           <Route path="/userHistory" element={<UserHistory />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
+
+      {locationNow.pathname !== "/" &&
+        locationNow.pathname !== "/loading" &&
+        locationNow.pathname !== "/checkout" &&
+        locationNow.pathname !== "/dashboardAdmin" && <FooterAll />}
+      {/* <FooterAll /> */}
     </div>
   );
 }

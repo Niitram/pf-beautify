@@ -56,3 +56,26 @@
 .customArrow{
     background-color: red;
 }
+
+.contenedorSlider{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1200px;
+    padding: 0px 40px;
+    border: 1px solid var(--text);
+}
+
+.btnIzquierda,
+.btnDerecha{
+    width: 5%;
+}
+
+.sliderScreen{
+    width: 90%;
+}
+
+.imagen{
+    width: 100%;
+}
+
