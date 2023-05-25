@@ -19,13 +19,14 @@ router.post("/", async (req, res) => {
     try {
         const {name, email, message } = req.body
         const response = await sendContactMail(name, email, message, contactEmail)
-        
         res.json({ status: "Message Sent" })
     } catch (error) {
         res.json({ status: "ERROR" })
     }
     
   });
+
+
 
 
   module.exports = router

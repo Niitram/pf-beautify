@@ -6,7 +6,6 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import SectionCards from "../../components/sectionCards/SectionCards";
 import { showError } from "../../redux/actions";
-import FooterAll from "../..//components/footerAll/FooterAll";
 import { getProducts } from "../../request/product";
 
 function Home() {
@@ -60,12 +59,9 @@ function Home() {
           <div>waiting...</div>
         )}
       </div>
-      <span className={styles.description}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quae
-        laudantium aliquam ducimus atque impedit doloribus. Voluptatibus aliquid
-        modi amet quasi reiciendis rem dolorum! Iste consectetur delectus
-        dignissimos explicabo facilis.
-      </span>
+      <h2 className={styles.description}>
+        Take a look at the best prices in town!
+      </h2>
       {allProducts && (
         <SectionCards
           nameSection={"Most populars"}
@@ -81,7 +77,6 @@ function Home() {
           isCategory={true}
         />
       )}
-      <FooterAll />
     </div>
   );
 }

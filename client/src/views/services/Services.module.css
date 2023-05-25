@@ -1,0 +1,7 @@
+.section{
+    background-color: #FBF4F5;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}

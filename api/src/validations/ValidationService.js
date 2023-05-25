@@ -2,12 +2,13 @@ const { Service } = require("../db");
 
 const validatePostService = (req, res, next) => {
   try {
-    const { name, price, description, image, rate } = req.body;
+    const { name, price, description, image, rate, duration } = req.body;
     if (!name) throw new Error("Require service name to create");
     if (!price) throw new Error("Require a price to create");
     if (!description) throw new Error("Require description to create");
     if (!image) throw new Error("Require image to create");
     if (!rate) throw new Error("Require rate to create");
+    if(!duration) throw new Error('Require estimate duration')
     next();
   } catch (error) {
     res.status(406).json({ error: error.message });
@@ -35,7 +36,8 @@ const validateServiceUpdate = async (req, res, next) => {
       !toModify.price &&
       !toModify.description &&
       !toModify.rate &&
-      !toModify.image
+      !toModify.image &&
+      !toModify.duration
     )
     throw new Error("Error in modify values");
     else next();

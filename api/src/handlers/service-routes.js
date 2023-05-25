@@ -20,13 +20,14 @@ router.get("/", validateServiceExistence, async (req, res) => {
 
 router.post("/", validatePostService, async (req, res) => {
   try {
-    const { name, price, description, image, rate } = req.body;
+    const { name, price, description, image, rate, duration } = req.body;
     const createService = await postService(
       name,
       price,
       description,
       image,
-      rate
+      rate,
+      duration
     );
     res.status(201).json(createService);
   } catch (error) {
