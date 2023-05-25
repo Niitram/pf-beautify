@@ -42,15 +42,15 @@ const arrSchedules = [
 ];
 
 // a custom render function
-const handlerClickCalendar = (e) => {
+const handlerClickCalendar = (e, setDay, setOptions, options) => {
   /* para cambiar el el estilo al hacer click */
   /* e.dayEl.style.backgroundColor = "red"; */
-
   const daySelected = e.dateStr;
-  console.log(e.dateStr);
+  setDay(daySelected);
+  setOptions({ ...options, day: daySelected });
 };
-const handleChangeOrder = (e) => {
-  console.log(e);
+const handleChangeOptions = (e, setOptions, options) => {
+  setOptions({ ...options, [e.target.name]: e.target.value });
 };
 const handleClickReservation = (e) => {
   console.log(e);
@@ -63,28 +63,48 @@ function renderEventContent(eventInfo) {
     </>
   );
 }
+
 function Calendar() {
   const [services, setServices] = useState([]);
-  useEffect(() => {
-    getServices().then((res) => {
-      if (res.data) {
-        const servicesName = res.data.map((service) => service.name);
-        setServices(servicesName);
-      }
-    });
-  }, []);
-  console.log(Number(arrSchedules[0].hour.split(":")[0]));
+  const [day, setDay] = useState("");
+  const [options, setOptions] = useState({
+    service: "",
+    schedule: "",
+    day: "",
+  });
 
+  //Cuando se cargue el componente, obtener los servicios
+  useEffect(() => {
+    try {
+      getServices().then((res) => {
+        if (res.data) {
+          const servicesName = res.data.map((service) => service.name);
+          setServices(servicesName);
+        }
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
+  console.log(options);
   return (
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.containerLeft}>
-          <h3>Services</h3>
+          <h3 className={styles.titleServices}>Services</h3>
           {services?.map((service) => {
             return (
               <div key={service} className={styles.serviceContainerInput}>
-                <input type="radio" value={service} name="service" />
-                <label>{service}</label>
+                <input
+                  className={styles.inputRadio}
+                  onChange={(e) => {
+                    handleChangeOptions(e, setOptions, options);
+                  }}
+                  type="radio"
+                  value={service}
+                  name="service"
+                />
+                <label className={styles.labelServices}>{service}</label>
               </div>
             );
           })}
@@ -96,22 +116,51 @@ function Calendar() {
             selectable={true}
             fixedWeekCount={false}
             eventContent={renderEventContent}
-            dateClick={handlerClickCalendar}
+            hiddenDays={[0, 6]}
+            validRange={function(nowDate) {
+              return {
+                start: nowDate,
+              };
+            }}
+            dateClick={(e) => {
+              handlerClickCalendar(e, setDay, setOptions, options);
+            }}
           />
         </div>
         <div>
-          <h3>Schedules</h3>
-          {arrSchedules?.map((schedule, index) => {
-            return (
-              <div key={index} className={styles.serviceContainerInput}>
-                <input type="radio" value={schedule} name="schedule" />
-                <label>
-                  {schedule.hour} - {Number(schedule.hour.split(":")[0]) + 1}:00
-                </label>
-              </div>
-            );
-          })}
+          <h3 className={styles.titleServices}>Schedules</h3>
+          {options.service && options.day ? (
+            <div className={styles.containerRight}>
+              {arrSchedules?.map((schedule, index) => {
+                return (
+                  <div key={index} className={styles.serviceContainerInput}>
+                    <input
+                      disabled={schedule.available}
+                      className={styles.inputRadio}
+                      onChange={(e) => {
+                        handleChangeOptions(e, setOptions, options);
+                      }}
+                      type="radio"
+                      value={schedule.hour}
+                      name="schedule"
+                    />
+                    <label
+                      style={{
+                        color: schedule.available ? "#d3d3de" : "black",
+                      }}
+                    >
+                      {schedule.hour} -{" "}
+                      {Number(schedule.hour.split(":")[0]) + 1}:00
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div></div>
+          )}
           <button
+            disabled={!options.service || !options.schedule || !options.day}
             className={styles.buttonReservation}
             onClick={handleClickReservation}
           >
