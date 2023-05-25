@@ -26,8 +26,14 @@ function Home() {
   return (
     <div className={styles.Container}>
       <h1 className={styles.Title}>Welcome to our shop</h1>
-      <div>
-        {products.length ? (
+      <div className={styles.contenedorSlider}>
+        <div className={styles.btnIzquierda}></div>
+        <div className={styles.sliderScreen}>
+          <img className={styles.imagen} />
+        </div>
+        <div className={styles.btnDerecha}></div>
+
+        {/* {products.length ? (
           <Splide
             aria-label="My Favorite Images"
             options={{
@@ -57,7 +63,7 @@ function Home() {
           </Splide>
         ) : (
           <div>waiting...</div>
-        )}
+        )} */}
       </div>
       <h2 className={styles.description}>
         Take a look at the best prices in town!
