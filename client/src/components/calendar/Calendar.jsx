@@ -47,6 +47,7 @@ const handlerClickCalendar = (e, setDay, setOptions, options) => {
   /* e.dayEl.style.backgroundColor = "red"; */
   const daySelected = e.dateStr;
   setDay(daySelected);
+  console.log(daySelected);
   setOptions({ ...options, day: daySelected });
 };
 const handleChangeOptions = (e, setOptions, options) => {

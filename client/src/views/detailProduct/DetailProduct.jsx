@@ -17,6 +17,7 @@ import useToggle from "../../hooks/useToggle";
 import { showError } from "../../redux/actions";
 import { createFavorite, getFavorites } from "../../request/favorites";
 import AlertFavorite from "../../components/alertFavorite/AlertFavorite";
+import Reviews from "../../components/reviews/Reviews";
 import { deleteFavorite } from "../../request/favorites";
 
 function DetailProduct({ handleLoginClick }) {
@@ -230,6 +231,7 @@ function DetailProduct({ handleLoginClick }) {
           isCategory={true}
         />
       )}
+      <Reviews rate={rate} />
       {addProduct && (
         <AlertAddCart setAddProduct={setAddProduct} addProduct={addProduct} />
       )}
