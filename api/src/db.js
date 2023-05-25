@@ -64,6 +64,8 @@ Client.hasMany(Comment, { as: "comments" });
 //*Relaciones entre el modelo Service y Profesional
 Service.belongsTo(Profesional);
 Profesional.hasMany(Service);
+Comment.belongsTo(Service);
+Service.hasMany(Comment);
 
 //*Relaciones entre modelo Clients y modelo Products a través de Favorites
 Client.belongsToMany(Product, { through: "Favorites" });
