@@ -12,7 +12,19 @@ const postServicesReviews = async ({
   await newReview.setClient(clientId);
   await newReview.setService(serviceId);
   await newReview.setProfessional(professionalId);
-  return newReview;
+
+  const service = await Service.findByPk(serviceId);
+  const oldRates = service.arrayRates;
+  await service.update({ arrayRates: [...oldRates, rate] });
+  return {
+    id: newReview.id,
+    rate: newReview.rate,
+    title: newReview.title,
+    comment: newReview.comment,
+    clientId: newReview.ClientId,
+    serviceId: newReview.serviceId,
+    professionalId: newReview.ProfessionalId,
+  };
 };
 
 module.exports = postServicesReviews;
