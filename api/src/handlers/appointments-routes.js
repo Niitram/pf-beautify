@@ -9,6 +9,7 @@ const validationAppointment = require('../validations/validationAppointment.js')
 const deleteAppointment = require('../controllers/Appointments/deleteAppointment.js');
 const updateAppointment = require('../controllers/Appointments/updateAppointment.js');
 const validationUpdateAppointment = require('../validations/validationUpdateAppointment.js');
+const  getAppointmentsByServiceAndDate= require('../controllers/Appointments/getAppointmentsByServiceAndDate.js');
 
 router.get("/", async (req, res) => {
     const appointments = await getAppointmentsByAdmin();
@@ -52,6 +53,21 @@ router.get('/service/:serviceId', async (req, res) => {
         res.status(500).json({ message: 'Error getting citations for this service' });
     }
 })
+router.get('/service/:serviceId/date/:dateId', async (req, res) => {
+    const { serviceId ,dateId} = req.params;
+
+    const hoursOfService = await  getAppointmentsByServiceAndDate(serviceId,dateId);
+    try {
+        if (hoursOfService.length === 0) {
+            res.status(404).json({ message: 'You have no recorded appointments'});
+        } else {
+            res.status(200).json(hoursOfService);
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error getting citations for this service' });
+    }
+})
+
 
 router.get("/profesional/:profesionalId", async (req, res) => {
     const { profesionalId } = req.params;

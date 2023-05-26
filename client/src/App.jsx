@@ -45,6 +45,8 @@ import ContactForm from "./views/ContactForm/contactForm";
 import FooterAll from "./components/footerAll/FooterAll";
 import NotFound from "./components/notFound/NotFound";
 import DetailService from "./views/detailService/detailService";
+import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
+import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
 //Para deploy
 /* import axios from "axios"; */
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
@@ -199,7 +201,7 @@ function App() {
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
           <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
-          <Route path="/dashbpardAdmin/newProduct" element={<NewProduct />} />
+          <Route path="/dashboardAdmin/newProduct" element={<NewProduct />} />
           <Route path="/dashboardAdmin/clients" element={<Clients />} />
           <Route
             path="/dashboardAdmin/appointments"
@@ -212,6 +214,14 @@ function App() {
           <Route
             path="/dashboardAdmin/professionals"
             element={<Professionals />}
+          />
+          <Route
+            path="/dashboardAdmin/products_control"
+            element={<ProductsAdmin />}
+          />
+          <Route
+            path="dashboardAdmin/products_control/:id"
+            element={<ProductDetailAdmin />}
           />
         </Route>
         {/* Rutas solo para CLIENT */}
@@ -246,7 +256,6 @@ function App() {
         locationNow.pathname !== "/loading" &&
         locationNow.pathname !== "/checkout" &&
         locationNow.pathname !== "/dashboardAdmin" && <FooterAll />}
-      {/* <FooterAll /> */}
     </div>
   );
 }

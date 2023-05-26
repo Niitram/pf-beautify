@@ -6,3 +6,20 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.imageFixed{
+    margin: 20px 0px;
+    background-image: url("../../assets/images/bg-fixed.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.image{
+    height: 150px;
+}
+
+.titleH3{
+
+    font-size: 50px;
+}
