@@ -1,7 +1,7 @@
 .section{
     background-color: #FBF4F5;
     padding: 40px;
-    margin: 20px 0px;
+    margin: 20px auto;
     border-radius: 10px;
     box-shadow: -1px -2px 14px 2px rgba(130,127,127,0.75);
     -webkit-box-shadow: -1px -2px 14px 2px rgba(130,127,127,0.75);
@@ -64,11 +64,21 @@
     align-items: center;
     height:50px;
 }
-
-
+.containerSelectedInfo{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+.selectedInfo{
+    font-weight: 600;
+    color: #2c292a;
+}
 .containerCalendar{
+    display: flex;
+    flex-direction: column;
     width: 600px;
     height: fit-content;
+    gap: 10px;
 }
 
 
@@ -95,7 +105,7 @@
     }
     .section{
         padding: 10px;
-        margin: 20px 0px;
+        margin: 20px auto;
     }
     .containerCalendar{
         width: 300px;
@@ -109,6 +119,9 @@
     .titleServices{
         font-size: 15px;
         padding-bottom: 10px;
+    }
+    .selectedInfo{
+        font-size: small;
     }
     .inputRadio{
         height: 10px;
@@ -141,7 +154,7 @@
     }
     .section{
         padding: 10px;
-        margin: 20px 0px;
+        margin: 20px auto;
     }
     .labelServices{
         margin: 10px 0px;
