@@ -2,11 +2,11 @@ const { Appointment, Client, Profesional, Service } = require('../../db.js');
 
 const getAppointmentsByServiceAndDate = async (serviceId, date) => {
   // * horario de atención
-  const schedule = ["09:00", "10:15", "11:30", "14:00", "16:15", "17:30", "18:45"];
+  const schedule = ["09:00:00", "10:15:00", "11:30:00", "14:00:00", "16:15:00", "17:30:00", "18:45:00"];
 
   // * busco los appointments existentes para el servicio y la fecha especificados
   const appointments = await Appointment.findAll({
-    where: { ServiceId: serviceId, date },
+    where: { ServiceId: serviceId, date:date },
     include: [
       { model: Profesional, attributes: ["fullname"] },
       { model: Client, attributes: ["fullName"] },
