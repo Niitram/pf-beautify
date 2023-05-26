@@ -10,7 +10,6 @@ export default function ClientsTable(){
 
     useEffect(()=>{
         getAllClients().then(({data})=>setClients(data))
-        console.log(clients)
     },[])
 
     const rows = clients.map((row)=>{
@@ -37,7 +36,6 @@ export default function ClientsTable(){
             columns={columns} 
             rows={rows} 
             checkboxSelection={true}
-            getCellClassName={(params)=>console.log( params.id) }
             >
         </DataGrid>
        </div>
