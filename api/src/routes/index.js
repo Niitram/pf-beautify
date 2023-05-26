@@ -9,9 +9,9 @@ const commentsRouter = require("../handlers/comments-routes");
 const shopsRouter = require("../handlers/shops-routes");
 const favoritesRouter = require("../handlers/favorites-routes");
 const appointmentsRouter = require("../handlers/appointments-routes");
-
 const mercadoPago = require("../handlers/mercadoPago-routes");
 const savedCartsRouter = require("../handlers/savedCarts-routes");
+const servicesReviewsRouter = require("../handlers/servicesReviews-router");
 const router = Router();
 
 router.use("/mercadopago", mercadoPago);
@@ -26,5 +26,6 @@ router.use("/shops", shopsRouter);
 router.use("/favorites", favoritesRouter);
 router.use("/appointments", appointmentsRouter);
 router.use("/savedCarts", savedCartsRouter);
+router.use("/servicesReviews", servicesReviewsRouter);
 
 module.exports = router;

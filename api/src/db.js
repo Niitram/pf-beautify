@@ -49,6 +49,7 @@ const {
   Appointment,
   Purchase,
   SavedCart,
+  ServicesReview,
 } = sequelize.models;
 
 //*Relaciones entre los modelos Category y Product
@@ -97,6 +98,16 @@ SavedCart.belongsTo(Client);
 
 SavedCart.belongsToMany(Product, { through: "CartsProducts" });
 Product.belongsToMany(SavedCart, { through: "CartsProducts" });
+
+//*Relaciones entre ServicesReviews, Clients, Services y Professionals
+ServicesReview.belongsTo(Client);
+Client.hasMany(ServicesReview);
+
+ServicesReview.belongsTo(Service);
+Service.hasMany(ServicesReview);
+
+ServicesReview.belongsTo(Profesional);
+Profesional.hasMany(ServicesReview);
 
 module.exports = {
   ...sequelize.models,
