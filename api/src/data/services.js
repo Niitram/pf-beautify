@@ -1,19 +1,19 @@
 //* Este archivo guarda toma el json services.json y por medio de la funcion bulkCreateProfesionalsAndServices guarda los datos del porfesional y su servicio en la DB.
 
-const profesionals = require("./services.json");
-const { Profesional, Service } = require("../db.js");
+const professionals = require("./services.json");
+const { Professional, Service } = require("../db.js");
 
-const bulkCreateProfesionalsAndServices = async () => {
+const bulkCreateProfessionalsAndServices = async () => {
   try {
-    for (let profesional of profesionals) {
-      const newProfessional = await Profesional.create({
-        fullname: profesional.fullname,
-        mail: profesional.mail,
-        direction: profesional.direccion,
-        image: profesional.image,
+    for (let professional of professionals) {
+      const newProfessional = await Professional.create({
+        fullname: professional.fullname,
+        mail: professional.mail,
+        direction: professional.direccion,
+        image: professional.image,
       });
 
-      for (let service of profesional.services) {
+      for (let service of professional.services) {
         const [newService, created] = await Service.findOrCreate({
           where: { name: service.name },
           defaults: {
@@ -21,7 +21,7 @@ const bulkCreateProfesionalsAndServices = async () => {
             price: service.price,
             image: service.image,
             rate: service.rate,
-            duration: service.duration
+            duration: service.duration,
           },
         });
 
@@ -37,4 +37,4 @@ const bulkCreateProfesionalsAndServices = async () => {
   }
 };
 
-module.exports = bulkCreateProfesionalsAndServices;
+module.exports = bulkCreateProfessionalsAndServices;

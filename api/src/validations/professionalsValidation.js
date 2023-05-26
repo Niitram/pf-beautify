@@ -1,53 +1,53 @@
-const { Profesional } = require("../db");
+const { Professional } = require("../db");
 
-const profesionalGetValidation = async (req, res, next) => {
+const professionalGetValidation = async (req, res, next) => {
   try {
-    const Profesionals = await Profesional.findAll();
-    if (!Profesionals.length) throw new Error("No Profesionals found");
+    const Professionals = await Professional.findAll();
+    if (!Professionals.length) throw new Error("No Professionals found");
     next();
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 };
 
-const profesionalGetIdValidation = async (req, res, next) => {
+const professionalGetIdValidation = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const ProfesionalDetail = await Profesional.findByPk(id);
-    if (!ProfesionalDetail) throw new Error("No Profesional found");
+    const ProfessionalDetail = await Professional.findByPk(id);
+    if (!ProfessionalDetail) throw new Error("No Professional found");
     next();
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-const profesionalPostValidation = async (req, res, next) => {
+const professionalPostValidation = async (req, res, next) => {
   try {
     const { fullname, mail, direction, image } = req.body;
     if (!mail) throw new Error("Must include mail to create");
     if (!fullname) throw new Error("Must include full name to create");
     if (!direction) throw new Error("Must include direction to create");
     if (!image) throw new Error("Must include image to create");
-    const DBCheck = await Profesional.findOne({ where: { mail } });
-    if (DBCheck) throw new Error("Profesional already exist");
+    const DBCheck = await Professional.findOne({ where: { mail } });
+    if (DBCheck) throw new Error("Professional already exist");
     next();
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-const profesionalPutValidation = async (req, res, next) => {
+const professionalPutValidation = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { fullname, mail, direction, image } = req.body;
-    const checkProfesional = await Profesional.findByPk(id);
-    if (fullname && fullname === checkProfesional.fullname)
+    const checkProfessional = await Professional.findByPk(id);
+    if (fullname && fullname === checkProfessional.fullname)
       throw new Error(`Name value alredy set to ${fullname}`);
-    if (mail && mail === checkProfesional.mail)
+    if (mail && mail === checkProfessional.mail)
       throw new Error(`Mail value alredy set to ${mail}`);
-    if (direction && direction === checkProfesional.direction)
+    if (direction && direction === checkProfessional.direction)
       throw new Error(`Direction value alredy set to ${direction}`);
-    if (image && image === checkProfesional.image)
+    if (image && image === checkProfessional.image)
       throw new Error(`Image value alredy set to ${image}`);
     next();
   } catch (error) {
@@ -56,8 +56,8 @@ const profesionalPutValidation = async (req, res, next) => {
 };
 
 module.exports = {
-  profesionalGetValidation,
-  profesionalGetIdValidation,
-  profesionalPostValidation,
-  profesionalPutValidation,
+  professionalGetValidation,
+  professionalGetIdValidation,
+  professionalPostValidation,
+  professionalPutValidation,
 };

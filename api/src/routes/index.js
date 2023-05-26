@@ -4,7 +4,7 @@ const servicesRoutes = require("../handlers/service-routes");
 const productsRouter = require("../handlers/products-routes");
 const usersRouter = require("../handlers/client-routes");
 const developersRouter = require("../handlers/developers-routes");
-const profesionalsRouter = require("../handlers/profesionals-routes");
+const professionalsRouter = require("../handlers/professionals-routes");
 const commentsRouter = require("../handlers/comments-routes");
 const shopsRouter = require("../handlers/shops-routes");
 const favoritesRouter = require("../handlers/favorites-routes");
@@ -16,7 +16,7 @@ const router = Router();
 
 router.use("/mercadopago", mercadoPago);
 router.use("/comments", commentsRouter);
-router.use("/profesionals", profesionalsRouter);
+router.use("/professionals", professionalsRouter);
 router.use("/client", usersRouter);
 router.use("/categories", categoriesRoutes);
 router.use("/services", servicesRoutes);

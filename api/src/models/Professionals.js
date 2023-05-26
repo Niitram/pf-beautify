@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "ServicesReview",
+    "Professional",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -10,14 +10,22 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      rate: {
-        type: DataTypes.FLOAT,
-      },
-      title: {
+      fullname: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
-      comment: {
+      mail: {
         type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      direction: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     { timestamps: false }

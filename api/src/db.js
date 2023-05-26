@@ -42,7 +42,7 @@ const {
   Category,
   Client,
   Comment,
-  Profesional,
+  Professional,
   Service,
   ShopsDetail,
   Shop,
@@ -63,8 +63,8 @@ Product.hasMany(Comment, { as: "comments" });
 Client.hasMany(Comment, { as: "comments" });
 
 //*Relaciones entre el modelo Service y Profesional
-Service.belongsTo(Profesional);
-Profesional.hasMany(Service);
+Service.belongsTo(Professional);
+Professional.hasMany(Service);
 Comment.belongsTo(Service);
 Service.hasMany(Comment);
 
@@ -73,10 +73,10 @@ Client.belongsToMany(Product, { through: "Favorites" });
 Product.belongsToMany(Client, { through: "Favorites" });
 
 //* Relaciones entre Appoinments y Service/ Profesional y Client: un profesional puede tener muchas citas, un cliente puede tener muchas citas y un servicio puede tener muchas citas. A su vez, cada cita pertenece a un profesional, un cliente y un servicio específico.
-Profesional.hasMany(Appointment);
+Professional.hasMany(Appointment);
 Client.hasMany(Appointment);
 Service.hasMany(Appointment);
-Appointment.belongsTo(Profesional);
+Appointment.belongsTo(Professional);
 Appointment.belongsTo(Client);
 Appointment.belongsTo(Service);
 
@@ -106,8 +106,8 @@ Client.hasMany(ServicesReview);
 ServicesReview.belongsTo(Service);
 Service.hasMany(ServicesReview);
 
-ServicesReview.belongsTo(Profesional);
-Profesional.hasMany(ServicesReview);
+ServicesReview.belongsTo(Professional);
+Professional.hasMany(ServicesReview);
 
 module.exports = {
   ...sequelize.models,

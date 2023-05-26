@@ -2,7 +2,7 @@ const bulkCreateClients = require("./clients");
 const bulkCreateDevelopers = require("./developersData");
 const bulckCreateFavorites = require("./favorites");
 const bulkCreateProducts = require("./productsData");
-const bulkCreateProfesionalsAndServices = require("./services");
+const bulkCreateProfessionalsAndServices = require("./services");
 const bulkCreateShops = require("./shops");
 const { Product } = require("../db");
 const bulkCreateAppointments = require("./appointments");
@@ -19,7 +19,7 @@ const allDataFunctions = async () => {
   await bulkCreateClients();
   await bulkCreateShops();
   await bulckCreateFavorites();
-  await bulkCreateProfesionalsAndServices();
+  await bulkCreateProfessionalsAndServices();
   await bulkCreateAppointments();
 };
 
