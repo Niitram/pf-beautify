@@ -1,8 +1,12 @@
+import Calendar from "../../components/calendar/Calendar";
+import styles from "./Services.module.css";
 
 function Services() {
-    return (
-        <div>Services</div>
-    )
+  return (
+    <section className={styles.section}>
+      <Calendar />
+    </section>
+  );
 }
 
-export default Services
+export default Services;

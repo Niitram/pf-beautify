@@ -11,7 +11,6 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
       fullName: {
-        allowNull: false,
         type: DataTypes.STRING,
       },
       email: {
@@ -20,10 +19,6 @@ module.exports = (sequelize) => {
         unique: true,
         validate: { isEmail: true },
       },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       adress: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -31,6 +26,14 @@ module.exports = (sequelize) => {
       phone: {
         type: DataTypes.STRING,
         allowNull: true,
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      balance: {
+        type: DataTypes.FLOAT,
+        allowNull: true
       },
     },
     { timestamps: false }

@@ -18,7 +18,7 @@ developersRouter.post("/", postDevelopersValidation, async (req, res) => {
   try {
     const developerInfo = req.body;
     const newDeveloper = await postDeveloper(developerInfo);
-    res.status(200).json(newDeveloper);
+    res.status(201).json(newDeveloper);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

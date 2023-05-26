@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+.inputForm input[type="text"] {
+  display: flex;
+  justify-content: start;
+  margin-left: 0px;
+  border: none;
+  border-bottom: 2px solid var(--text-alt);
+  width: 95%;
+  height: 30px;
+}
+.inputForm input[type="number"] {
+  display: flex;
+  justify-content: start;
+  margin-left: 0px;
+  border: none;
+  border-bottom: 2px solid var(--text-alt);
+  width: 97%;
+  height: 30px;
+}
+form label {
+  color: var(--accent1);
+  font-family: "Poppins";
+}
+form h1 {
+  font-family: "Poppins";
+}

@@ -1,0 +1,35 @@
+* {
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  color: var(--text);
+  overflow: hidden;
+}
+
+.Container {
+  background-color: transparent;
+  color: var(--text);
+  transition: 200ms;
+  border: 0px;
+  padding: 10px 35px 10px 35px;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+.Container:hover {
+  background-color: var(--accent2);
+  color: var(--text);
+  border: 0px;
+  padding: 10px 35px 10px 35px;
+  border-radius: 10px;
+}
+.Current {
+  background-color: var(--accent2);
+  color: var(--text);
+  border: 0px;
+  padding: 10px 35px 10px 35px;
+  justify-content: center;
+  border-radius: 10px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}

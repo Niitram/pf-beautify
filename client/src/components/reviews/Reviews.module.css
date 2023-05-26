@@ -1,0 +1,70 @@
+.section{
+    margin: 50px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerRateComents{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 50px;
+}
+.h3{
+    margin-bottom: 40px;
+}
+.containerRateTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px 30px;
+    width: fit-content;
+}
+.rateContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: fit-content;
+}
+.rateNumber{
+    font-size: 50px;
+    font-family: 'Hind Siliguri';
+}
+.rateText{
+    color: rgb(134, 131, 131);
+}
+
+.comentTitleContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+
+.comentsContainer{
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    gap: 40px;
+}
+.date{
+    color: rgb(131, 133, 133);
+}
+.name{
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0px;
+    color: rgb(131, 133, 133);
+}
+.description{
+    font-weight: 650;
+    text-align: left;
+}
+.containerRateDate{
+    display: flex;
+    justify-content: space-between;
+}

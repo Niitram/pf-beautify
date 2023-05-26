@@ -1,0 +1,17 @@
+.Slider :global .MuiSlider-thumb{
+    color:var(--accent1);
+}
+.Slider :global .MuiSlider-track{
+    color:var(--accent2);
+}
+.Slider :global .MuiSlider-rail{
+    color:var(--accent2);
+}
+.Container{
+    /* border:1px solid green; */
+    margin:0.5rem 1rem
+}
+.boxSlider{
+    padding: 0.5rem;
+    /* border: 1px solid green; */
+}

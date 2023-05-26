@@ -4,16 +4,29 @@ const {validationComment, validateCommentModification} = require('../validations
 const getCommentsByProductId = require('../controllers/Comments/getCommentsByProductId')
 const putComment = require('../controllers/Comments/putComment')
 const deleteComment = require('../controllers/Comments/deleteComment');
+const postServiceComment = require('../controllers/Comments/postServiceComment')
 router.post("/:productId/:clientId", validationComment, async (req, res) => {
   try {
     const {productId, clientId} = req.params
     const {content} = req.body;
     const response = await postComment(content, productId, clientId);
-    res.json(response);
+    res.status(201).json(response);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
+
+router.post('/services/:serviceId/:clientId', async (req,res) => {
+  try {
+    const {serviceId, clientId} = req.params
+    const comment = req.body
+    const response = await postServiceComment(serviceId, clientId, comment)
+    res.json(response)
+  } catch (error) {
+    res.json({error: error.message})
+  }
+})
+
 
 router.get("/:productId", async (req, res) => {
   try {
@@ -32,9 +45,9 @@ router.put("/:id", validateCommentModification, async (req, res) => {
         const {content} = req.body;
         const {id} = req.params
         const modified = await putComment(id, content)
-        res.json(modified)
+        res.status(200).json(modified)
     } catch (error) {
-        res.json({error: error.message})
+        res.status(500).json({error: error.message})
     }
 });
 
@@ -42,9 +55,9 @@ router.delete('/:id', validateCommentModification, async (req,res) => {
     try {
         const {id} = req.params
         const deleted = await deleteComment(id)
-        res.send(deleted)
+        res.status(200).send(deleted)
     } catch (error) {
-        res.json({error: error.message})
+        res.status(500).json({error: error.message})
     }
 })
 

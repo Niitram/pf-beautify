@@ -1,0 +1,157 @@
+.overlay {
+  z-index: 99;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+}
+.loginContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 60px;
+  /* background-color: var(--background); */
+  background-color: transparent;
+
+  height: 100vh;
+  /* z-index: 0; */
+}
+.LoginForm span {
+  font-size: medium;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: bold;
+  color: var(--text-alt);
+}
+.LoginForm p {
+  font-size: small;
+  font-weight: bold;
+}
+
+.LoginForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--background);
+  transition: 200ms;
+  width: 20%;
+  height: fit-content;
+  padding: 52px 21px 52px 21px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  z-index: 999;
+}
+.LoginForm input {
+  margin-top: 2%;
+  margin-right: 2%;
+  height: 2rem;
+  width: 95%;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: transparent;
+  border: 2px solid var(--text-alt);
+  border-radius: 10px;
+  align-self: center;
+
+  padding-left: 5px;
+}
+.LoginForm input::placeholder {
+  padding-left: 5px;
+}
+.LoginForm p {
+  align-self: flex-start;
+  margin-bottom: 2%;
+}
+.closeButton {
+  background-color: transparent;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border: none;
+  color: var(--text-alt);
+  font-size: large;
+  cursor: pointer;
+}
+.Inputs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.BotonLogin {
+  margin-bottom: 5%;
+  width: 50%;
+  align-self: center;
+  background-color: var(--accent1);
+  border: 0px;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 35px 10px 35px;
+  cursor: pointer;
+  transition: 200ms;
+  color: var(--text);
+}
+.BotonLogin:disabled {
+  background-color: var(--muted);
+  color: var(--text);
+}
+
+.BotonLogin:hover:disabled {
+  background-color: var(--muted);
+  color: var(--text);
+  cursor: auto;
+}
+
+.BotonLogin:not(:disabled):hover {
+  background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
+  color: #fef2f4;
+}
+.BotonSwitch {
+  width: fit-content;
+  height: fit-content;
+  border: 0px;
+  background-color: transparent;
+  margin-left: 4px;
+  color: var(--accent1);
+}
+.Switch:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.BotonGoogle img {
+  height: 1.5rem;
+  margin-left: 5px;
+}
+.BotonGoogle {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  align-self: center;
+  border: 0px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 8px #d14d7286;
+  color: var(--text);
+  background-color: var(--accent2);
+  cursor: pointer;
+}
+.BotonGoogle p {
+  height: 24px;
+  font-size: medium;
+  align-self: center;
+  justify-self: center;
+  margin: 0px;
+}
+.valideEmail {
+  color: rgb(3, 167, 3);
+  font-size: 0.8rem;
+  text-align: center;
+  display: block;
+}

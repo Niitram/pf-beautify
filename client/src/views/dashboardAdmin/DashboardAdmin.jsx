@@ -1,7 +1,10 @@
+import styles from './DashboardAdmin.module.css'
 
 function DashboardAdmin() {
     return (
-        <div>DashboardAdmin</div>
+        <div className={styles.container}>
+
+        </div>
     )
 }
 

@@ -11,6 +11,7 @@ const getService = async () => {
       rate: service.rate,
       professional: service.professionalId,
       price: service.price,
+      duration: service.duration
     });
   });
   return services;
@@ -18,4 +19,3 @@ const getService = async () => {
 
 module.exports = getService;
 
-module.exports = getService

@@ -1,69 +1,97 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Playfair+Display&display=swap");
+
+* {
+  padding: 0px; 
+  margin: 0px;
+  --background: #fef2f4;
+  /* --background: #7c7677; */
+  --accent1: #d14d72;
+  --accent2: #f5b7b1;
+  --text: #3d3b54;
+  --text-alt: #a2a0bb;
+  --muted: #d3d3de;
+  --background-alt: #FBF4F5;
+  --gradient: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
+}
+:root{
+overflow: auto;
+}
+:root::-webkit-scrollbar{
+  width: 3px;
+  color: var(--text)
+}
+:root::-webkit-scrollbar-thumb{
+  background: var(--text);
+  border-radius: 10px;
+
+}
+
+/* variables de calendar */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --fc-small-font-size: .85em;
+  --fc-page-bg-color: #fff;
+  --fc-neutral-bg-color: rgba(208, 208, 208, 0.3);
+  --fc-neutral-text-color: #808080;
+  --fc-border-color: #8884848c;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --fc-button-text-color: #151414;
+  --fc-button-bg-color: #F5B7B1;
+  --fc-button-border-color: #F5B7B1;
+  --fc-button-hover-bg-color: #e5a9a4;
+  --fc-button-hover-border-color: #e5a9a4;
+  --fc-button-active-bg-color: #e5a9a4;
+  --fc-button-active-border-color: #e5a9a4;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --fc-event-bg-color: #3788d8;
+  --fc-event-border-color: #3788d8;
+  --fc-event-text-color: #fff;
+  --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25);
+
+  --fc-more-link-bg-color: #d0d0d0;
+  --fc-more-link-text-color: inherit;
+
+  --fc-event-resizer-thickness: 8px;
+  --fc-event-resizer-dot-total-width: 8px;
+  --fc-event-resizer-dot-border-width: 1px;
+
+  --fc-non-business-color: rgba(215, 215, 215, 0.3);
+  --fc-bg-event-color: rgb(143, 223, 130);
+  --fc-bg-event-opacity: 0.3;
+  --fc-highlight-color: rgba(188, 232, 241, 0.3);
+  --fc-today-bg-color: rgba(255, 220, 40, 0.15);
+  --fc-now-indicator-color: red;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+:root {
+  --fc-daygrid-event-dot-width: 8px;
 }
-a:hover {
-  color: #535bf2;
+/* Dias sabados y domingos */
+.fc-day-sat, .fc-day-sun{
+  background-color: #D3D3DE;
 }
+/* Dias lunes, martes, miercoles, jueves y viernes */
+.fc-day-mon, .fc-day-tue, .fc-day-wed, .fc-day-thu,.fc-day-fri{
+  background-color: #F5B7B1;
 
-body {
-  margin: 0;
+}
+/* Celdas con los nombres de los dias */
+.fc-col-header-cell{
+  background-color: #FBF4F5;
+}
+/* contenedor de los numeros para centrarlos */
+.fc-scrollgrid-sync-inner{
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Dia de hoy */
+.fc .fc-daygrid-day.fc-day-today{
+  background-color: #de938c;
+} 
+/* .fc-view-harness, .fc-view-harness-active{
+  width: 800px;
+} */
+/* Tamaño de los numeros de los dias */
+.fc-daygrid-day-number{
+  font-size: large;
 }
