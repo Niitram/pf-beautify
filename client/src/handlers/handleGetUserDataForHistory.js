@@ -39,16 +39,18 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
   const dbAppointments = dataDbAppointments.data;
 
   const optimizedAppointments = dbAppointments.map(
-    ({ Profesional, Service, date, hour, id }) => {
+    ({ Profesional, Service, date, hour, id, paid }) => {
       const prettyDate =
         date.slice(8, 10) + "/" + date.slice(5, 7) + "/" + date.slice(0, 4);
 
       return {
         id,
-        profesional: Profesional.fullname,
+        professional: Profesional.fullname,
         service: Service.name,
+        image: Service.image,
         date: prettyDate,
         hour: hour.slice(0, 5),
+        paid,
         ableToCancelAppointment: ableToCancelAppointment(date, hour),
       };
     }
@@ -58,6 +60,7 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
     if (a.id > b.id) return -1;
     return 0;
   });
+
   setAppointments(optimizedAppointments);
 };
 

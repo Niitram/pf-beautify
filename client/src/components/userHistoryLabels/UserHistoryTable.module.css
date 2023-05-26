@@ -13,7 +13,7 @@
 }
 .importantRow {
   background-color: var(--accent1);
-  color: var(--background-alt);
+  /* color: greenyellow; */
   min-width: 100%;
   display: flex;
   flex-direction: row;
@@ -44,4 +44,22 @@
 
 .titlesRow {
   background-color: var(--accent2);
+}
+
+.cancelButtons {
+  all: unset;
+  cursor: pointer;
+}
+
+.cancelButtons:hover {
+  color: var(--accent1);
+}
+
+.productCancelButtons {
+  all: unset;
+  cursor: pointer;
+}
+
+.productCancelButtons:hover {
+  color: var(--accent2);
 }

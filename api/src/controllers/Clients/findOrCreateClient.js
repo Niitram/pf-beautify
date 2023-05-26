@@ -1,7 +1,9 @@
 const { Client } = require("../../db");
 
 const findOrCreateClient = async (email, fullName, image, phone, adress) => {
+  console.log(email);
   let client = await Client.findOne({ where: { email } });
+  console.log(client);
   if (!client)
     client = await Client.create({
       email,

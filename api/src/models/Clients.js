@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, UUIDV1 } = require("sequelize");
 
 //* Definiendo la función que crea el modelo Clients
 module.exports = (sequelize) => {
@@ -9,6 +9,8 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+        // initialAutoIncrement: 160,
+        // defaultValue: 160,
       },
       fullName: {
         type: DataTypes.STRING,
@@ -33,7 +35,7 @@ module.exports = (sequelize) => {
       },
       balance: {
         type: DataTypes.FLOAT,
-        allowNull: true
+        allowNull: true,
       },
     },
     { timestamps: false }

@@ -83,15 +83,16 @@ export const uploadProfilePicture = async (
 export const loginWithGoogleFirebase = async (
   usuarioFirebase,
   dispatch,
-  navigate,
+  navigate
   /* locationNow */
 ) => {
   try {
+    console.log(usuarioFirebase.phoneNumber);
     // recibe el usuario de google y lo busca/crea en la bdd
     const response = await postFindOrCreate({
       email: usuarioFirebase.email,
       fullName: usuarioFirebase.displayName,
-      phone: usuarioFirebase.phoneNumber,
+      phone: usuarioFirebase.phoneNumber || null,
       image: usuarioFirebase.image || null,
     });
     const dbClient = response.data;

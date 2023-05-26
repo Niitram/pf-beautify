@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./UserHistory.module.css";
 import setUserInfo from "../../handlers/handleGetUserDataForHistory";
 import ProductsHistoryTable from "../../components/userHistoryLabels/ProductsHistoryTable";
+import ServicesHistoryTable from "../../components/userHistoryLabels/ServicesHistoryTable";
 
 const UserHistory = () => {
   const [userData, setUserData] = useState({});
@@ -42,7 +43,13 @@ const UserHistory = () => {
         </button>
         <div className={styles.fulfill}></div>
       </div>
-      <ProductsHistoryTable shopsData={shops} />
+      {label === labelsNames.products && (
+        <ProductsHistoryTable shopsData={shops} />
+      )}
+
+      {label === labelsNames.appointments && (
+        <ServicesHistoryTable servicesData={appointments} />
+      )}
     </div>
   );
 };

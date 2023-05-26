@@ -213,8 +213,14 @@ function App() {
             path="/dashboardAdmin/professionals"
             element={<Professionals />}
           />
-          <Route path='/dashboardAdmin/products_control' element={<ProductsAdmin/>}/>
-          <Route path="dashboardAdmin/products_control/:id" element={<ProductDetailAdmin/>}/>
+          <Route
+            path="/dashboardAdmin/products_control"
+            element={<ProductsAdmin />}
+          />
+          <Route
+            path="dashboardAdmin/products_control/:id"
+            element={<ProductDetailAdmin />}
+          />
         </Route>
         {/* Rutas solo para CLIENT */}
         {/* <Route element={<ProtectedRoute isAllowed={userData.rol === CLIENT} />}>
