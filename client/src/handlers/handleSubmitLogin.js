@@ -63,7 +63,6 @@ const handleSubmitLogin = async (
       // trae la info del usuario y de su carrito de la base de datos
       const userCreated = await getClient(email);
       const cartSaved = await getCart(userCreated.data.id); //*el back si no tiene un carrito devuelve undefined
-      console.log('GGGGGGGGGGGGGGGGGG',cartSaved)
       const userCart = !cartSaved ? [] : cartSaved.data
 
       const userData = {
