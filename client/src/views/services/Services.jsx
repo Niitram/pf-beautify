@@ -6,81 +6,13 @@ import { Divider } from "@mui/material";
 function Services() {
   return (
     <section className={styles.section}>
-      <div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima,
-        laudantium. Magnam delectus deserunt qui aspernatur expedita soluta
-        tenetur, necessitatibus sint suscipit nobis minima architecto
-        praesentium iste cumque! Similique quo facilis, quia ipsam quae quisquam
-        tenetur? Quos at distinctio consequuntur saepe vel quae voluptates
-        debitis modi totam nobis aliquam neque, tenetur sunt id ut laboriosam
-        architecto error possimus labore quidem iste laborum necessitatibus
-        vitae explicabo? Deserunt molestiae ducimus sapiente nulla quam dolor
-        quaerat a soluta facere rem id, labore sit impedit, quae, quisquam velit
-        cumque esse dolorem. Nihil, quidem. Sequi, ipsam impedit quas labore
-        quod nulla deleniti animi consectetur commodi. Culpa voluptatibus dicta
-        ducimus qui, inventore eligendi ipsum, dolore, quia libero nulla neque.
-        Inventore natus sit eaque! Aut aperiam sed sit.
+      <div className={styles.carrusel}></div>
+      <div className={styles.containerButtons}>
+        <button className={styles.buttonDiscover}>Discover our services</button>
+        <button className={styles.buttonReserveNow}>Reserve now</button>
       </div>
-      <div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima,
-        laudantium. Magnam delectus deserunt qui aspernatur expedita soluta
-        tenetur, necessitatibus sint suscipit nobis minima architecto
-        praesentium iste cumque! Similique quo facilis, quia ipsam quae quisquam
-        tenetur? Quos at distinctio consequuntur saepe vel quae voluptates
-        debitis modi totam nobis aliquam neque, tenetur sunt id ut laboriosam
-        architecto error possimus labore quidem iste laborum necessitatibus
-        vitae explicabo? Deserunt molestiae ducimus sapiente nulla quam dolor
-        quaerat a soluta facere rem id, labore sit impedit, quae, quisquam velit
-        cumque esse dolorem. Nihil, quidem. Sequi, ipsam impedit quas labore
-        quod nulla deleniti animi consectetur commodi. Culpa voluptatibus dicta
-        ducimus qui, inventore eligendi ipsum, dolore, quia libero nulla neque.
-        Inventore natus sit eaque! Aut aperiam sed sit.
-      </div>
-      <div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima,
-        laudantium. Magnam delectus deserunt qui aspernatur expedita soluta
-        tenetur, necessitatibus sint suscipit nobis minima architecto
-        praesentium iste cumque! Similique quo facilis, quia ipsam quae quisquam
-        tenetur? Quos at distinctio consequuntur saepe vel quae voluptates
-        debitis modi totam nobis aliquam neque, tenetur sunt id ut laboriosam
-        architecto error possimus labore quidem iste laborum necessitatibus
-        vitae explicabo? Deserunt molestiae ducimus sapiente nulla quam dolor
-        quaerat a soluta facere rem id, labore sit impedit, quae, quisquam velit
-        cumque esse dolorem. Nihil, quidem. Sequi, ipsam impedit quas labore
-        quod nulla deleniti animi consectetur commodi. Culpa voluptatibus dicta
-        ducimus qui, inventore eligendi ipsum, dolore, quia libero nulla neque.
-        Inventore natus sit eaque! Aut aperiam sed sit.
-      </div>
-      <div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima,
-        laudantium. Magnam delectus deserunt qui aspernatur expedita soluta
-        tenetur, necessitatibus sint suscipit nobis minima architecto
-        praesentium iste cumque! Similique quo facilis, quia ipsam quae quisquam
-        tenetur? Quos at distinctio consequuntur saepe vel quae voluptates
-        debitis modi totam nobis aliquam neque, tenetur sunt id ut laboriosam
-        architecto error possimus labore quidem iste laborum necessitatibus
-        vitae explicabo? Deserunt molestiae ducimus sapiente nulla quam dolor
-        quaerat a soluta facere rem id, labore sit impedit, quae, quisquam velit
-        cumque esse dolorem. Nihil, quidem. Sequi, ipsam impedit quas labore
-        quod nulla deleniti animi consectetur commodi. Culpa voluptatibus dicta
-        ducimus qui, inventore eligendi ipsum, dolore, quia libero nulla neque.
-        Inventore natus sit eaque! Aut aperiam sed sit.
-      </div>
-      <div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima,
-        laudantium. Magnam delectus deserunt qui aspernatur expedita soluta
-        tenetur, necessitatibus sint suscipit nobis minima architecto
-        praesentium iste cumque! Similique quo facilis, quia ipsam quae quisquam
-        tenetur? Quos at distinctio consequuntur saepe vel quae voluptates
-        debitis modi totam nobis aliquam neque, tenetur sunt id ut laboriosam
-        architecto error possimus labore quidem iste laborum necessitatibus
-        vitae explicabo? Deserunt molestiae ducimus sapiente nulla quam dolor
-        quaerat a soluta facere rem id, labore sit impedit, quae, quisquam velit
-        cumque esse dolorem. Nihil, quidem. Sequi, ipsam impedit quas labore
-        quod nulla deleniti animi consectetur commodi. Culpa voluptatibus dicta
-        ducimus qui, inventore eligendi ipsum, dolore, quia libero nulla neque.
-        Inventore natus sit eaque! Aut aperiam sed sit.
-      </div>
+
+      <h3 className={styles.titleH3}>Our services</h3>
       <Divider sx={{ mt: 5 }} />
       <div className={styles.imageFixed}>
         <img className={styles.image} src={imgLogo} alt="Logo Beautify" />
