@@ -44,6 +44,7 @@ import Professionals from "./views/Professionals/Professionals";
 import ContactForm from "./views/ContactForm/contactForm";
 import FooterAll from "./components/footerAll/FooterAll";
 import NotFound from "./components/notFound/NotFound";
+import DetailService from "./views/detailService/detailService";
 //Para deploy
 /* import axios from "axios"; */
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
@@ -187,6 +188,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/:id" element={<DetailService />} />
         <Route
           path="/detailProduct/:id"
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
