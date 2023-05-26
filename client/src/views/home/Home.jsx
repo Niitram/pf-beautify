@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 // import { useEffect, useState } from "react";
+import { useState } from "react";
 // import PromoCard from "../../components/promo card/PromoCard";
 import styles from "./Home.module.css";
 // import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -9,12 +10,11 @@ import SectionCards from "../../components/sectionCards/SectionCards";
 // import { getProducts } from "../../request/product";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import ima1 from "../../assets/images/5000238.jpg";
+import ima2 from "../../assets/images/5256956.jpg";
 
-var imagenes = [
-  "client/src/assets/images/5000238.jpg",
-  "client/src/assets/images/5256956.jpg",
-];
 function Home() {
+  const images = [ima1, ima2];
   // const [products, setProducts] = useState([]);
   const allProducts = useSelector((state) => state.allProducts);
   // const dispatch = useDispatch();
@@ -28,18 +28,36 @@ function Home() {
   //     console.log(error.message);
   //   }
   // }, []);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handlePrevious = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   return (
     <div className={styles.Container}>
-      <h1 className={styles.Title}>Welcome to our shop</h1>
+      {/* <h1 className={styles.Title}>Welcome to our shop</h1> */}
       <div className={styles.contenedorSlider}>
-        <div className={styles.btnIzquierda}>
+        <div className={styles.btnIzquierda} onClick={handlePrevious}>
           <KeyboardDoubleArrowLeftIcon />
         </div>
         <div className={styles.sliderScreen}>
-          <img className={styles.imagen} />
+          <img
+            id="CollectionImagen"
+            className={styles.imagen}
+            src={images[currentImageIndex]}
+            alt="Image"
+          />
         </div>
-        <div className={styles.btnDerecha}>
+        <div className={styles.btnDerecha} onClick={handleNext}>
           <KeyboardDoubleArrowRightIcon />
         </div>
 

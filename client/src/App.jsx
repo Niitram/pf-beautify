@@ -244,7 +244,6 @@ function App() {
         locationNow.pathname !== "/loading" &&
         locationNow.pathname !== "/checkout" &&
         locationNow.pathname !== "/dashboardAdmin" && <FooterAll />}
-      {/* <FooterAll /> */}
     </div>
   );
 }

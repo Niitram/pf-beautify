@@ -77,9 +77,22 @@
   letter-spacing: 0.25em;
 }
 
-.social ul li img {
-  width: 24px;
+.social img {
+  width: 40px;
   cursor: pointer;
+  margin: 5px 5px;
+}
+.contacto p{
+  font-family: "Poppins";
+}.contacto strong{
+  font-family: "Poppins";
+}
+.developers p{
+  font-family: "Poppins";
+}
+.developers a{
+  text-decoration: none;
+  font-family: "Poppins";
 }
 
 @media (max-width: 801px) {
