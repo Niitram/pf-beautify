@@ -12,9 +12,6 @@ const getCartValidation = async (req, res, next) => {
   const client = await Client.findByPk(clientId);
   if (!client) return res.status(400).json({ error: "client not found" });
 
-  const cart = await SavedCart.findOne({ where: { ClientId: clientId } });
-  if (!cart) return res.status(400).json({ error: "cart not found" });
-
   next();
 };
 

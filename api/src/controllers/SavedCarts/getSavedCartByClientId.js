@@ -20,7 +20,7 @@ const getSavedCartByClientId = async (clientId) => {
       },
     },
   });
-
+  if (!cart) return [];
   const newProducts = cart.Products.map(
     ({ id, name, price, image, discount, state, stock, CartsProducts }) => {
       return {
