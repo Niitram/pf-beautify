@@ -74,17 +74,17 @@ function DetailProduct({ handleLoginClick }) {
     else {
       setAddProduct(true);
       cart.push({
-        category: product.category,
+        // category: product.category,
         description: product.description,
         discount: product.discount,
         id: product.id,
         image: product.image,
         name: product.name,
         price: product.price,
-        rate: product.rate,
+        quantity: quantity,
+        // rate: product.rate,
         state: product.state,
         stock: product.stock,
-        quantity: quantity,
       });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
