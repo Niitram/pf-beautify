@@ -168,8 +168,6 @@ function Calendar() {
       console.log(error.message);
     }
   }, []);
-
-  console.log(options);
   return (
     <section className={styles.section}>
       <LinearStepper activeStep={activeStep} isStepSkipped={isStepSkipped} />

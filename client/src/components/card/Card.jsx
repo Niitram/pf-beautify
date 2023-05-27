@@ -8,7 +8,6 @@ import { deleteFavorite, getFavorites } from "../../request/favorites";
 import paleta from "../../assets/images/Paleta";
 import { setFavorites } from "../../redux/actions";
 import CloseIcon from "@mui/icons-material/Close";
-import { useEffect } from "react";
 
 function Card({ image, price, name, rate, id }) {
   const location = useLocation();

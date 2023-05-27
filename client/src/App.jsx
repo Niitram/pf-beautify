@@ -44,6 +44,7 @@ import Professionals from "./views/Professionals/Professionals";
 import ContactForm from "./views/ContactForm/contactForm";
 import FooterAll from "./components/footerAll/FooterAll";
 import NotFound from "./components/notFound/NotFound";
+import DetailService from "./views/detailService/detailService";
 import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
 import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
 //Para deploy
@@ -189,6 +190,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/detailService/:id" element={<DetailService />} />
         <Route
           path="/detailProduct/:id"
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
@@ -213,8 +215,14 @@ function App() {
             path="/dashboardAdmin/professionals"
             element={<Professionals />}
           />
-          <Route path='/dashboardAdmin/products_control' element={<ProductsAdmin/>}/>
-          <Route path="dashboardAdmin/products_control/:id" element={<ProductDetailAdmin/>}/>
+          <Route
+            path="/dashboardAdmin/products_control"
+            element={<ProductsAdmin />}
+          />
+          <Route
+            path="dashboardAdmin/products_control/:id"
+            element={<ProductDetailAdmin />}
+          />
         </Route>
         {/* Rutas solo para CLIENT */}
         {/* <Route element={<ProtectedRoute isAllowed={userData.rol === CLIENT} />}>
