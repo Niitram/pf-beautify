@@ -30,13 +30,13 @@ function Services() {
         <button className={styles.buttonReserveNow}>Reserve now</button>
       </div>
       <div className={styles.containerCards}>
-        {/* {allServices &&
+        {allServices &&
           allServices.map((service) => {
             return <CardService key={service.id} service={service} />;
-          })} */}
-        {allServices && (
+          })}
+        {/* {allServices && (
           <CardService key={allServices[0].id} service={allServices[0]} />
-        )}
+        )} */}
       </div>
       <h3 className={styles.titleH3}>Our services</h3>
       <Divider sx={{ mt: 5 }} />
