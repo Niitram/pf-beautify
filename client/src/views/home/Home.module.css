@@ -8,8 +8,8 @@
     flex-direction: column;
 }
 .Title{
-    margin: 20px;
-    padding: 10px;
+    margin: 10px;
+    padding: 5px;
 }
 .description{
     margin: 20px;
@@ -56,3 +56,33 @@
 .customArrow{
     background-color: red;
 }
+
+.contenedorSlider{
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    padding: 0px 40px;
+}
+
+.btnIzquierda,
+.btnDerecha{
+    width: 5%;
+}
+
+.sliderScreen{
+    width: 100%;
+    border-radius: 15px;
+    -webkit-box-shadow: 3px 4px 20px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 4px 20px -4px rgba(0,0,0,0.75);
+    box-shadow: 3px 4px 20px -4px rgba(0,0,0,0.75);
+    margin-bottom: 20px;
+    margin-top: 20px;
+   
+}
+
+.imagen{
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: -5px;
+}
+

@@ -1,17 +1,22 @@
 import styles from "./About.module.css";
-import Footer from "../../components/footerAll/FooterAll";
 
 function About() {
   return (
     <div className={styles.Container}>
       <div className={styles.QuienesSomos}>
-        <p>About us</p>
+        <h1>about us?</h1>
         <p>
-          {" "}
-          Beautify is a platform that connects millions of clients, both men and women, in order to provide the best attention in the distribution and provision of services related to manicure and female personal care.
+          In <strong>Beautify</strong>, we are a company dedicated to offering
+          high-quality beauty products and services. We take pride in being a
+          reference in the cosmetics industry, providing our customers with a
+          wide range of products and services that help enhance their beauty and
+          confidence. Our mission is to provide innovative and effective beauty
+          solutions that meet the individual needs of each customer. We are
+          committed to carefully selecting the best products in the market,
+          working with recognized brands and quality formulations to ensure
+          exceptional results.
         </p>
       </div>
-      {/* <Footer></Footer> */}
     </div>
   );
 }

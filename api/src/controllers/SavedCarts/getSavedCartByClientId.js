@@ -6,6 +6,7 @@ const getSavedCartByClientId = async (clientId) => {
     include: {
       model: Product,
       attributes: [
+        "description",
         "id",
         "name",
         "price",
@@ -22,18 +23,20 @@ const getSavedCartByClientId = async (clientId) => {
   });
 
   const newProducts = cart.Products.map(
-    ({ id, name, price, image, discount, state, stock, CartsProducts }) => {
+    ({ description, id, name, price, image, discount, state, stock, CartsProducts }) => {
       return {
+        description,
+        discount,
         id,
+        image,
         name,
         price,
-        image,
-        discount,
+        quantity: CartsProducts.quantity > stock ? stock : CartsProducts.quantity,
         state,
         stock,
-        oldQuantity: CartsProducts.quantity,
-        newQuantity:
-          CartsProducts.quantity > stock ? stock : CartsProducts.quantity,
+        // oldQuantity: CartsProducts.quantity,
+        // newQuantity:
+        //   CartsProducts.quantity > stock ? stock : CartsProducts.quantity,
       };
     }
   );

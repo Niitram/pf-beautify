@@ -1,0 +1,49 @@
+.container {
+  margin-top: 6vh;
+}
+
+.labelsBar {
+  /* background-color: aqua; */
+  width: 80vw;
+  display: flex;
+  align-items: flex-start;
+  /* border: 1px solid white; */
+}
+
+.activeLabel {
+  all: unset;
+  padding: 10px;
+  background-color: var(--accent1);
+  border: 1px solid var(--accent2);
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: transparent;
+  color: var(--background-alt);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.label {
+  all: unset;
+  padding: 10px;
+  /* background-color: blue; */
+  border-bottom: 1px solid var(--accent2);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.fulfill {
+  /* background-color: pink; */
+  width: 100%;
+  height: 20px;
+  justify-self: baseline;
+  align-self: flex-end;
+  border-bottom: 1px solid var(--accent2);
+}
+
+.smallFulfill {
+  width: 20px;
+  height: 20px;
+  justify-self: baseline;
+  align-self: flex-end;
+  border-bottom: 1px solid var(--accent2);
+}

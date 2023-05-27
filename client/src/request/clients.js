@@ -16,6 +16,13 @@ export const getClient = async (mail) => {
     console.log(error.message);
   }
 };
+export const getAllClients = async () => {
+  try {
+    return await axios.get(`${URL_BASE}/client/`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 export const postFindOrCreate = async (userData) => {
   try {
     return await axios.post(`${URL_BASE}/client/findOrCreate`, userData);
@@ -31,6 +38,14 @@ export const updateClient = async (data, id) => {
       if (data[property]) dataToUpdate[property] = data[property];
     }
     return await axios.put(`${URL_BASE}/client/${id}`, dataToUpdate);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getClientShops = async (clientId) => {
+  try {
+    return await axios.get(`${URL_BASE}/shops/shopsByClient/${clientId}`);
   } catch (error) {
     console.log(error.message);
   }

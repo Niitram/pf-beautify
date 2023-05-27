@@ -1,0 +1,187 @@
+.section{
+    background-color: #FBF4F5;
+    padding: 40px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: -1px -2px 14px 2px rgba(130,127,127,0.75);
+    -webkit-box-shadow: -1px -2px 14px 2px rgba(130,127,127,0.75);
+    -moz-box-shadow: -1px -2px 14px 2px rgba(130,127,127,0.75);
+    width: fit-content;
+    height: fit-content;
+}
+
+.container{
+    display: flex;
+}
+.containerLeft, .containerRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 30px;
+}
+.containerRight{
+    padding-left: 50px;
+    padding-right: 0px;
+}
+.titleServices{
+    text-align: center;
+    min-width: 250px;
+    width: 100%;
+    font-size: 30px;
+    padding-bottom: 30px;
+}
+.inputRadio{
+    align-self: center;
+    border: 1px solid #F5B7B1;
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+}
+.inputRadio::before{
+    content: "";
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  border: 2px solid #F5B7B1;
+  background-color: #F5B7B1;
+}
+.inputRadio:checked::before {
+    background-color: #7c6b6f;
+    border-color: #F5B7B1;
+  }
+.inputRadio:disabled::before {
+    background-color: #d3d3de;
+    border-color: #d3d3de;
+  }
+
+.serviceContainerInput{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 200px;
+    margin: 5px;
+}
+.labelServices{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:50px;
+}
+.containerSelectedInfo{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+.selectedInfo{
+    font-weight: 600;
+    color: #2c292a;
+}
+.containerCalendar{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: fit-content;
+    gap: 10px;
+}
+
+
+.buttonReservation{
+    background-color: #D14D72;
+    color: #FBF4F5;
+    padding: 20px;
+    border: none;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.buttonReservation:disabled{
+    display: none;
+}
+
+
+/* Estilos para pantallas menores a 1300px */
+@media (max-width: 1300px) {
+    .container{
+        flex-wrap: wrap;
+    }
+    .section{
+        padding: 10px;
+        margin: 20px auto;
+    }
+    .containerCalendar{
+        width: 300px;
+    }
+    .containerLeft, .containerRight{
+        padding: 5px;
+    }
+    .containerRight{
+        padding-left: 70px;
+        margin-bottom: 20px;
+    }
+    .serviceContainerInput{
+        width: fit-content;
+    }
+    .titleServices{
+        font-size: 15px;
+        padding-bottom: 10px;
+    }
+    .selectedInfo{
+        font-size: small;
+    }
+    .inputRadio{
+        height: 10px;
+        width: 10px;
+        margin-right: 3px;
+    }
+    .inputRadio::before{
+      width: 6px;
+      height: 6px;
+    }
+    .buttonReservation{
+        padding: 8px;
+        font-size: medium;
+        border-radius: 5px;
+    }
+    .labelServices{
+        height:fit-content;
+        font-size: small;
+    }
+}
+
+
+
+/* Estilos para pantallas menores a 675px */
+@media (max-width: 675px) {
+    .container{
+        padding: 15px 0px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .section{
+        padding: 10px;
+        margin: 20px auto;
+    }
+    .labelServices{
+        margin: 10px 0px;
+    }
+    .containerLeft{
+        margin: auto;
+    }
+    .containerCalendar{
+        width: 300px;
+        margin: auto;
+    }
+    .containerRight{
+        margin: 10px 0px;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+    }
+    .titleServices{
+        margin: 10px 0px;
+    }
+}

@@ -8,7 +8,6 @@ const bulkCreateProducts = async (req, res) => {
       "http://makeup-api.herokuapp.com/api/v1/products.json"
     );
     // const apiProducts = 0;
-
     if (!apiProducts) {
       for (let product of productos) {
         const newProduct = await Product.create(product);

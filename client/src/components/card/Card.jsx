@@ -1,6 +1,6 @@
 import { IconButton, Rating } from "@mui/material";
 import styles from "./Card.module.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ImageComponent from "../imageComponent/ImageComponent";
 import productDefault from "../../assets/images/camera-icon.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,11 +8,14 @@ import { deleteFavorite, getFavorites } from "../../request/favorites";
 import paleta from "../../assets/images/Paleta";
 import { setFavorites } from "../../redux/actions";
 import CloseIcon from "@mui/icons-material/Close";
+import { useEffect } from "react";
 
 function Card({ image, price, name, rate, id }) {
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const clientId = useSelector((state) => state.userData.id);
+  const allProducts = useSelector((state) => state.allProducts);
 
   const handleDeleteFavorite = async () => {
     try {
@@ -20,10 +23,13 @@ function Card({ image, price, name, rate, id }) {
       getFavorites(clientId).then(({ data }) => {
         dispatch(setFavorites(data));
       });
+      if (location.pathname === "/favorites" && allProducts.length === 1)
+        navigate("/home");
     } catch (error) {
       console.log(error.message);
     }
   };
+
   return (
     <div className={styles.aux}>
       {location.pathname === "/favorites" && (

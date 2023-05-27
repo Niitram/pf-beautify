@@ -57,4 +57,22 @@ const postCartValidation = async (req, res, next) => {
   next();
 };
 
-module.exports = { getCartValidation, postCartValidation };
+const deleteCartValidation = async (req, res, next) => {
+  const clientId = Number(req.params.clientId);
+
+  if (String(clientId) === "NaN")
+    return res.status(400).json({ error: "clientId must be a number" });
+
+  if (clientId !== Math.floor(clientId))
+    return res.status(400).json({ error: "clientId must be an integer" });
+
+  const client = await Client.findByPk(clientId);
+  if (!client) return res.status(400).json({ error: "client not found" });
+
+  next();
+};
+module.exports = {
+  getCartValidation,
+  postCartValidation,
+  deleteCartValidation,
+};

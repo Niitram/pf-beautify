@@ -1,34 +1,67 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import PromoCard from "../../components/promo card/PromoCard";
+import { useSelector } from "react-redux";
+// import { useEffect, useState } from "react";
+import { useState } from "react";
+// import PromoCard from "../../components/promo card/PromoCard";
 import styles from "./Home.module.css";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
+// import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import SectionCards from "../../components/sectionCards/SectionCards";
-import { showError } from "../../redux/actions";
-import FooterAll from "../..//components/footerAll/FooterAll";
-import { getProducts } from "../../request/product";
+// import { showError } from "../../redux/actions";
+// import { getProducts } from "../../request/product";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import ima1 from "../../assets/images/5000238.jpg";
+import ima2 from "../../assets/images/5256956.jpg";
 
 function Home() {
-  const [products, setProducts] = useState([]);
+  const images = [ima1, ima2];
+  // const [products, setProducts] = useState([]);
   const allProducts = useSelector((state) => state.allProducts);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const [current, setCurrent] = useState(0);
-  useEffect(() => {
-    try {
-      getProducts().then(({ data }) => setProducts(data));
-    } catch (error) {
-      dispatch(showError({ tittle: "Error", message: error.message }));
-      console.log(error.message);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     getProducts().then(({ data }) => setProducts(data));
+  //   } catch (error) {
+  //     dispatch(showError({ tittle: "Error", message: error.message }));
+  //     console.log(error.message);
+  //   }
+  // }, []);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handlePrevious = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   return (
     <div className={styles.Container}>
-      <h1 className={styles.Title}>Welcome to our shop</h1>
-      <div>
-        {products.length ? (
+      {/* <h1 className={styles.Title}>Welcome to our shop</h1> */}
+      <div className={styles.contenedorSlider}>
+        <div className={styles.btnIzquierda} onClick={handlePrevious}>
+          <KeyboardDoubleArrowLeftIcon />
+        </div>
+        <div className={styles.sliderScreen}>
+          <img
+            id="CollectionImagen"
+            className={styles.imagen}
+            src={images[currentImageIndex]}
+            alt="Image"
+          />
+        </div>
+        <div className={styles.btnDerecha} onClick={handleNext}>
+          <KeyboardDoubleArrowRightIcon />
+        </div>
+
+        {/* {products.length ? (
           <Splide
             aria-label="My Favorite Images"
             options={{
@@ -58,14 +91,11 @@ function Home() {
           </Splide>
         ) : (
           <div>waiting...</div>
-        )}
+        )} */}
       </div>
-      <span className={styles.description}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quae
-        laudantium aliquam ducimus atque impedit doloribus. Voluptatibus aliquid
-        modi amet quasi reiciendis rem dolorum! Iste consectetur delectus
-        dignissimos explicabo facilis.
-      </span>
+      <h2 className={styles.description}>
+        Take a look at the best prices in town!
+      </h2>
       {allProducts && (
         <SectionCards
           nameSection={"Most populars"}
@@ -81,7 +111,6 @@ function Home() {
           isCategory={true}
         />
       )}
-      <FooterAll />
     </div>
   );
 }

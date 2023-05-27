@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { postFindOrCreate } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
-import { CLIENT } from "./roles";
+import { ADMIN, CLIENT } from "./roles";
 import { validateUpdateUser } from "./validateUpdateUser";
 
 const firebaseConfig = {
@@ -84,7 +84,11 @@ export const loginWithGoogleFirebase = async (
   usuarioFirebase,
   dispatch,
   navigate,
+<<<<<<< HEAD
  // locationNow
+=======
+  /* locationNow */
+>>>>>>> a4fcac0a92ebb03afdcb47726a3864b019c03b4b
 ) => {
   try {
     // recibe el usuario de google y lo busca/crea en la bdd
@@ -102,6 +106,9 @@ export const loginWithGoogleFirebase = async (
       email: usuarioFirebase.email,
       rol: CLIENT,
     };
+
+    if (userData.email === "beautifyfinalproyect@gmail.com")
+      userData.rol = ADMIN;
 
     localStorage.setItem("userData", JSON.stringify(userData));
 

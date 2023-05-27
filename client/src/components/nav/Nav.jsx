@@ -20,11 +20,13 @@ function Nav({ handleLoginClick, handleDetailClick }) {
       <label htmlFor="check" className={styles.mostrarmenu}>
         <MenuIcon />
       </label>
-      <div className={styles.botones}>
-        <ButtonNav  text={"Home"} route={"/home"}></ButtonNav>
+      <div className={styles.botones} htmlFor="check">
+        <label htmlFor="check">
+          <ButtonNav text={"Home"} route={"/home"}></ButtonNav>
+        </label>
         <ButtonNav text={"About"} route={"/about"}></ButtonNav>
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
-        {/* <ButtonNav text={"Services"} route={"/services"}></ButtonNav> */}
+        <ButtonNav text={"Services"} route={"/services"}></ButtonNav>
         {userData.rol === INVITED ? (
           <button className={styles.LogInBtn} onClick={handleLoginClick}>
             {" "}

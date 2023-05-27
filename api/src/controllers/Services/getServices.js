@@ -11,6 +11,7 @@ const getService = async () => {
       rate: service.rate,
       professional: service.professionalId,
       price: service.price,
+      duration: service.duration
     });
   });
   return services;
