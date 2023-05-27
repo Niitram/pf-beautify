@@ -1,0 +1,93 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.lista_profesionales {
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 350px;
+  height: auto;
+  gap: 5px;
+  border-radius: 8px;
+  padding-bottom: 1rem;
+}
+
+.profesional {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 50px;
+  width: fit-content;
+}
+
+.title {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 1rem 1rem;
+}
+
+.div_profesionalImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 90%;
+  clip-path: circle(30% at 50% 50%);
+}
+
+.div_profesionalImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.profesional_text {
+  display: flex;
+  justify-content: end;
+  padding-right: 0.5rem;
+}
+
+.profesional_text span {
+  font-size: 0.8rem;
+}
+
+.profesional>button {
+  display: flex;
+  align-items: center;
+  height: 1rem;
+  padding: 1rem;
+  text-align: center;
+  margin-right: 1rem;
+  margin-left: 0.5rem;
+  background-color: #f5b7b1;
+  color: #580a0a;
+  font-weight: medium;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer
+}
+
+.profesional_text div {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.profesional:hover {
+  transform: scale(1.1);
+  background-color: #f5b7b1ff;
+  border-radius: 10px;
+
+}
+
+.profesional:hover button {
+  background-color: rgb(223, 26, 26);
+  color: white;
+
+}

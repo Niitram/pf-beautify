@@ -1,0 +1,57 @@
+.card_dashboard {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 0.5fr 1fr;
+    grid-template-areas:
+      'title date'
+      'number grafico';
+    justify-content: center;
+    text-align: center;
+    border: solid 1px rgb(0, 0, 0, 0.1);
+    border-radius: 21px;
+    background: linear-gradient(145deg, #ffffff, #e7dede);
+    box-shadow: 5px 5px 10px #a7a5a5, -5px -5px 10px #ffeeee;
+    height: minmax(140px, auto);
+    width: 300px;
+    padding: 1rem;
+    overflow: hidden;
+  }
+  .card_title {
+    display: grid;
+    grid-area: title;
+    background-color: #f5b7b1;
+    justify-content: start;
+    place-items: center;
+    height: 4rem;
+    border-radius: 15px 0 0 15px;
+  }
+  .date {
+    display: grid;
+    grid-area: date;
+    background-color: #f5b7b1;
+    place-items: center;
+    height: 4rem;
+    border-radius: 0 15px 15px 0;
+  }
+  .cantidad {
+    display: grid;
+    grid-area: number;
+    place-items: center;
+    background-color: #f5b7b1;
+    border-radius: 15px;
+    margin: 0.25rem;
+  }
+  .cantidad h1 {
+    margin: 0.2em; /* Ajusta el margen superior del h3 */
+    line-height: 1.1;
+  }
+  .cantidad h2 {
+    margin-top: 0.1em; /* Ajusta el margen superior del h3 */
+    line-height: 1.1;
+  }
+  .chart {
+    display: grid;
+    grid-area: grafico;
+    place-items: center;
+  }
+  

@@ -1,3 +1,5 @@
+// import React from "react";
+import { FaTrash } from "react-icons/fa";
 
 import styles from "./ViewProfesional.module.css";
 
@@ -14,7 +16,10 @@ export  function ViewProfesional() {
   return (
     <div className={styles.lista_profesionales}>
       <div className={styles.title}>
-        <h2>Profesionals</h2>
+        <div>
+        <h3>Profesionals</h3>
+        </div>
+       
       </div>
 {profesionales.map(profesional=>(
   <div className={styles.profesional} key={profesional.id}>
@@ -24,12 +29,17 @@ export  function ViewProfesional() {
       
       <div className={styles.profesional_text}>
         <div>
-
-        <h3>{profesional.nombre}</h3>
+<div>
+<h4>{profesional.nombre}</h4>
         <span>{profesional.servicio}</span>
+</div>
+       
         </div>
       </div>
-      <button> Eliminar</button>
+      <button>
+  <FaTrash />
+</button>
+
    </div>
 ))}
     

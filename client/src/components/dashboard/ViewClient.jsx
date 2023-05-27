@@ -1,8 +1,8 @@
 
-import styles from './viewClient.module.css';
+import styles from './ViewClient.module.css';
 
 
-export const viewClient = ()=>{
+export const ViewClient = ()=>{
     const clientes = [
         { id: 1, nombre: 'Juan Perez', email: 'juan@example.com' },
         { id: 2, nombre: 'María Rodríguez', email: 'maria@example.com' },
