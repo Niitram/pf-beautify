@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getServiceById, getServices } from "../../request/services";
+import { getServiceById } from "../../request/services";
 import { useEffect, useState } from "react";
 
 function DetailService() {
@@ -8,11 +8,7 @@ function DetailService() {
 
   useEffect(() => {
     try {
-      getServices().then((res) => {
-        console.log(res.data);
-      });
       getServiceById(id).then((res) => {
-        console.log(res.data);
         setService(res.data);
       });
     } catch (error) {
@@ -23,7 +19,6 @@ function DetailService() {
       setService({});
     };
   }, []);
-  console.log(service);
   return (
     <div>
       {service && (

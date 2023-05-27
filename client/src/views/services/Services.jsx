@@ -20,8 +20,6 @@ function Services() {
 
     return () => {};
   }, []);
-
-  console.log(allServices);
   return (
     <section className={styles.section}>
       <div className={styles.carrusel}></div>

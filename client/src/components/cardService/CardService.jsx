@@ -4,7 +4,6 @@ import styles from "./CardService.module.css";
 
 function CardService({ service }) {
   const { description, id, image, name, rate } = service;
-  console.log(name);
   return (
     <Link style={{ textDecoration: "none" }} to={`/detailService/${id}`}>
       <div className={styles.containerCard}>
