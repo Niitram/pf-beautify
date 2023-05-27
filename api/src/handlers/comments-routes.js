@@ -4,11 +4,13 @@ const {
   validationPostComment,
   validateCommentModification,
   validationGetProductComments,
+  validationPostServiceComment,
 } = require("../validations/validationComment");
 const getCommentsByProductId = require("../controllers/Comments/getCommentsByProductId");
 const putComment = require("../controllers/Comments/putComment");
 const deleteComment = require("../controllers/Comments/deleteComment");
 const postServiceComment = require("../controllers/Comments/postServiceComment");
+
 router.post(
   "/products/:productId/:clientId",
   validationPostComment,
@@ -30,16 +32,20 @@ router.post(
   }
 );
 
-router.post("/services/:serviceId/:clientId", async (req, res) => {
-  try {
-    const { serviceId, clientId } = req.params;
-    const comment = req.body;
-    const response = await postServiceComment(serviceId, clientId, comment);
-    res.json(response);
-  } catch (error) {
-    res.json({ error: error.message });
+router.post(
+  "/services/:serviceId/:clientId",
+  validationPostServiceComment,
+  async (req, res) => {
+    try {
+      const { serviceId, clientId } = req.params;
+      const comment = req.body;
+      const response = await postServiceComment(serviceId, clientId, comment);
+      res.json(response);
+    } catch (error) {
+      res.json({ error: error.message });
+    }
   }
-});
+);
 
 router.get(
   "/products/:productId",

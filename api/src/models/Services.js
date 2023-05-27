@@ -27,8 +27,19 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       rate: {
-        type: DataTypes.DECIMAL(2, 1),
-        allowNull: false,
+        type: DataTypes.FLOAT,
+        get() {
+          const arrayRates = this.getDataValue("arrayRates");
+
+          return arrayRates.length
+            ? arrayRates.reduce((acumulator, value) => acumulator + value) /
+                arrayRates.length
+            : null;
+        },
+      },
+      arrayRates: {
+        type: DataTypes.ARRAY(DataTypes.FLOAT),
+        defaultValue: [],
       },
       duration: {
         type: DataTypes.STRING,
