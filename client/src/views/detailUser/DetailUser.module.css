@@ -184,7 +184,7 @@
   justify-self: center;
 }
 
-input {
+.container input {
   margin: 2% 0%;
   height: 2rem;
   width: 100%;
