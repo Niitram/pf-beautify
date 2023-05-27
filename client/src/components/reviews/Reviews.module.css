@@ -43,7 +43,9 @@
     align-items: flex-start;
     gap: 20px;
 }
-
+.h4{
+    margin-bottom: 20px;
+}
 
 .comentsContainer{
     display: flex;

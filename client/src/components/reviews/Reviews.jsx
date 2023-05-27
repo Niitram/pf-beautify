@@ -71,12 +71,14 @@ function Reviews({ rate }) {
       <div className={styles.containerRateComents}>
         <div className={styles.containerRateTitle}>
           <div className={styles.rateContainer}>
-            <div className={styles.rateNumber}>{rate?.toFixed(1)}</div>
+            {rate && (
+              <div className={styles.rateNumber}>{Number(rate).toFixed(1)}</div>
+            )}
             <div>
               {rate ? (
                 <Stack>
                   <Rating
-                    value={rate < 1 ? 1 : rate}
+                    value={Number(rate) < 1 ? 1 : Number(rate)}
                     precision={0.5}
                     readOnly
                   />
