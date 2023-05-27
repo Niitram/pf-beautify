@@ -190,7 +190,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/services/:id" element={<DetailService />} />
+        <Route path="/detailService/:id" element={<DetailService />} />
         <Route
           path="/detailProduct/:id"
           element={<DetailProduct handleLoginClick={handleLoginClick} />}

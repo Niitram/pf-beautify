@@ -14,6 +14,11 @@
     height: 600px;
 }
 
+.containerCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .containerButtons{
     width: 80vw;
     height: 100px;

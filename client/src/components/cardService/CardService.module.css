@@ -1,0 +1,62 @@
+.containerCard{
+  position: relative;
+  height: 550px;
+  width: 600px;
+}
+
+.image{
+  position: absolute;
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  object-position: center;
+  left: 10px;
+  bottom: 50px;
+  z-index: 10;
+  box-shadow: -4px 0px 13px 0px rgba(0, 0, 0, 0.361);
+-webkit-box-shadow: -4px 0px 13px 0px rgba(0, 0, 0, 0.361);
+-moz-box-shadow: -4px 0px 13px 0px rgba(0, 0, 0, 0.361);
+}
+
+
+.title{
+  position: absolute;
+  top: 110px;
+  left: 120px;
+  z-index: 30;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+}
+
+.containerInfo{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 40px;
+  padding: 20px;
+  height: 450px;
+  width: 250px;
+  right: 10px;
+  bottom: 15px;
+  background-color: #FBF4F5;
+  z-index: 20;
+  box-shadow: 1px 0px 13px 3px rgba(0, 0, 0, 0.361);
+-webkit-box-shadow: 1px 0px 13px 3px rgba(0, 0, 0, 0.267);
+-moz-box-shadow: 1px 0px 13px 3px rgba(0, 0, 0, 0.361);
+}
+.description{
+  text-align: left;
+  margin-top: 10px;
+  letter-spacing: 3px;
+  line-height: 1.5;
+}
+
+.button{
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: transparent;
+}
