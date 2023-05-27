@@ -2,4 +2,41 @@
   background-color: var(--background);
   min-height: 100vh;
   min-width: 100vw;
+
+}
+.containerDetail{
+  margin: 30px 0px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.image{
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+
+.containerInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 20px;
+  width: 360px;
+  height: 360px;
+  background-color: var(--accent2);
+  border-radius: 10px;
+}
+
+.description{
+  font-weight: 300;
+  text-align: justify;
+}
+
+.rating{
+  text-align: justify;
 }
