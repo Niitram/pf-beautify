@@ -15,13 +15,13 @@ router.post("/create_preference", async (req, res) => {
     external_reference: req.body.pop(),
     items: req.body,
     back_urls: {
-      success: `${BACK_ROUTE}mercadopago/feedback`,
-      failure: `${BACK_ROUTE}mercadopago/feedback`,
-      pending: `${BACK_ROUTE}mercadopago/feedback`,
+      success: `${BACK_ROUTE}/mercadopago/feedback`,
+      failure: `${BACK_ROUTE}/mercadopago/feedback`,
+      pending: `${BACK_ROUTE}/mercadopago/feedback`,
     },
     auto_return: "approved",
   };
-
+  console.log(req.body)
   mercadopago.preferences
     .create(preference)
     .then(async function (response) {
@@ -41,16 +41,18 @@ router.post("/create_preference", async (req, res) => {
 });
 
 router.get("/feedback", async (req, res) => {
+  console.log('llegué hasta acá')
   try {
     const email = req.query.external_reference;
-    console.log(email);
     const toDelete = await Purchase.findAll({ where: { clientMail: email } });
     for (let i = 0; i < toDelete.length - 1; i++) {
       toDelete[i].destroy();
     }
+
     const products = toDelete[0].dataValues;
 
     if (req.query.status === "approved") {
+      console.log('de momento aprobado')
       const response = await approved(products.preferenceId, email);
       res.status(200).redirect(`${products.returnUrl}/#/purchaseSuccess`);
     } else {

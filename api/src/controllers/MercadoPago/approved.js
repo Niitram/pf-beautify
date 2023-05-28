@@ -4,7 +4,6 @@ require("dotenv");
 const { ACESS_TOKEN, BACK_ROUTE } = process.env;
 
 const approvedFunction = async (id, email) => {
-   
   const response = await axios.get(
     `https://api.mercadopago.com/checkout/preferences/${id}`,
     {
@@ -18,23 +17,24 @@ const approvedFunction = async (id, email) => {
     await each.destroy();
   });
   const items = response.data.items;
-
+console.log('llegué a aprovved')
   let totalAmount = 0;
   let itemsDetails = [];
   const client = await Client.findOne({ where: { email: email } });
   items.forEach(async (product) => {
     totalAmount = totalAmount + product.unit_price;
   });
-
+  
+  console.log(items)
   items.forEach((product) => {;
-
+    if(product.title != 'discount'){
     itemsDetails.push({
       price: product.unit_price,
       count: product.quantity,
       productId: Number(product.id),
-    });
+    })}
   });
-
+  
   const infoToSend = {
     amount: totalAmount,
     discount: 0,
