@@ -24,7 +24,7 @@ export default function ScrollDialog({ open, handleClose, shopData }) {
         shopData.details.map((row) => {
           return {
             id: row.id,
-            col1: row.image,
+            // col1: row.image,
             col2: row.productName,
             col3: row.count,
             col4: `$${row.price}`,
@@ -34,7 +34,7 @@ export default function ScrollDialog({ open, handleClose, shopData }) {
   }, [open]);
 
   const column = [
-    { field: "col1", headerName: "Image", width: 100 },
+    // { field: "col1", headerName: "Image", width: 100 },
     { field: "col2", headerName: "Product Name", width: 270 },
     { field: "col3", headerName: "Quantity", width: 80 },
     { field: "col4", headerName: "Price", width: 80 },
@@ -52,7 +52,7 @@ export default function ScrollDialog({ open, handleClose, shopData }) {
         <DialogTitle id="scroll-dialog-title">Purchase Detail</DialogTitle>
         <DialogContent dividers={scroll === "paper"}>
           <div className={styles.container}>
-            <DataGrid columns={column} rows={rows} />
+            <DataGrid columns={column} rows={rows} pageSize={5} />
           </div>
         </DialogContent>
         <DialogActions>

@@ -36,6 +36,7 @@ export default function ProductsHistoryTable({ shops, setShops }) {
       <DataGrid
         columns={column}
         rows={rows}
+        pageSize={15}
         onCellClick={(e) => {
           setEventRowId(e.id);
           e.field === "col4" && setOpenDetail(true);

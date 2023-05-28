@@ -7,7 +7,7 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
   setUserData(userDataFromStorage);
 
   //* trae las compras del cliente de la base de datos y embellece la información y la pone en el estado
-  const dataDbShops = await getClientShops(1);
+  const dataDbShops = await getClientShops(userDataFromStorage.id);
   const dbShops = dataDbShops.data;
 
   const optimizedShops = dbShops.map(
@@ -35,7 +35,9 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
   setShops(optimizedShops);
 
   //* trae los appointments del cliente de la base de datos, los embellece y los setea en el estado
-  const dataDbAppointments = await getAppointmentsByClient(2);
+  const dataDbAppointments = await getAppointmentsByClient(
+    userDataFromStorage.id
+  );
   const dbAppointments = dataDbAppointments.data;
 
   const optimizedAppointments = dbAppointments.map(
