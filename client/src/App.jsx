@@ -36,7 +36,7 @@ import Favorites from "./views/favorites/Favorites";
 import { getFavorites } from "./request/favorites";
 import Checkout from "./views/Checkout/Checkout";
 import PurchaseError from "./views/purchaseError/PurchaseError";
-import UserHistory from "./views/userHistory/userHistory";
+// import UserHistory from "./views/userHistory/userHistory";
 import Clients from "./views/clients/Clients";
 import Appointments from "./views/appointments/Appointments";
 import ServicesControl from "./views/Services Control/ServicesControl";
@@ -47,6 +47,8 @@ import NotFound from "./components/notFound/NotFound";
 import DetailService from "./views/detailService/detailService";
 import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
 import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
+import UserHistory from "./views/userHistory/UserHistory";
+
 //Para deploy
 /* import axios from "axios"; */
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
@@ -128,6 +130,8 @@ function App() {
         const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
 
         if (currentLocation === "/loading") {
+          if (usuarioFirebase.email === "beautifyfinalproyect@gmail.com")
+            return navigate("/dashboardAdmin");
           if (!oldLocation || oldLocation === "/") navigate("/home");
           else navigate(oldLocation);
         }
