@@ -8,7 +8,6 @@ function Reviews({ rate, comments }) {
   if (comments && comments.length > 0) {
     califications = getTopRatedProducts(comments);
   }
-  console.log(califications);
   return (
     <section className={styles.section}>
       <Divider sx={{ marginBottom: "50px", marginTop: "50px" }}></Divider>

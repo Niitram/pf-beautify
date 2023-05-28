@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import styles from "./Calendar.module.css";
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
@@ -7,84 +8,18 @@ import { getServices } from "../../request/services";
 import { useEffect } from "react";
 import LinearStepper from "../linearStepper/LinearStepper";
 import { Divider } from "@mui/material";
+import handlerClickCalendar from "../../handlers/handlerClickCalendar";
 
-const arrSchedules = [
-  {
-    hour: "10:00",
-    available: true,
-  },
-  {
-    hour: "11:00",
-    available: false,
-  },
-  {
-    hour: "12:00",
-    available: false,
-  },
-  {
-    hour: "13:00",
-    available: true,
-  },
-  {
-    hour: "14:00",
-    available: true,
-  },
-  {
-    hour: "15:00",
-    available: false,
-  },
-  {
-    hour: "16:00",
-    available: true,
-  },
-  {
-    hour: "17:00",
-    available: false,
-  },
-];
-
-// a custom render function
-const handlerClickCalendar = (
-  e,
-  setDay,
-  setOptions,
-  options,
-  handleNext,
-  handleBack
-) => {
-  /* para cambiar el el estilo al hacer click */
-  /* e.dayEl.style.backgroundColor = "red"; */
-
-  //En el caso que aun no se haya elegido un servicio se corta
-  if (options.service === "") return;
-  //Si apreta un dia y ya habia elegido un horario se vuelve un step
-  if (options.schedule !== "") {
-    handleBack();
-    setOptions({
-      ...options,
-      schedule: "",
-    });
-  }
-
-  //Si ya fue elegido un servicio se avanza uno en el LinearStepper
-  if (options.service !== "" && options.day === "") handleNext();
-  const daySelected = e.dateStr;
-  setDay(daySelected);
-  setOptions((prevState) => ({
-    ...prevState,
-    day: daySelected,
-  }));
-};
-const handleChangeOptions = (
+const handleOptionsCalendar = (
   e,
   setOptions,
   options,
   handleNext,
-  handleReset
+  handleReset,
+  setAvailableSchedules
 ) => {
   //Si se elige un servicio se reinicia todo el resto y avanza uno el LinearStepper
   if (e.target.name === "service") {
-    console.log("reseteando");
     setOptions({
       service: "",
       day: "",
@@ -92,6 +27,7 @@ const handleChangeOptions = (
     });
     handleReset();
     handleNext();
+    setAvailableSchedules([]);
   }
   //Si el horario aun no fue elegido entonces avanza uno el LinearStepper
   if (
@@ -111,24 +47,17 @@ const handleChangeOptions = (
 const handleClickReservation = (e) => {
   console.log(e);
 };
-function renderEventContent(eventInfo) {
-  return (
-    <>
-      <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
-    </>
-  );
-}
 
 function Calendar() {
   const [services, setServices] = useState([]);
+  const [availableSchedules, setAvailableSchedules] = useState([]);
   const [day, setDay] = useState("");
+  const dispatch = useDispatch();
   const [options, setOptions] = useState({
     service: "",
     day: "",
     schedule: "",
   });
-
   /* Logica para el LinearStepper */
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());
@@ -160,13 +89,18 @@ function Calendar() {
     try {
       getServices().then((res) => {
         if (res.data) {
-          const servicesName = res.data.map((service) => service.name);
+          const servicesName = res.data.map((service) => {
+            return { name: service.name, id: service.id };
+          });
           setServices(servicesName);
         }
       });
     } catch (error) {
       console.log(error.message);
     }
+    return () => {
+      setServices([]);
+    };
   }, []);
   return (
     <section className={styles.section}>
@@ -174,28 +108,31 @@ function Calendar() {
       <div className={styles.container}>
         <div className={styles.containerLeft}>
           <h3 className={styles.titleServices}>Services</h3>
-          {services?.map((service) => {
-            return (
-              <div key={service} className={styles.serviceContainerInput}>
-                <input
-                  className={styles.inputRadio}
-                  onChange={(e) => {
-                    handleChangeOptions(
-                      e,
-                      setOptions,
-                      options,
-                      handleNext,
-                      handleReset
-                    );
-                  }}
-                  type="radio"
-                  value={service}
-                  name="service"
-                />
-                <label className={styles.labelServices}>{service}</label>
-              </div>
-            );
-          })}
+          {services &&
+            services.length > 0 &&
+            services.map((service) => {
+              return (
+                <div key={service.id} className={styles.serviceContainerInput}>
+                  <input
+                    className={styles.inputRadio}
+                    onChange={(e) => {
+                      handleOptionsCalendar(
+                        e,
+                        setOptions,
+                        options,
+                        handleNext,
+                        handleReset,
+                        setAvailableSchedules
+                      );
+                    }}
+                    type="radio"
+                    value={service.id}
+                    name="service"
+                  />
+                  <label className={styles.labelServices}>{service.name}</label>
+                </div>
+              );
+            })}
         </div>
         <div className={styles.containerCalendar}>
           <div className={styles.containerSelectedInfo}>
@@ -215,7 +152,6 @@ function Calendar() {
             initialView="dayGridMonth"
             selectable={true}
             fixedWeekCount={false}
-            eventContent={renderEventContent}
             hiddenDays={[0, 6]}
             validRange={function(nowDate) {
               return {
@@ -229,7 +165,9 @@ function Calendar() {
                 setOptions,
                 options,
                 handleNext,
-                handleBack
+                handleBack,
+                dispatch,
+                setAvailableSchedules
               );
             }}
           />
@@ -240,19 +178,21 @@ function Calendar() {
             <div className={styles.containerRight}>
               {options.service &&
                 options.day &&
-                arrSchedules?.map((schedule, index) => {
+                availableSchedules.length > 0 &&
+                availableSchedules.map((schedule, index) => {
                   return (
                     <div key={index} className={styles.serviceContainerInput}>
                       <input
-                        disabled={schedule.available}
+                        disabled={!schedule.available}
                         className={styles.inputRadio}
                         onChange={(e) => {
-                          handleChangeOptions(
+                          handleOptionsCalendar(
                             e,
                             setOptions,
                             options,
                             handleNext,
-                            handleReset
+                            handleReset,
+                            setAvailableSchedules
                           );
                         }}
                         type="radio"
@@ -261,11 +201,13 @@ function Calendar() {
                       />
                       <label
                         style={{
-                          color: schedule.available ? "#d3d3de" : "black",
+                          color: !schedule.available ? "#d3d3de" : "black",
                         }}
                       >
-                        {schedule.hour} -{" "}
-                        {Number(schedule.hour.split(":")[0]) + 1}:00
+                        {schedule.hour.split(":")[0]} :
+                        {schedule.hour.split(":")[1]} -
+                        {Number(schedule.hour.split(":")[0]) + 1}:
+                        {schedule.hour.split(":")[1]}
                       </label>
                     </div>
                   );
