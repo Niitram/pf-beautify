@@ -36,7 +36,6 @@ import Favorites from "./views/favorites/Favorites";
 import { getFavorites } from "./request/favorites";
 import Checkout from "./views/Checkout/Checkout";
 import PurchaseError from "./views/purchaseError/PurchaseError";
-// import UserHistory from "./views/userHistory/userHistory";
 import Clients from "./views/clients/Clients";
 import Appointments from "./views/appointments/Appointments";
 import ServicesControl from "./views/Services Control/ServicesControl";
@@ -48,6 +47,7 @@ import DetailService from "./views/detailService/detailService";
 import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
 import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
 import UserHistory from "./views/userHistory/UserHistory";
+import NewProfessional from "./views/newProfessional/newProfessional";
 
 //Para deploy
 /* import axios from "axios"; */
@@ -226,6 +226,10 @@ function App() {
           <Route
             path="dashboardAdmin/products_control/:id"
             element={<ProductDetailAdmin />}
+          />
+          <Route 
+          path="/dashboardAdmin/newProfessional"
+          element={<NewProfessional/>}
           />
         </Route>
         {/* Rutas solo para CLIENT */}
