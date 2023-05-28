@@ -35,7 +35,7 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
   setShops(optimizedShops);
 
   //* trae los appointments del cliente de la base de datos, los embellece y los setea en el estado
-  const dataDbAppointments = await getAppointmentsByClient(1);
+  const dataDbAppointments = await getAppointmentsByClient(2);
   const dbAppointments = dataDbAppointments.data;
 
   const optimizedAppointments = dbAppointments.map(

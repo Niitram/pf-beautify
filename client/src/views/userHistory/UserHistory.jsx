@@ -43,7 +43,9 @@ const UserHistory = () => {
         </button>
         <div className={styles.fulfill}></div>
       </div>
-      {label === labelsNames.products && <ProductsHistoryTable shops={shops} />}
+      {label === labelsNames.products && (
+        <ProductsHistoryTable shops={shops} setShops={setShops} />
+      )}
       {label === labelsNames.appointments && (
         <AppointmentsTable appointments={appointments} />
       )}
