@@ -19,6 +19,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    gap: 80px;
 }
 .containerButtons{
     width: 80vw;

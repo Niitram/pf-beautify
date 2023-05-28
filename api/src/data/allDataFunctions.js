@@ -19,7 +19,7 @@ const allDataFunctions = async () => {
   await bulkCreateProducts();
   await bulkCreateDevelopers();
   await bulkCreateClients();
-  await bulkCreateShops();
+  /* await bulkCreateShops(); */
   await bulkCreateFavorites();
   await bulkCreateProfesionalsAndServices();
   await bulkCreateAppointments();
