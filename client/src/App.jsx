@@ -47,6 +47,7 @@ import NotFound from "./components/notFound/NotFound";
 import DetailService from "./views/detailService/detailService";
 import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
 import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
+import NewProfessional from "./views/newProfessional/newProfessional";
 //Para deploy
 /* import axios from "axios"; */
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
@@ -222,6 +223,10 @@ function App() {
           <Route
             path="dashboardAdmin/products_control/:id"
             element={<ProductDetailAdmin />}
+          />
+          <Route 
+          path="/dashboardAdmin/newProfessional"
+          element={<NewProfessional/>}
           />
         </Route>
         {/* Rutas solo para CLIENT */}
