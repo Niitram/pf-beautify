@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import styles from "./Calendar.module.css";
-import FullCalendar from "@fullcalendar/react"; // must go before plugins
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { getServices } from "../../request/services";
@@ -9,48 +9,31 @@ import { useEffect } from "react";
 import LinearStepper from "../linearStepper/LinearStepper";
 import { Divider } from "@mui/material";
 import handlerClickCalendar from "../../handlers/handlerClickCalendar";
+import handleOptionsCalendar from "../../handlers/handleOptionsCalendar";
+import useToggle from "../../hooks/useToggle";
+import AlertTwoOptions from "../alertTwoOptions/AlertTwoOptions";
 
-const handleOptionsCalendar = (
-  e,
-  setOptions,
+const handleClickReservation = (
   options,
-  handleNext,
-  handleReset,
-  setAvailableSchedules
+  userData,
+  setOpenReservationDialog
 ) => {
-  //Si se elige un servicio se reinicia todo el resto y avanza uno el LinearStepper
-  if (e.target.name === "service") {
-    setOptions({
-      service: "",
-      day: "",
-      schedule: "",
-    });
-    handleReset();
-    handleNext();
-    setAvailableSchedules([]);
-  }
-  //Si el horario aun no fue elegido entonces avanza uno el LinearStepper
-  if (
-    options.service !== "" &&
-    options.day !== "" &&
-    e.target.name === "schedule"
-  ) {
-    if (options.schedule === "") {
-      handleNext();
-    }
-  }
-  setOptions((prevState) => ({
-    ...prevState,
-    [e.target.name]: e.target.value,
-  }));
-};
-const handleClickReservation = (e) => {
-  console.log(e);
+  const reservation = {
+    profesionalId: options.service,
+    clientId: userData.id,
+    serviceId: options.service,
+    date: options.day,
+    hour: options.schedule,
+    paid: false,
+  };
+  setOpenReservationDialog(true);
 };
 
 function Calendar() {
   const [services, setServices] = useState([]);
   const [availableSchedules, setAvailableSchedules] = useState([]);
+  const [openReservationDialog, setOpenReservationDialog] = useToggle(false);
+  const userData = useSelector((state) => state.userData);
   const [day, setDay] = useState("");
   const dispatch = useDispatch();
   const [options, setOptions] = useState({
@@ -64,6 +47,10 @@ function Calendar() {
 
   const isStepSkipped = (step) => {
     return skipped.has(step);
+  };
+
+  const handleCloseDeleteDialog = () => {
+    setOpenReservationDialog(false);
   };
 
   const handleNext = () => {
@@ -90,7 +77,11 @@ function Calendar() {
       getServices().then((res) => {
         if (res.data) {
           const servicesName = res.data.map((service) => {
-            return { name: service.name, id: service.id };
+            return {
+              name: service.name,
+              id: service.id,
+              ProfesionalId: service.ProfesionalId,
+            };
           });
           setServices(servicesName);
         }
@@ -102,6 +93,7 @@ function Calendar() {
       setServices([]);
     };
   }, []);
+
   return (
     <section className={styles.section}>
       <LinearStepper activeStep={activeStep} isStepSkipped={isStepSkipped} />
@@ -219,12 +211,33 @@ function Calendar() {
           <button
             disabled={!options.service || !options.schedule || !options.day}
             className={styles.buttonReservation}
-            onClick={handleClickReservation}
+            onClick={() => {
+              handleClickReservation(
+                options,
+                userData,
+                setOpenReservationDialog
+              );
+            }}
           >
             Reservation
           </button>
         </div>
       </div>
+      <AlertTwoOptions
+        handleCloseDialog={handleCloseDeleteDialog}
+        openDialog={openReservationDialog}
+        optionOne={() => {
+          console.log("asdasd");
+        }}
+        optionTwo={() => {
+          console.log("opcion 2");
+        }}
+        questionText={
+          "Would you like to pay for advance now or to pay in our center on the appointment day?"
+        }
+        textOne={"Pay now"}
+        textTwo={"On the same day"}
+      />
     </section>
   );
 }

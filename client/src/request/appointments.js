@@ -9,10 +9,19 @@ export const getAppointmentsByClient = async (clientId) => {
     console.log(error.message);
   }
 };
+
 export const getAppointmentsHours = async (serviceId, date) => {
   try {
     return await axios.get(`${URL_BASE}/appointments/service/${serviceId}/date/${date}`);
   } catch (error) {
     console.log(error.message);
   }
+};
+
+export const createAppointment = async () => {
+  /* try {
+    return await axios.get(`${URL_BASE}/appointments/service/${serviceId}/date/${date}`);
+  } catch (error) {
+    console.log(error.message);
+  } */
 };
