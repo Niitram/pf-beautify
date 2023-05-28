@@ -28,7 +28,7 @@
   font-family: "Josefin Sans", sans-serif;
   height: 2rem;
   margin-top: 8px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   align-self: center;
   justify-self: center;
 }
@@ -52,5 +52,20 @@
   margin: 10px;
   height: 2rem;
   font-size: 16px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+}
+.editButton {
+  fill: var(--accent1);
+}
+.container input {
+  height: 2rem;
+  margin-top: 8px;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #f5b7b171;
+  border-radius: 10px;
+  border: 0px;
+  width: 60%;
+}
+.container input ::placeholder {
+  align-self: center;
 }
