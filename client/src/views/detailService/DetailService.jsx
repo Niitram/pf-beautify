@@ -69,6 +69,7 @@ function DetailService() {
       <h3>Professional</h3>
       <CardProfessional service={service} professional={professional} />
       <Reviews comments={service.Comments} rate={service.rate} />
+
     </section>
   );
 }
