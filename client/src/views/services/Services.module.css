@@ -6,3 +6,63 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.carrusel{
+    background-image: url("../../assets/images/BeautifyPromo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+}
+
+.containerCards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.containerButtons{
+    width: 80vw;
+    height: 100px;
+    margin: 30px auto;
+    box-shadow: 0px -1px 9px 5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px -1px 9px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px -1px 9px 5px rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+.buttonDiscover{
+    background-color: blueviolet;
+    color: #FBF4F5;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+}
+.buttonReserveNow{
+    background-color: #d14d72;
+    color: #FBF4F5;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 19px;
+    border: none;
+    border-radius: 5px;
+}
+.imageFixed{
+    margin: 20px 0px;
+    background-image: url("../../assets/images/bg-fixed.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.image{
+    height: 150px;
+}
+
+.titleH3{
+
+    font-size: 50px;
+}
