@@ -13,7 +13,7 @@ export default function AlertTwoOptions({
   handleCloseDialog,
   optionOne,
   optionTwo,
-  questionText,
+  questionTitle,
   textOne,
   textTwo,
 }) {
@@ -35,7 +35,7 @@ export default function AlertTwoOptions({
             fontWeight: "bold",
           }}
         >
-          {questionText}
+          {questionTitle}
         </DialogTitle>
         <DialogActions>
           <Button

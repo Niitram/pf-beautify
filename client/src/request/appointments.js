@@ -18,10 +18,18 @@ export const getAppointmentsHours = async (serviceId, date) => {
   }
 };
 
-export const createAppointment = async () => {
-  /* try {
-    return await axios.get(`${URL_BASE}/appointments/service/${serviceId}/date/${date}`);
+export const createAppointmentMP = async (appointmentData) => {
+  try {
+    return await axios.post(`${URL_BASE}/mercadopago/service_preference`, appointmentData);
   } catch (error) {
     console.log(error.message);
-  } */
+  }
+};
+
+export const createAppointment = async (appointmentData) => {
+  try {
+    return await axios.post(`${URL_BASE}/appointments`, appointmentData);
+  } catch (error) {
+    console.log(error.message);
+  }
 };
