@@ -4,7 +4,8 @@ const handleOptionsCalendar = (
   options,
   handleNext,
   handleReset,
-  setAvailableSchedules
+  setAvailableSchedules,
+  services
 ) => {
   //Si se elige un servicio se reinicia todo el resto y avanza uno el LinearStepper
   if (e.target.name === "service") {
@@ -12,6 +13,7 @@ const handleOptionsCalendar = (
       service: "",
       day: "",
       schedule: "",
+      serviceName: ""
     });
     handleReset();
     handleNext();
@@ -27,10 +29,21 @@ const handleOptionsCalendar = (
       handleNext();
     }
   }
-  setOptions((prevState) => ({
-    ...prevState,
-    [e.target.name]: e.target.value,
-  }));
+  const nameService = services.find((service) => service.id == e.target.value);
+  if (e.target.name == "service") {
+    console.log(e.target.name);
+    setOptions((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+      serviceName: nameService.name
+    }));
+  } else {
+
+    setOptions((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  }
 };
 
 export default handleOptionsCalendar;

@@ -27,12 +27,12 @@ function Calendar() {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.userData);
   const [day, setDay] = useState("");
-  console.log(day);
   const dispatch = useDispatch();
   const [options, setOptions] = useState({
     service: "",
     day: "",
     schedule: "",
+    serviceName: "",
   });
   /* Logica para el LinearStepper */
   const [activeStep, setActiveStep] = useState(0);
@@ -86,7 +86,6 @@ function Calendar() {
       setServices([]);
     };
   }, []);
-
   return (
     <section className={styles.section}>
       <LinearStepper activeStep={activeStep} isStepSkipped={isStepSkipped} />
@@ -107,7 +106,8 @@ function Calendar() {
                         options,
                         handleNext,
                         handleReset,
-                        setAvailableSchedules
+                        setAvailableSchedules,
+                        services
                       );
                     }}
                     type="radio"
@@ -122,7 +122,7 @@ function Calendar() {
         <div className={styles.containerCalendar}>
           <div className={styles.containerSelectedInfo}>
             <div className={styles.selectedInfo}>
-              {options.service ? `Service: ${options.service}` : ""}
+              {options.service ? `Service: ${options.serviceName}` : ""}
             </div>
             <div className={styles.selectedInfo}>
               {options.day ? `Date: ${options.day}` : ""}
@@ -177,7 +177,8 @@ function Calendar() {
                             options,
                             handleNext,
                             handleReset,
-                            setAvailableSchedules
+                            setAvailableSchedules,
+                            services
                           );
                         }}
                         type="radio"
