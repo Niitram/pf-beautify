@@ -11,6 +11,7 @@ import { postFindOrCreate } from "../request/clients";
 import { setUserInfoAction } from "../redux/actions";
 import { ADMIN, CLIENT } from "./roles";
 import { validateUpdateUser } from "./validateUpdateUser";
+import { getCart } from "../request/cart";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
@@ -83,7 +84,7 @@ export const uploadProfilePicture = async (
 export const loginWithGoogleFirebase = async (
   usuarioFirebase,
   dispatch,
-  navigate,
+  navigate
   /* locationNow */
 ) => {
   try {
@@ -107,6 +108,8 @@ export const loginWithGoogleFirebase = async (
       userData.rol = ADMIN;
 
     localStorage.setItem("userData", JSON.stringify(userData));
+    const cartSaved = await getCart(userData.id);
+    localStorage.setItem("cart", JSON.stringify(cartSaved.data));
 
     // setear el estado global
     dispatch(setUserInfoAction(userData));
