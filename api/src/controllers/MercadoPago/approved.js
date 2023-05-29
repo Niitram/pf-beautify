@@ -12,29 +12,29 @@ const approvedFunction = async (id, email) => {
       },
     }
   );
-  const purchase = await Purchase.findAll({ where: {  clientMail: email } });
+  const purchase = await Purchase.findAll({ where: { clientMail: email } });
   purchase.forEach(async (each) => {
     await each.destroy();
   });
   const items = response.data.items;
-console.log('llegué a aprovved')
   let totalAmount = 0;
   let itemsDetails = [];
   const client = await Client.findOne({ where: { email: email } });
   items.forEach(async (product) => {
     totalAmount = totalAmount + product.unit_price;
   });
-  
-  console.log(items)
-  items.forEach((product) => {;
-    if(product.title != 'discount'){
-    itemsDetails.push({
-      price: product.unit_price,
-      count: product.quantity,
-      productId: Number(product.id),
-    })}
+
+  console.log(items);
+  items.forEach((product) => {
+    if (product.title != "discount") {
+      itemsDetails.push({
+        price: product.unit_price,
+        count: product.quantity,
+        productId: Number(product.id),
+      });
+    }
   });
-  
+
   const infoToSend = {
     amount: totalAmount,
     discount: 0,
@@ -46,8 +46,6 @@ console.log('llegué a aprovved')
     `${BACK_ROUTE}/shops`,
     infoToSend
   );
-
-
 
   return;
 };
