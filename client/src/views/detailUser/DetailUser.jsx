@@ -18,7 +18,7 @@ import Box from "@mui/material/Box";
 import AlertFavorite from "../../components/alertFavorite/AlertFavorite";
 import { getFavorites } from "../../request/favorites";
 import getProductsCategorie from "../../utils/getProductsCategorie";
-import { postCart } from "../../request/cart";
+import { getCart, postCart } from "../../request/cart";
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
@@ -46,13 +46,17 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     // trae información del carrito y el id de usuario del local
     const localCart = JSON.parse(localStorage.getItem("cart"));
     const userId = JSON.parse(localStorage.getItem("userData")).id;
-    // acomoda la info del cart local para mandar al back sólo id y quantity de cada producto
-    const products = localCart.map((product) => ({
-      id: product.id,
-      quantity: product.quantity,
-    }));
-    // mandar al back la info del carrito
-    await postCart(userId, { products });
+
+    if (localCart.length) {
+      // acomoda la info del cart local para mandar al back sólo id y quantity de cada producto
+      const products = localCart.map((product) => ({
+        id: product.id,
+        quantity: product.quantity,
+      }));
+      // mandar al back la info del carrito
+      await postCart(userId, { products });
+    } else await postCart(userId, { products: [] });
+
     // await getProductById(1); // esta petición es cualquier cosa, pero necesito el await. Va a ser reemplazada por la petición que guarda el carrito
     localStorage.clear();
     handleDetailClick();

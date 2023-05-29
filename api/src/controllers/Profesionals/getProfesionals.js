@@ -13,7 +13,7 @@ const getProfesionals = async () => {
       },
     ],
   });
-  console.log(response);
+
   const newResponse = response.map(
     ({ id, fullname, mail, direction, image, Appointments, Services }) => {
       return {

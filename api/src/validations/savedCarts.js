@@ -30,6 +30,7 @@ const postCartValidation = async (req, res, next) => {
   if (!client) return res.status(400).json({ error: "client not found" });
 
   //* validaciones de los productos
+  if (!products.length) return next();
   for (const { id, quantity } of products) {
     if (String(id) === "NaN")
       return res.status(400).json({ error: "product id must be a number" });

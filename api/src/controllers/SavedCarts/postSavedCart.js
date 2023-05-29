@@ -4,6 +4,9 @@ const postSavedCart = async (clientId, products) => {
   const oldCart = await SavedCart.findOne({ where: { ClientId: clientId } });
   if (oldCart) await oldCart.destroy();
 
+  if (!products.length) return { deleted: true };
+  console.log(products);
+
   const newCart = await SavedCart.create();
   await newCart.setClient(clientId);
 
