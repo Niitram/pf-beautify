@@ -49,8 +49,12 @@ import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
 import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
 import UserHistory from "./views/userHistory/UserHistory";
 import NewProfessional from "./views/newProfessional/newProfessional";
+
 import CheckoutAppointment from "./views/checkoutAppointment/checkoutAppointment";
 import AppointmentSuccess from "./views/appointmentSuccess/AppointmentSuccess";
+
+import NavAdmin from "./components/navAdmin/NavAdmin";
+
 
 //Para deploy
 /* import axios from "axios"; */
@@ -152,16 +156,28 @@ function App() {
     }
   });
 
+  console.log(locationNow.pathname)
+
   return (
     <div className="App">
       {locationNow.pathname !== "/" &&
         locationNow.pathname !== "/loading" &&
         locationNow.pathname !== "/checkout" &&
-        locationNow.pathname !== "/dashboardAdmin" && (
+        locationNow.pathname == "/dashboardAdmin" &&
+        locationNow.pathname == "/dashboardAdmin/clients" && 
+        locationNow.pathname == "/dashboardAdmin/appointments" &&
+        locationNow.pathname == "/dashboardAdmin/services_control" &&
+        locationNow.pathname == "/dashboardAdmin/products_control/:id" &&
+        locationNow.pathname == "/dashboardAdmin/newProfessional" &&
+        locationNow.pathname == "/dashboardAdmin/products_control" &&
+        locationNow.pathname == "/dashboardAdmin/professionals"  
+        ? (
           <Nav
             handleLoginClick={handleLoginClick}
             handleDetailClick={handleDetailClick}
           />
+        ):(
+          <NavAdmin/>
         )}
       {errorState.tittle && (
         <AlertWarning
