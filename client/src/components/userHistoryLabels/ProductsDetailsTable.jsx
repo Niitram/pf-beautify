@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -10,9 +10,9 @@ import styles from "./ProductsDetailsTable.module.css";
 
 export default function ScrollDialog({ open, handleClose, shopData }) {
   console.log(shopData);
-  const descriptionElementRef = React.useRef(null);
+  const descriptionElementRef = useRef(null);
   const [rows, setRows] = useState([]);
-  React.useEffect(() => {
+  useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
       if (descriptionElement !== null) {

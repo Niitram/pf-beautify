@@ -55,7 +55,6 @@ import AppointmentSuccess from "./views/appointmentSuccess/AppointmentSuccess";
 
 import NavAdmin from "./components/navAdmin/NavAdmin";
 
-
 //Para deploy
 /* import axios from "axios"; */
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
@@ -156,7 +155,7 @@ function App() {
     }
   });
 
-  console.log(locationNow.pathname)
+  console.log(locationNow.pathname);
 
   return (
     <div className="App">
@@ -164,20 +163,21 @@ function App() {
         locationNow.pathname !== "/loading" &&
         locationNow.pathname !== "/checkout" &&
         locationNow.pathname == "/dashboardAdmin" &&
-        locationNow.pathname == "/dashboardAdmin/clients" && 
+        locationNow.pathname == "/dashboardAdmin/clients" &&
         locationNow.pathname == "/dashboardAdmin/appointments" &&
         locationNow.pathname == "/dashboardAdmin/services_control" &&
         locationNow.pathname == "/dashboardAdmin/products_control/:id" &&
         locationNow.pathname == "/dashboardAdmin/newProfessional" &&
         locationNow.pathname == "/dashboardAdmin/products_control" &&
-        locationNow.pathname == "/dashboardAdmin/professionals"  
-        ? (
+        locationNow.pathname == "/dashboardAdmin/professionals" && <NavAdmin />}
+      {locationNow.pathname !== "/" &&
+        locationNow.pathname !== "/loading" &&
+        locationNow.pathname !== "/checkout" &&
+        locationNow.pathname !== "/dashboardAdmin" && (
           <Nav
             handleLoginClick={handleLoginClick}
             handleDetailClick={handleDetailClick}
           />
-        ):(
-          <NavAdmin/>
         )}
       {errorState.tittle && (
         <AlertWarning
