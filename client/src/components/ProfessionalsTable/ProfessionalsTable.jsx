@@ -18,12 +18,8 @@ export default function ProfessionalsTable(){
             col1:row.id,
             col2:row.fullname,
             col3:row.direction,
-            col4:row.Services?.map((service)=>{
-                return service.name
-            }),
-            col5:row.Services?.map((service)=>{
-                return service.duration
-            })
+            col4:row.service,
+            col5:row.mail,
         }
     })
 
@@ -32,7 +28,7 @@ export default function ProfessionalsTable(){
         {field:'col2',headerName:'full name',width:300},
         {field:'col3',headerName:'address',width:200},
         {field:'col4',headerName:'services',width:200},
-        {field:'col5',headerName:'service duration',width:200},
+        {field:'col5',headerName:'mail',width:200},
         
     ]
 
