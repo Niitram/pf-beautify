@@ -4,7 +4,7 @@ import styles from "./Calendar.module.css";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { getServiceById, getServices } from "../../request/services";
+import { getServices } from "../../request/services";
 import { useEffect } from "react";
 import LinearStepper from "../linearStepper/LinearStepper";
 import { Divider } from "@mui/material";
@@ -12,48 +12,12 @@ import handlerClickCalendar from "../../handlers/handlerClickCalendar";
 import handleOptionsCalendar from "../../handlers/handleOptionsCalendar";
 import useToggle from "../../hooks/useToggle";
 import AlertTwoOptions from "../alertTwoOptions/AlertTwoOptions";
-import { addAppointment, showError } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
-import { createAppointmentMP } from "../../request/appointments";
+import handlePayNow from "../../handlers/handlePayNow";
+import handlePayAfter from "../../handlers/handlePayAfter";
 
 const handleClickReservation = (setOpenReservationDialog) => {
   setOpenReservationDialog(true);
-};
-
-const handlePayNow = async (dispatch, options, userData, navigate) => {
-  let appointmentMP = [];
-  try {
-    const respDb = await getServiceById(options.service);
-    let serviceDetail = {
-      details: respDb.data.name,
-      id: respDb.data.id,
-      unit_price: Number(respDb.data.price),
-      quantity: 1,
-    };
-    const reservation = {
-      profesionalId: options.service,
-      clientId: userData.id,
-      serviceId: options.service,
-      date: options.day,
-      hour: options.schedule,
-      paid: true,
-    };
-    dispatch(addAppointment(reservation));
-    appointmentMP = [{ ...serviceDetail }, { ...reservation }, userData.email];
-    const responseMP = await createAppointmentMP(appointmentMP);
-    localStorage.setItem("preference", JSON.stringify(responseMP.data.id));
-    localStorage.setItem("appointment", JSON.stringify(reservation));
-    navigate("/checkoutAppointment");
-  } catch (error) {
-    console.log(error.message);
-    dispatch(
-      showError({
-        tittle: "Wrong-appointment",
-        message:
-          "There was an error processing the appointment, please try again later",
-      })
-    );
-  }
 };
 
 function Calendar() {
@@ -63,6 +27,7 @@ function Calendar() {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.userData);
   const [day, setDay] = useState("");
+  console.log(day);
   const dispatch = useDispatch();
   const [options, setOptions] = useState({
     service: "",
@@ -254,7 +219,7 @@ function Calendar() {
           handlePayNow(dispatch, options, userData, navigate);
         }}
         optionTwo={() => {
-          console.log("opcion 2");
+          handlePayAfter(dispatch, options, userData, navigate);
         }}
         questionTitle={`Would you like to pay for advance now or to pay in our center on the appointment day?`}
         textOne={"Pay now"}

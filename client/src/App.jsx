@@ -50,6 +50,7 @@ import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
 import UserHistory from "./views/userHistory/UserHistory";
 import NewProfessional from "./views/newProfessional/newProfessional";
 import CheckoutAppointment from "./views/checkoutAppointment/checkoutAppointment";
+import AppointmentSuccess from "./views/appointmentSuccess/AppointmentSuccess";
 
 //Para deploy
 /* import axios from "axios"; */
@@ -267,6 +268,7 @@ function App() {
             path="/checkoutAppointment"
             element={<CheckoutAppointment />}
           />
+          <Route path="/appointmentSuccess" element={<AppointmentSuccess />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
