@@ -31,7 +31,7 @@ const initialState = {
     email: null,
     rol: INVITED,
   },
-  appoinment: {},
+  appointment: {},
   errorState: {
     tittle: null,
     message: null,
@@ -168,7 +168,7 @@ const rootReducer = (state = initialState, action) => {
     case ADD_APPOINTMENT:
       return {
         ...state,
-        appoinment: { ...action.payload }
+        appointment: { ...action.payload }
       };
     // favorites
     case SET_FAVORITES:

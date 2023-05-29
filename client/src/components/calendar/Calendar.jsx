@@ -27,7 +27,7 @@ const handlePayNow = async (dispatch, options, userData, navigate) => {
     let serviceDetail = {
       details: respDb.data.name,
       id: respDb.data.id,
-      unit_price: respDb.data.price,
+      unit_price: Number(respDb.data.price),
       quantity: 1,
     };
     const reservation = {
@@ -41,9 +41,9 @@ const handlePayNow = async (dispatch, options, userData, navigate) => {
     dispatch(addAppointment(reservation));
     appointmentMP = [{ ...serviceDetail }, { ...reservation }, userData.email];
     const responseMP = await createAppointmentMP(appointmentMP);
-    console.log("la respuesta de MP es: ", responseMP);
-    localStorage.setItem("preference", JSON.stringify(responseMP.id));
-    navigate("/checkout");
+    localStorage.setItem("preference", JSON.stringify(responseMP.data.id));
+    localStorage.setItem("appointment", JSON.stringify(reservation));
+    navigate("/checkoutAppointment");
   } catch (error) {
     console.log(error.message);
     dispatch(
