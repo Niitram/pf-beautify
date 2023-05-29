@@ -9,3 +9,11 @@ export const getAppointmentsByClient = async (clientId) => {
     console.log(error.message);
   }
 };
+
+export const getAllAppointments = async () => {
+  try {
+    return await axios.get(`${URL_BASE}/appointments`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
