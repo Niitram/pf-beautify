@@ -18,6 +18,7 @@ const UserHistory = () => {
   return (
     <div className={styles.background}>
       <div className={styles.container}>
+        <h1>My history</h1>
         <div className={styles.labelsBar}>
           <div className={styles.smallFulfill} />
           <button

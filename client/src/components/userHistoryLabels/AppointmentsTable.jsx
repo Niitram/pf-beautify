@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
 import styles from "./ProductsTable.module.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { getProducts } from "../../request/product";
-import { useNavigate } from "react-router-dom";
 
 export default function AppointmentsTable({ appointments }) {
   const rows = appointments.map((row) => {
@@ -19,11 +16,11 @@ export default function AppointmentsTable({ appointments }) {
   });
 
   const column = [
-    { field: "col1", headerName: "Service", width: 100 },
-    { field: "col2", headerName: "Professional", width: 300 },
-    { field: "col3", headerName: "Date", width: 150 },
+    { field: "col1", headerName: "Service", width: 200 },
+    { field: "col2", headerName: "Professional", width: 200 },
+    { field: "col3", headerName: "Date", width: 100 },
     { field: "col4", headerName: "Hour", width: 100 },
-    { field: "col5", headerName: "", width: 400 },
+    { field: "col5", headerName: "", width: 230 },
   ];
 
   return (
