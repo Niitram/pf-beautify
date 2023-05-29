@@ -1,0 +1,18 @@
+.container {
+  background-color: var(--accent2);
+}
+.container :global .MuiDataGrid-columnHeaders {
+  background-color: var(--accent1);
+}
+.container :global .MuiDataGrid-columnHeaderTitle {
+  font-weight: bolder;
+  color: var(--background);
+}
+.container :global .MuiDataGrid-root .MuiDataGrid-row:hover {
+  background-color: #f5b7b11c;
+  /* cursor: pointer; */
+}
+.container :global .MuiDataGrid-root .MuiDataGrid-row {
+  background-color: var(--background);
+  cursor: pointer;
+}

@@ -120,7 +120,16 @@ function DetailProduct({ handleLoginClick }) {
     }
     return setProduct({});
   }, [id]);
-  const { name, image, description, price, stock, rate, discount } = product;
+  const {
+    name,
+    image,
+    description,
+    price,
+    stock,
+    rate,
+    discount,
+    comments,
+  } = product;
   return (
     <div className={styles.aux}>
       <div className={styles.container}>
@@ -231,7 +240,7 @@ function DetailProduct({ handleLoginClick }) {
           isCategory={true}
         />
       )}
-      <Reviews rate={rate} />
+      <Reviews comments={comments} rate={rate} />
       {addProduct && (
         <AlertAddCart setAddProduct={setAddProduct} addProduct={addProduct} />
       )}

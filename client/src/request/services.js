@@ -9,3 +9,12 @@ export const getServices = async () => {
         console.log(error.message);
     }
 }
+
+export const getServiceById = async (id) => {
+    try {
+        return await axios.get(`${URL_BASE}/services/${id}`)
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
