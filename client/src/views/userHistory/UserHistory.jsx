@@ -4,6 +4,7 @@ import setUserInfo from "../../handlers/handleGetUserDataForHistory";
 import ProductsHistoryTable from "../../components/userHistoryLabels/ProductsHistoryTable";
 import AppointmentsTable from "../../components/userHistoryLabels/AppointmentsTable";
 import {
+  updateAppointmentsHandler,
   updateProductsCommentsHandler,
   updateServicesCommentsHandler,
 } from "../../handlers/handlerUpdateCommentsUserHistory";
@@ -21,8 +22,11 @@ const UserHistory = () => {
   };
 
   const updateServicesComments = async () => {
-    console.log("estoy en usersHistory");
     setAppointments(await updateServicesCommentsHandler(appointments));
+  };
+
+  const updateAppointments = async () => {
+    updateAppointmentsHandler(setAppointments);
   };
 
   useEffect(() => {
@@ -69,6 +73,7 @@ const UserHistory = () => {
           <AppointmentsTable
             appointments={appointments}
             updateServicesComments={updateServicesComments}
+            updateAppointments={updateAppointments}
           />
         )}
       </div>

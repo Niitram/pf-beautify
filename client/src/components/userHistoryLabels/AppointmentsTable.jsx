@@ -3,12 +3,15 @@ import styles from "./ProductsTable.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import CommentForm from "../commentForm/commentForm";
 import AlertTwoOptions from "../alertTwoOptions/AlertTwoOptions";
+import { cancelAppointment } from "../../request/appointments";
 
 export default function AppointmentsTable({
   appointments,
   updateServicesComments,
+  updateAppointments,
 }) {
   const [wishToCancelOrModify, setWishToCancelOrModify] = useState(false);
+  const [eventRowId, setEventRowId] = useState(0);
   const [feedbackServiceId, setFeedbackServiceId] = useState(0);
   const [currentServiceFeedback, setCurrentServiceFeedback] = useState(null);
   const [openFeedback, setOpenFeedback] = useState(false);
@@ -46,7 +49,8 @@ export default function AppointmentsTable({
             ({ id }) => id === e.id
           )[0];
           if (e.field === "col5") {
-            if (!eventAppointment.ableToCancelAppointment) {
+            if (eventAppointment.ableToCancelAppointment) {
+              setEventRowId(e.id);
               setWishToCancelOrModify(true);
             } else {
               setOpenFeedback(true);
@@ -61,9 +65,12 @@ export default function AppointmentsTable({
         handleCloseDialog={() => setWishToCancelOrModify(false)}
         optionOne={() => {
           console.log("quiero modificar");
+          setWishToCancelOrModify(false);
         }}
-        optionTwo={() => {
-          console.log("quiero cancelar");
+        optionTwo={async () => {
+          await cancelAppointment(eventRowId);
+          await updateAppointments();
+          setWishToCancelOrModify(false);
         }}
         questionTitle="Do you wish to cancel or to modify your appointment?"
         textOne="Modify"
