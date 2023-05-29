@@ -1,3 +1,26 @@
-.container {
-  background-color: var(--background);
+
+.admin_container{
+  width:100%
+}
+
+
+.rating{
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  flex-wrap: wrap;
+  width:100%;
+  height:auto;
+  margin-top:1.5rem;
+  margin-left:0.5rem;
+  gap:1.5rem;
+}
+.statics{
+position:relative;
+left:-1rem;
+background:transparent
+}
+
+.footeradmin{
+  margin-top:1rem
 }

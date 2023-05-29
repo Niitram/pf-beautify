@@ -1,5 +1,14 @@
 .container {
   margin-top: 6vh;
+  width: 80%;
+}
+.background {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .labelsBar {

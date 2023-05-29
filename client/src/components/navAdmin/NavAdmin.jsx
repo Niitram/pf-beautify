@@ -5,10 +5,11 @@ export default function NavAdmin(){
     return(
         <div className={styles.container}>
             <div className={styles.botones}>
-                <ButtonNav text={"Clients"} route="/clients"></ButtonNav>
-                <ButtonNav text={"Appointments"} route={'/appointments'}></ButtonNav>
-                <ButtonNav text={"Services"} route={"/services_control"}></ButtonNav>
-                <ButtonNav text={"Professionals"} route={"/professionals"}></ButtonNav>
+                <ButtonNav text={"Clients"} route="/dashboardAdmin/clients"></ButtonNav>
+                <ButtonNav text={"Appointments"} route={'/dashboardAdmin/appointments'}></ButtonNav>
+                <ButtonNav text={"Services"} route={"/dashboardAdmin/services_control"}></ButtonNav>
+                <ButtonNav text={"Professionals"} route={"/dashboardAdmin/professionals"}></ButtonNav>
+                <ButtonNav text={"Products"} route={"/dashboardAdmin/products_control   "}></ButtonNav>
              </div>
         </div>
     )

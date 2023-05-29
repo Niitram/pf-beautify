@@ -34,7 +34,7 @@ export const createProduct = async (product) => {
 export const updateProduct = async (id, modifiedProduct) => {
   try {
     return await axios.put(
-      `http://localhost:3001/products/${id}`,
+      `${URL_BASE}/products/${id}`,
       modifiedProduct
     );
   } catch (error) {

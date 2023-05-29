@@ -46,6 +46,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     // trae información del carrito y el id de usuario del local
     const localCart = JSON.parse(localStorage.getItem("cart"));
     const userId = JSON.parse(localStorage.getItem("userData")).id;
+
     if (localCart.length) {
       // acomoda la info del cart local para mandar al back sólo id y quantity de cada producto
       const products = localCart.map((product) => ({
@@ -55,6 +56,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       // mandar al back la info del carrito
       await postCart(userId, { products });
     } else await postCart(userId, { products: [] });
+
     // await getProductById(1); // esta petición es cualquier cosa, pero necesito el await. Va a ser reemplazada por la petición que guarda el carrito
     localStorage.clear();
     handleDetailClick();
