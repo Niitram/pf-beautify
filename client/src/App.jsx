@@ -13,6 +13,7 @@ import DetailUser from "./views/detailUser/DetailUser";
 import Nav from "./components/nav/Nav";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addAppointment,
   getAllCategories,
   getAllProducts,
   getBackupProducts,
@@ -48,7 +49,12 @@ import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
 import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
 import UserHistory from "./views/userHistory/UserHistory";
 import NewProfessional from "./views/newProfessional/newProfessional";
+
+import CheckoutAppointment from "./views/checkoutAppointment/checkoutAppointment";
+import AppointmentSuccess from "./views/appointmentSuccess/AppointmentSuccess";
+
 import NavAdmin from "./components/navAdmin/NavAdmin";
+
 
 //Para deploy
 /* import axios from "axios"; */
@@ -61,6 +67,7 @@ function App() {
   const [products] = useGetProducts();
   const [categories] = useGetCategories();
   const errorState = useSelector((state) => state.errorState);
+  const appointment = useSelector((state) => state.appointment);
 
   // sirve para saber si el usuario no está logueado (true), se usa para prevenir que se guarde la información del usuario cuando este se está deslogueando (archivo firebaseConfig)
   const [logout, setLogout] = useToggle(true);
@@ -94,7 +101,7 @@ function App() {
     } else dispatch(getAllProducts(products));
   }, [dispatch, products, categories]);
 
-  // este useEffect trae la info del usuario desde el local Storage al estado global
+  // este useEffect trae la info del usuario desde el local Storage al estado global y setea los appointment si existen
   useEffect(() => {
     if (!userData.id) {
       const userInfo = JSON.parse(localStorage.getItem("userData")) || {
@@ -104,6 +111,10 @@ function App() {
         rol: INVITED,
       };
       dispatch(setUserInfoAction(userInfo));
+    }
+    if (!appointment) {
+      const appointmentInfo = JSON.parse(localStorage.getItem("appointment"));
+      if (appointmentInfo) dispatch(addAppointment(appointmentInfo));
     }
   }, [dispatch]);
 
@@ -240,9 +251,9 @@ function App() {
             path="dashboardAdmin/products_control/:id"
             element={<ProductDetailAdmin />}
           />
-          <Route 
-          path="/dashboardAdmin/newProfessional"
-          element={<NewProfessional/>}
+          <Route
+            path="/dashboardAdmin/newProfessional"
+            element={<NewProfessional />}
           />
         </Route>
         {/* Rutas solo para CLIENT */}
@@ -269,6 +280,11 @@ function App() {
           <Route path="/purchaseSuccess" element={<PurchaseSuccess />} />
           <Route path="/detailPayment" element={<DetailPayment />} />
           <Route path="/userHistory" element={<UserHistory />} />
+          <Route
+            path="/checkoutAppointment"
+            element={<CheckoutAppointment />}
+          />
+          <Route path="/appointmentSuccess" element={<AppointmentSuccess />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
