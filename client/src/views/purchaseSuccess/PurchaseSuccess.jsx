@@ -13,6 +13,7 @@ function PurchaseSuccess() {
     //borro el carrito del cliente en la base de datos y del localStorage
     deleteCart(clientId);
     localStorage.setItem("cart", JSON.stringify([]));
+    localStorage.setItem("appointment", JSON.stringify({}));
     setTimeout(() => {
       navigate("/home");
     }, 5200);

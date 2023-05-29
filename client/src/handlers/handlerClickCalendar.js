@@ -31,7 +31,7 @@ const handlerClickCalendar = async (
   }));
   //Se hace la peticion de los horarios disponibles para ese dia
   try {
-    const resp = await getAppointmentsHours(3, daySelected);
+    const resp = await getAppointmentsHours(options.service, daySelected);
     if (resp.data.length > 0) setAvailableSchedules(resp.data);
   } catch (error) {
     console.log(error.message);
