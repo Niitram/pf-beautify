@@ -5,40 +5,63 @@
 }
 
 .lista_profesionales {
-  background-color: #f1f1f1;
+  background-color:var(--bg-card);
+
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  width: 350px;
-  height: auto;
-  gap: 5px;
+  width: 380px;
+  height:fit-content;
+  gap: 0;
   border-radius: 8px;
   padding-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+flex:1
 }
 
 .profesional {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
-  height: 50px;
-  width: fit-content;
-}
+  /* height: fit-content; */
+  width: 100%;
+  height:50px ;
+  gap:0;
+  margin-top:0;
 
+  /* gap:0.5rem */
+}
+/* .profesional div{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height:fit-content;
+  margin-top:0;
+} */
 .title {
   display: flex;
-  justify-content: start;
-  align-items: center;
-  margin: 1rem 1rem;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* margin: 0.5rem 1rem; */
+  color:var(--accent3);
+border:solid 1px;
+height:100%;
+text-align: start;
+width: 100%;
 }
 
 .div_profesionalImg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex;
+  justify-content: start;
+  align-items: center; */
   width: 100px;
-  height: 90%;
+  height: 100%;
   clip-path: circle(30% at 50% 50%);
+border:solid 1px
+
 }
 
 .div_profesionalImg img {
@@ -49,8 +72,14 @@
 
 .profesional_text {
   display: flex;
-  justify-content: end;
+  justify-content: center;
+  align-items: center;
   padding-right: 0.5rem;
+  align-items: center;
+  width:fit-content;
+  height: auto;
+flex:1;
+border:solid 1px
 }
 
 .profesional_text span {
@@ -64,12 +93,12 @@
   padding: 1rem;
   text-align: center;
   margin-right: 1rem;
-  margin-left: 0.5rem;
+  /* margin-left: 0.5rem; */
   background-color: #f5b7b1;
   color: #580a0a;
   font-weight: medium;
   border-radius: 20px;
-  border: none;
+  border:solid 1px;
   cursor: pointer
 }
 
@@ -80,9 +109,10 @@
 }
 
 .profesional:hover {
-  transform: scale(1.1);
-  background-color: #f5b7b1ff;
+  /* transform: scale(1.1); */
+  background-color:#80808031;
   border-radius: 10px;
+cursor:pointer;
 
 }
 

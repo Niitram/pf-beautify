@@ -16,9 +16,9 @@ export  function ViewProfesional() {
   return (
     <div className={styles.lista_profesionales}>
       <div className={styles.title}>
-        <div>
-        <h3>Profesionals</h3>
-        </div>
+       
+        <h3>Professionals from Beautify</h3>
+        
        
       </div>
 {profesionales.map(profesional=>(

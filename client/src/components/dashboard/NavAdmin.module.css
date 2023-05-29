@@ -25,9 +25,23 @@ width: 50%;
     width: 100%;
     height:100%;
     object-fit: contain;
+    display: none;
 }
 .container_btn{
     display:flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
 }
+@media screen and (min-width: 768px) {
+    .img_logo {
+      display: block; /* Mostrar la imagen en pantallas más grandes */
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .container_btn {
+      justify-content: center; /* Volver a alinear a la izquierda en pantallas más pequeñas */
+    }
+    .container_dashadmin{
+        grid-template-columns: 1fr;
+    }
+  }

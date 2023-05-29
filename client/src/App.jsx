@@ -36,7 +36,6 @@ import Favorites from "./views/favorites/Favorites";
 import { getFavorites } from "./request/favorites";
 import Checkout from "./views/Checkout/Checkout";
 import PurchaseError from "./views/purchaseError/PurchaseError";
-import UserHistory from "./views/userHistory/userHistory";
 import Clients from "./views/clients/Clients";
 import Appointments from "./views/appointments/Appointments";
 import ServicesControl from "./views/Services Control/ServicesControl";
@@ -44,8 +43,12 @@ import Professionals from "./views/Professionals/Professionals";
 import ContactForm from "./views/ContactForm/contactForm";
 import FooterAll from "./components/footerAll/FooterAll";
 import NotFound from "./components/notFound/NotFound";
+import DetailService from "./views/detailService/detailService";
 import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
 import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
+import UserHistory from "./views/userHistory/UserHistory";
+import NewProfessional from "./views/newProfessional/newProfessional";
+
 //Para deploy
 /* import axios from "axios"; */
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
@@ -127,6 +130,8 @@ function App() {
         const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
 
         if (currentLocation === "/loading") {
+          if (usuarioFirebase.email === "beautifyfinalproyect@gmail.com")
+            return navigate("/dashboardAdmin");
           if (!oldLocation || oldLocation === "/") navigate("/home");
           else navigate(oldLocation);
         }
@@ -189,6 +194,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/detailService/:id" element={<DetailService />} />
         <Route
           path="/detailProduct/:id"
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
@@ -213,8 +219,18 @@ function App() {
             path="/dashboardAdmin/professionals"
             element={<Professionals />}
           />
-          <Route path='/dashboardAdmin/products_control' element={<ProductsAdmin/>}/>
-          <Route path="dashboardAdmin/products_control/:id" element={<ProductDetailAdmin/>}/>
+          <Route
+            path="/dashboardAdmin/products_control"
+            element={<ProductsAdmin />}
+          />
+          <Route
+            path="dashboardAdmin/products_control/:id"
+            element={<ProductDetailAdmin />}
+          />
+          <Route 
+          path="/dashboardAdmin/newProfessional"
+          element={<NewProfessional/>}
+          />
         </Route>
         {/* Rutas solo para CLIENT */}
         {/* <Route element={<ProtectedRoute isAllowed={userData.rol === CLIENT} />}>

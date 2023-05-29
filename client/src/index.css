@@ -1,27 +1,33 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Playfair+Display&display=swap");
 
 * {
-  padding: 0px; 
+  padding: 0px;
   margin: 0px;
   --background: #fef2f4;
-  /* --background: #7c7677; */
+  --background: #7c7677;
   --accent1: #d14d72;
   --accent2: #f5b7b1;
+  --accent3: rgb(201, 6, 97);
+  --border:#580a0a;
+  --bg-color: #f7f7f8;
+  --bg-card: rgba(177, 172, 171, 0.548);
   --text: #3d3b54;
   --text-alt: #a2a0bb;
   --muted: #d3d3de;
   --background-alt: #FBF4F5;
   --gradient: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 100%);
 }
-:root{
-overflow: auto;
+
+:root {
+  overflow: auto;
 }
-:root::-webkit-scrollbar{
+
+:root::-webkit-scrollbar {
   width: 3px;
   color: var(--text)
 }
-:root::-webkit-scrollbar-thumb{
+
+:root::-webkit-scrollbar-thumb {
   background: var(--text);
   border-radius: 10px;
 
@@ -62,36 +68,48 @@ overflow: auto;
   --fc-today-bg-color: rgba(255, 220, 40, 0.15);
   --fc-now-indicator-color: red;
 }
+
 :root {
   --fc-daygrid-event-dot-width: 8px;
 }
+
 /* Dias sabados y domingos */
-.fc-day-sat, .fc-day-sun{
+.fc-day-sat,
+.fc-day-sun {
   background-color: #D3D3DE;
 }
+
 /* Dias lunes, martes, miercoles, jueves y viernes */
-.fc-day-mon, .fc-day-tue, .fc-day-wed, .fc-day-thu,.fc-day-fri{
+.fc-day-mon,
+.fc-day-tue,
+.fc-day-wed,
+.fc-day-thu,
+.fc-day-fri {
   background-color: #F5B7B1;
 
 }
+
 /* Celdas con los nombres de los dias */
-.fc-col-header-cell{
+.fc-col-header-cell {
   background-color: #FBF4F5;
 }
+
 /* contenedor de los numeros para centrarlos */
-.fc-scrollgrid-sync-inner{
+.fc-scrollgrid-sync-inner {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 /* Dia de hoy */
-.fc .fc-daygrid-day.fc-day-today{
+.fc .fc-daygrid-day.fc-day-today {
   background-color: #de938c;
-} 
+}
+
 /* .fc-view-harness, .fc-view-harness-active{
   width: 800px;
 } */
 /* Tamaño de los numeros de los dias */
-.fc-daygrid-day-number{
+.fc-daygrid-day-number {
   font-size: large;
 }

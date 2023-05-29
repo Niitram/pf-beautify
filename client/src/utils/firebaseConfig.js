@@ -84,11 +84,7 @@ export const loginWithGoogleFirebase = async (
   usuarioFirebase,
   dispatch,
   navigate,
-<<<<<<< HEAD
- // locationNow
-=======
-  /* locationNow */
->>>>>>> a4fcac0a92ebb03afdcb47726a3864b019c03b4b
+  locationNow 
 ) => {
   try {
     // recibe el usuario de google y lo busca/crea en la bdd
@@ -114,7 +110,7 @@ export const loginWithGoogleFirebase = async (
 
     // setear el estado global
     dispatch(setUserInfoAction(userData));
-    // locationNow.pathname === "/" && navigate("/home");
+     locationNow.pathname === "/" && navigate("/home");
   } catch (error) {
     navigate("/");
     console.log(error.message);

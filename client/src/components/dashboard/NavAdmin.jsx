@@ -12,9 +12,9 @@ export const NavAdmin = () => {
     </figure>
 </div>
 <div className={styles.container_btn} >
-<Button className={styles.btnNav}  text={"Clientes"} route ={"#"} />
-<Button  className={styles.btnNav} text={"Reservas"} route ={"#"} />
-<Button className={styles.btnNav}  text={"Servicios"} route ={"#"} />
+<Button className={styles.btnNav}  text={"Clients"} route ={"#"} />
+<Button  className={styles.btnNav} text={"Appointments"} route ={"#"} />
+<Button className={styles.btnNav}  text={"Services"} route ={"#"} />
 <Button className={styles.btnNav}  text={"Productos"} route ={"#"} />
 </div>
 

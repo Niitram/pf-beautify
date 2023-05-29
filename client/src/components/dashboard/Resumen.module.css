@@ -38,24 +38,24 @@
     height:100%;
     object-fit: contain;
 }
-.details{
-    display:flex;
-    flex-direction: column;
-    justify-content: start;
+.details {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 1rem;
     align-items: center;
-    gap:1rem;
-    padding:5px
-   
-}
+    justify-items: start;
+    padding: 5px;
+  }
 .content_details{
     display:flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     gap:0.75rem;
     padding:0.5rem
     
 }
 .content_details >div{
+    
     flex-grow: 1;
 }
  h2 , span {
