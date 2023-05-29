@@ -74,9 +74,9 @@ router.get("/client/:clientId", async (req, res) => {
 
 router.put("/:id", validateCommentModification, async (req, res) => {
   try {
-    const { content } = req.body;
+    const { content, tittle, rating } = req.body;
     const { id } = req.params;
-    const modified = await putComment(id, content);
+    const modified = await putComment(id, content, tittle, rating);
     res.status(200).json(modified);
   } catch (error) {
     res.status(500).json({ error: error.message });

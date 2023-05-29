@@ -8,7 +8,11 @@ import { cancelShop } from "../../request/shops";
 import ScrollDialog from "./ProductsDetailsTable";
 import CommentForm from "../commentForm/commentForm";
 
-export default function ProductsHistoryTable({ shops, setShops }) {
+export default function ProductsHistoryTable({
+  shops,
+  setShops,
+  updateProductsComments,
+}) {
   const [wishToCancel, setWishToCancel] = useState(false);
   const [eventRowId, setEventRowId] = useState(0);
   const [openDetail, setOpenDetail] = useState(false);
@@ -72,10 +76,10 @@ export default function ProductsHistoryTable({ shops, setShops }) {
         handleCloseDialog={() => {
           setOpenFeedback(false);
         }}
-        yesCallback={() => {
-          console.log();
-        }}
+        type={"product"}
+        id={feedbackProductId}
         comment={currentProductFeedback}
+        updateProductsComments={updateProductsComments}
       />
 
       <ScrollDialog

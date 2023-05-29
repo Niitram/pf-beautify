@@ -63,6 +63,7 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
       const prettyDate =
         date.slice(8, 10) + "/" + date.slice(5, 7) + "/" + date.slice(0, 4);
 
+      const comment = comments.filter((com) => com.ServiceId === id);
       return {
         id,
         profesional: Profesional.fullname,
@@ -70,6 +71,7 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
         date: prettyDate,
         hour: hour.slice(0, 5),
         ableToCancelAppointment: ableToCancelAppointment(date, hour),
+        comment: comment[0],
       };
     }
   );

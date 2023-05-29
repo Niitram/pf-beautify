@@ -35,7 +35,7 @@ export default function ScrollDialog({
             col2: row.productName,
             col3: row.count,
             col4: `$${row.price}`,
-            col5: row.comments ? "See your review" : "Give us your opinion",
+            col5: row.comment ? "See your review" : "Give us your opinion",
           };
         })
       );
