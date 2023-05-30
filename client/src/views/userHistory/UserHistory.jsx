@@ -11,8 +11,8 @@ import {
 
 const UserHistory = () => {
   const [userData, setUserData] = useState({});
-  const [shops, setShops] = useState([]);
-  const [appointments, setAppointments] = useState([]);
+  const [shops, setShops] = useState(0);
+  const [appointments, setAppointments] = useState(0);
 
   const labelsNames = { products: "Product", appointments: "Appointments" };
   const [label, setLabel] = useState(labelsNames.products);

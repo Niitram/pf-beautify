@@ -4,6 +4,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import CommentForm from "../commentForm/commentForm";
 import { cancelAppointment } from "../../request/appointments";
 import AlertDialogSlide from "../slideDialog/slideDialog";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 export default function AppointmentsTable({
   appointments,
@@ -16,21 +18,23 @@ export default function AppointmentsTable({
   const [currentServiceFeedback, setCurrentServiceFeedback] = useState(null);
   const [openFeedback, setOpenFeedback] = useState(false);
 
-  const rows = appointments.map((row) => {
-    return {
-      id: row.id,
-      col1: row.service,
-      col2: row.profesional,
-      col3: `${row.date}`,
-      col4: row.hour,
-      col5: row.paid || !row.ableToCancelAppointment ? "Yes" : "No",
-      col6: row.ableToCancelAppointment
-        ? "Cancel appointment"
-        : row.comment
-        ? "See your Review"
-        : "Give us your opinion",
-    };
-  });
+  const rows =
+    appointments &&
+    appointments.map((row) => {
+      return {
+        id: row.id,
+        col1: row.service,
+        col2: row.profesional,
+        col3: `${row.date}`,
+        col4: row.hour,
+        col5: row.paid || !row.ableToCancelAppointment ? "Yes" : "No",
+        col6: row.ableToCancelAppointment
+          ? "Cancel appointment"
+          : row.comment
+          ? "See your Review"
+          : "Give us your opinion",
+      };
+    });
 
   const column = [
     { field: "col1", headerName: "Service", width: 200 },
@@ -42,48 +46,75 @@ export default function AppointmentsTable({
   ];
 
   return (
-    <div className={styles.container}>
-      <DataGrid
-        columns={column}
-        rows={rows}
-        onCellClick={(e) => {
-          const eventAppointment = appointments.filter(
-            ({ id }) => id === e.id
-          )[0];
-          if (e.field === "col6") {
-            if (eventAppointment.ableToCancelAppointment) {
-              setEventRowId(e.id);
-              setWishToCancelOrModify(true);
-            } else {
-              setOpenFeedback(true);
-              setFeedbackServiceId(e.id);
-              setCurrentServiceFeedback(eventAppointment.comment);
-            }
-          }
-        }}
-      />
+    <div style={{ color: "transparent" }}>
+      {appointments && !appointments.length && (
+        <div
+          style={{
+            minHeight: "10em",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          You have no appointments
+        </div>
+      )}
+      {appointments && appointments.length && (
+        <div className={styles.container}>
+          <DataGrid
+            columns={column}
+            rows={rows}
+            onCellClick={(e) => {
+              const eventAppointment = appointments.filter(
+                ({ id }) => id === e.id
+              )[0];
+              if (e.field === "col6") {
+                if (eventAppointment.ableToCancelAppointment) {
+                  setEventRowId(e.id);
+                  setWishToCancelOrModify(true);
+                } else {
+                  setOpenFeedback(true);
+                  setFeedbackServiceId(e.id);
+                  setCurrentServiceFeedback(eventAppointment.comment);
+                }
+              }
+            }}
+          />
 
-      <AlertDialogSlide
-        openDialog={wishToCancelOrModify}
-        handleCloseDialog={() => setWishToCancelOrModify(false)}
-        yesCallback={async () => {
-          await cancelAppointment(eventRowId);
-          await updateAppointments();
-          setWishToCancelOrModify(false);
-        }}
-        questionText="Are you sure you wanna cancel your appoinment?"
-      />
+          <AlertDialogSlide
+            openDialog={wishToCancelOrModify}
+            handleCloseDialog={() => setWishToCancelOrModify(false)}
+            yesCallback={async () => {
+              await cancelAppointment(eventRowId);
+              await updateAppointments();
+              setWishToCancelOrModify(false);
+            }}
+            questionText="Are you sure you wanna cancel your appoinment?"
+          />
 
-      <CommentForm
-        openDialog={openFeedback}
-        handleCloseDialog={() => {
-          setOpenFeedback(false);
-        }}
-        type={"service"}
-        id={feedbackServiceId}
-        comment={currentServiceFeedback}
-        updateServicesComments={updateServicesComments}
-      />
+          <CommentForm
+            openDialog={openFeedback}
+            handleCloseDialog={() => {
+              setOpenFeedback(false);
+            }}
+            type={"service"}
+            id={feedbackServiceId}
+            comment={currentServiceFeedback}
+            updateServicesComments={updateServicesComments}
+          />
+        </div>
+      )}
+      {!appointments && (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
     </div>
   );
 }
