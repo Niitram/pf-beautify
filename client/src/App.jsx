@@ -207,7 +207,10 @@ function App() {
       )}
 
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route
+          path="/"
+          element={<Landing handleLoginClick={handleLoginClick} />}
+        />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
@@ -288,7 +291,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
-  )
+  );
 }
 
 export default App;
