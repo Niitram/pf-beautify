@@ -6,7 +6,7 @@ import { getServices } from "../../request/services";
 import { useEffect, useState } from "react";
 import CardService from "../../components/cardService/CardService";
 
-function Services() {
+function Services({ handleLoginClick }) {
   const [allServices, setAllServices] = useState();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function Services() {
       </div>
       <Divider sx={{ mb: 5 }} />
       <h3 className={styles.titleH3}>Make your reservation</h3>
-      <Calendar />
+      <Calendar handleLoginClick={handleLoginClick} />
     </section>
   );
 }

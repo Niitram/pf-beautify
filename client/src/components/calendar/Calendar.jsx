@@ -16,11 +16,16 @@ import { useNavigate } from "react-router-dom";
 import handlePayNow from "../../handlers/handlePayNow";
 import handlePayAfter from "../../handlers/handlePayAfter";
 
-const handleClickReservation = (setOpenReservationDialog) => {
+const handleClickReservation = (
+  setOpenReservationDialog,
+  handleLoginClick,
+  userData
+) => {
+  if (!userData.id) return handleLoginClick();
   setOpenReservationDialog(true);
 };
 
-function Calendar() {
+function Calendar({ handleLoginClick }) {
   const [services, setServices] = useState([]);
   const [availableSchedules, setAvailableSchedules] = useState([]);
   const [openReservationDialog, setOpenReservationDialog] = useToggle(false);
@@ -206,7 +211,11 @@ function Calendar() {
             disabled={!options.service || !options.schedule || !options.day}
             className={styles.buttonReservation}
             onClick={() => {
-              handleClickReservation(setOpenReservationDialog);
+              handleClickReservation(
+                setOpenReservationDialog,
+                handleLoginClick,
+                userData
+              );
             }}
           >
             Reservation

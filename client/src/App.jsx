@@ -212,7 +212,10 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/services" element={<Services />} />
+        <Route
+          path="/services"
+          element={<Services handleLoginClick={handleLoginClick} />}
+        />
         <Route path="/detailService/:id" element={<DetailService />} />
         <Route
           path="/detailProduct/:id"
