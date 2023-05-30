@@ -3,11 +3,27 @@ import styles from "./Services.module.css";
 import imgLogo from "../../assets/images/logo-beautify-1063x1063.png";
 import { Divider } from "@mui/material";
 import { getServices } from "../../request/services";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CardService from "../../components/cardService/CardService";
 
 function Services({ handleLoginClick }) {
   const [allServices, setAllServices] = useState();
+  const calendarioRef = useRef(null);
+  const servicesRef = useRef(null);
+
+  const scrollToCalendario = () => {
+    if (servicesRef.current) {
+      servicesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+    if (calendarioRef.current) {
+      calendarioRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const scrollToServices = () => {
+    if (servicesRef.current) {
+      servicesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     try {
@@ -24,10 +40,17 @@ function Services({ handleLoginClick }) {
     <section className={styles.section}>
       <div className={styles.carrusel}></div>
       <div className={styles.containerButtons}>
-        <button className={styles.buttonDiscover}>Discover our services</button>
-        <button className={styles.buttonReserveNow}>Reserve now</button>
+        <button onClick={scrollToServices} className={styles.buttonDiscover}>
+          Discover our services
+        </button>
+        <button
+          onClick={scrollToCalendario}
+          className={styles.buttonReserveNow}
+        >
+          Reserve now
+        </button>
       </div>
-      <div className={styles.containerCards}>
+      <div ref={servicesRef} className={styles.containerCards}>
         {allServices &&
           allServices.map((service) => {
             return <CardService key={service.id} service={service} />;
@@ -42,7 +65,9 @@ function Services({ handleLoginClick }) {
         <img className={styles.image} src={imgLogo} alt="Logo Beautify" />
       </div>
       <Divider sx={{ mb: 5 }} />
-      <h3 className={styles.titleH3}>Make your reservation</h3>
+      <h3 ref={calendarioRef} className={styles.titleH3}>
+        Make your reservation
+      </h3>
       <Calendar handleLoginClick={handleLoginClick} />
     </section>
   );
