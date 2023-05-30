@@ -10,6 +10,7 @@ const {
   validateClientExistence,
   validateFindOrCreate,
   validateDevoluton,
+  validateBanClient,
 } = require("../validations/validationClient");
 const findOrCreateClient = require("../controllers/Clients/findOrCreateClient");
 const banClient = require("../controllers/Clients/banClient");
@@ -69,6 +70,7 @@ router.post("/findOrCreate", validateFindOrCreate, async (req, res) => {
     res.status(200).json(client);
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log(error.message);
   }
 });
 
@@ -82,7 +84,7 @@ router.post("/devolution", validateDevoluton, async (req, res) => {
   }
 });
 
-router.patch("/ban/:clientId", async (req, res) => {
+router.patch("/ban/:clientId", validateBanClient, async (req, res) => {
   try {
     const { clientId } = req.params;
     const client = await banClient(clientId);
@@ -92,7 +94,7 @@ router.patch("/ban/:clientId", async (req, res) => {
   }
 });
 
-router.patch("/unban/:clientId", async (req, res) => {
+router.patch("/unban/:clientId", validateBanClient, async (req, res) => {
   try {
     const { clientId } = req.params;
     const client = await unbanClient(clientId);
