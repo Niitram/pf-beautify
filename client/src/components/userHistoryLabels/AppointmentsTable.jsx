@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from "./ProductsTable.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import CommentForm from "../commentForm/commentForm";
-import AlertTwoOptions from "../alertTwoOptions/AlertTwoOptions";
 import { cancelAppointment } from "../../request/appointments";
 import AlertDialogSlide from "../slideDialog/slideDialog";
 
@@ -18,7 +17,6 @@ export default function AppointmentsTable({
   const [openFeedback, setOpenFeedback] = useState(false);
 
   const rows = appointments.map((row) => {
-    console.log(row);
     return {
       id: row.id,
       col1: row.service,
