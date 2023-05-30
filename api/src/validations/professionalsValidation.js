@@ -23,7 +23,7 @@ const profesionalGetIdValidation = async (req, res, next) => {
 
 const profesionalPostValidation = async (req, res, next) => {
   try {
-    const { fullname, mail, direction, image, serviceId } = req.body;
+    const { fullname, mail, direction, image, service } = req.body;
     if (!mail) throw new Error("Must include mail to create");
     const regex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/;
     if (!mail.match(regex))
@@ -33,8 +33,10 @@ const profesionalPostValidation = async (req, res, next) => {
     if (!image) throw new Error("Must include image to create");
     const DBCheck = await Profesional.findOne({ where: { mail } });
     if (DBCheck) throw new Error("Profesional already exist");
-    const DBCheckService = await Service.findByPk(serviceId);
-    if (!DBCheckService) throw new Error("Service not found");
+    const DBCheckService = await Service.findOne({
+      where: { name: service.name },
+    });
+    if (DBCheckService) throw new Error("Service alredy exists");
     next();
   } catch (error) {
     res.status(400).json({ error: error.message });

@@ -1,27 +1,23 @@
 const { Profesional, Service } = require("../../db");
-
-const postProfesional = async (fullname, mail, direction, image, serviceId) => {
+// name, price, description, image, duration
+const postProfesional = async (fullname, mail, direction, image, service) => {
   fullname = fullname[0].toUpperCase() + fullname.slice(1);
+  console.log(service);
   const newProfesional = await Profesional.create({
     fullname,
     mail,
     direction,
     image,
   });
-  await newProfesional.addService(serviceId);
-  const createdProfesional = await Profesional.findByPk(newProfesional.id, {
-    include: {
-      model: Service,
-      attributes: ["name"],
-    },
-  });
+  const newService = await Service.create(service);
+  await newProfesional.addService(newService.id);
 
   const optimizedNewProfesional = {
-    id: createdProfesional.id,
-    fullname: createdProfesional.fullname,
-    mail: createdProfesional.mail,
-    direction: createdProfesional.image,
-    service: createdProfesional.Services[0].name,
+    id: newProfesional.id,
+    fullname: newProfesional.fullname,
+    mail: newProfesional.mail,
+    direction: newProfesional.image,
+    service: newService.name,
   };
   return optimizedNewProfesional;
 };

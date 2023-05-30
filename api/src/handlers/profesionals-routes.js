@@ -31,13 +31,13 @@ router.get("/:id", profesionalGetIdValidation, async (req, res) => {
 
 router.post("/", profesionalPostValidation, async (req, res) => {
   try {
-    const { fullname, mail, direction, image, serviceId } = req.body;
+    const { fullname, mail, direction, image, service } = req.body;
     const response = await postProfesional(
       fullname,
       mail,
       direction,
       image,
-      serviceId
+      service
     );
     res.status(201).json(response);
   } catch (error) {
