@@ -43,6 +43,8 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
       };
     }
   );
+  optimizedShops[0].date = "10/1/2023";
+  optimizedShops[0].ableToCancelShop = false;
 
   optimizedShops.sort((a, b) => {
     if (a.id < b.id) return 1;
@@ -59,13 +61,14 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
   const dbAppointments = dataDbAppointments.data;
 
   const optimizedAppointments = dbAppointments.map(
-    ({ Profesional, Service, date, hour, id }) => {
+    ({ Profesional, Service, date, hour, id, paid }) => {
       const prettyDate =
         date.slice(8, 10) + "/" + date.slice(5, 7) + "/" + date.slice(0, 4);
 
       const comment = comments.filter((com) => com.ServiceId === id);
       return {
         id,
+        paid,
         profesional: Profesional.fullname,
         service: Service.name,
         date: prettyDate,

@@ -18,17 +18,19 @@ export default function AppointmentsTable({
   const [openFeedback, setOpenFeedback] = useState(false);
 
   const rows = appointments.map((row) => {
+    console.log(row);
     return {
       id: row.id,
       col1: row.service,
       col2: row.profesional,
       col3: `${row.date}`,
       col4: row.hour,
-      col5: row.ableToCancelAppointment
+      col5: row.paid || !row.ableToCancelAppointment ? "Yes" : "No",
+      col6: row.ableToCancelAppointment
         ? "Cancel appointment"
         : row.comment
-        ? "Give us your opinion"
-        : "See your Review",
+        ? "See your Review"
+        : "Give us your opinion",
     };
   });
 
@@ -37,7 +39,8 @@ export default function AppointmentsTable({
     { field: "col2", headerName: "Professional", width: 200 },
     { field: "col3", headerName: "Date", width: 100 },
     { field: "col4", headerName: "Hour", width: 100 },
-    { field: "col5", headerName: "", width: 230 },
+    { field: "col5", headerName: "Paid for", width: 100 },
+    { field: "col6", headerName: "", width: 180 },
   ];
 
   return (
@@ -49,7 +52,7 @@ export default function AppointmentsTable({
           const eventAppointment = appointments.filter(
             ({ id }) => id === e.id
           )[0];
-          if (e.field === "col5") {
+          if (e.field === "col6") {
             if (eventAppointment.ableToCancelAppointment) {
               setEventRowId(e.id);
               setWishToCancelOrModify(true);
