@@ -16,7 +16,7 @@ export default function FormCreateProfessional(){
         mail:'',
         direction:'',
         image:'',
-        // services:''
+        serviceId:''
     })
 
     const [errors,setErrors] = useState({
@@ -26,18 +26,18 @@ export default function FormCreateProfessional(){
         image:'*'
     })
 
-    // const [servicios,setServicios] = useState([])
+    const [servicios,setServicios] = useState([])
 
     useEffect(()=>{
         getServices()
-        .then(({data})=>setServices(data))
+        .then(({data})=>setServicios(data))
     },[])
 
-    // const handleServices = (e)=>{
-    //     e.preventDefault()
-    //     const value = e.target.value
-    //     setProfessionalInfo({...professionalInfo,})
-    // }
+    const handleServices = (e)=>{
+        e.preventDefault()
+        const value = e.target.value
+        setProfessionalInfo({...professionalInfo,['serviceId']:value})
+    }
 
     const handleChange = (e)=>{
         e.preventDefault()
@@ -49,8 +49,11 @@ export default function FormCreateProfessional(){
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        // if(errors.fullname !== )
-        createProfessional(professionalInfo)
+        if(errors.fullname === '' || errors.mail === '' || errors.direction === '' || errors.image === ''){
+            createProfessional(professionalInfo)
+        }else{
+            alert('check your errors')
+        }
     }
 
 
@@ -96,13 +99,13 @@ export default function FormCreateProfessional(){
                 />
                     <ErrorInputMessage errors={errors.image} text={errors.image} />
 
-                {/* <select>
+                <select onChange={(e)=>handleServices(e)} required>
                     {servicios?.map((element)=>{
                         return(
-                            <option value={element.id} onClick={(e)=>handleServices(e)}>{element.name} </option>
+                            <option value={element.id}>{element.name} </option>
                         )
                     })}
-                </select> */}
+                </select>
 
 
                 <button type='submit' >Submit</button>
