@@ -211,11 +211,15 @@ function App() {
           path="/"
           element={<Landing handleLoginClick={handleLoginClick} />}
         />
+        <Route path="/loading" element={<Loading />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/services" element={<Services />} />
+        <Route
+          path="/services"
+          element={<Services handleLoginClick={handleLoginClick} />}
+        />
         <Route path="/detailService/:id" element={<DetailService />} />
         <Route
           path="/detailProduct/:id"
@@ -287,6 +291,10 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {locationNow.pathname !== "/" &&
+        locationNow.pathname !== "/loading" &&
+        locationNow.pathname !== "/checkout" &&
+        locationNow.pathname !== "/dashboardAdmin" && <FooterAll />}
     </div>
   );
 }

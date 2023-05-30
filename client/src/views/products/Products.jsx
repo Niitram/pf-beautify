@@ -32,7 +32,7 @@ function Products() {
         setOrdered={setOrdered}
         setCurrentPage={setCurrentPage}
       />
-      <div style={{ display: "flex", height: "100%" }}>
+      <div className={styles.containerSide}>
         <div className={styles.Sidebar}>
           <Filter
             filter={filter}

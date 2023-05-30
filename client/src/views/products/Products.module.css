@@ -1,33 +1,58 @@
 .containerPaginations{
     min-height: 60vh;
-    padding: 1rem;
-    /* border:1px solid blue */
+    padding: 1rem; 
 }
 .Container{
     background-color: var(--background  );
-    /* background-color: red; */
     min-height: 92vh;
     width:100%;
     display: flex;
     flex-direction: column;
     overflow: auto;
-    
 }
 .containerPaginations{
     width:65%;
-    /* border: 1px solid black; */
-    /* margin-left: 10%; */
 }
 .Sidebar{
     width:fit-content;
     margin-left: 4rem;
     height: fit-content;
-    margin-top: 10rem;
+    margin-top: 4rem;
     margin-right: 2rem;
     padding-top:1rem;
     padding-bottom: 1rem;
-    border-radius: 22px;
+    border-radius: 10px;
     background: #FBF4F5;
     box-shadow:  -5px -5px 10px #EFEDED,
     5px 5px 10px #CBADB2;
+}
+.containerSide{
+    display: flex;
+    height: 100%; 
+}
+
+@media (max-width: 412px){
+    .containerSide{
+        display: flex;
+        flex-direction: column;
+        height: 100%; 
+    }
+    .Sidebar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: fit-content;
+        border-radius: 10px;
+        margin: 0;
+        background: #FBF4F5;
+        box-shadow:  -5px -5px 10px #EFEDED,
+        5px 5px 10px #CBADB2;
+    }
+    .containerSide{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%; 
+    }
 }
