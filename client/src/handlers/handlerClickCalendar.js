@@ -33,12 +33,16 @@ const handlerClickCalendar = async (
   try {
     const resp = await getAppointmentsHours(options.service, daySelected);
     let hourNow = new Date().getHours();
+    let dayToday = new Date().getDate();
     //Si el horario es menor a la hora actual setea el estado a false
-    resp.data.forEach((hour) => {
-      if (Number(hour.hour.split(":")[0]) <= hourNow) hour.available = false;
-      return hour;
+    if (daySelected.split("-")[2] == dayToday) {
+      resp.data.forEach((hour) => {
+        if (Number(hour.hour.split(":")[0]) <= hourNow) hour.available = false;
+        return hour;
 
-    })
+      })
+    }
+
     //Si hay horarios disponibles se setean en el state
     if (resp.data.length > 0) setAvailableSchedules(resp.data);
   } catch (error) {
