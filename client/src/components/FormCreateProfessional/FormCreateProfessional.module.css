@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.containerForm {
+  margin-right: 10%;
+}

@@ -26,7 +26,7 @@ function Nav({ handleLoginClick, handleDetailClick }) {
         </label>
         <ButtonNav text={"About"} route={"/about"}></ButtonNav>
         <ButtonNav text={"Products"} route={"/products"}></ButtonNav>
-        {/* <ButtonNav text={"Services"} route={"/services"}></ButtonNav> */}
+        <ButtonNav text={"Services"} route={"/services"}></ButtonNav>
         {userData.rol === INVITED ? (
           <button className={styles.LogInBtn} onClick={handleLoginClick}>
             {" "}

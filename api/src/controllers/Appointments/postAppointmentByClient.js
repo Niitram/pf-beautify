@@ -1,8 +1,8 @@
 const { Appointment, Client, Service, Profesional } = require('../../db.js')
 
-const createAppointment = async (profesionalId, clientId, serviceId, date, hour) => {
+const createAppointment = async (profesionalId, clientId, serviceId, date, hour, paid) => {
     const appointment = await Appointment.create({
-
+        paid,
         date,
         hour
     });

@@ -1,11 +1,13 @@
 const bulkCreateClients = require("./clients");
 const bulkCreateDevelopers = require("./developersData");
-const bulckCreateFavorites = require("./favorites");
+const bulkCreateFavorites = require("./favorites");
 const bulkCreateProducts = require("./productsData");
 const bulkCreateProfesionalsAndServices = require("./services");
 const bulkCreateShops = require("./shops");
 const { Product } = require("../db");
 const bulkCreateAppointments = require("./appointments");
+const bulkCreateProductsComments = require("./productsComments");
+const bulkCreateServicesComments = require("./servicesComments");
 
 const allDataFunctions = async () => {
   //* checking there are not products in the database
@@ -17,10 +19,12 @@ const allDataFunctions = async () => {
   await bulkCreateProducts();
   await bulkCreateDevelopers();
   await bulkCreateClients();
+  /* await bulkCreateFavorites(); */
   await bulkCreateShops();
-  await bulckCreateFavorites();
   await bulkCreateProfesionalsAndServices();
   await bulkCreateAppointments();
+  await bulkCreateProductsComments();
+  await bulkCreateServicesComments();
 };
 
 module.exports = allDataFunctions;

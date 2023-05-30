@@ -1,0 +1,65 @@
+.resumen_container{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    place-items: center;
+    padding: 0.5rem;
+    width: 100%;
+    height:auto;
+    background-color: var(--background);
+}
+.profile_admin{
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap:5px;
+    width:90%;
+    padding: 0.2rem;
+   
+
+}
+.profile_admin div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0.5rem;
+    text-align: center;
+}
+.profile_admin > figure{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height:100%;
+    clip-path: circle(30% at 50% 50%);
+}
+.profile_admin img {
+    width:100%;
+    height:100%;
+    object-fit: contain;
+}
+.details {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 1rem;
+    align-items: center;
+    justify-items: start;
+    padding: 5px;
+  }
+.content_details{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:0.75rem;
+    padding:0.5rem
+    
+}
+.content_details > div{
+    
+    flex-grow: 1;
+}
+
+.names_details > h2  , span {
+    color:black;
+    letter-spacing: 2px;
+}

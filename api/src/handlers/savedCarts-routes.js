@@ -15,7 +15,7 @@ savedCartsRouter.post("/:clientId", postCartValidation, async (req, res) => {
     const { clientId } = req.params;
     const { products } = req.body;
     const newCart = await postSavedCart(clientId, products);
-    res.status(201).json(newCart);
+    return res.status(200).send(newCart);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

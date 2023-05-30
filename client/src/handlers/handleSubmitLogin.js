@@ -1,6 +1,6 @@
 import { createUserWithMail, singUpWithMail } from "../utils/firebaseConfig";
 import { createNewClient, getClient } from "../request/clients";
-import { getCart} from "../request/cart"
+import { getCart } from "../request/cart";
 import { setUserInfoAction, showError } from "../redux/actions";
 import { ADMIN, CLIENT } from "../utils/roles";
 
@@ -62,7 +62,8 @@ const handleSubmitLogin = async (
 
       // trae la info del usuario y de su carrito de la base de datos
       const userCreated = await getClient(email);
-      const userCart = await getCart(userCreated.data.id);
+      // const cartSaved = await getCart(userCreated.data.id); //*el back si no tiene un carrito devuelve undefined
+      // const userCart = !cartSaved ? [] : cartSaved.data
 
       const userData = {
         id: userCreated.data.id,
@@ -76,7 +77,8 @@ const handleSubmitLogin = async (
         userData.rol = ADMIN;
 
       localStorage.setItem("userData", JSON.stringify(userData));
-      localStorage.setItem("cart", JSON.stringify(userCart));
+      const cartSaved = await getCart(userData.id);
+      localStorage.setItem("cart", JSON.stringify(cartSaved.data));
 
       // envía esa info del usuario al estado global
       dispatch(setUserInfoAction(userData));

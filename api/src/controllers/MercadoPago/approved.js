@@ -4,7 +4,6 @@ require("dotenv");
 const { ACESS_TOKEN, BACK_ROUTE } = process.env;
 
 const approvedFunction = async (id, email) => {
-   
   const response = await axios.get(
     `https://api.mercadopago.com/checkout/preferences/${id}`,
     {
@@ -13,12 +12,11 @@ const approvedFunction = async (id, email) => {
       },
     }
   );
-  const purchase = await Purchase.findAll({ where: {  clientMail: email } });
+  const purchase = await Purchase.findAll({ where: { clientMail: email } });
   purchase.forEach(async (each) => {
     await each.destroy();
   });
   const items = response.data.items;
-
   let totalAmount = 0;
   let itemsDetails = [];
   const client = await Client.findOne({ where: { email: email } });
@@ -26,13 +24,17 @@ const approvedFunction = async (id, email) => {
     totalAmount = totalAmount + product.unit_price;
   });
 
-  items.forEach((product) => {;
-
-    itemsDetails.push({
-      price: product.unit_price,
-      count: product.quantity,
-      productId: Number(product.id),
-    });
+  console.log(items);
+  items.forEach((product) => {
+    if (product.title != "discount") {
+      itemsDetails.push({
+        price: product.unit_price,
+        count: product.quantity,
+        productId: Number(product.id),
+      });
+    } else {
+      client.update({ balance: 0 });
+    }
   });
 
   const infoToSend = {
@@ -46,8 +48,6 @@ const approvedFunction = async (id, email) => {
     `${BACK_ROUTE}/shops`,
     infoToSend
   );
-
-
 
   return;
 };

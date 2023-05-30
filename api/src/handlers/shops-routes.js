@@ -4,6 +4,7 @@ const getShopsByClient = require("../controllers/Shops/getShopsByClient");
 const postNewShop = require("../controllers/Shops/postNewShop");
 const postNewShopValidation = require("../validations/postNewShop");
 const getShopsByClientIdValidation = require("../validations/getShopsByClientId");
+const cancelShop = require("../controllers/Shops/cancelShop");
 
 const shopsRouter = Router();
 
@@ -38,6 +39,16 @@ shopsRouter.post("/", postNewShopValidation, async (req, res) => {
     const shop = req.body;
     const newShop = await postNewShop(shop);
     res.status(201).json(newShop);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+shopsRouter.delete("/:shopId", async (req, res) => {
+  try {
+    const { shopId } = req.params;
+    const canceledShop = await cancelShop(shopId);
+    res.status(200).json({ canceled: canceledShop });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

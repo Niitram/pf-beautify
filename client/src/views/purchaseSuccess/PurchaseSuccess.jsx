@@ -10,9 +10,10 @@ function PurchaseSuccess() {
   useEffect(() => {
     //recupero del localStorage el id de usuario
     const clientId = JSON.parse(localStorage.getItem("userData"))?.id;
-    //borro el carrito del cliente en la base de datos y del localStorage
+    //borro el carrito del cliente y el appointment en la base de datos y del localStorage
     deleteCart(clientId);
     localStorage.setItem("cart", JSON.stringify([]));
+    localStorage.setItem("appointment", JSON.stringify({}));
     setTimeout(() => {
       navigate("/home");
     }, 5200);

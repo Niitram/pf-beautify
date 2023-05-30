@@ -10,9 +10,9 @@ export const getCart = async (clientId) => {
     }
 }
 
-export const postCart = async (clientId, cart) => {
+export const postCart = async (clientId, products) => {
     try {
-        return await axios.post(`${URL_BASE}/savedCarts/${clientId}`, cart)
+        return await axios.post(`${URL_BASE}/savedCarts/${clientId}`, products)
     } catch (error) {
         console.log(error.message);
     }

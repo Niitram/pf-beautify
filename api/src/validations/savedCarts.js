@@ -12,9 +12,6 @@ const getCartValidation = async (req, res, next) => {
   const client = await Client.findByPk(clientId);
   if (!client) return res.status(400).json({ error: "client not found" });
 
-  const cart = await SavedCart.findOne({ where: { ClientId: clientId } });
-  if (!cart) return res.status(400).json({ error: "cart not found" });
-
   next();
 };
 
@@ -33,6 +30,7 @@ const postCartValidation = async (req, res, next) => {
   if (!client) return res.status(400).json({ error: "client not found" });
 
   //* validaciones de los productos
+  if (!products.length) return next();
   for (const { id, quantity } of products) {
     if (String(id) === "NaN")
       return res.status(400).json({ error: "product id must be a number" });

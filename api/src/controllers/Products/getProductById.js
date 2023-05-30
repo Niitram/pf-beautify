@@ -1,8 +1,11 @@
-const { Product, Category } = require("../../db");
+const { Product, Category, Comment } = require("../../db");
+const getCommentsByProductId = require("../Comments/getCommentsByProductId");
 
 const getProductById = async (id) => {
-  const product = await Product.findByPk(id, { include: { model: Category } });
-
+  const product = await Product.findByPk(id, {
+    include: { model: Category },
+  });
+  const comments = await getCommentsByProductId(id);
   const newProduct = {
     id,
     name: product.name,
@@ -14,6 +17,7 @@ const getProductById = async (id) => {
     state: product.state,
     rate: product.finalRate,
     category: product.Category.name,
+    comments,
   };
 
   return newProduct;

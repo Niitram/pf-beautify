@@ -1,11 +1,11 @@
-const postNewShop = require("../controllers/Shops/postNewShop");
+const postForBulkCreate = require("../controllers/Shops/postForBulkCreate");
 const { Shop } = require("../db");
 const shops = require("./shops.json");
 
 const bulkCreateShops = async () => {
   try {
     for (const shop of shops) {
-      await postNewShop(shop);
+      await postForBulkCreate(shop);
     }
     console.log("Se han cargado las compras al servidor");
   } catch (error) {

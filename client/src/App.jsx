@@ -13,6 +13,7 @@ import DetailUser from "./views/detailUser/DetailUser";
 import Nav from "./components/nav/Nav";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addAppointment,
   getAllCategories,
   getAllProducts,
   getBackupProducts,
@@ -36,7 +37,6 @@ import Favorites from "./views/favorites/Favorites";
 import { getFavorites } from "./request/favorites";
 import Checkout from "./views/Checkout/Checkout";
 import PurchaseError from "./views/purchaseError/PurchaseError";
-import UserHistory from "./views/userHistory/userHistory";
 import Clients from "./views/clients/Clients";
 import Appointments from "./views/appointments/Appointments";
 import ServicesControl from "./views/Services Control/ServicesControl";
@@ -44,6 +44,18 @@ import Professionals from "./views/Professionals/Professionals";
 import ContactForm from "./views/ContactForm/contactForm";
 import FooterAll from "./components/footerAll/FooterAll";
 import NotFound from "./components/notFound/NotFound";
+import DetailService from "./views/detailService/detailService";
+import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
+import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
+import UserHistory from "./views/userHistory/UserHistory";
+import NewProfessional from "./views/newProfessional/newProfessional";
+
+import CheckoutAppointment from "./views/checkoutAppointment/checkoutAppointment";
+import AppointmentSuccess from "./views/appointmentSuccess/AppointmentSuccess";
+
+import NavAdmin from "./components/navAdmin/NavAdmin";
+import Sales from "./views/Sales/Sales";
+
 //Para deploy
 /* import axios from "axios"; */
 /* axios.defaults.baseURL = "https://beautifybackend-production.up.railway.app/"; */
@@ -55,6 +67,7 @@ function App() {
   const [products] = useGetProducts();
   const [categories] = useGetCategories();
   const errorState = useSelector((state) => state.errorState);
+  const appointment = useSelector((state) => state.appointment);
 
   // sirve para saber si el usuario no está logueado (true), se usa para prevenir que se guarde la información del usuario cuando este se está deslogueando (archivo firebaseConfig)
   const [logout, setLogout] = useToggle(true);
@@ -88,7 +101,7 @@ function App() {
     } else dispatch(getAllProducts(products));
   }, [dispatch, products, categories]);
 
-  // este useEffect trae la info del usuario desde el local Storage al estado global
+  // este useEffect trae la info del usuario desde el local Storage al estado global y setea los appointment si existen
   useEffect(() => {
     if (!userData.id) {
       const userInfo = JSON.parse(localStorage.getItem("userData")) || {
@@ -98,6 +111,10 @@ function App() {
         rol: INVITED,
       };
       dispatch(setUserInfoAction(userInfo));
+    }
+    if (!appointment) {
+      const appointmentInfo = JSON.parse(localStorage.getItem("appointment"));
+      if (appointmentInfo) dispatch(addAppointment(appointmentInfo));
     }
   }, [dispatch]);
 
@@ -125,6 +142,8 @@ function App() {
         const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
 
         if (currentLocation === "/loading") {
+          if (usuarioFirebase.email === "beautifyfinalproyect@gmail.com")
+            return navigate("/dashboardAdmin");
           if (!oldLocation || oldLocation === "/") navigate("/home");
           else navigate(oldLocation);
         }
@@ -137,17 +156,33 @@ function App() {
     }
   });
 
+  console.log(locationNow.pathname);
+
   return (
     <div className="App">
       {locationNow.pathname !== "/" &&
+      locationNow.pathname !== "/loading" &&
+      locationNow.pathname !== "/checkout" &&
+      (locationNow.pathname == "/dashboardAdmin" ||
+        locationNow.pathname == "/dashboardAdmin" ||
+        locationNow.pathname == "/dashboardAdmin/clients" ||
+        locationNow.pathname == "/dashboardAdmin/appointments" ||
+        locationNow.pathname == "/dashboardAdmin/services_control" ||
+        locationNow.pathname == "/dashboardAdmin/products_control/:id" ||
+        locationNow.pathname == "/dashboardAdmin/newProfessional" ||
+        locationNow.pathname == "/dashboardAdmin/products_control" ||
+        locationNow.pathname == "/dashboardAdmin/professionals") ? (
+        <NavAdmin setLogout={setLogout} />
+      ) : (
+        locationNow.pathname !== "/" &&
         locationNow.pathname !== "/loading" &&
-        locationNow.pathname !== "/checkout" &&
-        locationNow.pathname !== "/dashboardAdmin" && (
+        locationNow.pathname !== "/checkout" && (
           <Nav
             handleLoginClick={handleLoginClick}
             handleDetailClick={handleDetailClick}
           />
-        )}
+        )
+      )}
       {errorState.tittle && (
         <AlertWarning
           tittleAlert={errorState.tittle}
@@ -172,21 +207,20 @@ function App() {
       )}
 
       <Routes>
-        {/* Rutas que tiene acceso cualquiera */}
         <Route
           path="/"
-          element={
-            <Landing
-              handleLoginClick={handleLoginClick}
-              loginVisible={loginVisible}
-            />
-          }
+          element={<Landing handleLoginClick={handleLoginClick} />}
         />
         <Route path="/loading" element={<Loading />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/services" element={<Services />} />
+        <Route
+          path="/services"
+          element={<Services handleLoginClick={handleLoginClick} />}
+        />
+        <Route path="/detailService/:id" element={<DetailService />} />
         <Route
           path="/detailProduct/:id"
           element={<DetailProduct handleLoginClick={handleLoginClick} />}
@@ -197,7 +231,7 @@ function App() {
         {/* Rutas solo para ADMIN */}
         <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
           <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
-          <Route path="/dashbpardAdmin/newProduct" element={<NewProduct />} />
+          <Route path="/dashboardAdmin/newProduct" element={<NewProduct />} />
           <Route path="/dashboardAdmin/clients" element={<Clients />} />
           <Route
             path="/dashboardAdmin/appointments"
@@ -211,6 +245,19 @@ function App() {
             path="/dashboardAdmin/professionals"
             element={<Professionals />}
           />
+          <Route
+            path="/dashboardAdmin/products_control"
+            element={<ProductsAdmin />}
+          />
+          <Route
+            path="dashboardAdmin/products_control/:id"
+            element={<ProductDetailAdmin />}
+          />
+          <Route
+            path="/dashboardAdmin/newProfessional"
+            element={<NewProfessional />}
+          />
+          <Route path="/dashboardAdmin/sales" element={<Sales />} />
         </Route>
         {/* Rutas solo para CLIENT */}
         {/* <Route element={<ProtectedRoute isAllowed={userData.rol === CLIENT} />}>
@@ -236,15 +283,18 @@ function App() {
           <Route path="/purchaseSuccess" element={<PurchaseSuccess />} />
           <Route path="/detailPayment" element={<DetailPayment />} />
           <Route path="/userHistory" element={<UserHistory />} />
+          <Route
+            path="/checkoutAppointment"
+            element={<CheckoutAppointment />}
+          />
+          <Route path="/appointmentSuccess" element={<AppointmentSuccess />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-
       {locationNow.pathname !== "/" &&
         locationNow.pathname !== "/loading" &&
         locationNow.pathname !== "/checkout" &&
         locationNow.pathname !== "/dashboardAdmin" && <FooterAll />}
-      {/* <FooterAll /> */}
     </div>
   );
 }

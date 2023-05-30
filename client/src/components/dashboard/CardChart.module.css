@@ -1,0 +1,50 @@
+.card_dashboard {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 0.5fr 1fr;
+    grid-template-areas:      'title title'
+                             'grafico grafico';
+    justify-content: center;
+    text-align: center;
+    /*border: solid 1px rgb(0, 0, 0, 0.1);
+    */border-radius: 15px;
+    background-color: var(--bg-card);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    height: minmax(140px, auto);
+    width: 300px;
+    padding: 1rem;
+    overflow: hidden;
+   
+}
+  .card_title {
+    display: grid;
+    grid-area: title;
+    background-color: var(--accent2);
+    /*justify-content: center;
+    */place-items: center;
+    height: 4rem;
+    border-radius: 15px;
+    color: var(--text);
+    width:100%  ;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+  .date {
+    display: grid;
+    grid-area: date;
+    background-color: var(--accent2);
+    place-items: center;
+    height: 4rem;
+    border-radius: 0 15px 15px 0;
+    color:var(--accent3)
+  }
+ 
+  .chart {
+    display: grid;
+    grid-area: grafico;
+    place-items: center;
+    width:100%
+  }
+  
