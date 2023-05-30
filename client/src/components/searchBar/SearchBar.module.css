@@ -2,9 +2,7 @@
     margin-top: 2rem;
     margin-bottom:2rem ;
     z-index: 3;
-    height: 5rem;
-    align-items: center;
-    /* background-color: red; */
+    height: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,6 +13,7 @@
     background-color: var(--accent2);
     border: none;
     padding: 8px;
+    margin-top: 6%;
     border-radius: 0px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -29,7 +28,7 @@
 .buttonSubmit{
     font-family: 'Josefin Sans',sans-serif;
     height: 3rem;
-    background-color: #EE9890;
+    background-color: var(--accent2);
     border: none;
     font-weight: bold;
     padding: 8px;
@@ -40,9 +39,79 @@
     font-family: 'Josefin Sans',sans-serif;
     height: 2.5rem;
     margin: 10px;
-    background-color: #EE9890;
+    background-color: var(--accent2);
     border: none;
     font-weight: bold;
     padding: 8px;
     border-radius: 10px;
+}
+
+@media (max-width: 450px){
+    .input{
+        font-family: 'Josefin Sans',sans-serif;
+        background-color: var(--accent2);
+        border: none;
+        padding: 8px;
+        margin-top: 10%;
+        border-radius: 10px;
+        height: 3rem;
+        width: 20rem;
+    }
+    .Container{
+        margin-top: 2rem;
+        margin-bottom:2rem ;
+        z-index: 3;
+        height: 8.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .buttonSubmit{
+        font-family: 'Josefin Sans',sans-serif;
+        background-color:var(--accent2);
+        border: none;
+        font-weight: bold;
+        padding: 8px;
+        border-radius: 10px;
+    }
+}
+@media (max-width: 360px) {
+    .Container{
+        margin-top: 2rem;
+        margin-bottom:2rem ;
+        z-index: 3;
+        height: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .input{
+        font-family: 'Josefin Sans',sans-serif;
+        background-color: var(--accent2);
+        border: none;
+        padding: 8px;
+        margin-top: 6%;
+        border-radius: 10px;
+        height: 3rem;
+        width: 20rem;
+    }
+    .buttonSubmit{
+        font-family: 'Josefin Sans',sans-serif;
+        height: 2.5rem;
+        background-color:var(--accent2);
+        border: none;
+        font-weight: bold;
+        padding: 8px;
+        border-radius: 10px;
+    }
+    .buttonReset{
+        font-family: 'Josefin Sans',sans-serif;
+        height: 2.5rem;
+        margin: 10px;
+        background-color: var(--accent2);
+        border: none;
+        font-weight: bold;
+        padding: 8px;
+        border-radius: 10px;
+    }
 }
