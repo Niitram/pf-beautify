@@ -1,10 +1,13 @@
 import { addAppointment } from "../redux/actions";
 import { createAppointment } from "../request/appointments"
+import { getServiceById } from "../request/services";
 
 const handlePayAfter = async (dispatch, options, userData, navigate) => {
   try {
+    //Se pide el servicio por id
+    const respDb = await getServiceById(options.service);
     const reservation = {
-      profesionalId: options.service,
+      profesionalId: respDb.data.id,
       clientId: userData.id,
       serviceId: options.service,
       date: options.day,
