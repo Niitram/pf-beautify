@@ -130,14 +130,14 @@ function App() {
       logout
     ) {
       try {
-        await loginWithGoogleFirebase(
+        const client = await loginWithGoogleFirebase(
           usuarioFirebase,
           dispatch,
           navigate,
           locationNow
         );
         setLogout(false);
-
+        if (!client) return;
         const currentLocation = locationNow.pathname;
         const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
 
