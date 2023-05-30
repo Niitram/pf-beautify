@@ -211,6 +211,7 @@ function App() {
           path="/"
           element={<Landing handleLoginClick={handleLoginClick} />}
         />
+        <Route path="/loading" element={<Loading />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
@@ -290,6 +291,10 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {locationNow.pathname !== "/" &&
+        locationNow.pathname !== "/loading" &&
+        locationNow.pathname !== "/checkout" &&
+        locationNow.pathname !== "/dashboardAdmin" && <FooterAll />}
     </div>
   );
 }
