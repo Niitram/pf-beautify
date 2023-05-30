@@ -10,6 +10,7 @@ const getCommentsByProductId = require("../controllers/Comments/getCommentsByPro
 const putComment = require("../controllers/Comments/putComment");
 const deleteComment = require("../controllers/Comments/deleteComment");
 const postServiceComment = require("../controllers/Comments/postServiceComment");
+const getCommentsByClient = require("../controllers/Comments/getCommentsByClient");
 
 router.post(
   "/products/:productId/:clientId",
@@ -61,11 +62,21 @@ router.get(
   }
 );
 
+router.get("/client/:clientId", async (req, res) => {
+  try {
+    const { clientId } = req.params;
+    const comments = await getCommentsByClient(clientId);
+    res.status(200).json(comments);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 router.put("/:id", validateCommentModification, async (req, res) => {
   try {
-    const { content } = req.body;
+    const { content, tittle, rating } = req.body;
     const { id } = req.params;
-    const modified = await putComment(id, content);
+    const modified = await putComment(id, content, tittle, rating);
     res.status(200).json(modified);
   } catch (error) {
     res.status(500).json({ error: error.message });

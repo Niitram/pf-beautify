@@ -18,9 +18,6 @@ export default function AlertDialogSlide({
 }) {
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Slide in alert dialog
-      </Button> */}
       <Dialog
         open={openDialog}
         TransitionComponent={Transition}
@@ -39,12 +36,6 @@ export default function AlertDialogSlide({
         >
           {questionText}
         </DialogTitle>
-        {/* <DialogContent >
-            <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
-          </DialogContentText>
-          </DialogContent> */}
         <DialogActions>
           <Button
             onClick={yesCallback}

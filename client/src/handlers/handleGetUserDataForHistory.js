@@ -1,5 +1,6 @@
 import { getClientShops } from "../request/clients";
 import { getAppointmentsByClient } from "../request/appointments";
+import { getCommentsByClient } from "../request/comments";
 
 const setUserInfo = async (setUserData, setShops, setAppointments) => {
   //*trae la info del usuario del local storage y la setea en el estado
@@ -10,16 +11,33 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
   const dataDbShops = await getClientShops(userDataFromStorage.id);
   const dbShops = dataDbShops.data;
 
+  const dataComments = await getCommentsByClient(userDataFromStorage.id);
+  const comments = dataComments.data;
+
   const optimizedShops = dbShops.map(
     ({ id, amount, discount, details, date }) => {
       const prettyDate =
         date.slice(8, 10) + "/" + date.slice(5, 7) + "/" + date.slice(0, 4);
 
+      const optimizedDetails = details.map((det) => {
+        const comment = comments.filter(
+          (com) => com.ProductId === det.productId
+        );
+        return { ...det, comment: comment[0] || null };
+      });
+
+      const productsNamesArray = details.map(({ productName }, i) => {
+        if (i < details.length - 1) return `${productName}, `;
+        else return productName;
+      });
+      const productsNames = productsNamesArray.join("");
+
       return {
         id,
         amount,
         discount,
-        details,
+        productsNames,
+        details: optimizedDetails,
         date: prettyDate,
         ableToCancelShop: ableToCancelShop(date),
       };
@@ -45,6 +63,7 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
       const prettyDate =
         date.slice(8, 10) + "/" + date.slice(5, 7) + "/" + date.slice(0, 4);
 
+      const comment = comments.filter((com) => com.ServiceId === id);
       return {
         id,
         profesional: Profesional.fullname,
@@ -52,6 +71,7 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
         date: prettyDate,
         hour: hour.slice(0, 5),
         ableToCancelAppointment: ableToCancelAppointment(date, hour),
+        comment: comment[0],
       };
     }
   );
