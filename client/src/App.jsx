@@ -161,9 +161,9 @@ function App() {
   return (
     <div className="App">
       {locationNow.pathname !== "/" &&
-        locationNow.pathname !== "/loading" &&
-        locationNow.pathname !== "/checkout" &&(
-        locationNow.pathname == "/dashboardAdmin" || 
+      locationNow.pathname !== "/loading" &&
+      locationNow.pathname !== "/checkout" &&
+      (locationNow.pathname == "/dashboardAdmin" ||
         locationNow.pathname == "/dashboardAdmin" ||
         locationNow.pathname == "/dashboardAdmin/clients" ||
         locationNow.pathname == "/dashboardAdmin/appointments" ||
@@ -171,19 +171,18 @@ function App() {
         locationNow.pathname == "/dashboardAdmin/products_control/:id" ||
         locationNow.pathname == "/dashboardAdmin/newProfessional" ||
         locationNow.pathname == "/dashboardAdmin/products_control" ||
-        locationNow.pathname == "/dashboardAdmin/professionals" ) 
-        ? (
-          <NavAdmin/>
-          ):(
-            locationNow.pathname !== '/' &&
-            locationNow.pathname !== '/loading' &&
-            locationNow.pathname !== '/checkout' &&
-
+        locationNow.pathname == "/dashboardAdmin/professionals") ? (
+        <NavAdmin setLogout={setLogout} />
+      ) : (
+        locationNow.pathname !== "/" &&
+        locationNow.pathname !== "/loading" &&
+        locationNow.pathname !== "/checkout" && (
           <Nav
             handleLoginClick={handleLoginClick}
             handleDetailClick={handleDetailClick}
           />
-        )}
+        )
+      )}
       {errorState.tittle && (
         <AlertWarning
           tittleAlert={errorState.tittle}
@@ -260,9 +259,7 @@ function App() {
             path="/dashboardAdmin/newProfessional"
             element={<NewProfessional />}
           />
-          <Route
-          path="/dashboardAdmin/sales"
-          element={<Sales/>}/>
+          <Route path="/dashboardAdmin/sales" element={<Sales />} />
         </Route>
         {/* Rutas solo para CLIENT */}
         {/* <Route element={<ProtectedRoute isAllowed={userData.rol === CLIENT} />}>
