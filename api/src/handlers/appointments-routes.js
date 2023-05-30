@@ -107,7 +107,6 @@ router.post("/", postAppointmentValidation, async (req, res) => {
 
     res.status(201).json(appointmentCreated);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: "Error creating appointment" });
   }
 });

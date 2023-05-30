@@ -95,6 +95,7 @@ export const loginWithGoogleFirebase = async (
       phone: usuarioFirebase.phoneNumber,
       image: usuarioFirebase.image || null,
     });
+    if (!response) return;
     const dbClient = response.data;
     if (dbClient.banned) {
       navigate("/");
@@ -114,8 +115,9 @@ export const loginWithGoogleFirebase = async (
       rol: CLIENT,
     };
 
-    if (userData.email === "beautifyfinalproyect@gmail.com")
+    if (userData.email === "beautifyfinalproyect@gmail.com") {
       userData.rol = ADMIN;
+    }
 
     localStorage.setItem("userData", JSON.stringify(userData));
     const cartSaved = await getCart(userData.id);
@@ -123,7 +125,7 @@ export const loginWithGoogleFirebase = async (
 
     // setear el estado global
     dispatch(setUserInfoAction(userData));
-    locationNow.pathname === "/" && navigate("/home");
+    // locationNow.pathname === "/" && navigate("/home");
     return userData;
   } catch (error) {
     navigate("/");

@@ -229,7 +229,15 @@ function App() {
         <Route path="/contact" element={<ContactForm />} />
 
         {/* Rutas solo para ADMIN */}
-        <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
+        <Route
+          element={
+            <ProtectedRoute
+              isAllowed={
+                JSON.parse(localStorage.getItem("userData"))?.rol === ADMIN
+              }
+            />
+          }
+        >
           <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
           <Route path="/dashboardAdmin/newProduct" element={<NewProduct />} />
           <Route path="/dashboardAdmin/clients" element={<Clients />} />
