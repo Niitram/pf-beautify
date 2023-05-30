@@ -90,10 +90,9 @@ function Cart() {
   const handleCheckOut = () => {
     let aux = [...carrito, emailUsuario];
     askPreference(aux)
-      .then(({ data }) =>
-        localStorage.setItem("preference", JSON.stringify(data.id))
+      .then( ({ data }) =>
+         localStorage.setItem("preference", JSON.stringify(data.id))
       )
-      .then(navigate("/checkout"))
       .catch((error) => {
         console.log(error.message);
         dispatch(
@@ -181,7 +180,7 @@ function Cart() {
         {cantArticulos > 0 && (
           <button
             className={styles.checkout}
-            onClick={handleClickOpenCheckoutDialog}
+            onClick={ () => { handleCheckOut(); handleClickOpenCheckoutDialog()}}
           >
             Checkout
           </button>
@@ -200,7 +199,7 @@ function Cart() {
       <AlertDialogSlide
         handleCloseDialog={handleCloseCheckoutDialog}
         openDialog={openCheckoutDialog}
-        yesCallback={handleCheckOut}
+        yesCallback={() => navigate("/checkout")}
         questionText={"Are you sure you wanna proceed to purchase?"}
       />
     </div>

@@ -7,15 +7,15 @@ const getServiceData = async (id) => {
     name.push(Client.findByPk(client.dataValues.ClientId));
   });
   await Promise.all(name).then((response) => {
-     response.forEach((res) =>
+    response.forEach((res) =>
       service.dataValues.Comments.forEach((client) => {
-        if(client.dataValues.ClientId === res.dataValues.id)
-        client.dataValues.clientName = res.dataValues.fullName;
+        if (client.dataValues.ClientId === res.dataValues.id)
+          client.dataValues.clientName = res.dataValues.fullName;
       })
-    )
-  })
- 
-return service 
+    );
+  });
+
+  return service;
 };
 
 module.exports = getServiceData;
