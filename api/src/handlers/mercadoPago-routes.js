@@ -5,15 +5,20 @@ const { ACESS_TOKEN, BACK_ROUTE, ROUTE } = process.env;
 const approved = require("../controllers/MercadoPago/approved");
 const router = express();
 const mercadopago = require("mercadopago");
-const {createAppointment} = require("../controllers/Appointments/postAppointmentByClient")
+const {
+  createAppointment,
+} = require("../controllers/Appointments/postAppointmentByClient");
 mercadopago.configure({
   access_token: `${ACESS_TOKEN}`,
 });
 
 router.post("/create_preference", async (req, res) => {
+  const external_reference = req.body.pop();
+  const items = req.body;
+  const returnUrl = req.headers.origin;
   let preference = {
-    external_reference: req.body.pop(),
-    items: req.body,
+    external_reference,
+    items,
     back_urls: {
       success: `${BACK_ROUTE}/mercadopago/feedback`,
       failure: `${BACK_ROUTE}/mercadopago/feedback`,
@@ -24,14 +29,15 @@ router.post("/create_preference", async (req, res) => {
   mercadopago.preferences
     .create(preference)
     .then(async function (response) {
+      const preferenceId = response.body.id;
+      const clientMail = response.body.preferenceId;
       await Purchase.create({
-        preferenceId: response.body.id,
-        clientMail: response.body.external_reference,
-        returnUrl: req.headers.origin,
+        preferenceId,
+        clientMail,
+        returnUrl,
       });
-      console.log(response.body.id);
       res.json({
-        id: response.body.id,
+        id: preferenceId,
       });
     })
     .catch(function (error) {
@@ -40,9 +46,12 @@ router.post("/create_preference", async (req, res) => {
 });
 
 router.post("/service_preference", async (req, res) => {
+  const external_reference = req.body.pop();
+  const appointmentData = JSON.stringify(req.body.pop());
+  const items = req.body;
   let preference = {
-    external_reference: req.body.pop(),
-    items: req.body,
+    external_reference,
+    items,
     back_urls: {
       success: `${BACK_ROUTE}/mercadopago/feedbackService`,
       failure: `${BACK_ROUTE}/mercadopago/feedbackService`,
@@ -50,19 +59,21 @@ router.post("/service_preference", async (req, res) => {
     },
     auto_return: "approved",
   };
-  const data = JSON.stringify(req.body.pop())
-  mercadopago.preferences 
+
+  mercadopago.preferences
     .create(preference)
     .then(async function (response) {
+      const clientMail = response.body.external_reference;
+      const preferenceId = response.body.id;
+      const returnUrl = req.headers.origin;
       await Purchase.create({
-        preferenceId: response.body.id,
-        appointmentData: data,
-        clientMail: response.body.external_reference,
-        returnUrl: req.headers.origin,
+        preferenceId,
+        appointmentData,
+        clientMail,
+        returnUrl,
       });
-      console.log(response.body.id);
       res.json({
-        id: response.body.id,
+        id: preferenceId,
       });
     })
     .catch(function (error) {
@@ -79,38 +90,51 @@ router.get("/feedback", async (req, res) => {
     }
 
     const products = toDelete[0].dataValues;
-
+    const preferenceId = products.preferenceId;
+    const returnUrl = products.returnUrl;
     if (req.query.status === "approved") {
-      const response = await approved(products.preferenceId, email);
-      res.status(200).redirect(`${products.returnUrl}/#/purchaseSuccess`);
+      const response = await approved(preferenceId, email);
+      res.status(200).redirect(`${returnUrl}/#/purchaseSuccess`);
     } else {
       const purchase = await Purchase.findAll({ where: { clientMail: email } });
       purchase.forEach(async (each) => {
         await each.destroy();
       });
-      res.status(402).redirect(`${products.returnUrl}/#/purchaseError`);
+      res.status(402).redirect(`${returnUrl}/#/purchaseError`);
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-
 router.get("/feedbackService", async (req, res) => {
   try {
     const email = req.query.external_reference;
     const toDelete = await Purchase.findAll({ where: { clientMail: email } });
-    for (let i = 0; i < toDelete.length -1 ; i++) {
+    for (let i = 0; i < toDelete.length - 1; i++) {
       toDelete[i].destroy();
     }
     const service = toDelete[0].dataValues;
-    console.log(service)
-    
-    const {profesionalId, clientId, serviceId, date, hour, paid} = JSON.parse(service.appointmentData)
-    console.log(date)
+    const appointmentData = service.appointmentData;
+    const returnUrl = service.returnUrl;
+    const { profesionalId, clientId, serviceId, date, hour, paid } =
+      JSON.parse(appointmentData);
     if (req.query.status === "approved") {
-      const response = await createAppointment(profesionalId, clientId, serviceId, date, hour, paid);
-      res.status(200).redirect(`${service.returnUrl}/#/purchaseSuccess`);
+      const response = await createAppointment(
+        profesionalId,
+        clientId,
+        serviceId,
+        date,
+        hour,
+        paid
+      );
+      res.status(200).redirect(`${returnUrl}/#/purchaseSuccess`);
+    } else {
+      const service = await Purchase.findAll({ where: { clientMail: email } });
+      service.forEach(async (each) => {
+        await each.destroy();
+      });
+      res.status(402).redirect(`${returnUrl}/#/purchaseError`);
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

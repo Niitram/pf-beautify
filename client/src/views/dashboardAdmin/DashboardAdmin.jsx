@@ -85,3 +85,5 @@ const DashboardAdmin = () => {
   );
 };
 export default DashboardAdmin;
+
+export default DashboardAdmin

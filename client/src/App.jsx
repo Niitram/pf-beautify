@@ -207,19 +207,10 @@ function App() {
       )}
 
       <Routes>
-        {/* Rutas que tiene acceso cualquiera */}
-        <Route
-          path="/"
-          element={
-            <Landing
-              handleLoginClick={handleLoginClick}
-              loginVisible={loginVisible}
-            />
-          }
-        />
-        <Route path="/loading" element={<Loading />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<Products />} />
         <Route path="/services" element={<Services />} />
         <Route path="/detailService/:id" element={<DetailService />} />
@@ -293,13 +284,8 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-
-      {locationNow.pathname !== "/" &&
-        locationNow.pathname !== "/loading" &&
-        locationNow.pathname !== "/checkout" &&
-        locationNow.pathname !== "/dashboardAdmin" && <FooterAll />}
     </div>
-  );
+  )
 }
 
 export default App;
