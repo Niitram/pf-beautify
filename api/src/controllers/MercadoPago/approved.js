@@ -32,6 +32,8 @@ const approvedFunction = async (id, email) => {
         count: product.quantity,
         productId: Number(product.id),
       });
+    } else {
+      client.update({ balance: 0 });
     }
   });
 
