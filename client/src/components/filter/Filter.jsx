@@ -60,9 +60,8 @@ function Filter({ setFilter, filter, setCurrentPage }) {
             );
           })}
         </Select>
-        <Box className={styles.boxSlider} sx={{ width: 300}}>
+        <Box className={styles.boxSlider} sx={{ width: 300 }}>
           <Slider
-          
             className={styles.Slider}
             getAriaLabel={() => "Temperature range"}
             value={filter.price}

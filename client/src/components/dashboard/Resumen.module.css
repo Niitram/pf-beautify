@@ -5,7 +5,7 @@
     padding: 0.5rem;
     width: 100%;
     height:auto;
-    background-color: #f5b7b1;
+    background-color: var(--background);
 }
 .profile_admin{
     display:flex;
@@ -54,7 +54,7 @@
     padding:0.5rem
     
 }
-.content_details >div{
+.content_details > div{
     
     flex-grow: 1;
 }

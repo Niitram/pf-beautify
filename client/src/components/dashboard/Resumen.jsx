@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
-import Avatar from '@mui/material/Avatar';
-import styles from "./Resumen.module.css"
-import { rgbToHex } from '@mui/system';
-import { getTotalClientes, getTotalProductos, getTotalServices,getTotalAppointments,getTotalProfesionales } from '../../request/homeDashboard/'
-
+import Avatar from "@mui/material/Avatar";
+import styles from "./Resumen.module.css";
+import { rgbToHex } from "@mui/system";
+import {
+  getTotalClientes,
+  getTotalProductos,
+  getTotalServices,
+  getTotalAppointments,
+  getTotalProfesionales,
+} from "../../request/homeDashboard/";
+import logo from "../../assets/images/logo-beautify-500x500.png";
 export const Resumen = () => {
-  const colorRgb = '#030a10';
+  const colorRgb = "#030a10";
   const [numClientes, setNumClientes] = useState(0);
   const [numProductos, setNumProductos] = useState(0);
   const [numServices, setNumServices] = useState(0);
   const [numAppointments, setNumAppointments] = useState(0);
   const [numProfesionals, setNumProfesionals] = useState(0);
-
 
   useEffect(() => {
     const fetchTotalClientes = async () => {
@@ -40,7 +45,7 @@ export const Resumen = () => {
         console.error("Error al obtener el total de servicios:", error);
       }
     };
-    const fetchTotalAppointments= async () => {
+    const fetchTotalAppointments = async () => {
       try {
         const totalAppointments = await getTotalAppointments();
         setNumAppointments(totalAppointments);
@@ -48,16 +53,15 @@ export const Resumen = () => {
         console.error("Error al obtener el total de productos:", error);
       }
     };
-    const fetchTotalProfesionals= async () => {
+    const fetchTotalProfesionals = async () => {
       try {
-        const totalProfesionals = await  getTotalProfesionales();
+        const totalProfesionals = await getTotalProfesionales();
         setNumProfesionals(totalProfesionals);
       } catch (error) {
         console.error("Error al obtener el total de productos:", error);
       }
     };
-   
-     
+
     fetchTotalClientes();
     fetchTotalProductos();
     fetchTotalServices();
@@ -69,10 +73,13 @@ export const Resumen = () => {
     <section className={styles.resumen_container}>
       <div className={styles.profile_admin}>
         <div>
-          <h2>Beautify Administrator</h2>
+          <img src={logo} />
         </div>
         <figure>
-          <img src="https://media.istockphoto.com/id/1257734578/es/foto/colores-de-moda-de-esmaltes-de-u%C3%B1as-varios-tonos.jpg?s=612x612&w=0&k=20&c=eDRkLSCw1jC0UwMI-MTphbEv25G7f3Ugw4yAf2MwVwI=" alt="profile" />
+          <img
+            src="https://media.istockphoto.com/id/1257734578/es/foto/colores-de-moda-de-esmaltes-de-u%C3%B1as-varios-tonos.jpg?s=612x612&w=0&k=20&c=eDRkLSCw1jC0UwMI-MTphbEv25G7f3Ugw4yAf2MwVwI="
+            alt="profile"
+          />
         </figure>
       </div>
       <div className={styles.details}>
@@ -116,5 +123,5 @@ export const Resumen = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
