@@ -3,7 +3,7 @@ const getServices = require("../controllers/Services/getServices");
 const postService = require("../controllers/Services/postService");
 const deleteService = require("../controllers/Services/deleteService");
 const putService = require("../controllers/Services/putService");
-const getServiceData = require("../controllers/Services/getServiceData")
+const getServiceData = require("../controllers/Services/getServiceData");
 const {
   validatePostService,
   validateServiceExistence,
@@ -19,26 +19,22 @@ router.get("/", validateServiceExistence, async (req, res) => {
   }
 });
 
-
-router.get('/:serviceId', async (req,res) => {
+router.get("/:serviceId", async (req, res) => {
   try {
-    const {serviceId} = req.params
-    const response = await getServiceData(serviceId)
-    res.json(response)
-  } catch (error) {
-    
-  }
-})
+    const { serviceId } = req.params;
+    const response = await getServiceData(serviceId);
+    res.json(response);
+  } catch (error) {}
+});
 
 router.post("/", validatePostService, async (req, res) => {
   try {
-    const { name, price, description, image, rate, duration } = req.body;
+    const { name, price, description, image, duration } = req.body;
     const createService = await postService(
       name,
       price,
       description,
       image,
-      rate,
       duration
     );
     res.status(201).json(createService);

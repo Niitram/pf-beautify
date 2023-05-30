@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import CommentForm from "../commentForm/commentForm";
 import AlertTwoOptions from "../alertTwoOptions/AlertTwoOptions";
 import { cancelAppointment } from "../../request/appointments";
+import AlertDialogSlide from "../slideDialog/slideDialog";
 
 export default function AppointmentsTable({
   appointments,
@@ -24,7 +25,7 @@ export default function AppointmentsTable({
       col3: `${row.date}`,
       col4: row.hour,
       col5: row.ableToCancelAppointment
-        ? "Cancel / Modify appointment"
+        ? "Cancel appointment"
         : row.comment
         ? "Give us your opinion"
         : "See your Review",
@@ -60,22 +61,18 @@ export default function AppointmentsTable({
           }
         }}
       />
-      <AlertTwoOptions
+
+      <AlertDialogSlide
         openDialog={wishToCancelOrModify}
         handleCloseDialog={() => setWishToCancelOrModify(false)}
-        optionOne={() => {
-          console.log("quiero modificar");
-          setWishToCancelOrModify(false);
-        }}
-        optionTwo={async () => {
+        yesCallback={async () => {
           await cancelAppointment(eventRowId);
           await updateAppointments();
           setWishToCancelOrModify(false);
         }}
-        questionTitle="Do you wish to cancel or to modify your appointment?"
-        textOne="Modify"
-        textTwo="Cancel"
+        questionText="Are you sure you wanna cancel your appoinment?"
       />
+
       <CommentForm
         openDialog={openFeedback}
         handleCloseDialog={() => {

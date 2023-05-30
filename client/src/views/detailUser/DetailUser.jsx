@@ -30,6 +30,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const getDataFromDb = async (email) => {
     const data = await getClient(email);
     const userFromDb = data.data;
+    console.log(data);
 
     setUserData({
       id: userFromDb.id,
@@ -38,6 +39,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       adress: userFromDb.adress,
       phone: userFromDb.phone,
       image: userFromDb.image,
+      balance: userFromDb.balance,
     });
   };
 
@@ -82,6 +84,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     adress: "",
     phone: "",
     image: "",
+    balance: "",
   };
 
   const [userData, setUserData] = useState(initialState);
@@ -121,6 +124,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       adress: userFromDb.adress,
       phone: userFromDb.phone,
       image: userFromDb.image,
+      balance: userFromDb.balance,
     });
     setVisibleInputs(initialState);
     setUpdatedData(initialState);
@@ -240,6 +244,10 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
                 Submit changes
               </button>
             )}
+
+            <h4 style={{ color: "#d14d72" }}>
+              Your credit: ${Math.abs(userData.balance) || 0}
+            </h4>
 
             <hr className={styles.hr} />
 

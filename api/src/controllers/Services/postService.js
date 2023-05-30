@@ -8,12 +8,10 @@ const postService = async (name, price, description, image, rate, duration) => {
     price: price,
     description: description,
     image: image,
-    rate: rate,
     duration: duration,
   });
-  
+
   return response;
 };
-
 
 module.exports = postService;
