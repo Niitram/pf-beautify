@@ -78,6 +78,7 @@ function Cart() {
 
   const emailUsuario = useSelector((state) => state.userData.email);
   const localCarrito = JSON.parse(localStorage.getItem("cart")) || [];
+
   const carrito = localCarrito.map((element) => {
     return {
       title: element.name,
@@ -86,12 +87,13 @@ function Cart() {
       id: element.id,
     };
   });
+  console.log(carrito);
 
   const handleCheckOut = () => {
     let aux = [...carrito, emailUsuario];
     askPreference(aux)
-      .then( ({ data }) =>
-         localStorage.setItem("preference", JSON.stringify(data.id))
+      .then(({ data }) =>
+        localStorage.setItem("preference", JSON.stringify(data.id))
       )
       .catch((error) => {
         console.log(error.message);
@@ -180,7 +182,10 @@ function Cart() {
         {cantArticulos > 0 && (
           <button
             className={styles.checkout}
-            onClick={ () => { handleCheckOut(); handleClickOpenCheckoutDialog()}}
+            onClick={() => {
+              handleCheckOut();
+              handleClickOpenCheckoutDialog();
+            }}
           >
             Checkout
           </button>
@@ -206,4 +211,4 @@ function Cart() {
   );
 }
 
-export default Cart
+export default Cart;

@@ -11,8 +11,10 @@ const cancelShop = async (shopId) => {
     const product = await addStock(detail.ProductId, detail.count);
   });
   8;
+
   await client.update({
-    balance: -(shopToCancel.amount - shopToCancel.discount),
+    balance:
+      (client.balance || 0) - (shopToCancel.amount - shopToCancel.discount),
   });
 
   await shopToCancel.destroy();
