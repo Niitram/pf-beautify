@@ -33,8 +33,8 @@ export default function AppointmentsTable(){
         {field:'col3',headerName:'hour',width:100},
         {field:'col4',headerName:'paid',width:100},
         {field:'col5',headerName:'service',width:300},
-        {field:'col6',headerName:'professional',width:300},
-        {field:'col7',headerName:'client',width:300}
+        {field:'col6',headerName:'Client',width:250},
+        {field:'col7',headerName:'Professional',width:240}
     ]
 
     console.log(rows)
@@ -44,6 +44,7 @@ export default function AppointmentsTable(){
             <DataGrid
                 columns={columns}
                 rows={rows}
+                checkboxSelection={true}
             />
         </div>
     )

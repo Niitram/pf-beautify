@@ -17,7 +17,7 @@ export default function Professionals(){
                     className={styles.iconButton}
                 >
                     <div></div>
-                    <AddIcon className={styles.plus} style={{fill:paleta.background}}/>
+                    <AddIcon className={styles.plus} style={{fill:paleta.background,scale:'400%'}}/>
                 </IconButton>
             </div>
         </div>

@@ -47,7 +47,7 @@ const DashboardAdmin = () => {
   const dataProductCategories = Object.values(staticProductCategories);
   return (
     <div className={styles.admin_container}>
-      <NavAdmin />
+      {/* <NavAdmin /> */}
       <Resumen />
       <div className={styles.rating}>
         <div>

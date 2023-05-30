@@ -37,6 +37,7 @@ export default function ProfessionalsTable(){
             <DataGrid 
                 columns={columns}
                 rows={rows}
+                checkboxSelection={true}    
             />
         </div>
     )

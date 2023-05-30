@@ -9,3 +9,11 @@ export const cancelShop = async (shopId) => {
     console.log(error.message);
   }
 };
+
+export const getAllSales = async () => {
+  try {
+    return await axios.get(`${URL_BASE}/shops/allDetails`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
