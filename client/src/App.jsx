@@ -54,6 +54,7 @@ import CheckoutAppointment from "./views/checkoutAppointment/checkoutAppointment
 import AppointmentSuccess from "./views/appointmentSuccess/AppointmentSuccess";
 
 import NavAdmin from "./components/navAdmin/NavAdmin";
+import Sales from "./views/Sales/Sales";
 
 //Para deploy
 /* import axios from "axios"; */
@@ -161,19 +162,23 @@ function App() {
     <div className="App">
       {locationNow.pathname !== "/" &&
         locationNow.pathname !== "/loading" &&
-        locationNow.pathname !== "/checkout" &&
-        locationNow.pathname == "/dashboardAdmin" &&
-        locationNow.pathname == "/dashboardAdmin/clients" &&
-        locationNow.pathname == "/dashboardAdmin/appointments" &&
-        locationNow.pathname == "/dashboardAdmin/services_control" &&
-        locationNow.pathname == "/dashboardAdmin/products_control/:id" &&
-        locationNow.pathname == "/dashboardAdmin/newProfessional" &&
-        locationNow.pathname == "/dashboardAdmin/products_control" &&
-        locationNow.pathname == "/dashboardAdmin/professionals" && <NavAdmin />}
-      {locationNow.pathname !== "/" &&
-        locationNow.pathname !== "/loading" &&
-        locationNow.pathname !== "/checkout" &&
-        locationNow.pathname !== "/dashboardAdmin" && (
+        locationNow.pathname !== "/checkout" &&(
+        locationNow.pathname == "/dashboardAdmin" || 
+        locationNow.pathname == "/dashboardAdmin" ||
+        locationNow.pathname == "/dashboardAdmin/clients" ||
+        locationNow.pathname == "/dashboardAdmin/appointments" ||
+        locationNow.pathname == "/dashboardAdmin/services_control" ||
+        locationNow.pathname == "/dashboardAdmin/products_control/:id" ||
+        locationNow.pathname == "/dashboardAdmin/newProfessional" ||
+        locationNow.pathname == "/dashboardAdmin/products_control" ||
+        locationNow.pathname == "/dashboardAdmin/professionals" ) 
+        ? (
+          <NavAdmin/>
+          ):(
+            locationNow.pathname !== '/' &&
+            locationNow.pathname !== '/loading' &&
+            locationNow.pathname !== '/checkout' &&
+
           <Nav
             handleLoginClick={handleLoginClick}
             handleDetailClick={handleDetailClick}
@@ -255,6 +260,9 @@ function App() {
             path="/dashboardAdmin/newProfessional"
             element={<NewProfessional />}
           />
+          <Route
+          path="/dashboardAdmin/sales"
+          element={<Sales/>}/>
         </Route>
         {/* Rutas solo para CLIENT */}
         {/* <Route element={<ProtectedRoute isAllowed={userData.rol === CLIENT} />}>

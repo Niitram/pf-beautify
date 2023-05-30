@@ -18,7 +18,7 @@ export default function ProductsTable(){
             col1:row.id,
             col2:row.name,
             col3:`$${row.price}`,
-            col4:row.discount?`${row.discount}%` : 'none',
+            col4:row.discount?`${row.discount}` : 'none',
             col5:row.rate.toFixed(2),
             col6:row.stock,
             // col7:
