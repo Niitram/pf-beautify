@@ -165,6 +165,7 @@ function App() {
         locationNow.pathname == "/dashboardAdmin" ||
         locationNow.pathname == "/dashboardAdmin/clients" ||
         locationNow.pathname == "/dashboardAdmin/appointments" ||
+        locationNow.pathname == "/dashboardAdmin/newProduct" ||
         locationNow.pathname == "/dashboardAdmin/services_control" ||
         locationNow.pathname == "/dashboardAdmin/products_control/:id" ||
         locationNow.pathname == "/dashboardAdmin/newProfessional" ||

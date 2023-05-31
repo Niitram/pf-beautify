@@ -11,12 +11,16 @@
 }
 .containerArticulos {
   position: relative;
-  width: 40%;
+  width: 70%;
   /* height: 150px; */
   height: fit-content;
   padding: 70px;
   /* border: 1px solid red; */
 }
+.imgAndDetail{ 
+    display: flex;
+   align-items: center;
+   }
 .checkout {
   padding: 0.7rem 1rem;
   width: fit-content;
@@ -82,10 +86,9 @@
   background-color: var(--accent2);
   margin-top: 1.5rem;
 }
-.imagenArticulo img {
+.imagenArticulo {
   width: 5rem;
   border-radius: 5px;
-  margin-left: 1.5rem;
 }
 
 .detallesArticulo {
@@ -111,12 +114,14 @@
 .precio {
   font-family: "Poppins";
   font-size: small;
-  width: 3rem;
+  width: 4rem;
 }
 .cantidad {
   display: flex;
   align-items: center;
   flex-direction: row;
+  margin-right: 10px;
+  margin-left: 10px;
   /* background-color: red; */
 }
 .btnCart {
@@ -159,4 +164,54 @@
   display: flex;
   align-items: center;
   margin-right: 15px;
+}
+
+
+@media (max-width: 818px) {
+  .containerArticulos {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    padding: 90px;
+
+  }
+  .articulo {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+  .imgAndDetail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .detallesArticulo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .descriptionProduct {
+    font-size: 9px;
+    font-family: "Nunito";
+    width: 15rem;
+    text-align: center;
+  }
+  .btnupdown {
+    display: flex;
+    flex-direction: row;
+    gap: 1%;
+  }
+  .botonesArticulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0px;
+  }
+  .precio {
+    font-family: "Poppins";
+    font-size: small;
+    width: 4rem;
+  }
+  
 }

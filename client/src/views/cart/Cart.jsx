@@ -135,13 +135,10 @@ function Cart() {
         </label>
         {cart.map((cartItem) => (
           <div key={cartItem.id} className={styles.articulo}>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <div
-                className={styles.imagenArticulo}
-                style={{ marginRight: "10px" }}
-              >
+            <div className={styles.imgAndDetail}>
+              <div className={styles.containerimagenArticulo}>
                 <Link to={`/detailProduct/${cartItem.id}`}>
-                  <img src={cartItem.image} />
+                  <img className={styles.imagenArticulo} src={cartItem.image} />
                 </Link>
               </div>
               <div className={styles.detallesArticulo}>
@@ -152,7 +149,7 @@ function Cart() {
               </div>
             </div>
             <div className={styles.botonesArticulo}>
-              <div className={styles.cantidad} style={{ marginRight: "10px" }}>
+              <div className={styles.cantidad}>
                 <div className={styles.btnupdown}>
                   <button
                     disabled={cartItem.quantity === cartItem.stock}
