@@ -121,7 +121,7 @@ export const loginWithGoogleFirebase = async (
 
     localStorage.setItem("userData", JSON.stringify(userData));
     //Se chequea previamente si hay algo en el localStorage porque sino lo borra
-    const cartLS = JSON.parse(localStorage.getItem("cart"));
+    const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
     if (cartLS.length === 0) {
       const cartSaved = await getCart(userData.id);
       localStorage.setItem("cart", JSON.stringify(cartSaved.data));
