@@ -7,6 +7,9 @@ import AlertDialogSlide from "../slideDialog/slideDialog";
 import { cancelShop } from "../../request/shops";
 import ScrollDialog from "./ProductsDetailsTable";
 import CommentForm from "../commentForm/commentForm";
+import Loading from "../../views/loading/Loading";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 export default function ProductsHistoryTable({
   shops,
@@ -20,16 +23,18 @@ export default function ProductsHistoryTable({
   const [currentProductFeedback, setCurrentProductFeedback] = useState(null);
   const [openFeedback, setOpenFeedback] = useState(false);
 
-  const rows = shops.map((row) => {
-    return {
-      id: row.id,
-      col1: row.date,
-      col2: row.amount,
-      col3: `${row.discount}`,
-      col4: row.productsNames,
-      col6: row.ableToCancelShop ? "Cancel purchase" : "",
-    };
-  });
+  const rows =
+    shops &&
+    shops.map((row) => {
+      return {
+        id: row.id,
+        col1: row.date,
+        col2: row.amount,
+        col3: `${row.discount}`,
+        col4: row.productsNames,
+        col6: row.ableToCancelShop ? "Cancel purchase" : "",
+      };
+    });
 
   const column = [
     { field: "col1", headerName: "Date", width: 100 },
@@ -44,52 +49,80 @@ export default function ProductsHistoryTable({
   ];
 
   return (
-    <div className={styles.container}>
-      <DataGrid
-        columns={column}
-        rows={rows}
-        pageSize={15}
-        onCellClick={(e) => {
-          setEventRowId(e.id);
-          e.field === "col4" && setOpenDetail(true);
-          e.field === "col6" && setWishToCancel(true);
-        }}
-      />
+    <div style={{ color: "transparent" }}>
+      {shops && !shops.length && (
+        <div
+          style={{
+            minHeight: "10em",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          You have no products purchase history
+        </div>
+      )}
+      {shops && shops.length && (
+        <div className={styles.container}>
+          <DataGrid
+            columns={column}
+            rows={rows}
+            pageSize={15}
+            onCellClick={(e) => {
+              setEventRowId(e.id);
+              e.field === "col4" && setOpenDetail(true);
+              e.field === "col6" && setWishToCancel(true);
+            }}
+          />
 
-      <AlertDialogSlide
-        openDialog={wishToCancel}
-        handleCloseDialog={() => {
-          setWishToCancel(false);
-        }}
-        yesCallback={() => {
-          cancelShop(eventRowId);
-          setWishToCancel(false);
-          setShops(shops.filter(({ id }) => id !== eventRowId));
-        }}
-        questionText={
-          "Are you sure you wanna cancel your purchase?\nA proportional discount would be granted to you so you can keep shoping in our web site"
-        }
-      />
+          <AlertDialogSlide
+            openDialog={wishToCancel}
+            handleCloseDialog={() => {
+              setWishToCancel(false);
+            }}
+            yesCallback={() => {
+              cancelShop(eventRowId);
+              setWishToCancel(false);
+              setShops(shops.filter(({ id }) => id !== eventRowId));
+            }}
+            questionText={
+              "Are you sure you wanna cancel your purchase?\nA proportional discount would be granted to you so you can keep shoping in our web site"
+            }
+          />
 
-      <CommentForm
-        openDialog={openFeedback}
-        handleCloseDialog={() => {
-          setOpenFeedback(false);
-        }}
-        type={"product"}
-        id={feedbackProductId}
-        comment={currentProductFeedback}
-        updateProductsComments={updateProductsComments}
-      />
+          <CommentForm
+            openDialog={openFeedback}
+            handleCloseDialog={() => {
+              setOpenFeedback(false);
+            }}
+            type={"product"}
+            id={feedbackProductId}
+            comment={currentProductFeedback}
+            updateProductsComments={updateProductsComments}
+          />
 
-      <ScrollDialog
-        setCurrentProductFeedback={setCurrentProductFeedback}
-        setOpenFeedback={setOpenFeedback}
-        setFeedbackProductId={setFeedbackProductId}
-        open={openDetail}
-        handleClose={() => setOpenDetail(false)}
-        shopData={shops.filter(({ id }) => id === eventRowId)[0]}
-      />
+          <ScrollDialog
+            setCurrentProductFeedback={setCurrentProductFeedback}
+            setOpenFeedback={setOpenFeedback}
+            setFeedbackProductId={setFeedbackProductId}
+            open={openDetail}
+            handleClose={() => setOpenDetail(false)}
+            shopData={shops.filter(({ id }) => id === eventRowId)[0]}
+          />
+        </div>
+      )}
+      {!shops && (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "10em",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
     </div>
   );
 }

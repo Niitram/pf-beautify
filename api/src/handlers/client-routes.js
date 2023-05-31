@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const postClient = require("../controllers/Clients/postClient");
-const purchaseDevolution = require('../controllers/Clients/purchaseDevolution')
+const purchaseDevolution = require("../controllers/Clients/purchaseDevolution");
 const putClientInfo = require("../controllers/Clients/putClientInfo");
 const getClients = require("../controllers/Clients/getClients");
 const getClientByEmail = require("../controllers/Clients/getClientByEmail");
@@ -9,9 +9,12 @@ const {
   validationPutClient,
   validateClientExistence,
   validateFindOrCreate,
-  validateDevoluton
+  validateDevoluton,
+  validateBanClient,
 } = require("../validations/validationClient");
 const findOrCreateClient = require("../controllers/Clients/findOrCreateClient");
+const banClient = require("../controllers/Clients/banClient");
+const unbanClient = require("../controllers/Clients/unBanClient");
 
 router.get("/", async (req, res) => {
   try {
@@ -67,17 +70,38 @@ router.post("/findOrCreate", validateFindOrCreate, async (req, res) => {
     res.status(200).json(client);
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log(error.message);
   }
 });
 
-router.post('/devolution', validateDevoluton,  async (req,res) => {
+router.post("/devolution", validateDevoluton, async (req, res) => {
   try {
-    const clientData = req.body
-    const response = await purchaseDevolution(clientData)
-    res.status(200).json(response)
+    const clientData = req.body;
+    const response = await purchaseDevolution(clientData);
+    res.status(200).json(response);
   } catch (error) {
-    res.json({error: error.message})
+    res.json({ error: error.message });
   }
-})
+});
+
+router.patch("/ban/:clientId", validateBanClient, async (req, res) => {
+  try {
+    const { clientId } = req.params;
+    const client = await banClient(clientId);
+    res.status(200).json(client);
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+});
+
+router.patch("/unban/:clientId", validateBanClient, async (req, res) => {
+  try {
+    const { clientId } = req.params;
+    const client = await unbanClient(clientId);
+    res.status(200).json(client);
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+});
 
 module.exports = router;
