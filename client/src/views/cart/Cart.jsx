@@ -195,20 +195,11 @@ function Cart() {
               </div>
             </div>
             <div className={styles.botonesArticulo}>
+              <div className={styles.precio}>
+                Unit price ${cartItem.price - cartItem.discount}
+              </div>
               <div className={styles.cantidad}>
                 <div className={styles.btnupdown}>
-                  <button
-                    disabled={cartItem.quantity === cartItem.stock}
-                    className={styles.btnCart}
-                    onClick={handleQuantity}
-                    name="add"
-                    value={cartItem.id}
-                  >
-                    +
-                  </button>
-                  <h3 className={styles.cantidadProduct}>
-                    {cartItem.quantity}
-                  </h3>
                   <button
                     disabled={cartItem.quantity === 1}
                     className={styles.btnCart}
@@ -218,10 +209,22 @@ function Cart() {
                   >
                     -
                   </button>
+                  <h3 className={styles.cantidadProduct}>
+                    {cartItem.quantity} un
+                  </h3>
+                  <button
+                    disabled={cartItem.quantity === cartItem.stock}
+                    className={styles.btnCart}
+                    onClick={handleQuantity}
+                    name="add"
+                    value={cartItem.id}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
               <div className={styles.precio}>
-                $ {cartItem.price - cartItem.discount}
+                Subtotal $ {(cartItem.price - cartItem.discount) * cartItem.quantity}
               </div>
               <button
                 className={styles.btnDelete}

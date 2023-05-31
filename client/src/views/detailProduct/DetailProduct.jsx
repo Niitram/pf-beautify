@@ -118,8 +118,12 @@ function DetailProduct({ handleLoginClick }) {
     } catch (error) {
       console.log(error.message);
     }
-    return setProduct({});
-  }, [id]);
+    return () => {
+      setProduct({});
+      setQuantity(1)
+    }
+  }, [id, quantity]);
+  
   const {
     name,
     image,
@@ -192,10 +196,11 @@ function DetailProduct({ handleLoginClick }) {
             <input
               className={styles.inputCantidad}
               onChange={handleQuantity}
+              disabled={stock==0}
               type="number"
-              min="1"
+              min="0"
               max={stock}
-              defaultValue="1"
+              defaultValue={!stock?"":"1"}
             />
             {errorQuantity && (
               <span>Error: max quantity available {stock}</span>
@@ -206,6 +211,7 @@ function DetailProduct({ handleLoginClick }) {
               onClick={handleAddToCart}
               name="buyNow"
               className={styles.btnShopNow}
+              disabled={!stock}
               // type="submit"
             >
               Buy now
@@ -217,6 +223,7 @@ function DetailProduct({ handleLoginClick }) {
                 onClick={handleAddToCart}
                 name="addToCart"
                 className={styles.addCart}
+                disabled={!stock}
               >
                 <ShoppingCartOutlinedIcon /> Add to cart
               </button>
