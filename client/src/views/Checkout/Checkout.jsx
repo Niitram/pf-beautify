@@ -11,17 +11,13 @@ export default function Checkout() {
     setPreferenceId(JSON.parse(localStorage.getItem("preference")));
     setCart(JSON.parse(localStorage.getItem("cart")));
   }, []);
-  console.log(cart);
+
   let total = 0;
-  const count =
-    cart.length &&
+  cart.length &&
     cart.forEach((element) => {
-      total += element.price * element.quantity;
+      total += (element.price - element.discount) * element.quantity;
       console.log(element);
     });
-  const tax = (total * 0.07).toFixed(2);
-  const shipping = (total * 0.1).toFixed(2);
-  const totalPayment = (total - tax - shipping).toFixed(2);
 
   return (
     <div className={styles.container}>

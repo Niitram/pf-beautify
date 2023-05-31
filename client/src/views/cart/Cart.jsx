@@ -89,7 +89,6 @@ function Cart() {
 
     const cartLS = JSON.parse(localStorage.getItem("cart"));
     cartLS.push(objBalance);
-    console.log(cartLS);
     localStorage.setItem("cart", JSON.stringify(cartLS));
     setIsBalance(true);
   };
@@ -140,7 +139,7 @@ function Cart() {
         return {
           title: element.name,
           quantity: element.quantity,
-          unit_price: element.price,
+          unit_price: element.price - element.discount,
           id: element.id,
         };
       });
@@ -173,7 +172,7 @@ function Cart() {
           </label>
         </div>
         {balance !== 0 && (
-          <span>Has a balance of {balance} in your favor </span>
+          <span>Has a balance of {Math.abs(balance)} in your favor </span>
         )}
         <label className={styles.txtCarrito}>
           Total price $ {totalPrice.toFixed(2)}
@@ -233,7 +232,7 @@ function Cart() {
             </div>
           </div>
         ))}
-        {cantArticulos > 0 && (
+        {cantArticulos > 0 && totalPrice > 0 && (
           <button
             className={styles.checkout}
             onClick={() => {
@@ -243,6 +242,9 @@ function Cart() {
           >
             Checkout
           </button>
+        )}
+        {totalPrice < 0 && (
+          <span>Total amount must be higher than current balance</span>
         )}
         {cantArticulos > 0 && balance !== 0 && !isBalance && (
           <button onClick={handleAddBalance}>Use my benefit</button>
