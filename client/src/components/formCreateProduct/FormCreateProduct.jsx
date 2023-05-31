@@ -184,44 +184,48 @@ function FormCreateProduct() {
         </div>
         <div className={styles.priceAndStock}>
           <div className={styles.containerInputs}>
-            <label htmlFor="price">Price</label>
-            <InputForm
-              placeholder="Price"
-              type="number"
-              id="price-input"
-              name="price"
-              value={productData.price}
-              handler={(e) => {
-                handleInputChange(
-                  e,
-                  setProductData,
-                  validateCreateProduct,
-                  productData,
-                  setErrors
-                );
-              }}
-            />
+            <div className={styles.continerlabel}>
+              <label htmlFor="price">Price</label>
+              <InputForm
+                placeholder="Price"
+                type="number"
+                id="price-input"
+                name="price"
+                value={productData.price}
+                handler={(e) => {
+                  handleInputChange(
+                    e,
+                    setProductData,
+                    validateCreateProduct,
+                    productData,
+                    setErrors
+                  );
+                }}
+              />
+            </div>
             <ErrorInputMessage errors={errors.price} text={errors.price} />
           </div>
 
           <div className={styles.containerInputs}>
-            <label htmlFor="stock">Stock</label>
-            <InputForm
-              placeholder="Stock"
-              type="number"
-              id="stock-input"
-              name="stock"
-              value={productData.stock}
-              handler={(e) => {
-                handleInputChange(
-                  e,
-                  setProductData,
-                  validateCreateProduct,
-                  productData,
-                  setErrors
-                );
-              }}
-            />
+            <div className={styles.continerlabel}>
+              <label htmlFor="stock">Stock</label>
+              <InputForm
+                placeholder="Stock"
+                type="number"
+                id="stock-input"
+                name="stock"
+                value={productData.stock}
+                handler={(e) => {
+                  handleInputChange(
+                    e,
+                    setProductData,
+                    validateCreateProduct,
+                    productData,
+                    setErrors
+                  );
+                }}
+              />
+            </div>
             <ErrorInputMessage errors={errors.stock} text={errors.stock} />
           </div>
         </div>
