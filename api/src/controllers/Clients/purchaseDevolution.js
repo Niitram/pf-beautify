@@ -13,7 +13,7 @@ const purchaseDevolution = async ({ clientId, shopId }) => {
   });
   await client.update({ balance: newBalance });
   await shop.destroy();
- 
+  
   return {success:'Balance added to your beautify wallet' , newBalance: client.balance};
 }; 
 

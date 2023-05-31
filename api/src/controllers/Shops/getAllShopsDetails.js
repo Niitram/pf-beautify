@@ -46,7 +46,6 @@ const getAllShopsDetails = async () => {
         return;
       }
     });
-    console.log(newDetail.date);
     return newDetail;
   });
   return combinedShops;

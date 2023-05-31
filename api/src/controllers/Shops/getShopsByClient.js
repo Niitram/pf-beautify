@@ -17,7 +17,6 @@ const getShopsByClient = async (clientId) => {
         attributes: ["id", "name", "CategoryId", "image"],
       },
     });
-    // console.log(generalShops);
 
     //* mapea el array con los detalles para devolver otro array con los detalles de las compras pero más ordenados
     const newDetails = shopDetails.map((detail) => {
