@@ -10,11 +10,12 @@ import SectionCards from "../../components/sectionCards/SectionCards";
 // import { getProducts } from "../../request/product";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import ima1 from "../../assets/images/5000238.jpg";
-import ima2 from "../../assets/images/5256956.jpg";
+import ima3 from "../../assets/images/Banner1.webp";
+import ima4 from "../../assets/images/Banner2.webp";
+import ima5 from "../../assets/images/Banner3.webp";
 
 function Home() {
-  const images = [ima1, ima2];
+  const images = [ima3, ima4, ima5];
   // const [products, setProducts] = useState([]);
   const allProducts = useSelector((state) => state.allProducts);
   // const dispatch = useDispatch();
