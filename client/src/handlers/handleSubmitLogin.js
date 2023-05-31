@@ -48,7 +48,10 @@ const handleSubmitLogin = async (
         email: createUser.email,
         rol: CLIENT,
       };
-      if (userData.email === "beautifyfinalproyect@gmail.com")
+      if (
+        userData.email === "beautifyfinalproyect@gmail.com" ||
+        userData.email === "BeautifyStaff@hotmail.com"
+      )
         userData.rol = ADMIN;
 
       //Guarda el el local la info del usuario creado e inicializa el carrito

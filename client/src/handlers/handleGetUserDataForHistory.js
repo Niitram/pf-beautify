@@ -77,6 +77,7 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
         paid,
         profesional: Profesional.fullname,
         service: Service.name,
+        serviceId: Service.id,
         date: prettyDate,
         hour: hour.slice(0, 5),
         ableToCancelAppointment: ableToCancelAppointment(date, hour),

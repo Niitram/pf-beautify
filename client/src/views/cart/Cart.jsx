@@ -173,7 +173,7 @@ function Cart() {
         </div>
         {balance !== 0 && (
           <div className={styles.textBalance}>
-            Has a balance of {Math.abs(balance)} in your favor{" "}
+            Has a balance of ${Math.abs(balance)} in your favor{" "}
           </div>
         )}
         <label className={styles.txtCarrito}>

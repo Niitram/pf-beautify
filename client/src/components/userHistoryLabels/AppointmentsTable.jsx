@@ -21,6 +21,7 @@ export default function AppointmentsTable({
   const rows =
     appointments &&
     appointments.map((row) => {
+      // console.log(appointments);
       return {
         id: row.id,
         col1: row.service,
@@ -74,7 +75,7 @@ export default function AppointmentsTable({
                   setWishToCancelOrModify(true);
                 } else {
                   setOpenFeedback(true);
-                  setFeedbackServiceId(e.id);
+                  setFeedbackServiceId(eventAppointment.serviceId);
                   setCurrentServiceFeedback(eventAppointment.comment);
                 }
               }

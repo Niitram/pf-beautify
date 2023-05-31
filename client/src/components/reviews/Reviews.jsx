@@ -30,7 +30,6 @@ function Reviews({ rate, comments }) {
               ) : (
                 <Skeleton width={150} height={20} />
               )}
-              <span className={styles.rateText}>5 calificaciones</span>
             </div>
           </div>
           <Divider

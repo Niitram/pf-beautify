@@ -297,3 +297,13 @@
   flex-direction: column;
   width: 100%;
 }
+
+.loginForm input {
+  margin: 2% 0%;
+  height: 2rem;
+  width: 100%;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #f5b7b171;
+  border: 0px solid var(--text-alt);
+  border-radius: 10px;
+}
