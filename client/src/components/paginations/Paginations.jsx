@@ -16,7 +16,7 @@ function Paginations({ currentPage, setCurrentPage }) {
   const prevPage = () => {
     setCurrentPage((prev) => prev - 1);
   };
-
+  console.log(arrayWithPages.length);
   return (
     <div className={styles.Container}>
       <div>
@@ -33,7 +33,7 @@ function Paginations({ currentPage, setCurrentPage }) {
           disabled={currentPage === 1}
           onClick={prevPage}
         >
-          {currentPage === 1 ? (
+          {arrayWithPages.length === 0 || currentPage === 1 ? (
             <ArrowBackIosNewIcon sx={{ fontSize: 1 }} />
           ) : (
             <ArrowBackIosNewIcon sx={{ fontSize: 10, fontWeight: 600 }} />
@@ -62,7 +62,7 @@ function Paginations({ currentPage, setCurrentPage }) {
         })}
         <button
           style={
-            currentPage === arrayWithPages.length || arrayWithPages.length === 1
+            currentPage === arrayWithPages.length || arrayWithPages.length === 0
               ? {
                   backgroundColor: "transparent",
                   boxShadow: "none",
@@ -71,13 +71,13 @@ function Paginations({ currentPage, setCurrentPage }) {
           }
           className={styles.buttonPages}
           disabled={
-            currentPage === arrayWithPages.length || arrayWithPages.length === 1
+            currentPage === arrayWithPages.length || arrayWithPages.length === 0
           }
           onClick={nextPage}
         >
           {currentPage === arrayWithPages.length ||
-          arrayWithPages.length === 1 ? (
-            <ArrowForwardIosIcon sx={{ fontSize: 1 }} />
+          arrayWithPages.length === 0 ? (
+            <ArrowForwardIosIcon sx={{ fontSize: 1, color: "red" }} />
           ) : (
             <ArrowForwardIosIcon sx={{ fontSize: 10, fontWeight: 600 }} />
           )}

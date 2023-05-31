@@ -2,7 +2,6 @@ import { Skeleton } from "@mui/material";
 import styles from "./CardProfessional.module.css";
 
 function CardProfessional({ professional }) {
-  console.log(professional.service);
   return (
     <div className={styles.cardProfessional}>
       {professional.image && (
