@@ -45,7 +45,7 @@ function Cart() {
         }
       });
       if (!balanceDb) {
-        balanceDb = -10;
+        balanceDb = 0;
       }
       setBalance(balanceDb);
     });
