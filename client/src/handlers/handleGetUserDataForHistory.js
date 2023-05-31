@@ -11,6 +11,12 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
   const dataDbShops = await getClientShops(userDataFromStorage.id);
   const dbShops = dataDbShops.data;
 
+  dbShops[0].date = "2023-05-28 asd";
+  dbShops[1].date = "2023-05-29 asd";
+  dbShops[2].date = "2023-05-30 asd";
+  dbShops[3].date = "2023-05-31 asd";
+  dbShops[4].date = "2023-06-01 asd";
+  dbShops[5].date = "2021-05-31 asd";
   const dataComments = await getCommentsByClient(userDataFromStorage.id);
   const comments = dataComments.data;
 
@@ -45,8 +51,6 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
         };
       }
     );
-    optimizedShops[0].date = "10/1/2023";
-    optimizedShops[0].ableToCancelShop = false;
 
     optimizedShops.sort((a, b) => {
       if (a.id < b.id) return 1;
@@ -99,24 +103,30 @@ const ableToCancelAppointment = (date, hour) => {
 
   //calculating if theres time to return shop
   const actualDate = new Date();
-  const [actualMonth, actualDay, actualYear, actualHour] = [
+  const [actualMonth, actualDay, actualYear, actualHour, actualMinutes] = [
     actualDate.getMonth() + 1,
     actualDate.getDate(),
     actualDate.getFullYear(),
     actualDate.getHours(),
+    actualDate.getMinutes(),
   ];
 
   let ableToCancelAppointment = true;
   if (
     appointmentYear < actualYear ||
-    (appointmentYear <= actualYear && appointmentMonth < actualMonth) ||
-    (appointmentYear <= actualYear &&
-      appointmentMonth <= actualMonth &&
+    (appointmentYear === actualYear && appointmentMonth < actualMonth) ||
+    (appointmentYear === actualYear &&
+      appointmentMonth === actualMonth &&
       appointmentDay < actualDay) ||
-    (appointmentYear <= actualYear &&
-      appointmentMonth <= actualMonth &&
-      appointmentDay <= actualDay &&
-      Number(hour.slice(0, 2)) > actualHour)
+    (appointmentYear === actualYear &&
+      appointmentMonth === actualMonth &&
+      appointmentDay === actualDay &&
+      Number(hour.slice(0, 2)) < actualHour) ||
+    (appointmentYear === actualYear &&
+      appointmentMonth === actualMonth &&
+      appointmentDay === actualDay &&
+      Number(hour.slice(0, 2)) === actualHour &&
+      Number(hour.slice(3, 5)) < actualMinutes)
   )
     ableToCancelAppointment = false;
 
@@ -125,6 +135,21 @@ const ableToCancelAppointment = (date, hour) => {
 
 //* función que calcula si el cliente está a tiempo de cancelar la compra (hasta 48 hs después de la misma)
 const ableToCancelShop = (date) => {
+  const finalMonthDay = {
+    1: 31,
+    2: 28,
+    3: 31,
+    4: 30,
+    5: 31,
+    6: 30,
+    7: 31,
+    8: 31,
+    9: 30,
+    10: 31,
+    11: 30,
+    12: 31,
+  };
+
   //optimizing date
   const optimizedDate = date.slice(0, 10);
   const [purchaseDay, purchaseMonth, purchaseYear] = [
@@ -143,15 +168,46 @@ const ableToCancelShop = (date) => {
   ];
 
   let ableToCancelShop = true;
+  // si lo compraron el último día del mes
+  if (
+    purchaseYear === actualYear &&
+    purchaseMonth === actualMonth - 1 &&
+    purchaseDay === finalMonthDay[purchaseMonth] &&
+    (actualDay == 1 || actualDay == 2)
+  )
+    return true;
+
+  // si compraron el anteúltimo día del mes
+  if (
+    purchaseYear === actualYear &&
+    purchaseMonth === actualMonth - 1 &&
+    purchaseDay === finalMonthDay[purchaseMonth] - 1 &&
+    actualDay == 1
+  )
+    return true;
+
+  // si lo compra el último día del año
+  if (
+    purchaseYear === actualYear - 1 &&
+    purchaseMonth === 12 &&
+    actualMonth === 1 &&
+    ((purchaseDay === finalMonthDay[purchaseMonth] - 1 && actualDay == 1) ||
+      (purchaseDay === finalMonthDay[purchaseMonth] &&
+        (actualDay == 1 || actualDay == 2)))
+  )
+    return true;
+
+  // si compraron otros días
   if (
     purchaseYear < actualYear ||
-    (purchaseYear <= actualYear && purchaseMonth < actualMonth) ||
-    (purchaseYear <= actualYear &&
-      purchaseMonth <= actualMonth &&
-      purchaseDay > actualDay + 1)
-  )
+    (purchaseYear === actualYear && purchaseMonth < actualMonth) ||
+    (purchaseYear === actualYear &&
+      purchaseMonth === actualMonth &&
+      purchaseDay + 2 < actualDay)
+  ) {
     ableToCancelShop = false;
-
+  }
+  // console.log(ableToCancelShop);
   return ableToCancelShop;
 };
 

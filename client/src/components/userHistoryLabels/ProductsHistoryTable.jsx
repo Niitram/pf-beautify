@@ -69,9 +69,12 @@ export default function ProductsHistoryTable({
             rows={rows}
             pageSize={15}
             onCellClick={(e) => {
+              const eventShop = shops.filter(({ id }) => id === e.id)[0];
               setEventRowId(e.id);
               e.field === "col4" && setOpenDetail(true);
-              e.field === "col6" && setWishToCancel(true);
+              e.field === "col6" &&
+                eventShop.ableToCancelShop &&
+                setWishToCancel(true);
             }}
           />
 
