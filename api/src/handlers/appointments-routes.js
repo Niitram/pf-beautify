@@ -31,13 +31,10 @@ router.get("/", async (req, res) => {
 router.get("/client/:clientId", async (req, res) => {
   const { clientId } = req.params;
 
-  const appointmentsOfClient = await getAppointmentByClient(clientId);
   try {
-    if (appointmentsOfClient.length === 0) {
-      res.status(404).json({ message: "You have no recorded appointments" });
-    } else {
-      res.status(200).json(appointmentsOfClient);
-    }
+    const appointmentsOfClient = await getAppointmentByClient(clientId);
+
+    res.status(200).json(appointmentsOfClient);
   } catch (error) {
     res.status(500).json({ message: "Error getting appointments" });
   }
@@ -110,7 +107,6 @@ router.post("/", postAppointmentValidation, async (req, res) => {
 
     res.status(201).json(appointmentCreated);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: "Error creating appointment" });
   }
 });

@@ -50,3 +50,19 @@ export const getClientShops = async (clientId) => {
     console.log(error.message);
   }
 };
+
+export const banClient = async (clientId) => {
+  try {
+    console.log(clientId);
+    return await axios.patch(`${URL_BASE}/client/ban/${clientId}`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const unbanClient = async (clientId) => {
+  try {
+    return await axios.patch(`${URL_BASE}/client/unban/${clientId}`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

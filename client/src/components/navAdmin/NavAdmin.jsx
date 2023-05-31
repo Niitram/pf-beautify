@@ -1,3 +1,4 @@
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/actions";
 import { postCart } from "../../request/cart";
@@ -6,6 +7,10 @@ import styles from "./NavAdmin.module.css";
 import { getAuth, signOut } from "firebase/auth";
 import { firebaseApp } from "../../utils/firebaseConfig";
 import { useDispatch } from "react-redux";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+
+
 
 export default function NavAdmin({ setLogout }) {
   const navigate = useNavigate();
@@ -32,11 +37,32 @@ export default function NavAdmin({ setLogout }) {
     navigate("/");
     await signOut(auth);
   };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+
+  const onMenuClicked = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <div className={styles.container}>
+
       <div className={styles.botones}>
         <ButtonNav text={"Dashboard"} route="/dashboardAdmin"></ButtonNav>
+
+       <input
+        type="checkbox"
+        id="check"
+        className={styles.check}
+        checked={isMenuOpen}
+        onChange={onMenuClicked}
+      />
+
+
+       <label htmlFor="check" className={styles.mostrarmenu}>
+        <MenuIcon />
+      </label>
+      <div className={styles.botones}  onClick={onMenuClicked}>
+
         <ButtonNav text={"Clients"} route="/dashboardAdmin/clients"></ButtonNav>
         <ButtonNav
           text={"Appointments"}
@@ -57,6 +83,9 @@ export default function NavAdmin({ setLogout }) {
         <button onClick={onLogout} className={styles.LogOutBtn}>
           Logout
         </button>
+        <div  className={styles.ocultarmenu}>
+          <CloseIcon />
+        </div>
       </div>
     </div>
   );

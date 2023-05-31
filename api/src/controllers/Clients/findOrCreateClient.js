@@ -1,8 +1,8 @@
 const { Client } = require("../../db");
-
+const signUpMail = require('../../config-email/signUpMail')
 const findOrCreateClient = async (email, fullName, image, phone, adress) => {
   let client = await Client.findOne({ where: { email } });
-  if (!client)
+  if (!client){
     client = await Client.create({
       email,
       fullName: fullName ? fullName : null,
@@ -10,7 +10,11 @@ const findOrCreateClient = async (email, fullName, image, phone, adress) => {
       phone: phone ? phone : null,
       adress: adress ? adress : null,
     });
-
-  return client;
+    signUpMail(fullName, client.email)
+    return client
+}else {
+    return client;
+}
+  
 };
 module.exports = findOrCreateClient;

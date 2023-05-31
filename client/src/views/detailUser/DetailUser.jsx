@@ -30,7 +30,6 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const getDataFromDb = async (email) => {
     const data = await getClient(email);
     const userFromDb = data.data;
-    console.log(data);
 
     setUserData({
       id: userFromDb.id,

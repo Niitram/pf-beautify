@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import styles from "./Resumen.module.css";
@@ -73,9 +74,9 @@ export const Resumen = () => {
     <section className={styles.resumen_container}>
       <div className={styles.profile_admin}>
         <div>
-          <img src={logo} />
+          <img className={styles.logo} src={logo} />
         </div>
-        <figure>
+        <figure className={styles.figure}>
           <img
             src="https://media.istockphoto.com/id/1257734578/es/foto/colores-de-moda-de-esmaltes-de-u%C3%B1as-varios-tonos.jpg?s=612x612&w=0&k=20&c=eDRkLSCw1jC0UwMI-MTphbEv25G7f3Ugw4yAf2MwVwI="
             alt="profile"
@@ -85,16 +86,20 @@ export const Resumen = () => {
       <div className={styles.details}>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>$</Avatar>
-          <div>
+
+          <div className={styles.detailsDetails}>
+
             <h2>{numProfesionals}</h2>
-            <span>Profesionals</span>
+            <span className={styles.nombreDetail}>Profesionals</span>
           </div>
         </div>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>C</Avatar>
-          <div>
+
+          <div className={styles.detailsDetails}>
+
             <h2>{numClientes}</h2>
-            <span>N° Clients</span>
+            <span className={styles.nombreDetail}>N° Clients</span>
           </div>
         </div>
       </div>
@@ -102,26 +107,33 @@ export const Resumen = () => {
       <div className={styles.details}>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>P</Avatar>
-          <div>
+
+          <div className={styles.detailsDetails}>
+
             <h2>{numProductos}</h2>
-            <span>N° Products</span>
+            <span className={styles.nombreDetail}>N° Products</span>
           </div>
         </div>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>S</Avatar>
-          <div>
+
+          <div className={styles.detailsDetails}>
+
             <h2>{numServices}</h2>
-            <span>N° Services</span>
+            <span className={styles.nombreDetail}>N° Services</span>
           </div>
         </div>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>R</Avatar>
-          <div>
+
+          <div className={styles.detailsDetails}>
+
             <h2>{numAppointments}</h2>
-            <span>N° Appointments</span>
+            <span className={styles.nombreDetail}>N° Appointments</span>
           </div>
         </div>
       </div>
     </section>
   );
 };
+

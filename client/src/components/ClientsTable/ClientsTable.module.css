@@ -1,6 +1,6 @@
 .container {
-  width: 70%;
-  height: 50rem;
+  width: 90%;
+  height: 90vh;
   padding: 2rem;
 }
 .container :global .MuiDataGrid-columnHeaders {
