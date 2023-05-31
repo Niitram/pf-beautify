@@ -1,8 +1,10 @@
 import FormCreateProduct from "../../components/formCreateProduct/FormCreateProduct";
+import paleta from '../../assets/images/Paleta'
+import styles from './NewProduct.module.css'
 
 function NewProduct() {
   return (
-    <div>
+    <div className={styles.container}>
       <FormCreateProduct />
     </div>
   );

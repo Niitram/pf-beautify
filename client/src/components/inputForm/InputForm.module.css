@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins");
+
 .inputform input[type="text"] {
+
   display: flex;
   justify-content: start;
   margin-left: 0px;
@@ -7,7 +9,12 @@
   border-bottom: 2px solid var(--text-alt);
   width: 95%;
   height: 30px;
+  background-color: #f5b7b156;
+  border-radius: 5px;
 }
+
+
+
 .inputform{
   display: flex;
   justify-content: start;

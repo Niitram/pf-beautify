@@ -127,7 +127,6 @@ export const resetFiltersOrder = (products) => {
   };
 };
 
-
 //appoiments
 
 export const addAppointment = (reservation) => {

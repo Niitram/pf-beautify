@@ -23,7 +23,7 @@ const getProfesionals = async () => {
         direction,
         image,
         appointments: Appointments,
-        service: Services[0].name,
+        service: Services[0]?.name,
       };
     }
   );
