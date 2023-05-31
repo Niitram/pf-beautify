@@ -2,7 +2,7 @@
   background-color: var(--background);
   min-height: 100vh;
   min-width: 100vw;
-
+  padding-top: 3%;
 }
 .containerDetail{
   margin: 30px 0px;
