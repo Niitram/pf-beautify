@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import styles from "./Resumen.module.css";
@@ -85,14 +86,18 @@ export const Resumen = () => {
       <div className={styles.details}>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>$</Avatar>
+
           <div className={styles.detailsDetails}>
+
             <h2>{numProfesionals}</h2>
             <span className={styles.nombreDetail}>Profesionals</span>
           </div>
         </div>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>C</Avatar>
+
           <div className={styles.detailsDetails}>
+
             <h2>{numClientes}</h2>
             <span className={styles.nombreDetail}>N° Clients</span>
           </div>
@@ -102,21 +107,27 @@ export const Resumen = () => {
       <div className={styles.details}>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>P</Avatar>
+
           <div className={styles.detailsDetails}>
+
             <h2>{numProductos}</h2>
             <span className={styles.nombreDetail}>N° Products</span>
           </div>
         </div>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>S</Avatar>
+
           <div className={styles.detailsDetails}>
+
             <h2>{numServices}</h2>
             <span className={styles.nombreDetail}>N° Services</span>
           </div>
         </div>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>R</Avatar>
+
           <div className={styles.detailsDetails}>
+
             <h2>{numAppointments}</h2>
             <span className={styles.nombreDetail}>N° Appointments</span>
           </div>
@@ -125,3 +136,4 @@ export const Resumen = () => {
     </section>
   );
 };
+

@@ -24,6 +24,10 @@ function Cart() {
     totalPrice += (cart[i].price - cart[i].discount) * cart[i].quantity;
   }
 
+  useEffect(() => {
+    const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(cartData);
+  }, []);
   const handleDelete = (id) => {
     const newCart = cart.filter((cartItem) => cartItem.id != id);
     localStorage.setItem("cart", JSON.stringify(newCart));
@@ -71,27 +75,32 @@ function Cart() {
     setOpenDeleteDialog(false);
   };
 
-  useEffect(() => {
-    const cartData = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(cartData);
-  }, []);
-
   const emailUsuario = useSelector((state) => state.userData.email);
-  const localCarrito = JSON.parse(localStorage.getItem("cart")) || [];
 
-  const carrito = localCarrito.map((element) => {
-    return {
-      title: element.name,
-      quantity: element.quantity,
-      unit_price: element.price,
-      id: element.id,
-    };
-  });
-  console.log(carrito);
-
-  const handleCheckOut = () => {
-    let aux = [...carrito, emailUsuario];
-    askPreference(aux)
+  const handleCheckOut = async () => {
+    try {
+      const localCarrito = JSON.parse(localStorage.getItem("cart")) || [];
+      const carrito = localCarrito.map((element) => {
+        return {
+          title: element.name,
+          quantity: element.quantity,
+          unit_price: element.price,
+          id: element.id,
+        };
+      });
+      let aux = [...carrito, emailUsuario];
+      const respMP = await askPreference(aux);
+      localStorage.setItem("preference", JSON.stringify(respMP.data.id));
+    } catch (error) {
+      dispatch(
+        showError({
+          tittle: "Wrong-cart",
+          message:
+            "There was an error processing the cart, please try again later",
+        })
+      );
+    }
+    /* askPreference(aux)
       .then(({ data }) =>
         localStorage.setItem("preference", JSON.stringify(data.id))
       )
@@ -104,7 +113,7 @@ function Cart() {
               "There was an error processing the cart, please try again later",
           })
         );
-      });
+      }); */
   };
 
   return (

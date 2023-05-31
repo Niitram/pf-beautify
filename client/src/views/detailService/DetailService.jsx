@@ -67,9 +67,8 @@ function DetailService() {
         </div>
       )}
       <h3>Professional</h3>
-      <CardProfessional service={service} professional={professional} />
+      <CardProfessional professional={professional} />
       <Reviews comments={service.Comments} rate={service.rate} />
-
     </section>
   );
 }

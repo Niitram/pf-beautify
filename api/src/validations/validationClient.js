@@ -67,21 +67,35 @@ const validateFindOrCreate = async (req, res, next) => {
   }
 };
 
+const validateBanClient = async (req, res, next) => {
+  const id = Number(req.params.clientId);
+
+  if (String(id) === "NaN" || id !== Math.floor(id))
+    return res
+      .status(400)
+      .json({ error: "Client Id must be an integer number" });
+
+  const client = await Client.findByPk(id);
+  if (!client) return res.status(400).json({ error: "Client not found" });
+
+  next();
+};
 
 const validateDevoluton = async (req, res, next) => {
   try {
-    const {shopId} = req.body
-    const shop = await Shop.findByPk(shopId)
-    if(!shop) throw new Error('Invalid shop id')
-    else next()
+    const { shopId } = req.body;
+    const shop = await Shop.findByPk(shopId);
+    if (!shop) throw new Error("Invalid shop id");
+    else next();
   } catch (error) {
-    res.json({error: error.message})
+    res.json({ error: error.message });
   }
-}
+};
 module.exports = {
   validationSaveClient,
   validationPutClient,
   validateClientExistence,
   validateFindOrCreate,
-  validateDevoluton
+  validateDevoluton,
+  validateBanClient,
 };

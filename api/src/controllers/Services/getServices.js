@@ -5,7 +5,6 @@ const getService = async () => {
   const services = await Service.findAll({
     include: { model: Profesional, attributes: ["fullname"] },
   });
-  console.log(services);
   services.forEach((service) => {
     servicesInfo.push({
       id: service.id,

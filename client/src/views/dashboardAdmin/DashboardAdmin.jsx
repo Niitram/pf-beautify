@@ -4,7 +4,6 @@ import CardChart from "../../components/dashboard/CardChart";
 import RatingProducts from "../../components/dashboard/RatingProducts";
 //import { SidebarAdmin } from "../../components/dashboard/SidebarAdmin";
 //import {ViewProfesional} from '../../components/dashboard/ViewProfesional'
-// import { NavAdmin } from "../../components/dashboard/NavAdmin";
 import { Resumen } from "../../components/dashboard/Resumen";
 import FooterAll from "../../components/footerAll/FooterAll";
 import {

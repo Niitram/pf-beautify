@@ -33,7 +33,11 @@ module.exports = (sequelize) => {
       },
       balance: {
         type: DataTypes.FLOAT,
-        allowNull: true
+        allowNull: true,
+      },
+      banned: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
     { timestamps: false }

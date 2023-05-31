@@ -1,7 +1,8 @@
 import { Skeleton } from "@mui/material";
 import styles from "./CardProfessional.module.css";
 
-function CardProfessional({ professional, service }) {
+function CardProfessional({ professional }) {
+  console.log(professional.service);
   return (
     <div className={styles.cardProfessional}>
       {professional.image && (
@@ -15,7 +16,7 @@ function CardProfessional({ professional, service }) {
         <div className={styles.containerInfo}>
           <h3 className={styles.fullname}>{professional.fullname}</h3>
           <p className={styles.direction}>{professional.direction}</p>
-          <p className={styles.service}>{service.name}</p>
+          <p className={styles.service}>{professional.service}</p>
         </div>
       ) : (
         <Skeleton width={300} height={300} />
