@@ -11,6 +11,7 @@ const Adress = ({
   userData,
   errors,
   handleSubmit,
+  updatedData,
 }) => {
   return (
     <div className={styles.textContainer}>
@@ -35,6 +36,7 @@ const Adress = ({
           </div>
           <div className={styles.inputDiv}>
             <input
+              value={updatedData.adress}
               onChange={handleChange}
               type="text"
               name="adress"

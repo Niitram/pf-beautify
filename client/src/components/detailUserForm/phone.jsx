@@ -11,6 +11,7 @@ const Phone = ({
   userData,
   errors,
   handleSubmit,
+  updatedData,
 }) => {
   return (
     <div className={styles.textContainer}>
@@ -30,6 +31,7 @@ const Phone = ({
           </div>
           <div className={styles.inputDiv}>
             <input
+              value={updatedData.phone}
               onChange={handleChange}
               type="text"
               name="phone"

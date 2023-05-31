@@ -148,6 +148,11 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       ...visibleInputs,
       [property]: !visibleInputs[property],
     });
+    setUpdatedData({
+      ...updatedData,
+      [property]: userData[property],
+    });
+
     if (close) {
       setUpdatedData({ ...updatedData, [property]: "" });
       setErrors({ ...errors, [property]: "" });
@@ -198,6 +203,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
               userData={userData}
               errors={errors}
               handleSubmit={handleSubmit}
+              updatedData={updatedData}
             />
 
             <div className={styles.emailPropertys}>
@@ -223,6 +229,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
               userData={userData}
               errors={errors}
               handleSubmit={handleSubmit}
+              updatedData={updatedData}
             />
 
             <Adress
@@ -232,6 +239,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
               userData={userData}
               errors={errors}
               handleSubmit={handleSubmit}
+              updatedData={updatedData}
             />
 
             {anyUpdatedData() && (

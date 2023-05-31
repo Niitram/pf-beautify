@@ -11,7 +11,7 @@ export const validateUpdateUser = (user, visibleInputs, oldData) => {
   if (
     visibleInputs.name &&
     (!regexString.test(user.name) ||
-      user.name.length > 100 ||
+      user.name.length > 20 ||
       !user.name.length ||
       user.name === oldData.name)
   )
@@ -19,7 +19,7 @@ export const validateUpdateUser = (user, visibleInputs, oldData) => {
   if (
     visibleInputs.adress &&
     (!regexString.test(user.adress) ||
-      user.adress.length > 100 ||
+      user.adress.length > 30 ||
       !user.adress.length ||
       user.adress === oldData.adress)
   )
