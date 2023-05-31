@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins");
-.inputForm input[type="text"] {
+.container input[type="text"] {
   display: flex;
   justify-content: start;
   margin-left: 0px;
@@ -7,8 +7,10 @@
   border-bottom: 2px solid var(--text-alt);
   width: 95%;
   height: 30px;
+  background-color: #f5b7b156;
+  border-radius: 5px;
 }
-.inputForm input[type="number"] {
+.container input[type="number"] {
   display: flex;
   justify-content: start;
   margin-left: 0px;

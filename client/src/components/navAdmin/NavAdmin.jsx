@@ -36,6 +36,7 @@ export default function NavAdmin({ setLogout }) {
   return (
     <div className={styles.container}>
       <div className={styles.botones}>
+        <ButtonNav text={"Dashboard"} route="/dashboardAdmin"></ButtonNav>
         <ButtonNav text={"Clients"} route="/dashboardAdmin/clients"></ButtonNav>
         <ButtonNav
           text={"Appointments"}

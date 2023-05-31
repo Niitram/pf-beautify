@@ -8,53 +8,19 @@ import cameraIcon from '../../assets/images/camera-icon.png'
 import validateCreateProfessional from '../../utils/validateCreateProfessional'
 import { createProfessional } from '../../request/professionals'
 import { getServices } from '../../request/services'
+import DragImageProfessional from '../dragImageProfessional/DragImageProfessional'
 
-export default function FormCreateProfessional(){
+export default function FormCreateProfessional({creationInfo,setCreationInfo,errors,setErrors}){
 
-    const [professionalInfo,setProfessionalInfo] = useState({
-        fullname:'',
-        mail:'',
-        direction:'',
-        image:'',
-        serviceId:''
-    })
-
-    const [errors,setErrors] = useState({
-        fullname:'*',
-        mail:'*',
-        direction:'*',
-        image:'*'
-    })
-
-    const [servicios,setServicios] = useState([])
-
-    useEffect(()=>{
-        getServices()
-        .then(({data})=>setServicios(data))
-    },[])
-
-    const handleServices = (e)=>{
-        e.preventDefault()
-        const value = e.target.value
-        setProfessionalInfo({...professionalInfo,['serviceId']:value})
-    }
 
     const handleChange = (e)=>{
         e.preventDefault()
         const property = e.target.name
         const value = e.target.value
-        setProfessionalInfo({...professionalInfo,[property]:value})
-        validateCreateProfessional({...professionalInfo,[property]:value},setErrors)
+        setCreationInfo({...creationInfo,[property]:value})
+        validateCreateProfessional({...creationInfo,[property]:value},setErrors)
     }
 
-    const handleSubmit = (e)=>{
-        e.preventDefault()
-        if(errors.fullname === '' || errors.mail === '' || errors.direction === '' || errors.image === ''){
-            createProfessional(professionalInfo)
-        }else{
-            alert('check your errors')
-        }
-    }
 
 
     return(
@@ -67,56 +33,51 @@ export default function FormCreateProfessional(){
                 <input
                     type='text'
                     name='fullname'
-                    value={professionalInfo.fullname}
+                    value={creationInfo?.fullname}
                     placeholder='Full name'
                     onChange={(e)=>handleChange(e)}
+                    className={styles.inputTexto}
+
                 >
                 </input>
-                    <ErrorInputMessage errors={errors.fullname} text={errors.fullname}/>
+                    <ErrorInputMessage errors={errors?.fullname} text={errors?.fullname}/>
                 <input
                     type='text'
                     name='direction'
-                    value={professionalInfo.direction}
+                    value={creationInfo?.direction}
                     placeholder='Address'
                     onChange={(e)=>handleChange(e)}
+                    className={styles.inputTexto}
+
                 >
                 </input>
-                    <ErrorInputMessage errors={errors.direction} text={errors.direction}/>
+                    <ErrorInputMessage errors={errors?.direction} text={errors?.direction}/>
                 <input
                     type='text'
                     name='mail'
-                    value={professionalInfo.mail}
+                    value={creationInfo?.mail}
                     placeholder='Email'
                     onChange={(e)=>handleChange(e)}
+                    className={styles.inputTexto}
+
                 >
                 </input>
-                    <ErrorInputMessage errors={errors.mail} text={errors.mail}/>
+                    <ErrorInputMessage errors={errors?.mail} text={errors?.mail}/>
                 <InputImage
-                    name='image'
-                    setProductData={setProfessionalInfo}
-                    productData={professionalInfo}
+                    name='imageProfessional'
+                    setProductData={setCreationInfo}
+                    productData={creationInfo}
                     setErrors={setErrors}
                 />
-                    <ErrorInputMessage errors={errors.image} text={errors.image} />
-
-                <select onChange={(e)=>handleServices(e)} required>
-                    {servicios?.map((element)=>{
-                        return(
-                            <option value={element.id}>{element.name} </option>
-                        )
-                    })}
-                </select>
-
-
-                <button type='submit' >Submit</button>
+                    <ErrorInputMessage errors={errors?.imageProfessional} text={errors?.imageProfessional} />
             </form>
                 </div>
             <div className={styles.preview}>
-                <DragImage
-                    productData={professionalInfo}
+                <DragImageProfessional
+                    creationInfo={creationInfo}
                     errors={errors}
                     cameraIcon={cameraIcon}
-                    setProductData={setProfessionalInfo}
+                    setCreationInfo={setCreationInfo}
                     setErrors={setErrors}
                 />
             </div>

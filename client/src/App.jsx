@@ -171,6 +171,7 @@ function App() {
         locationNow.pathname == "/dashboardAdmin/products_control/:id" ||
         locationNow.pathname == "/dashboardAdmin/newProfessional" ||
         locationNow.pathname == "/dashboardAdmin/products_control" ||
+        locationNow.pathname =="/dashboardAdmin/newProduct" ||
         locationNow.pathname == "/dashboardAdmin/professionals") ? (
         <NavAdmin setLogout={setLogout} />
       ) : (
