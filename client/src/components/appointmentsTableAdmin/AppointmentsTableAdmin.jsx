@@ -1,51 +1,46 @@
-import { DataGrid } from '@mui/x-data-grid'
-import styles from './AppointmentsTableAdmin.module.css'
-import { useEffect, useState } from 'react'
-import { getAllAppointments } from '../../request/appointments'
+import { DataGrid } from "@mui/x-data-grid";
+import styles from "./AppointmentsTableAdmin.module.css";
+import { useEffect, useState } from "react";
+import { getAllAppointments } from "../../request/appointments";
 
-export default function AppointmentsTable(){
+export default function AppointmentsTable() {
+  const [appointments, setAppointments] = useState([]);
 
-    const [appointments,setAppointments] = useState([])
+  useEffect(() => {
+    getAllAppointments().then(({ data }) => setAppointments(data));
+  }, []);
 
-    useEffect(()=>{
-        getAllAppointments()
-        .then(({data})=>setAppointments(data))
-    },[])
-    
-    console.log(appointments)
+  // console.log(appointments)
 
-    const rows = appointments.map((row)=>{
-        return{
-            id:row.id,
-            col1:row.id,
-            col2:row.date,
-            col3:row.hour,
-            col4:row.paid?'not yet':row.paid,
-            col5:row.Service && row.Service.name,
-            col6:row.Client && row.Client.fullName,
-            col7:row.Profesional && row.Profesional.fullname,
-        }
-    })
+  const rows = appointments.map((row) => {
+    console.log(row.paid);
+    return {
+      id: row.id,
+      col1: row.id,
+      col2: row.date,
+      col3: row.hour,
+      col4: row.paid ? "Yes" : "No",
+      col5: row.Service && row.Service.name,
+      col6: row.Client && row.Client.fullName,
+      col7: row.Profesional && row.Profesional.fullname,
+    };
+  });
 
-    const columns = [
-        {field:'col1',headerName:'id',width:100},
-        {field:'col2',headerName:'date',width:100},
-        {field:'col3',headerName:'hour',width:100},
-        {field:'col4',headerName:'paid',width:100},
-        {field:'col5',headerName:'service',width:300},
-        {field:'col6',headerName:'Client',width:250},
-        {field:'col7',headerName:'Professional',width:240}
-    ]
+  const columns = [
+    { field: "col1", headerName: "id", width: 100 },
+    { field: "col2", headerName: "date", width: 100 },
+    { field: "col3", headerName: "hour", width: 100 },
+    { field: "col4", headerName: "paid", width: 100 },
+    { field: "col5", headerName: "service", width: 300 },
+    { field: "col6", headerName: "Client", width: 250 },
+    { field: "col7", headerName: "Professional", width: 240 },
+  ];
 
-    console.log(rows)
+  console.log(rows);
 
-    return(
-        <div className={styles.container}>
-            <DataGrid
-                columns={columns}
-                rows={rows}
-                checkboxSelection={true}
-            />
-        </div>
-    )
+  return (
+    <div className={styles.container}>
+      <DataGrid columns={columns} rows={rows} checkboxSelection={true} />
+    </div>
+  );
 }

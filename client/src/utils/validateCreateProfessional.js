@@ -1,6 +1,7 @@
 const validateCreateProfessional = (professionalInfo, setErrors) => {
   //! ---- regex del nombre
-  const regexString = /^(?!\s)[a-zA-Z0-9][a-zA-Z0-9\s]*$/;
+  const regexString =
+    /^(?!\s)[a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ][a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ\s]*$/;
   if (!professionalInfo.fullname) {
     setErrors((prevState) => {
       return { ...prevState, fullname: "Required" };
@@ -43,14 +44,14 @@ const validateCreateProfessional = (professionalInfo, setErrors) => {
       return { ...prevState, image: "Required" };
     });
   }
-  if (professionalInfo.image) {
-    if (!regexUrlImage.test(professionalInfo.image)) {
+  if (professionalInfo.imageProfessional) {
+    if (!regexUrlImage.test(professionalInfo.imageProfessional)) {
       setErrors((prevState) => {
-        return { ...prevState, image: "Invalid" };
+        return { ...prevState, imageProfessional: "Invalid" };
       });
     } else {
       setErrors((prevState) => {
-        return { ...prevState, image: "" };
+        return { ...prevState, imageProfessional: "" };
       });
     }
   }

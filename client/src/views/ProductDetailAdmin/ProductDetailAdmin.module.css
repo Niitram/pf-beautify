@@ -1,11 +1,13 @@
 .container {
   background-color: var(--background);
   width: 100%;
-  height: 92vh;
+  height: 120vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 .card {
   background-color: #f5b7b14f;

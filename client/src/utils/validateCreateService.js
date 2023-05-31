@@ -1,13 +1,15 @@
 export default function validateCreateService(serviceInfo, setErrors) {
   //! regex del nombre
-  const regexString = /^(?!\s)[a-zA-Z0-9][a-zA-Z0-9\s]*$/;
+  const regexString =
+    /^(?!\s)[a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ][a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ\s]*$/;
+
   if (!serviceInfo.name) {
     setErrors((prevState) => {
       return { ...prevState, name: "Required" };
     });
   }
   if (serviceInfo.name) {
-    if (!regexString.test(serviceInfo.fullname)) {
+    if (!regexString.test(serviceInfo.name)) {
       setErrors((prevState) => {
         return { ...prevState, name: "Invalid" };
       });
@@ -42,19 +44,19 @@ export default function validateCreateService(serviceInfo, setErrors) {
 
   //! regex image
   const regexUrlImage = /(https?:\/\/.*\.(?:png|jpg|jpeg))/;
-  if (!serviceInfo.image) {
+  if (!serviceInfo.imageService) {
     setErrors((prevState) => {
-      return { ...prevState, image: "Required" };
+      return { ...prevState, imageService: "Required" };
     });
   }
-  if (serviceInfo.image) {
-    if (!regexUrlImage.test(serviceInfo.image)) {
+  if (serviceInfo.imageService) {
+    if (!regexUrlImage.test(serviceInfo.imageService)) {
       setErrors((prevState) => {
-        return { ...prevState, image: "Invalid" };
+        return { ...prevState, imageService: "Invalid" };
       });
     } else {
       setErrors((prevState) => {
-        return { ...prevState, image: "" };
+        return { ...prevState, imageService: "" };
       });
     }
   }

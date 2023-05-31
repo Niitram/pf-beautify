@@ -6,13 +6,14 @@ const appointments = require("./appointments.json");
 const bulkCreateAppointments = async () => {
   try {
     const promesas = await appointments.map(
-      async ({ profesionalId, clientId, serviceId, date, hour }) => {
+      async ({ profesionalId, clientId, serviceId, date, hour, paid }) => {
         return await createAppointment(
           profesionalId,
           clientId,
           serviceId,
           date,
-          hour
+          hour,
+          paid
         );
       }
     );
