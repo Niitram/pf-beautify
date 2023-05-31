@@ -13,7 +13,16 @@ const getProfesionalDetail = async (id) => {
       },
     ],
   });
-  return profDetail;
+  const newProfessional = {
+    id: profDetail.id,
+    fullname: profDetail.fullname,
+    mail: profDetail.mail,
+    direction: profDetail.direction,
+    image: profDetail.image,
+    appointments: profDetail.Appointments,
+    service: profDetail.Services[0].name,
+  }
+  return newProfessional;
 };
 
 module.exports = getProfesionalDetail;

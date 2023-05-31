@@ -24,6 +24,9 @@ export const GET_BACKUP_PRODUCTS = "GET_BACKUP_PRODUCTS";
 //Appointments
 export const ADD_APPOINTMENT = "ADD_APPOINTMENT";
 
+//Professionals
+export const ADD_ALL_PROFESSIONALS = "ADD_ALL_PROFESSIONALS";
+
 /* Actions */
 
 export const getAllProducts = (data) => {
@@ -131,5 +134,13 @@ export const addAppointment = (reservation) => {
   return {
     type: ADD_APPOINTMENT,
     payload: reservation,
+  };
+};
+//appoiments
+
+export const addAllProfessionals = (Professionals) => {
+  return {
+    type: ADD_ALL_PROFESSIONALS,
+    payload: Professionals,
   };
 };
