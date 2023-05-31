@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import styles from "./Resumen.module.css";
@@ -85,14 +86,14 @@ export const Resumen = () => {
       <div className={styles.details}>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>$</Avatar>
-          <div>
+          <div className={styles.names_details}>
             <h2>{numProfesionals}</h2>
             <span>Profesionals</span>
           </div>
         </div>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>C</Avatar>
-          <div>
+          <div className={styles.names_details}>
             <h2>{numClientes}</h2>
             <span>N° Clients</span>
           </div>
@@ -102,21 +103,21 @@ export const Resumen = () => {
       <div className={styles.details}>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>P</Avatar>
-          <div>
+          <div className={styles.names_details}>
             <h2>{numProductos}</h2>
             <span>N° Products</span>
           </div>
         </div>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>S</Avatar>
-          <div>
+          <div className={styles.names_details}>
             <h2>{numServices}</h2>
             <span>N° Services</span>
           </div>
         </div>
         <div className={styles.content_details}>
           <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>R</Avatar>
-          <div>
+          <div className={styles.names_details}>
             <h2>{numAppointments}</h2>
             <span>N° Appointments</span>
           </div>
@@ -125,3 +126,4 @@ export const Resumen = () => {
     </section>
   );
 };
+

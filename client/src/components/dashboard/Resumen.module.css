@@ -58,7 +58,8 @@
     
     flex-grow: 1;
 }
- h2 , span {
+
+.names_details > h2  , span {
     color:black;
     letter-spacing: 2px;
 }
