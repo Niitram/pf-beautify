@@ -52,9 +52,11 @@ function Nav({ handleLoginClick, handleDetailClick }) {
             <ButtonAccent1 text={"Cart"} route={"/cart"}></ButtonAccent1>
           </>
         )}
-        <label htmlFor="check" className={styles.ocultarmenu}>
-          <CloseIcon />
-        </label>
+        <div className={styles.ocultarmenu} >
+          
+            <CloseIcon />
+       
+        </div>
       </div>
     </nav>
   );
