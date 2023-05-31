@@ -16,6 +16,7 @@ import {
   RESET_FILTERS_ORDER,
   GET_BACKUP_PRODUCTS,
   ADD_APPOINTMENT,
+  ADD_ALL_PROFESSIONALS,
 } from "./actions";
 
 const initialState = {
@@ -169,6 +170,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         appointment: { ...action.payload }
+      };
+    // Professionals
+    case ADD_ALL_PROFESSIONALS:
+      return {
+        ...state,
+        allProfessionals: [...action.payload]
       };
     // favorites
     case SET_FAVORITES:

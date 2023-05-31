@@ -156,8 +156,6 @@ function App() {
     }
   });
 
-  console.log(locationNow.pathname);
-
   return (
     <div className="App">
       {locationNow.pathname !== "/" &&
