@@ -11,12 +11,17 @@
 .cardContainer {
   display: flex;
   flex-direction: column;
-  width: 150px;
+  justify-content: center;
+  align-items: center;
+  width: 175px;
   height: 15rem;
   background-color: #f9f6f6;
   padding: 20px;
   border-radius: 10px;
   transition: 500ms;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 .aux:hover {
   scale: 110%;
@@ -28,8 +33,18 @@
   justify-content: center;
 }
 .detailsCard {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
 }
 .nombre {
   font-weight: 900;
+}
+.precio{
+  
+  width:fit-content;
+  height:fit-content;
+  padding-bottom:0.5rem
 }

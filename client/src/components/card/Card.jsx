@@ -63,7 +63,7 @@ function Card({ image, price, name, rate, id }) {
               size="small"
               readOnly
             />
-            <div className={styles.precio}>${price}</div>
+            <div className={styles.precio}><p>${price}</p></div>
           </div>
         </div>
       </Link>
