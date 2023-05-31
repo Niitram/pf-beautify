@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "../Checkout/Checkout.module.css";
 import { Wallet } from "@mercadopago/sdk-react";
-import { Skeleton } from "@mui/material";
+import { Skeleton, getNativeSelectUtilityClasses } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { getServiceById } from "../../request/services";
 import { addAppointment } from "../../redux/actions";
@@ -58,8 +58,8 @@ export default function CheckoutAppointment() {
             </div> */}
           </div>
           <div className={styles.mercadopago}>
-            {preferenceId ? (
-              <Wallet initialization={{ preferenceId: `${preferenceId}` }} />
+            {service ? (
+              <Wallet initialization={{ preferenceId: `${preferenceId}` }} onReady={localStorage.removeItem("preference")} />
             ) : (
               <Skeleton height={40} width={150} variant="rectangular" />
             )}

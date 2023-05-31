@@ -15,7 +15,6 @@ mercadopago.configure({
 router.post("/create_preference", async (req, res) => {
   const external_reference = req.body.pop();
   const items = req.body;
-  console.log(items);
   const returnUrl = req.headers.origin;
   let preference = {
     external_reference,

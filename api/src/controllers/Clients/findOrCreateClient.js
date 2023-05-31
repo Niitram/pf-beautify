@@ -10,7 +10,7 @@ const findOrCreateClient = async (email, fullName, image, phone, adress) => {
       phone: phone ? phone : null,
       adress: adress ? adress : null,
     });
-    signUpMail(fullName, client.email)
+    await signUpMail(fullName, client.email)
     return client
 }else {
     return client;

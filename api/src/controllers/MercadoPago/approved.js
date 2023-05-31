@@ -21,11 +21,10 @@ const approvedFunction = async (id, email) => {
   let itemsDetails = [];
   const client = await Client.findOne({ where: { email: email } });
   items.forEach(async (product) => {
-    totalAmount = totalAmount + product.unit_price;
+    totalAmount = totalAmount + (product.unit_price * product.quantity);
   });
-
   items.forEach((product) => {
-    if (product.title != "discount") {
+    if (product.id != 0) {
       itemsDetails.push({
         price: product.unit_price,
         count: product.quantity,

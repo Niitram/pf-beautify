@@ -6,7 +6,6 @@ const cancelShop = async (shopId) => {
     include: { model: ShopsDetail },
   });
   const client = await Client.findByPk(shopToCancel.ClientId);
-
   shopToCancel.ShopsDetails.forEach(async (detail) => {
     const product = await addStock(detail.ProductId, detail.count);
   });
@@ -16,7 +15,6 @@ const cancelShop = async (shopId) => {
     balance:
       (client.balance || 0) - (shopToCancel.amount - shopToCancel.discount),
   });
-
   await shopToCancel.destroy();
   return true;
 };
