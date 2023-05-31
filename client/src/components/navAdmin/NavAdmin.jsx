@@ -78,9 +78,9 @@ export default function NavAdmin({ setLogout }) {
         <button onClick={onLogout} className={styles.LogOutBtn}>
           Logout
         </button>
-        <label htmlFor="check" className={styles.ocultarmenu}>
+        <div  className={styles.ocultarmenu}>
           <CloseIcon />
-        </label>
+        </div>
       </div>
     </div>
   );
