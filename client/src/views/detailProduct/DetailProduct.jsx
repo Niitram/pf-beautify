@@ -48,7 +48,7 @@ function DetailProduct({ handleLoginClick }) {
   const handleAddToCart = (e) => {
     if (errorQuantity) return;
     if (!userData.id) return handleLoginClick();
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cart = JSON.parse(localStorage.getItem("cart"));
     const productExist = cart.find((cartItem) => cartItem.id == product.id);
 
     if (productExist)

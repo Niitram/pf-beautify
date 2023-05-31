@@ -34,17 +34,22 @@ function Cart() {
   }
 
   useEffect(() => {
-    const email = JSON.parse(localStorage.getItem("userData")).email;
+    const cartData = JSON.parse(localStorage.getItem("cart"));
     //Se trae el balance del usuario y si es es null se setea en 0
+    const email = JSON.parse(localStorage.getItem("userData")).email;
     getClient(email).then((res) => {
       let balanceDb = res.data.balance;
+      cartData.forEach((element) => {
+        if (element.id === 0) {
+          setIsBalance(true);
+        }
+      });
       if (!balanceDb) {
-        balanceDb = 1;
+        balanceDb = -10;
       }
       setBalance(balanceDb);
     });
 
-    const cartData = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(cartData);
   }, []);
 
@@ -70,6 +75,22 @@ function Cart() {
         stock: 1,
       },
     ]);
+    const objBalance = {
+      description: "Balance",
+      discount: 0,
+      id: 0,
+      image: logoBeautify,
+      name: "Balance",
+      price: balance,
+      quantity: 1,
+      state: true,
+      stock: 1,
+    };
+
+    const cartLS = JSON.parse(localStorage.getItem("cart"));
+    cartLS.push(objBalance);
+    console.log(cartLS);
+    localStorage.setItem("cart", JSON.stringify(cartLS));
     setIsBalance(true);
   };
 
@@ -114,8 +135,8 @@ function Cart() {
 
   const handleCheckOut = async () => {
     try {
-      const localCarrito = JSON.parse(localStorage.getItem("cart")) || [];
-      const carrito = localCarrito.map((element) => {
+      //const localCarrito = JSON.parse(localStorage.getItem("cart"));
+      const carrito = cart.map((element) => {
         return {
           title: element.name,
           quantity: element.quantity,
@@ -136,8 +157,6 @@ function Cart() {
       );
     }
   };
-  console.log(cart);
-  console.log(isBalance);
 
   return (
     <div className={styles.containerGlobal}>
