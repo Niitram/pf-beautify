@@ -130,14 +130,14 @@ function App() {
       logout
     ) {
       try {
-        await loginWithGoogleFirebase(
+        const client = await loginWithGoogleFirebase(
           usuarioFirebase,
           dispatch,
           navigate,
           locationNow
         );
         setLogout(false);
-
+        if (!client) return;
         const currentLocation = locationNow.pathname;
         const oldLocation = JSON.parse(localStorage.getItem("oldLocation"));
 
@@ -165,10 +165,12 @@ function App() {
         locationNow.pathname == "/dashboardAdmin" ||
         locationNow.pathname == "/dashboardAdmin/clients" ||
         locationNow.pathname == "/dashboardAdmin/appointments" ||
+        locationNow.pathname == "/dashboardAdmin/newProduct" ||
         locationNow.pathname == "/dashboardAdmin/services_control" ||
         locationNow.pathname == "/dashboardAdmin/products_control/:id" ||
         locationNow.pathname == "/dashboardAdmin/newProfessional" ||
         locationNow.pathname == "/dashboardAdmin/products_control" ||
+        locationNow.pathname =="/dashboardAdmin/newProduct" ||
         locationNow.pathname == "/dashboardAdmin/professionals") ? (
         <NavAdmin setLogout={setLogout} />
       ) : (
@@ -227,7 +229,15 @@ function App() {
         <Route path="/contact" element={<ContactForm />} />
 
         {/* Rutas solo para ADMIN */}
-        <Route element={<ProtectedRoute isAllowed={userData.rol === ADMIN} />}>
+        <Route
+          element={
+            <ProtectedRoute
+              isAllowed={
+                JSON.parse(localStorage.getItem("userData"))?.rol === ADMIN
+              }
+            />
+          }
+        >
           <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
           <Route path="/dashboardAdmin/newProduct" element={<NewProduct />} />
           <Route path="/dashboardAdmin/clients" element={<Clients />} />

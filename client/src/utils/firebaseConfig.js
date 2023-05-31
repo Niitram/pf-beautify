@@ -8,10 +8,11 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { postFindOrCreate } from "../request/clients";
-import { setUserInfoAction } from "../redux/actions";
+import { setUserInfoAction, showError } from "../redux/actions";
 import { ADMIN, CLIENT } from "./roles";
 import { validateUpdateUser } from "./validateUpdateUser";
 import { getCart } from "../request/cart";
+import validateCreateProfessional from "./validateCreateProfessional";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
@@ -56,6 +57,45 @@ export const upload = async (
   setProductData({ ...productData, image: url });
   validateCreateProduct({ ...productData, image: url }, setErrors);
 };
+export const uploadProfessionalPhoto = async (
+  archivo,
+  setCreationInfo,
+  creationInfo,
+  setErrors
+) => {
+  // crea una referencia al archivo
+  const archivoRef = ref(storage, `images/${archivo.name}`);
+  // sube el archivo a esa referencia
+  await uploadBytes(archivoRef, archivo);
+  // devuelve la url del archivo
+  const url = await getDownloadURL(archivoRef);
+
+  console.log(url);
+
+  setCreationInfo({ ...creationInfo, imageProfessional: url });
+  validateCreateProfessional(
+    { ...creationInfo, imageProfessional: url },
+    setErrors
+  );
+};
+export const uploadServicePhoto = async (
+  archivo,
+  setCreationInfo,
+  creationInfo,
+  setErrors
+) => {
+  // crea una referencia al archivo
+  const archivoRef = ref(storage, `images/${archivo.name}`);
+  // sube el archivo a esa referencia
+  await uploadBytes(archivoRef, archivo);
+  // devuelve la url del archivo
+  const url = await getDownloadURL(archivoRef);
+
+  console.log(url);
+
+  setCreationInfo({ ...creationInfo, imageService: url });
+  validateCreateProfessional({ ...creationInfo, imageService: url }, setErrors);
+};
 
 export const uploadProfilePicture = async (
   archivo,
@@ -85,7 +125,7 @@ export const loginWithGoogleFirebase = async (
   usuarioFirebase,
   dispatch,
   navigate,
-  locationNow 
+  locationNow
 ) => {
   try {
     // recibe el usuario de google y lo busca/crea en la bdd
@@ -95,7 +135,18 @@ export const loginWithGoogleFirebase = async (
       phone: usuarioFirebase.phoneNumber,
       image: usuarioFirebase.image || null,
     });
+    if (!response) return;
     const dbClient = response.data;
+    if (dbClient.banned) {
+      navigate("/");
+      dispatch(
+        showError({
+          tittle: "Banned-user",
+          message: "Sory, looks like you've been banned",
+        })
+      );
+      return;
+    }
 
     const userData = {
       id: dbClient.id,
@@ -104,16 +155,24 @@ export const loginWithGoogleFirebase = async (
       rol: CLIENT,
     };
 
-    if (userData.email === "beautifyfinalproyect@gmail.com")
+    if (userData.email === "beautifyfinalproyect@gmail.com") {
       userData.rol = ADMIN;
+    }
 
     localStorage.setItem("userData", JSON.stringify(userData));
-    const cartSaved = await getCart(userData.id);
-    localStorage.setItem("cart", JSON.stringify(cartSaved.data));
+    //Se chequea previamente si hay algo en el localStorage porque sino lo borra
+    const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
+    if (cartLS.length === 0) {
+      const cartSaved = await getCart(userData.id);
+      localStorage.setItem("cart", JSON.stringify(cartSaved.data));
+    }
 
     // setear el estado global
     dispatch(setUserInfoAction(userData));
-     locationNow.pathname === "/" && navigate("/home");
+
+    // locationNow.pathname === "/" && navigate("/home");
+    return userData;
+
   } catch (error) {
     navigate("/");
     console.log(error.message);

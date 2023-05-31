@@ -10,7 +10,7 @@ const InputImage = ({ setProductData, productData, setErrors }) => {
 
   return (
     <div>
-      <input type="file" onChange={handleChange} />
+      <input className={style.file}type="file" onChange={handleChange} />
     </div>
   );
 };

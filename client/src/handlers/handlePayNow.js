@@ -8,7 +8,6 @@ const handlePayNow = async (dispatch, options, userData, navigate) => {
     //Se pide el servicio por id
     const respDb = await getServiceById(options.service);
     //Se setea un objeto con los detalles que necesita MP
-    console.log(respDb);
     let serviceDetail = {
       details: respDb.data.name,
       id: respDb.data.id,

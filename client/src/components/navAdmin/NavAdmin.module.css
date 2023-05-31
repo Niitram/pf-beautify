@@ -36,4 +36,61 @@
 .botones {
   display: flex;
   flex-direction: row;
+ 
+}
+
+.mostrarmenu,
+.ocultarmenu {
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+  transition: 0.4s;
+}
+
+.check {
+  display: none;
+}
+@media (max-width: 818px) {
+  .mostrarmenu,
+  .ocultarmenu {
+    display: block;
+  }
+  .mostrarmenu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+ 
+  .botones {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: var(--background);
+    right: -100%;
+    top: 0;
+    text-align: center;
+    z-index: 100;
+    transition: 0.8s;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-top: 5%;
+    gap:0.5rem
+  }
+  .ocultarmenu {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+  }
+  .check:checked ~ .botones {
+    right: -15px;
+  }
+  .LogOutBtn{
+    color:white;
+    background: var(--accent1);
+    width:fit-content;
+    border-radius:10px;
+  }
+  
 }

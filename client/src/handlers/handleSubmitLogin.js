@@ -65,6 +65,17 @@ const handleSubmitLogin = async (
       // const cartSaved = await getCart(userCreated.data.id); //*el back si no tiene un carrito devuelve undefined
       // const userCart = !cartSaved ? [] : cartSaved.data
 
+      // si el usuario está baneado lo manda pa su casa
+      if (userCreated.data.banned) {
+        navigate("/");
+        return dispatch(
+          showError({
+            tittle: "Banned-user",
+            message: "Sory, looks like you've been banned",
+          })
+        );
+      }
+
       const userData = {
         id: userCreated.data.id,
         name: userCreated.data.fullName,

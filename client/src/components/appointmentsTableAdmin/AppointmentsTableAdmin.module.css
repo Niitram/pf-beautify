@@ -1,8 +1,13 @@
 .container {
-  width: 70%;
-  height: 50rem;
-  padding: 2rem;
+  display:flex;
+  justify-content: center;
+  width:100%;
+  height:fit-content;
+  padding:2rem 2.5rem;
 }
+
+
+
 .container :global .MuiDataGrid-columnHeaders {
   background-color: var(--accent1);
 }

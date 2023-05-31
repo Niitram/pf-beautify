@@ -1,3 +1,4 @@
+import  { useState } from "react";
 import styles from "./Nav.module.css";
 import ButtonNav from "../buttons/buttonNav/ButtonNav";
 import ButtonAccent1 from "../buttons/Button-accent1/Button-accent1";
@@ -10,17 +11,28 @@ import CloseIcon from "@mui/icons-material/Close";
 
 function Nav({ handleLoginClick, handleDetailClick }) {
   const userData = useSelector((state) => state.userData);
+  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const onMenuClicked = () => {
+    setIsMenuOpen(!isMenuOpen);
+  }
   return (
     <nav className={styles.navBar}>
       <NavLink to="/home">
         <img className={styles.logo} src={logo} alt="logo" />
       </NavLink>
-      <input type="checkbox" id="check" className={styles.check} />
+      <input
+        type="checkbox"
+        id="check"
+        className={styles.check}
+        checked={isMenuOpen}
+        onChange={onMenuClicked}
+      />
       <label htmlFor="check" className={styles.mostrarmenu}>
         <MenuIcon />
       </label>
-      <div className={styles.botones} htmlFor="check">
+      <div className={styles.botones}  onClick={onMenuClicked}>
         <label htmlFor="check">
           <ButtonNav text={"Home"} route={"/home"}></ButtonNav>
         </label>
@@ -40,9 +52,9 @@ function Nav({ handleLoginClick, handleDetailClick }) {
             <ButtonAccent1 text={"Cart"} route={"/cart"}></ButtonAccent1>
           </>
         )}
-        <label htmlFor="check" className={styles.ocultarmenu}>
+        <div  className={styles.ocultarmenu}>
           <CloseIcon />
-        </label>
+        </div>
       </div>
     </nav>
   );
