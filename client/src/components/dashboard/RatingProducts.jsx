@@ -22,27 +22,27 @@ const RatingProducts = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles["top-rating"]}>
+      <div className={styles.topRating}>
         <h3>Top Rating Products</h3>
       </div>
       {productos.map((producto, index) => {
         const normalizedRate = (producto.rate / maxRate) * 100;
         return (
           <div key={index} className={styles.product}>
-            <div className={styles["product-image"]}>
+            <div className={styles.productImage}>
               <img src={producto.image} alt={producto.name} />
             </div>
-            <div className={styles["product-info"]}>
-              <p className={styles["product-name"]}>{producto.name}</p>
+            <div className={styles.productInfo}>
+              <p className={styles.productName}>{producto.name}</p>
             </div>
-            <div className={styles["chart-container"]}>
+            <div className={styles.chartContainer}>
               <svg viewBox="0 0 36 36">
                 <path
                   className={styles.circle}
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
                 <path
-                  className={styles["circle-progress"]}
+                  className={styles.circleProgress}
                   strokeDasharray={`${normalizedRate} 100`}
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
@@ -62,7 +62,6 @@ const RatingProducts = () => {
       })}
     </div>
   );
-  
 };
 
 export default RatingProducts;

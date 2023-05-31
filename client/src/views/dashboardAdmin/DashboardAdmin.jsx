@@ -49,34 +49,34 @@ const DashboardAdmin = () => {
       {/* <NavAdmin /> */}
       <Resumen />
       <div className={styles.rating}>
-        <div>
+        <div className={styles.statics}>
           <RatingProducts />
         </div>
-
-        <div className={styles.statics}>
-          {" "}
-          <CardChart
-            title="Statics Products"
-            labels={labelProducts}
-            data={dataProducts}
-          />{" "}
-        </div>
-        <div className={styles.statics}>
-          <CardChart
-            title="Appointment Statistics"
-            labels={labelAppointments}
-            data={dataAppointments}
-          />
-        </div>
-        <div className={styles.statics}>
-          <CardChart
-            title="Product Categories"
-            labels={labelProductCategories}
-            data={dataProductCategories}
-          />
+        <div className={styles.ratingDetails}>
+          <div className={styles.statics}>
+            {" "}
+            <CardChart
+              title="Statics Products"
+              labels={labelProducts}
+              data={dataProducts}
+            />{" "}
+          </div>
+          <div className={styles.statics}>
+            <CardChart
+              title="Appointment Statistics"
+              labels={labelAppointments}
+              data={dataAppointments}
+            />
+          </div>
+          <div className={styles.statics}>
+            <CardChart
+              title="Product Categories"
+              labels={labelProductCategories}
+              data={dataProductCategories}
+            />
+          </div>
         </div>
       </div>
-      <br />
       <div className={styles.footeradmin}>
         <FooterAll />
       </div>

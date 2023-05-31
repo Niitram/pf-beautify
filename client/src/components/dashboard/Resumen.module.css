@@ -1,7 +1,16 @@
+.detailsGlobal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: fit-content;
+}
+.contentProfe{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
 .resumen_container{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    place-items: center;
     padding: 0.5rem;
     width: 100%;
     height:auto;
@@ -13,13 +22,14 @@
     justify-content: start;
     align-items: center;
     gap:5px;
-    width:90%;
+    width:30%;
     padding: 0.2rem;
    
 
 }
 .detailsDetails {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding:0.5rem;
@@ -34,8 +44,7 @@
     clip-path: circle(30% at 50% 50%);
 }
 .logo {
-    width:70%;
-    object-fit: contain;
+    width: 100%;
 }
 .details {
     display: grid;
@@ -49,9 +58,14 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    gap:0.75rem;
-    padding:0.5rem
-    
+    gap: 1rem;
+    margin: 10px;
+    width: 250px;
+    padding:1.5rem;
+    border-radius: 10px;
+    box-shadow: 3px 6px 12px 1px rgba(0,0,0,0.61);
+    -webkit-box-shadow: 3px 6px 12px 1px rgba(0,0,0,0.61);
+    -moz-box-shadow: 3px 6px 12px 1px rgba(0,0,0,0.61); 
 }
 .content_details > div{
     
@@ -59,6 +73,34 @@
 }
 
 .names_details > h2  , span {
-    color:black;
+    color: var(--text);
     letter-spacing: 2px;
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 10px;
+}
+
+@media (max-width: 1100px) {
+    .detailsGlobal{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+        transition: 0.4s;
+    }
+    .profile_admin{
+        width:40%;
+    }
+    
+}
+@media (max-width: 630px) {
+    .profile_admin{
+        width:70%;
+    }
+    
+}
+@media (max-width: 360px) {
+    .profile_admin{
+        width:60%;
+    }
+    
 }
