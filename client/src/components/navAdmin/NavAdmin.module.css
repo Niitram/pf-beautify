@@ -76,6 +76,7 @@
     justify-content: start;
     align-items: center;
     padding-top: 5%;
+    gap:0.5rem
   }
   .ocultarmenu {
     position: absolute;
