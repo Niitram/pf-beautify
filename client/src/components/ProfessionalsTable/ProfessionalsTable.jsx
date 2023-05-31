@@ -13,6 +13,7 @@ export default function ProfessionalsTable(){
     },[])
 
     const rows = professionals.map((row)=>{
+        console.log(row)
         return{
             id:row.id,
             col1:row.id,

@@ -12,6 +12,7 @@ import { setUserInfoAction, showError } from "../redux/actions";
 import { ADMIN, CLIENT } from "./roles";
 import { validateUpdateUser } from "./validateUpdateUser";
 import { getCart } from "../request/cart";
+import validateCreateProfessional from "./validateCreateProfessional";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
@@ -55,6 +56,45 @@ export const upload = async (
 
   setProductData({ ...productData, image: url });
   validateCreateProduct({ ...productData, image: url }, setErrors);
+};
+export const uploadProfessionalPhoto = async (
+  archivo,
+  setCreationInfo,
+  creationInfo,
+  setErrors
+) => {
+  // crea una referencia al archivo
+  const archivoRef = ref(storage, `images/${archivo.name}`);
+  // sube el archivo a esa referencia
+  await uploadBytes(archivoRef, archivo);
+  // devuelve la url del archivo
+  const url = await getDownloadURL(archivoRef);
+
+  console.log(url);
+
+  setCreationInfo({ ...creationInfo, imageProfessional: url });
+  validateCreateProfessional(
+    { ...creationInfo, imageProfessional: url },
+    setErrors
+  );
+};
+export const uploadServicePhoto = async (
+  archivo,
+  setCreationInfo,
+  creationInfo,
+  setErrors
+) => {
+  // crea una referencia al archivo
+  const archivoRef = ref(storage, `images/${archivo.name}`);
+  // sube el archivo a esa referencia
+  await uploadBytes(archivoRef, archivo);
+  // devuelve la url del archivo
+  const url = await getDownloadURL(archivoRef);
+
+  console.log(url);
+
+  setCreationInfo({ ...creationInfo, imageService: url });
+  validateCreateProfessional({ ...creationInfo, imageService: url }, setErrors);
 };
 
 export const uploadProfilePicture = async (
@@ -129,8 +169,10 @@ export const loginWithGoogleFirebase = async (
 
     // setear el estado global
     dispatch(setUserInfoAction(userData));
+
     // locationNow.pathname === "/" && navigate("/home");
     return userData;
+
   } catch (error) {
     navigate("/");
     console.log(error.message);
