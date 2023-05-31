@@ -172,7 +172,9 @@ function Cart() {
           </label>
         </div>
         {balance !== 0 && (
-          <span>Has a balance of {Math.abs(balance)} in your favor </span>
+          <div className={styles.textBalance}>
+            Has a balance of {Math.abs(balance)} in your favor{" "}
+          </div>
         )}
         <label className={styles.txtCarrito}>
           Total price $ {totalPrice.toFixed(2)}
@@ -244,10 +246,14 @@ function Cart() {
           </button>
         )}
         {totalPrice < 0 && (
-          <span>Total amount must be higher than current balance</span>
+          <span className={styles.errorBalance}>
+            Total amount must be higher than current balance
+          </span>
         )}
         {cantArticulos > 0 && balance !== 0 && !isBalance && (
-          <button onClick={handleAddBalance}>Use my benefit</button>
+          <button className={styles.btnBalance} onClick={handleAddBalance}>
+            Use my benefit
+          </button>
         )}
       </div>
       <AlertDialogSlide
