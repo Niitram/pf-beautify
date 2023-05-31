@@ -11,6 +11,7 @@ const Name = ({
   userData,
   errors,
   handleSubmit,
+  updatedData,
 }) => {
   return (
     <div className={styles.textContainer}>
@@ -21,8 +22,8 @@ const Name = ({
               onChange={handleChange}
               type="text"
               name="name"
+              value={updatedData.name}
               onKeyDown={(e) => {
-                // console.log(e);
                 if (e.key === "Enter") {
                   e.preventDefault();
                   handleSubmit(e);

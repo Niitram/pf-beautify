@@ -29,19 +29,11 @@ export const createProductComment = async (
   }
 };
 
-export const createServiceComment = async (
-  { tittle, rating, content },
-  serviceId,
-  userId
-) => {
+export const createServiceComment = async (form, serviceId, userId) => {
   try {
     return await axios.post(
       `${URL_BASE}/comments/services/${serviceId}/${userId}`,
-      {
-        tittle,
-        rating,
-        content,
-      }
+      form
     );
   } catch (error) {
     console.log(error.message);

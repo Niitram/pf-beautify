@@ -48,7 +48,10 @@ const handleSubmitLogin = async (
         email: createUser.email,
         rol: CLIENT,
       };
-      if (userData.email === "beautifyfinalproyect@gmail.com")
+      if (
+        userData.email === "beautifyfinalproyect@gmail.com" ||
+        userData.email === "BeautifyStaff@hotmail.com"
+      )
         userData.rol = ADMIN;
 
       //Guarda el el local la info del usuario creado e inicializa el carrito
@@ -84,8 +87,12 @@ const handleSubmitLogin = async (
       };
 
       //Guarda el el local la info del usuario y del carrito
-      if (userData.email === "beautifyfinalproyect@gmail.com")
+      if (
+        userData.email === "beautifyfinalproyect@gmail.com" ||
+        userData.email === "BeautifyStaff@hotmail.com"
+      ) {
         userData.rol = ADMIN;
+      }
 
       localStorage.setItem("userData", JSON.stringify(userData));
       const cartSaved = await getCart(userData.id);
@@ -94,6 +101,11 @@ const handleSubmitLogin = async (
       // envía esa info del usuario al estado global
       dispatch(setUserInfoAction(userData));
     }
+    if (
+      email === "beautifyfinalproyect@gmail.com" ||
+      email === "BeautifyStaff@hotmail.com"
+    )
+      return navigate("/dashboardAdmin");
     if (oldLocation === "/") navigate("/home");
     else navigate(oldLocation);
   } catch (error) {

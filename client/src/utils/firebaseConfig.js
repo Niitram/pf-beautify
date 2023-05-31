@@ -155,7 +155,10 @@ export const loginWithGoogleFirebase = async (
       rol: CLIENT,
     };
 
-    if (userData.email === "beautifyfinalproyect@gmail.com") {
+    if (
+      userData.email === "beautifyfinalproyect@gmail.com" ||
+      userData.email === "BeautifyStaff@hotmail.com"
+    ) {
       userData.rol = ADMIN;
     }
 
@@ -172,7 +175,6 @@ export const loginWithGoogleFirebase = async (
 
     // locationNow.pathname === "/" && navigate("/home");
     return userData;
-
   } catch (error) {
     navigate("/");
     console.log(error.message);

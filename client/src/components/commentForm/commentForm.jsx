@@ -109,7 +109,7 @@ export default function CommentForm({
               </div>
               <Rating
                 name="simple-controlled"
-                value={form.rating}
+                value={Number(form.rating)}
                 onChange={(event, newValue) => {
                   setForm({ ...form, rating: newValue });
                 }}
@@ -120,7 +120,11 @@ export default function CommentForm({
             <div className={styles.commentDiv}>
               <h4>{comment.tittle}</h4>
               <p>{comment.content}</p>
-              <Rating name="read-only" value={Number(comment.rating)} />
+              <Rating
+                name="read-only"
+                value={Number(comment.rating)}
+                readOnly
+              />
             </div>
           )}
         </DialogTitle>

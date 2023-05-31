@@ -23,7 +23,7 @@ export default function FooterAll() {
       </div>
       <div className={styles.developers}>
         <p>All rights reserved to © 2023 </p>
-        <Link to={"/developers"}>The developers.</Link>
+        {/* <Link to={"/developers"}>The developers.</Link> */}
       </div>
     </div>
   );

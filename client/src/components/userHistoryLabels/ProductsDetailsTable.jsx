@@ -80,7 +80,11 @@ export default function ScrollDialog({
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button
+            onClick={handleClose}
+            color="primary"
+            style={{ color: "#fef2f4", backgroundColor: "#d14d72" }}
+          >
             Close
           </Button>
         </DialogActions>

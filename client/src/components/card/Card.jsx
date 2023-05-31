@@ -6,8 +6,9 @@ import productDefault from "../../assets/images/camera-icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFavorite, getFavorites } from "../../request/favorites";
 import paleta from "../../assets/images/Paleta";
-import { setFavorites } from "../../redux/actions";
+import { setFavorites, unsetFavorites } from "../../redux/actions";
 import CloseIcon from "@mui/icons-material/Close";
+import { useEffect } from "react";
 
 function Card({ image, price, name, rate, id }) {
   const location = useLocation();
@@ -15,15 +16,18 @@ function Card({ image, price, name, rate, id }) {
   const navigate = useNavigate();
   const clientId = useSelector((state) => state.userData.id);
   const allProducts = useSelector((state) => state.allProducts);
+  const backupProducts = useSelector((state) => state.backupProducts);
 
   const handleDeleteFavorite = async () => {
     try {
       await deleteFavorite(clientId, id);
+      if (location.pathname === "/favorites" && allProducts.length === 1) {
+        navigate("/home");
+        return dispatch(unsetFavorites(backupProducts));
+      }
       getFavorites(clientId).then(({ data }) => {
         dispatch(setFavorites(data));
       });
-      if (location.pathname === "/favorites" && allProducts.length === 1)
-        navigate("/home");
     } catch (error) {
       console.log(error.message);
     }
@@ -63,7 +67,9 @@ function Card({ image, price, name, rate, id }) {
               size="small"
               readOnly
             />
-            <div className={styles.precio}><p>${price}</p></div>
+            <div className={styles.precio}>
+              <p>${price}</p>
+            </div>
           </div>
         </div>
       </Link>

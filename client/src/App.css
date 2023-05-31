@@ -6,6 +6,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding:0px;
+  padding: 0px;
   margin: 0px;
+}
+
+/* si cambias esto no se ve el mapita */
+.leaflet-container {
+  width: 50vw;
+  height: 50vh;
 }

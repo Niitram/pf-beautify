@@ -17,6 +17,7 @@
   background-color: #f5b7b171;
   border: 0px solid var(--text-alt);
   border-radius: 10px;
+  padding: 5px;
 }
 
 .form textarea {
@@ -29,6 +30,7 @@
   border-radius: 10px;
   height: 20vh;
   width: 20vw;
+  padding: 5px;
 }
 
 .form input::placeholder {

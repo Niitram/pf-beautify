@@ -1,50 +1,63 @@
-
-.Container{
-    background-color:var(--background);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height:100vh;
+.Container {
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 }
 
-.QuienesSomos{
-    margin-top: 5%;
-    border-radius: 110px;
-    background: #FEF2F4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    padding: 5%;
-    -webkit-box-shadow: 2px 1px 17px 0px rgba(0,0,0,0.34);
-    -moz-box-shadow: 2px 1px 17px 0px rgba(0,0,0,0.34);
-    box-shadow: 2px 1px 17px 0px rgba(0,0,0,0.34);
+.QuienesSomos {
+  margin-top: 5%;
+  border-radius: 110px;
+  background: #fef2f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  padding: 5%;
+  -webkit-box-shadow: 2px 1px 17px 0px rgba(0, 0, 0, 0.34);
+  -moz-box-shadow: 2px 1px 17px 0px rgba(0, 0, 0, 0.34);
+  box-shadow: 2px 1px 17px 0px rgba(0, 0, 0, 0.34);
 }
-.QuienesSomos h1{
-    font-size: 50px;
-    font-weight: 900;
+.QuienesSomos h1 {
+  font-size: 50px;
+  font-weight: 900;
 }
 .QuienesSomos p {
-    color: var(--text);
-    font-size: large;
-    width: 100%;
-    margin: 3%;
-    text-align: justify;
+  color: var(--text);
+  font-size: large;
+  width: 100%;
+  margin: 3%;
+  text-align: justify;
 }
-.QuienesSomos strong{
-    color: var(--accent1);
+.QuienesSomos strong {
+  color: var(--accent1);
 }
 
-@media (max-width: 610px){
-    .QuienesSomos h1{
-        font-size: 30px;
-        font-weight: 900;
-    }
-    .QuienesSomos p {
-        font-size: small;
-        margin: 5%;
-    }
-    .QuienesSomos{
-        padding: 10%;
-    }
+@media (max-width: 610px) {
+  .QuienesSomos h1 {
+    font-size: 30px;
+    font-weight: 900;
+  }
+  .QuienesSomos p {
+    font-size: small;
+    margin: 5%;
+  }
+  .QuienesSomos {
+    padding: 10%;
+  }
+}
+
+.leaflet-container {
+  width: 50vw;
+  height: 50vh;
+}
+
+.DivMapita {
+  width: 50vw;
+  height: 50vh;
+}
+.Mapita {
+  width: 50vw;
+  height: 50vh;
 }
