@@ -30,7 +30,7 @@ router.post("/create_preference", async (req, res) => {
     .create(preference)
     .then(async function (response) {
       const preferenceId = response.body.id;
-      const clientMail = response.body.preferenceId;
+      const clientMail = response.body.external_reference;
       await Purchase.create({
         preferenceId,
         clientMail,
