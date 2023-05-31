@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/actions";
 import { postCart } from "../../request/cart";
@@ -10,8 +10,6 @@ import { useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
-
-
 export default function NavAdmin({ setLogout }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,7 +17,7 @@ export default function NavAdmin({ setLogout }) {
     setLogout(false);
     const auth = getAuth(firebaseApp);
     // trae información del carrito y el id de usuario del local
-    const localCart = JSON.parse(localStorage.getItem("cart"));
+    const localCart = JSON.parse(localStorage.getItem("cart")) || [];
     const userId = JSON.parse(localStorage.getItem("userData")).id;
 
     if (localCart.length) {
@@ -39,7 +37,6 @@ export default function NavAdmin({ setLogout }) {
   };
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
   const onMenuClicked = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -57,11 +54,10 @@ export default function NavAdmin({ setLogout }) {
         onChange={onMenuClicked}
       />
 
-
-       <label htmlFor="check" className={styles.mostrarmenu}>
+      <label htmlFor="check" className={styles.mostrarmenu}>
         <MenuIcon />
       </label>
-      <div className={styles.botones}  onClick={onMenuClicked}>
+      <div className={styles.botones} onClick={onMenuClicked}>
 
         <ButtonNav text={"Clients"} route="/dashboardAdmin/clients"></ButtonNav>
         <ButtonNav
@@ -83,7 +79,7 @@ export default function NavAdmin({ setLogout }) {
         <button onClick={onLogout} className={styles.LogOutBtn}>
           Logout
         </button>
-        <div  className={styles.ocultarmenu}>
+        <div className={styles.ocultarmenu}>
           <CloseIcon />
         </div>
       </div>

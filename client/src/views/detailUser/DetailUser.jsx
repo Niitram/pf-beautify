@@ -45,7 +45,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const onLogout = async () => {
     setLogout(false);
     // trae información del carrito y el id de usuario del local
-    const localCart = JSON.parse(localStorage.getItem("cart"));
+    const localCart = JSON.parse(localStorage.getItem("cart")) || [];
     const userId = JSON.parse(localStorage.getItem("userData")).id;
 
     if (localCart.length) {
