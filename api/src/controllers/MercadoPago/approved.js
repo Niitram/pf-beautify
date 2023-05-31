@@ -2,7 +2,7 @@ const { Purchase, Client } = require("../../db");
 const axios = require("axios");
 require("dotenv");
 const { ACESS_TOKEN, BACK_ROUTE } = process.env;
-
+const sendMailOnPurchase = require('../../config-email/sendMailByShop')
 const approvedFunction = async (id, email) => {
   const response = await axios.get(
     `https://api.mercadopago.com/checkout/preferences/${id}`,
@@ -24,7 +24,6 @@ const approvedFunction = async (id, email) => {
     totalAmount = totalAmount + product.unit_price;
   });
 
-  console.log(items);
   items.forEach((product) => {
     if (product.title != "discount") {
       itemsDetails.push({
@@ -48,8 +47,8 @@ const approvedFunction = async (id, email) => {
     `${BACK_ROUTE}/shops`,
     infoToSend
   );
-
-  return;
+  await sendMailOnPurchase(client.dataValues.fullName, createPurchaseRecords.data, client.dataValues.email)
+  return ;
 };
 
 module.exports = approvedFunction;
