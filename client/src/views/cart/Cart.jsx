@@ -5,11 +5,14 @@ import { useState, useEffect } from "react";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { showError } from "../../redux/actions";
+import logoBeautify from "../../assets/images/logo-beautify-500x500.png";
 
 // import Footer from "../../components/footerAll/FooterAll";
 
 import askPreference from "../../request/preference";
 import AlertDialogSlide from "../../components/slideDialog/slideDialog";
+import { getClient } from "../../request/clients";
+import useToggle from "../../hooks/useToggle";
 
 initMercadoPago("TEST-6baebe46-f407-406f-8011-2f812f18a2a3");
 
@@ -17,6 +20,12 @@ function Cart() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [cart, setCart] = useState([]);
+  const [balance, setBalance] = useState(0);
+  const [openCheckoutDialog, setOpenCheckoutDialog] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(false);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [isBalance, setIsBalance] = useToggle(false);
+
   //*** validar el carrito
   let cantArticulos = cart.length;
   let totalPrice = 0;
@@ -25,20 +34,49 @@ function Cart() {
   }
 
   useEffect(() => {
+    const email = JSON.parse(localStorage.getItem("userData")).email;
+    //Se trae el balance del usuario y si es es null se setea en 0
+    getClient(email).then((res) => {
+      let balanceDb = res.data.balance;
+      if (!balanceDb) {
+        balanceDb = 1;
+      }
+      setBalance(balanceDb);
+    });
+
     const cartData = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(cartData);
   }, []);
+
   const handleDelete = (id) => {
+    if (id === 0 && isBalance) setIsBalance(false);
     const newCart = cart.filter((cartItem) => cartItem.id != id);
     localStorage.setItem("cart", JSON.stringify(newCart));
     setCart(newCart);
+  };
+
+  const handleAddBalance = () => {
+    setCart((prevState) => [
+      ...prevState,
+      {
+        description: "Balance",
+        discount: 0,
+        id: 0,
+        image: logoBeautify,
+        name: "Balance",
+        price: balance,
+        quantity: 1,
+        state: true,
+        stock: 1,
+      },
+    ]);
+    setIsBalance(true);
   };
 
   const handleQuantity = (event) => {
     const name = event.target.name;
     const id = Number(event.target.value);
     const newCart = [...cart];
-    console.log("name", name, "id", id);
 
     for (let i = 0; i < newCart.length; i++) {
       if (newCart[i].id === id) {
@@ -57,7 +95,6 @@ function Cart() {
     setCart(newCart);
   };
 
-  const [openCheckoutDialog, setOpenCheckoutDialog] = useState(false);
   const handleClickOpenCheckoutDialog = () => {
     setOpenCheckoutDialog(true);
   };
@@ -65,8 +102,6 @@ function Cart() {
     setOpenCheckoutDialog(false);
   };
 
-  const [itemToDelete, setItemToDelete] = useState(false);
-  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const handleClickOpenDeleteDialog = (e) => {
     setItemToDelete(Number(e.target.value));
     setOpenDeleteDialog(true);
@@ -100,21 +135,9 @@ function Cart() {
         })
       );
     }
-    /* askPreference(aux)
-      .then(({ data }) =>
-        localStorage.setItem("preference", JSON.stringify(data.id))
-      )
-      .catch((error) => {
-        console.log(error.message);
-        dispatch(
-          showError({
-            tittle: "Wrong-cart",
-            message:
-              "There was an error processing the cart, please try again later",
-          })
-        );
-      }); */
   };
+  console.log(cart);
+  console.log(isBalance);
 
   return (
     <div className={styles.containerGlobal}>
@@ -130,6 +153,9 @@ function Cart() {
             You have {cantArticulos} items in your cart
           </label>
         </div>
+        {balance !== 0 && (
+          <span>Has a balance of {balance} in your favor </span>
+        )}
         <label className={styles.txtCarrito}>
           Total price $ {totalPrice.toFixed(2)}
         </label>
@@ -198,6 +224,9 @@ function Cart() {
           >
             Checkout
           </button>
+        )}
+        {cantArticulos > 0 && balance !== 0 && !isBalance && (
+          <button onClick={handleAddBalance}>Use my benefit</button>
         )}
       </div>
       <AlertDialogSlide
