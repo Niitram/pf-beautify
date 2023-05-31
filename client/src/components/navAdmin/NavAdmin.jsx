@@ -42,45 +42,47 @@ export default function NavAdmin({ setLogout }) {
   };
   return (
     <div className={styles.container}>
-
       <div className={styles.botones}>
         <ButtonNav text={"Dashboard"} route="/dashboardAdmin"></ButtonNav>
 
-       <input
-        type="checkbox"
-        id="check"
-        className={styles.check}
-        checked={isMenuOpen}
-        onChange={onMenuClicked}
-      />
+        <input
+          type="checkbox"
+          id="check"
+          className={styles.check}
+          checked={isMenuOpen}
+          onChange={onMenuClicked}
+        />
 
-      <label htmlFor="check" className={styles.mostrarmenu}>
-        <MenuIcon />
-      </label>
-      <div className={styles.botones} onClick={onMenuClicked}>
-
-        <ButtonNav text={"Clients"} route="/dashboardAdmin/clients"></ButtonNav>
-        <ButtonNav
-          text={"Appointments"}
-          route={"/dashboardAdmin/appointments"}
-        ></ButtonNav>
-        <ButtonNav
-          text={"Services"}
-          route={"/dashboardAdmin/services_control"}
-        ></ButtonNav>
-        <ButtonNav
-          text={"Professionals"}
-          route={"/dashboardAdmin/professionals"}
-        ></ButtonNav>
-        <ButtonNav
-          text={"Products"}
-          route={"/dashboardAdmin/products_control   "}
-        ></ButtonNav>
-        <button onClick={onLogout} className={styles.LogOutBtn}>
-          Logout
-        </button>
-        <div className={styles.ocultarmenu}>
-          <CloseIcon />
+        <label htmlFor="check" className={styles.mostrarmenu}>
+          <MenuIcon />
+        </label>
+        <div className={styles.botones} onClick={onMenuClicked}>
+          <ButtonNav
+            text={"Clients"}
+            route="/dashboardAdmin/clients"
+          ></ButtonNav>
+          <ButtonNav
+            text={"Appointments"}
+            route={"/dashboardAdmin/appointments"}
+          ></ButtonNav>
+          <ButtonNav
+            text={"Services"}
+            route={"/dashboardAdmin/services_control"}
+          ></ButtonNav>
+          <ButtonNav
+            text={"Professionals"}
+            route={"/dashboardAdmin/professionals"}
+          ></ButtonNav>
+          <ButtonNav
+            text={"Products"}
+            route={"/dashboardAdmin/products_control   "}
+          ></ButtonNav>
+          <button onClick={onLogout} className={styles.LogOutBtn}>
+            Logout
+          </button>
+          <div className={styles.ocultarmenu}>
+            <CloseIcon />
+          </div>
         </div>
       </div>
     </div>
