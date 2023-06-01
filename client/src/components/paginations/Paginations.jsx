@@ -16,7 +16,6 @@ function Paginations({ currentPage, setCurrentPage }) {
   const prevPage = () => {
     setCurrentPage((prev) => prev - 1);
   };
-  console.log(arrayWithPages.length);
   return (
     <div className={styles.Container}>
       <div>

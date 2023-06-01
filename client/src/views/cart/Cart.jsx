@@ -25,7 +25,7 @@ function Cart() {
   const [itemToDelete, setItemToDelete] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [isBalance, setIsBalance] = useToggle(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   //*** validar el carrito
   let cantArticulos = cart.length;
   let totalPrice = 0;
@@ -134,7 +134,7 @@ function Cart() {
 
   const handleCheckOut = async () => {
     try {
-      localStorage.removeItem("preference")
+      localStorage.removeItem("preference");
       //const localCarrito = JSON.parse(localStorage.getItem("cart"));
       const carrito = cart.map((element) => {
         return {
@@ -146,8 +146,8 @@ function Cart() {
       });
       let aux = [...carrito, emailUsuario];
       const respMP = await askPreference(aux);
-     localStorage.setItem("preference", JSON.stringify(respMP.data.id));
-     setLoading(true)
+      localStorage.setItem("preference", JSON.stringify(respMP.data.id));
+      setLoading(true);
     } catch (error) {
       dispatch(
         showError({
@@ -226,7 +226,10 @@ function Cart() {
                 </div>
               </div>
               <div className={styles.precio}>
-                Subtotal $ {(cartItem.price - cartItem.discount) * cartItem.quantity}
+                Subtotal ${" "}
+                {Number(
+                  (cartItem.price - cartItem.discount) * cartItem.quantity
+                ).toFixed(2)}
               </div>
               <button
                 className={styles.btnDelete}
@@ -267,14 +270,16 @@ function Cart() {
         }}
         questionText={"Are you sure you wanna remove that item from your card?"}
       />
-      { loading ? 
-      <AlertDialogSlide
-      handleCloseDialog={handleCloseCheckoutDialog}
-      openDialog={openCheckoutDialog}
-      yesCallback={() => navigate("/checkout")}
-      questionText={"Are you sure you wanna proceed to purchase?"}
-    /> : <></>}
-      
+      {loading ? (
+        <AlertDialogSlide
+          handleCloseDialog={handleCloseCheckoutDialog}
+          openDialog={openCheckoutDialog}
+          yesCallback={() => navigate("/checkout")}
+          questionText={"Are you sure you wanna proceed to purchase?"}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
