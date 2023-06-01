@@ -11,12 +11,12 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
   const dataDbShops = await getClientShops(userDataFromStorage.id);
   const dbShops = dataDbShops.data;
 
-  dbShops[0].date = "2023-05-28 asd";
-  dbShops[1].date = "2023-05-29 asd";
-  dbShops[2].date = "2023-05-30 asd";
-  dbShops[3].date = "2023-05-31 asd";
-  dbShops[4].date = "2023-06-01 asd";
-  dbShops[5].date = "2021-05-31 asd";
+  // dbShops[0].date = "2023-05-28 asd";
+  // dbShops[1].date = "2023-05-29 asd";
+  // dbShops[2].date = "2023-05-30 asd";
+  // dbShops[3].date = "2023-05-31 asd";
+  // dbShops[4].date = "2023-06-01 asd";
+  // dbShops[5].date = "2021-05-31 asd";
   const dataComments = await getCommentsByClient(userDataFromStorage.id);
   const comments = dataComments.data;
 
