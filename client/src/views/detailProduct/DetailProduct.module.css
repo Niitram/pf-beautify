@@ -157,6 +157,12 @@
     background-color: var(--accent2);
     color: var(--text);
 }
+.btnShopNow:disabled, .addCart:disabled{
+    background-color: var(--muted);
+    color: var(--text);
+    cursor: not-allowed;
+    border: none;
+}
 .btnCartAndList{
     display: flex;
     margin-top: 1rem;
@@ -173,7 +179,7 @@
     border-radius: 5px;
     
 }
-.addCart:hover{
+.addCart:not([disabled]):hover{
     color: var(--text);
     background-color: var(--accent2);
 }

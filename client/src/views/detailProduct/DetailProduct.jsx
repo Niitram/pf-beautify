@@ -120,9 +120,9 @@ function DetailProduct({ handleLoginClick }) {
     }
     return () => {
       setProduct({});
-      setQuantity(1)
+      setQuantity(1);
     }
-  }, [id, quantity]);
+  }, [id]);
   
   const {
     name,
@@ -169,12 +169,12 @@ function DetailProduct({ handleLoginClick }) {
           )}
           <div className={styles.descripcionProduct}>
             {price ? (
-              <h3 className={styles.descuento}>${price}</h3>
+              <h3 className={styles.descuento}>${Number(price).toFixed(2)}</h3>
             ) : (
               <Skeleton />
             )}
             {price ? (
-              <h3 className={styles.precio}> ${price - discount} </h3>
+              <h3 className={styles.precio}> ${Number(price - discount).toFixed(2)} </h3>
             ) : (
               <Skeleton />
             )}
