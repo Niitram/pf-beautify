@@ -141,11 +141,17 @@ function DetailProduct({ handleLoginClick }) {
           >
             <ArrowBackIosNewIcon />
           </button>
-          {image && (
+          {image ? (
             <ImageComponent
               src={image}
               alt={name}
               notFoundSrc={productDefault}
+            />
+          ) : (
+            <Skeleton
+              sx={{ height: 390, width: 390 }}
+              animation="wave"
+              variant="rectangular"
             />
           )}
         </div>
