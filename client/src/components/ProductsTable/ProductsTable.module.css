@@ -1,5 +1,5 @@
 .container {
-  width: 100%;
+  width: fit-content;
   height: auto;
   padding: 2rem;
   margin-bottom: 2rem;
