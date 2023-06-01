@@ -42,8 +42,7 @@ export default function NavAdmin({ setLogout }) {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.botones}>
-        <ButtonNav text={"Dashboard"} route="/dashboardAdmin"></ButtonNav>
+     
 
         <input
           type="checkbox"
@@ -57,6 +56,8 @@ export default function NavAdmin({ setLogout }) {
           <MenuIcon />
         </label>
         <div className={styles.botones} onClick={onMenuClicked}>
+        <ButtonNav text={"Dashboard"} route="/dashboardAdmin"></ButtonNav>
+
           <ButtonNav
             text={"Clients"}
             route="/dashboardAdmin/clients"
@@ -84,7 +85,7 @@ export default function NavAdmin({ setLogout }) {
             <CloseIcon />
           </div>
         </div>
-      </div>
+    
     </div>
   );
 }
