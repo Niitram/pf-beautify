@@ -33,11 +33,19 @@ function DetailService() {
       <h1>Service</h1>
       {service && (
         <div className={styles.containerDetail}>
-          <img
-            className={styles.image}
-            src={service.image}
-            alt={service.name}
-          />
+          {service.image ? (
+            <img
+              className={styles.image}
+              src={service.image}
+              alt={service.name}
+            />
+          ) : (
+            <Skeleton
+              sx={{ height: 390, width: 390 }}
+              animation="wave"
+              variant="rectangular"
+            />
+          )}
           <div className={styles.containerInfo}>
             <h2>{service.name}</h2>
             <p className={styles.description}>{service.description}</p>

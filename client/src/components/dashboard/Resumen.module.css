@@ -67,16 +67,20 @@
     -webkit-box-shadow: 3px 6px 12px 1px rgba(0,0,0,0.61);
     -moz-box-shadow: 3px 6px 12px 1px rgba(0,0,0,0.61); 
 }
-.content_details > div{
-    
-    flex-grow: 1;
-}
 
-.names_details > h2  , span {
+
+.names_details {
     color: var(--text);
     letter-spacing: 2px;
     font-family:Arial, Helvetica, sans-serif;
     padding: 10px;
+}
+
+.nombreh2{
+    color: var(--text);
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 10px;
+    font-weight: 700;
 }
 
 @media (max-width: 1100px) {

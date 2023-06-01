@@ -1,34 +1,18 @@
 import { useSelector } from "react-redux";
-// import { useEffect, useState } from "react";
 import { useState } from "react";
-// import PromoCard from "../../components/promo card/PromoCard";
 import styles from "./Home.module.css";
-// import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import SectionCards from "../../components/sectionCards/SectionCards";
-// import { showError } from "../../redux/actions";
-// import { getProducts } from "../../request/product";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import ima3 from "../../assets/images/Banner1.webp";
 import ima4 from "../../assets/images/Banner2.webp";
 import ima5 from "../../assets/images/Banner3.webp";
+import { Skeleton } from "@mui/material";
 
 function Home() {
   const images = [ima3, ima4, ima5];
-  // const [products, setProducts] = useState([]);
   const allProducts = useSelector((state) => state.allProducts);
-  // const dispatch = useDispatch();
-
-  // const [current, setCurrent] = useState(0);
-  // useEffect(() => {
-  //   try {
-  //     getProducts().then(({ data }) => setProducts(data));
-  //   } catch (error) {
-  //     dispatch(showError({ tittle: "Error", message: error.message }));
-  //     console.log(error.message);
-  //   }
-  // }, []);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePrevious = () => {
@@ -45,18 +29,25 @@ function Home() {
 
   return (
     <div className={styles.Container}>
-      {/* <h1 className={styles.Title}>Welcome to our shop</h1> */}
       <div className={styles.contenedorSlider}>
         <div className={styles.btnIzquierda} onClick={handlePrevious}>
           <KeyboardDoubleArrowLeftIcon />
         </div>
         <div className={styles.sliderScreen}>
-          <img
-            id="CollectionImagen"
-            className={styles.imagen}
-            src={images[currentImageIndex]}
-            alt="Image"
-          />
+          {images ? (
+            <img
+              id="CollectionImagen"
+              className={styles.imagen}
+              src={images[currentImageIndex]}
+              alt="Image"
+            />
+          ) : (
+            <Skeleton
+              sx={{ height: 390, width: 390 }}
+              animation="wave"
+              variant="rectangular"
+            />
+          )}
         </div>
         <div className={styles.btnDerecha} onClick={handleNext}>
           <KeyboardDoubleArrowRightIcon />

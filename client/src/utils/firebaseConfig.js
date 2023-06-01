@@ -13,6 +13,7 @@ import { ADMIN, CLIENT } from "./roles";
 import { validateUpdateUser } from "./validateUpdateUser";
 import { getCart } from "../request/cart";
 import validateCreateProfessional from "./validateCreateProfessional";
+import validateCreateService from "./validateCreateService";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAACot6qy29p4K1ra6oQ_1CGVjDTbe0dsw",
@@ -91,10 +92,10 @@ export const uploadServicePhoto = async (
   // devuelve la url del archivo
   const url = await getDownloadURL(archivoRef);
 
-  console.log(url);
+  // console.log(url);
 
   setCreationInfo({ ...creationInfo, imageService: url });
-  validateCreateProfessional({ ...creationInfo, imageService: url }, setErrors);
+  validateCreateService({ ...creationInfo, imageService: url }, setErrors);
 };
 
 export const uploadProfilePicture = async (

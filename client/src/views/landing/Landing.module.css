@@ -10,7 +10,7 @@
   height: 100vh;
   /* z-index: 0; */
 }
-p{
+p {
   color: var(--text);
 }
 
@@ -26,11 +26,11 @@ p{
   width: 40%;
   font-size: 70px;
 }
-.strong{
+.strong {
   display: flex;
   justify-content: flex-start;
 }
-.containerText{
+.containerText {
   width: 100%;
 }
 
@@ -46,6 +46,26 @@ p{
   color: var(--background);
   margin: 5px 0px;
 }
+
+.Login:hover {
+  background: var(--gradient);
+}
+.Login:hover p {
+  color: var(--text);
+}
+.Login p {
+  color: var(--background);
+}
+.Login p::after {
+  content: "\2192";
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.Login:hover p::after {
+  content: " \2192";
+  opacity: 1;
+}
+
 .beauty {
   display: flex;
   justify-content: flex-start;
@@ -53,190 +73,168 @@ p{
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-
-}
-.Login:hover {
-  background: var(--gradient);
-}
-.Login:hover p{
-  color: var(--text);
-}
-.Login p {
-  color: var(--background);
-}
-.Login p::after{
-  content: '\2192';
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.Login:hover p::after{
-  content: ' \2192'; 
-  opacity: 1;
 }
 
-.guest{
+.guest {
   background-color: transparent;
   color: var(--text);
-  transition:200ms;
-  border:0px;
+  transition: 200ms;
+  border: 0px;
   padding: 10px 35px 10px 35px;
   justify-content: center;
   font-size: large;
   transition: 400ms;
   cursor: pointer;
 }
-.guest:hover{
+.guest:hover {
   background-color: var(--accent2);
-  color:var(--text);
-  border:0px;
+  color: var(--text);
+  border: 0px;
   padding: 10px 35px 10px 35px;
   border-radius: 10px;
   transition: 400ms;
-
 }
 .guest p::after {
-  content: '\2192';
+  content: "\2192";
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
 .guest:hover p::after {
-  content: ' \2192'; 
+  content: " \2192";
   opacity: 1;
 }
-.containerButton{
+.containerButton {
   display: flex;
   flex-direction: column;
   width: 50%;
 }
 @media (max-width: 1340px) {
-  .Container{
-    
+  .Container {
     transition: 0.2s;
   }
-  .EmbraceYourBeauty{
+  .EmbraceYourBeauty {
     font-size: 43px;
     transition: 0.2s;
   }
-  .beauty{
+  .beauty {
     transition: 0.2s;
   }
-  .imagenPrincipal{
+  .imagenPrincipal {
     width: 50%;
     transition: 0.2s;
   }
-  .containerButton{
+  .containerButton {
     width: 70%;
     transition: 0.2s;
   }
 }
 
 @media (max-width: 1100px) {
-  .Container{
-    
+  .Container {
     transition: 0.2s;
   }
-  .EmbraceYourBeauty{
+  .EmbraceYourBeauty {
     font-size: 45px;
     transition: 0.2s;
   }
-  .beauty{
+  .beauty {
     transition: 0.2s;
   }
-  .imagenPrincipal{
+  .imagenPrincipal {
     width: 50%;
     transition: 0.2s;
   }
-  .containerButton{
+  .containerButton {
     width: 70%;
     transition: 0.2s;
   }
 }
 @media (max-width: 690px) {
-  .Container{
+  .Container {
     display: flex;
     flex-direction: column;
     transition: 0.2s;
   }
-  .EmbraceYourBeauty{
+  .EmbraceYourBeauty {
     font-size: 30px;
     transition: 0.2s;
   }
-  .beauty{
+  .beauty {
     font-size: 45px;
     transition: 0.2s;
   }
-  .imagenPrincipal{
+  .imagenPrincipal {
     width: 70%;
     transition: 0.2s;
   }
-  .containerButton{
+  .containerButton {
     width: 100%;
   }
 }
 @media (max-width: 540px) {
-  .Container{
+  .Container {
     display: flex;
     flex-direction: column;
     transition: 0.2s;
   }
-  .EmbraceYourBeauty{
+  .EmbraceYourBeauty {
     font-size: 30px;
     transition: 0.2s;
   }
-  .beauty{
+  .beauty {
     font-size: 45px;
     transition: 0.2s;
   }
-  .imagenPrincipal{
+  .imagenPrincipal {
     width: 70%;
     transition: 0.2s;
   }
 }
 @media (max-width: 460px) {
-  .Container{
+  .Container {
     display: flex;
     transition: 0.2s;
   }
-  .EmbraceYourBeauty{
+  .EmbraceYourBeauty {
     font-size: 24px;
     transition: 0.2s;
   }
-  .beauty{
+  .beauty {
     font-size: 30px;
     transition: 0.2s;
   }
-  .imagenPrincipal{
+  .imagenPrincipal {
     width: 60%;
     transition: 0.2s;
   }
 }
 
 @media (min-width: 3320px) {
-  .Container{
+  .Container {
     display: flex;
     transition: 0.2s;
   }
-  .EmbraceYourBeauty{
+  .EmbraceYourBeauty {
     font-size: 240px;
     transition: 0.2s;
   }
-  .beauty{
+  .beauty {
     font-size: 250px;
     transition: 0.2s;
   }
-  .imagenPrincipal{
+  .imagenPrincipal {
     width: 60%;
     transition: 0.2s;
   }
-  .containerButton{
+  .containerButton {
     width: 70%;
     transition: 0.2s;
   }
-  .Login{
+  .Login {
     font-size: 80px;
   }
-  .guest{
+  .guest {
     font-size: 80px;
   }
 }

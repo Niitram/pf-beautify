@@ -16,9 +16,7 @@ export default function Checkout() {
   cart.length &&
     cart.forEach((element) => {
       total += (element.price - element.discount) * element.quantity;
-      console.log(element);
     });
-
   return (
     <div className={styles.container}>
       <div className={styles.aux}>

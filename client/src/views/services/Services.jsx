@@ -55,13 +55,14 @@ function Services({ handleLoginClick }) {
           Reserve now
         </button>
       </div>
+      <h3 className={styles.titleH3}>Our services</h3>
       <div ref={servicesRef} className={styles.containerCards}>
         {allServices &&
           allServices.map((service) => {
             return <CardService key={service.id} service={service} />;
           })}
       </div>
-      <h3 className={styles.titleH3}>Our services</h3>
+
       <Divider sx={{ mt: 5 }} />
       <div className={styles.imageFixed}>
         <img className={styles.image} src={imgLogo} alt="Logo Beautify" />
