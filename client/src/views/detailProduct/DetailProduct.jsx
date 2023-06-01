@@ -35,6 +35,7 @@ function DetailProduct({ handleLoginClick }) {
   const [userFavorites, setUserFavorites] = useState([]);
 
   const handleQuantity = (event) => {
+
     setQuantity(Number(event.target.value));
     //Se controla que la cantidad ingresada no sea mayor a la cantidad de stock disponible
     if (Number(event.target.value) > stock) {
@@ -118,8 +119,12 @@ function DetailProduct({ handleLoginClick }) {
     } catch (error) {
       console.log(error.message);
     }
-    return setProduct({});
+    return () => {
+      setProduct({});
+      setQuantity(1);
+    }
   }, [id]);
+  
   const {
     name,
     image,
@@ -171,12 +176,12 @@ function DetailProduct({ handleLoginClick }) {
           )}
           <div className={styles.descripcionProduct}>
             {price ? (
-              <h3 className={styles.descuento}>${price}</h3>
+              <h3 className={styles.descuento}>${Number(price).toFixed(2)}</h3>
             ) : (
               <Skeleton />
             )}
             {price ? (
-              <h3 className={styles.precio}> ${price - discount} </h3>
+              <h3 className={styles.precio}> ${Number(price - discount).toFixed(2)} </h3>
             ) : (
               <Skeleton />
             )}
@@ -198,10 +203,12 @@ function DetailProduct({ handleLoginClick }) {
             <input
               className={styles.inputCantidad}
               onChange={handleQuantity}
-              type="number"
-              min="1"
+              disabled={stock==0}
+              type="text"
+              min="0"
               max={stock}
-              defaultValue="1"
+              defaultValue={!stock?"":"1"}
+              pattern="^[0-9]+"
             />
             {errorQuantity && (
               <span>Error: max quantity available {stock}</span>
@@ -212,6 +219,7 @@ function DetailProduct({ handleLoginClick }) {
               onClick={handleAddToCart}
               name="buyNow"
               className={styles.btnShopNow}
+              disabled={!stock}
               // type="submit"
             >
               Buy now
@@ -223,6 +231,7 @@ function DetailProduct({ handleLoginClick }) {
                 onClick={handleAddToCart}
                 name="addToCart"
                 className={styles.addCart}
+                disabled={!stock}
               >
                 <ShoppingCartOutlinedIcon /> Add to cart
               </button>
