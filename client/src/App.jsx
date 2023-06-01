@@ -160,17 +160,7 @@ function App() {
       {locationNow.pathname !== "/" &&
       locationNow.pathname !== "/loading" &&
       locationNow.pathname !== "/checkout" &&
-      (locationNow.pathname == "/dashboardAdmin" ||
-        locationNow.pathname == "/dashboardAdmin" ||
-        locationNow.pathname == "/dashboardAdmin/clients" ||
-        locationNow.pathname == "/dashboardAdmin/appointments" ||
-        locationNow.pathname == "/dashboardAdmin/newProduct" ||
-        locationNow.pathname == "/dashboardAdmin/services_control" ||
-        locationNow.pathname == "/dashboardAdmin/products_control/:id" ||
-        locationNow.pathname == "/dashboardAdmin/newProfessional" ||
-        locationNow.pathname == "/dashboardAdmin/products_control" ||
-        locationNow.pathname == "/dashboardAdmin/newProduct" ||
-        locationNow.pathname == "/dashboardAdmin/professionals") ? (
+      locationNow.pathname.includes("/dashboardAdmin") ? (
         <NavAdmin setLogout={setLogout} />
       ) : (
         locationNow.pathname !== "/" &&

@@ -3,6 +3,40 @@
   width: 100%;
   height: 92vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.Login {
+  background-color: var(--accent1);
+  border: none;
+  font-family: "Playfair Display", serif;
+  font-size: large;
+  border-radius: 5px;
+  padding: 10px 35px 10px 35px;
+  cursor: pointer;
+  transition: 200ms;
+  color: var(--background);
+  margin: 5px 0px;
+  /* margin-bottom: 1em; */
+}
+
+.Login:hover {
+  background: var(--gradient);
+}
+.Login:hover p {
+  color: var(--text);
+}
+.Login p {
+  color: var(--background);
+}
+.Login p::after {
+  content: "\2192";
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.Login:hover p::after {
+  content: " \2192";
+  opacity: 1;
 }
