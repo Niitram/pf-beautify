@@ -2,6 +2,7 @@
   position: absolute;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   width: 100%;
   font-size: 60px;
@@ -23,7 +24,7 @@ p {
   justify-content: center;
   margin-left: 12%;
   text-align: justify;
-  width: 40%;
+  width:fit-content;
   font-size: 70px;
 }
 .strong {
@@ -31,7 +32,10 @@ p {
   justify-content: flex-start;
 }
 .containerText {
-  width: 100%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* flex-wrap: wrap; */
+  width: fit-content;
 }
 
 .Login {
@@ -107,7 +111,12 @@ p {
 .containerButton {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  font-size: 1rem;
+  width: 100%;
+}
+.containerButton  > button{
+  font-size: 1rem;
+  width:fit-content
 }
 @media (max-width: 1340px) {
   .Container {
@@ -124,10 +133,7 @@ p {
     width: 50%;
     transition: 0.2s;
   }
-  .containerButton {
-    width: 70%;
-    transition: 0.2s;
-  }
+ 
 }
 
 @media (max-width: 1100px) {
@@ -145,10 +151,7 @@ p {
     width: 50%;
     transition: 0.2s;
   }
-  .containerButton {
-    width: 70%;
-    transition: 0.2s;
-  }
+
 }
 @media (max-width: 690px) {
   .Container {
@@ -157,6 +160,7 @@ p {
     transition: 0.2s;
   }
   .EmbraceYourBeauty {
+    margin-top: 2rem;
     font-size: 30px;
     transition: 0.2s;
   }
@@ -168,9 +172,7 @@ p {
     width: 70%;
     transition: 0.2s;
   }
-  .containerButton {
-    width: 100%;
-  }
+ 
 }
 @media (max-width: 540px) {
   .Container {
@@ -212,7 +214,7 @@ p {
 
 @media (min-width: 3320px) {
   .Container {
-    display: flex;
+    /* display: flex; */
     transition: 0.2s;
   }
   .EmbraceYourBeauty {
@@ -227,14 +229,20 @@ p {
     width: 60%;
     transition: 0.2s;
   }
-  .containerButton {
-    width: 70%;
-    transition: 0.2s;
-  }
+  
   .Login {
     font-size: 80px;
   }
   .guest {
     font-size: 80px;
+  }
+}
+@media (max-width: 400px) {
+  .container{
+    justify-content: center;
+  }
+  .containerButton > button {
+    font-size: 1rem;
+    width: fit-content;
   }
 }
