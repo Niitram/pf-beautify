@@ -41,20 +41,21 @@ import Clients from "./views/clients/Clients";
 import Appointments from "./views/appointments/Appointments";
 import ServicesControl from "./views/Services Control/ServicesControl";
 import Professionals from "./views/Professionals/Professionals";
-import ContactForm from "./views/ContactForm/contactForm";
+import ContactForm from "./views/contactForm/contactForm";
 import FooterAll from "./components/footerAll/FooterAll";
 import NotFound from "./components/notFound/NotFound";
-import DetailService from "./views/detailService/detailService";
+import DetailService from "./views/detailService/DetailService";
 import ProductsAdmin from "./views/ProductsAdmin/ProductsAdmin";
 import ProductDetailAdmin from "./views/ProductDetailAdmin/ProductsDetailAdmin";
 import UserHistory from "./views/userHistory/UserHistory";
-import NewProfessional from "./views/newProfessional/newProfessional";
+import NewProfessional from "./views/newProfessional/NewProfessional";
 
-import CheckoutAppointment from "./views/checkoutAppointment/checkoutAppointment";
+import CheckoutAppointment from "./views/checkoutAppointment/CheckoutAppointment";
 import AppointmentSuccess from "./views/appointmentSuccess/AppointmentSuccess";
 
 import NavAdmin from "./components/navAdmin/NavAdmin";
 import Sales from "./views/Sales/Sales";
+
 
 //Para deploy
 /* import axios from "axios"; */
