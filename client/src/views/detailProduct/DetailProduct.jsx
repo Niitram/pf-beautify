@@ -35,6 +35,7 @@ function DetailProduct({ handleLoginClick }) {
   const [userFavorites, setUserFavorites] = useState([]);
 
   const handleQuantity = (event) => {
+
     setQuantity(Number(event.target.value));
     //Se controla que la cantidad ingresada no sea mayor a la cantidad de stock disponible
     if (Number(event.target.value) > stock) {
@@ -197,10 +198,11 @@ function DetailProduct({ handleLoginClick }) {
               className={styles.inputCantidad}
               onChange={handleQuantity}
               disabled={stock==0}
-              type="number"
+              type="text"
               min="0"
               max={stock}
               defaultValue={!stock?"":"1"}
+              pattern="^[0-9]+"
             />
             {errorQuantity && (
               <span>Error: max quantity available {stock}</span>
