@@ -33,8 +33,17 @@ function DetailProduct({ handleLoginClick }) {
   const [addedFavorite, setAddedFavorite] = useToggle(false);
   const [removedFavorite, setRemovedFavorite] = useToggle(false);
   const [userFavorites, setUserFavorites] = useState([]);
+  const [errorInput, setErrorInput] = useState({
+    tittle: "",
+  });
 
   const handleQuantity = (event) => {
+    const regexNumber = /^\d+$/;
+    if (!regexNumber.test(event.target.value)) {
+      setErrorInput({ ...errorInput, tittle: "Invalid number" });
+    } else {
+      setErrorInput({ ...errorInput, tittle: "" });
+    }
 
     setQuantity(Number(event.target.value));
     //Se controla que la cantidad ingresada no sea mayor a la cantidad de stock disponible
@@ -122,9 +131,9 @@ function DetailProduct({ handleLoginClick }) {
     return () => {
       setProduct({});
       setQuantity(1);
-    }
+    };
   }, [id]);
-  
+
   const {
     name,
     image,
@@ -181,7 +190,10 @@ function DetailProduct({ handleLoginClick }) {
               <Skeleton />
             )}
             {price ? (
-              <h3 className={styles.precio}> ${Number(price - discount).toFixed(2)} </h3>
+              <h3 className={styles.precio}>
+                {" "}
+                ${Number(price - discount).toFixed(2)}{" "}
+              </h3>
             ) : (
               <Skeleton />
             )}
@@ -203,15 +215,21 @@ function DetailProduct({ handleLoginClick }) {
             <input
               className={styles.inputCantidad}
               onChange={handleQuantity}
-              disabled={stock==0}
-              type="text"
+              disabled={stock == 0}
+              type="number"
               min="0"
               max={stock}
-              defaultValue={!stock?"":"1"}
-              pattern="^[0-9]+"
+              defaultValue={!stock ? "" : "1"}
             />
             {errorQuantity && (
-              <span>Error: max quantity available {stock}</span>
+              <span style={{ color: "red", fontWeight: "500" }}>
+                Error: max quantity available {stock}
+              </span>
+            )}
+            {errorInput && (
+              <span style={{ color: "red", fontWeight: "500" }}>
+                {errorInput.tittle}
+              </span>
             )}
             <label className={styles.shopMax}>Max {stock}</label>
             {/* <Link to="/cart"> */}
@@ -219,7 +237,7 @@ function DetailProduct({ handleLoginClick }) {
               onClick={handleAddToCart}
               name="buyNow"
               className={styles.btnShopNow}
-              disabled={!stock}
+              disabled={!stock || errorInput.tittle}
               // type="submit"
             >
               Buy now
@@ -231,7 +249,7 @@ function DetailProduct({ handleLoginClick }) {
                 onClick={handleAddToCart}
                 name="addToCart"
                 className={styles.addCart}
-                disabled={!stock}
+                disabled={!stock || errorInput.tittle}
               >
                 <ShoppingCartOutlinedIcon /> Add to cart
               </button>
