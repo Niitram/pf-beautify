@@ -87,7 +87,7 @@ export const Resumen = () => {
             <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>$</Avatar>
 
             <div className={styles.detailsDetails}>
-              <h2>{numProfesionals}</h2>
+              <h2 className={styles.nombreh2}>{numProfesionals}</h2>
               <span className={styles.nombreDetail}>Profesionals</span>
             </div>
           </div>
@@ -95,7 +95,7 @@ export const Resumen = () => {
             <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>C</Avatar>
 
             <div className={styles.detailsDetails}>
-              <h2>{numClientes}</h2>
+              <h2 className={styles.nombreh2}>{numClientes}</h2>
               <span className={styles.nombreDetail}>N° Clients</span>
             </div>
           </div>
@@ -103,7 +103,7 @@ export const Resumen = () => {
             <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>P</Avatar>
 
             <div className={styles.detailsDetails}>
-              <h2>{numProductos}</h2>
+              <h2 className={styles.nombreh2}>{numProductos}</h2>
               <span className={styles.nombreDetail}>N° Products</span>
             </div>
           </div>
@@ -111,7 +111,7 @@ export const Resumen = () => {
             <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>S</Avatar>
 
             <div className={styles.detailsDetails}>
-              <h2>{numServices}</h2>
+              <h2 className={styles.nombreh2}>{numServices}</h2>
               <span className={styles.nombreDetail}>N° Services</span>
             </div>
           </div>
@@ -119,7 +119,7 @@ export const Resumen = () => {
             <Avatar sx={{ bgcolor: rgbToHex(colorRgb) }}>R</Avatar>
 
             <div className={styles.detailsDetails}>
-              <h2>{numAppointments}</h2>
+              <h2 className={styles.nombreh2}>{numAppointments}</h2>
               <span className={styles.nombreDetail}>N° Appointments</span>
             </div>
           </div>
