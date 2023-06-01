@@ -72,19 +72,25 @@ export default function NewProfessional() {
 
   return (
     <div className={styles.container}>
-      <FormCreateProfessional
-        creationInfo={creationInfo}
-        setCreationInfo={setCreationInfo}
-        errors={errors}
-        setErrors={setErrors}
-      />
-      <FormCreateService
-        creationInfo={creationInfo}
-        setCreationInfo={setCreationInfo}
-        errors={errors}
-        setErrors={setErrors}
-      />
-      <button type="submit" onClick={(e) => handleClickSubmit(e)}>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <FormCreateProfessional
+          creationInfo={creationInfo}
+          setCreationInfo={setCreationInfo}
+          errors={errors}
+          setErrors={setErrors}
+        />
+        <FormCreateService
+          creationInfo={creationInfo}
+          setCreationInfo={setCreationInfo}
+          errors={errors}
+          setErrors={setErrors}
+        />
+      </div>
+      <button
+        type="submit"
+        onClick={(e) => handleClickSubmit(e)}
+        className={styles.Login}
+      >
         submit
       </button>
     </div>

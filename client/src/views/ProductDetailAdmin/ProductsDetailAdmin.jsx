@@ -13,6 +13,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import filterEmpty from "../../utils/FilterEmptyProps";
 import axios from "axios";
 import { getAllProducts } from "../../redux/actions";
+import { validateUpdateProduct } from "../../utils/validateUpdateProduct";
 
 export default function ProductDetailAdmin() {
   const { id } = useParams();
@@ -26,6 +27,8 @@ export default function ProductDetailAdmin() {
 
   const handleClick = async () => {
     if (editMode) {
+      if (errors.name && errors.stock && errors.price && errors.discount)
+        return;
       const modifiedProduct = filterEmpty(editedData);
       await updateProduct(id, modifiedProduct);
       getAllProducts(await getProducts().data);
@@ -42,11 +45,20 @@ export default function ProductDetailAdmin() {
     price: "",
     discount: "",
   });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    stock: "",
+    price: "",
+    discount: "",
+  });
+
   const handleChange = (e) => {
     e.preventDefault();
     const property = e.target.name;
     const value = e.target.value;
     setEditedData({ ...editedData, [property]: value });
+    validateUpdateProduct({ ...editedData, [property]: value }, setErrors);
   };
 
   return (
@@ -62,13 +74,27 @@ export default function ProductDetailAdmin() {
         <div className={styles.titulo}>
           <h1>Product #{product.id}</h1>
           {editMode ? (
-            <input
-              type="text"
-              placeholder={product.name}
-              name="name"
-              value={editedData.name}
-              onChange={(e) => handleChange(e)}
-            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <input
+                type="text"
+                placeholder={product.name}
+                name="name"
+                value={editedData.name}
+                onChange={(e) => handleChange(e)}
+              />
+              <span
+                style={errors.name ? { opacity: 1 } : { opacity: 0 }}
+                className={styles.error}
+              >
+                Invalid
+              </span>
+            </div>
           ) : (
             <h3>{product.name}</h3>
           )}
@@ -77,13 +103,28 @@ export default function ProductDetailAdmin() {
           <div className={styles.dataImportante}>
             <h1>Stock</h1>
             {editMode ? (
-              <input
-                type="number"
-                placeholder={product.stock}
-                name="stock"
-                value={editedData.stock}
-                onChange={(e) => handleChange(e)}
-              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <input
+                  type="number"
+                  step={1}
+                  placeholder={product.stock}
+                  name="stock"
+                  value={editedData.stock}
+                  onChange={(e) => handleChange(e)}
+                />
+                <span
+                  style={errors.stock ? { opacity: 1 } : { opacity: 0 }}
+                  className={styles.error}
+                >
+                  Invalid
+                </span>
+              </div>
             ) : (
               <h3
                 style={
@@ -97,13 +138,27 @@ export default function ProductDetailAdmin() {
           <div className={styles.dataImportante}>
             <h1>Price</h1>
             {editMode ? (
-              <input
-                type="text"
-                placeholder={product.price}
-                name="price"
-                value={editedData.price}
-                onChange={(e) => handleChange(e)}
-              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder={product.price}
+                  name="price"
+                  value={editedData.price}
+                  onChange={(e) => handleChange(e)}
+                />
+                <span
+                  style={errors.price ? { opacity: 1 } : { opacity: 0 }}
+                  className={styles.error}
+                >
+                  Invalid
+                </span>
+              </div>
             ) : (
               <h3>${product.price}</h3>
             )}
@@ -113,13 +168,29 @@ export default function ProductDetailAdmin() {
           <div className={styles.otraData}>
             <h1>Discount</h1>
             {editMode ? (
-              <input
-                type="text"
-                placeholder={product.discount ? `${product.discount}%` : "none"}
-                name="discount"
-                value={editedData.discount}
-                onChange={(e) => handleChange(e)}
-              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder={
+                    product.discount ? `${product.discount}%` : "none"
+                  }
+                  name="discount"
+                  value={editedData.discount}
+                  onChange={(e) => handleChange(e)}
+                />
+                <span
+                  style={errors.discount ? { opacity: 1 } : { opacity: 0 }}
+                  className={styles.error}
+                >
+                  Invalid
+                </span>
+              </div>
             ) : (
               <h3>{product.discount ? `${product.discount}%` : "none"}</h3>
             )}

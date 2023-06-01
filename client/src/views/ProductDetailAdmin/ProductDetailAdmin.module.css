@@ -1,7 +1,7 @@
 .container {
   background-color: var(--background);
   width: 100%;
-  height: 120vh;
+  height: 150vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,7 +67,9 @@
   border-radius: 10px;
   border: 0px;
   width: 60%;
+  padding: 5px;
 }
-.container input ::placeholder {
+.container input::placeholder {
   align-self: center;
+  padding: 5px;
 }
