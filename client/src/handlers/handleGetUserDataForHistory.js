@@ -61,6 +61,7 @@ const setUserInfo = async (setUserData, setShops, setAppointments) => {
     userDataFromStorage.id
   );
   const dbAppointments = dataDbAppointments.data;
+  // if (dbAppointments.length) dbAppointments[0].date = "2023-05-28 asd";
 
   const optimizedAppointments = dbAppointments.map(
     ({ Profesional, Service, date, hour, id, paid }) => {

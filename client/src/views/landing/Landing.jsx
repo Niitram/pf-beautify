@@ -23,7 +23,7 @@ export default function Landing({ handleLoginClick }) {
             }}
             className={styles.Login}
           >
-            <p>Continue</p>
+            <p>Login</p>
           </button>
           <button
             onClick={(e) => {
