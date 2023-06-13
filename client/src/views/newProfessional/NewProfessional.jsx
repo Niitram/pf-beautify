@@ -35,14 +35,14 @@ export default function NewProfessional() {
   const handleClickSubmit = (e) => {
     e.preventDefault();
     if (
-      errors.fullname === "" ||
-      errors.mail === "" ||
-      errors.direction === "" ||
-      errors.imageProfessional === "" ||
-      errors.name === "" ||
-      errors.description === "" ||
-      errors.price === "" ||
-      errors.imageService === "" ||
+      errors.fullname === "" &&
+      errors.mail === "" &&
+      errors.direction === "" &&
+      errors.imageProfessional === "" &&
+      errors.name === "" &&
+      errors.description === "" &&
+      errors.price === "" &&
+      errors.imageService === "" &&
       errors.duration === ""
     ) {
       const aux = {
@@ -55,11 +55,22 @@ export default function NewProfessional() {
           description: creationInfo.description,
           price: Number(creationInfo.price),
           image: creationInfo.imageService,
-          duration: creationInfo.duration,
+          duration: `${creationInfo.duration}hs`,
         },
       };
       // console.log(aux);
       createProfessional(aux);
+      setCreationInfo({
+        fullname: "",
+        mail: "",
+        direction: "",
+        imageProfessional: "",
+        name: "",
+        description: "",
+        price: "",
+        imageService: "",
+        duration: "",
+      });
     } else {
       dispatch(
         showError({
