@@ -21,6 +21,10 @@ module.exports = (sequelize) => {
       returnUrl: {
         allowNull: false,
         type: DataTypes.STRING
+      },
+      appointmentData: {
+        allowNull: true,
+        type: DataTypes.JSON
       }
     },
     { timestamps: false }

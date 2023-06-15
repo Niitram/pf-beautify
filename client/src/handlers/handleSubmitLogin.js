@@ -1,6 +1,6 @@
 import { createUserWithMail, singUpWithMail } from "../utils/firebaseConfig";
 import { createNewClient, getClient } from "../request/clients";
-import { getCart} from "../request/cart"
+import { getCart } from "../request/cart";
 import { setUserInfoAction, showError } from "../redux/actions";
 import { ADMIN, CLIENT } from "../utils/roles";
 
@@ -48,7 +48,10 @@ const handleSubmitLogin = async (
         email: createUser.email,
         rol: CLIENT,
       };
-      if (userData.email === "beautifyfinalproyect@gmail.com")
+      if (
+        userData.email === "beautifyfinalproyect@gmail.com" ||
+        userData.email === "BeautifyStaff@hotmail.com"
+      )
         userData.rol = ADMIN;
 
       //Guarda el el local la info del usuario creado e inicializa el carrito
@@ -62,7 +65,19 @@ const handleSubmitLogin = async (
 
       // trae la info del usuario y de su carrito de la base de datos
       const userCreated = await getClient(email);
-      const userCart = await getCart(userCreated.data.id);
+      // const cartSaved = await getCart(userCreated.data.id); //*el back si no tiene un carrito devuelve undefined
+      // const userCart = !cartSaved ? [] : cartSaved.data
+
+      // si el usuario está baneado lo manda pa su casa
+      if (userCreated.data.banned) {
+        navigate("/");
+        return dispatch(
+          showError({
+            tittle: "Banned-user",
+            message: "Sory, looks like you've been banned",
+          })
+        );
+      }
 
       const userData = {
         id: userCreated.data.id,
@@ -72,15 +87,25 @@ const handleSubmitLogin = async (
       };
 
       //Guarda el el local la info del usuario y del carrito
-      if (userData.email === "beautifyfinalproyect@gmail.com")
+      if (
+        userData.email === "beautifyfinalproyect@gmail.com" ||
+        userData.email === "BeautifyStaff@hotmail.com"
+      ) {
         userData.rol = ADMIN;
+      }
 
       localStorage.setItem("userData", JSON.stringify(userData));
-      localStorage.setItem("cart", JSON.stringify(userCart));
+      const cartSaved = await getCart(userData.id);
+      localStorage.setItem("cart", JSON.stringify(cartSaved.data));
 
       // envía esa info del usuario al estado global
       dispatch(setUserInfoAction(userData));
     }
+    if (
+      email === "beautifyfinalproyect@gmail.com" ||
+      email === "BeautifyStaff@hotmail.com"
+    )
+      return navigate("/dashboardAdmin");
     if (oldLocation === "/") navigate("/home");
     else navigate(oldLocation);
   } catch (error) {

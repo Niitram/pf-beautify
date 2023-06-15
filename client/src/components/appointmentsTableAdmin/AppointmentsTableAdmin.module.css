@@ -1,0 +1,20 @@
+.container {
+  display:flex;
+  justify-content: center;
+  width:100%;
+  height:fit-content;
+  padding:2rem 2.5rem;
+}
+
+
+
+.container :global .MuiDataGrid-columnHeaders {
+  background-color: var(--accent1);
+}
+.container :global .MuiDataGrid-columnHeaderTitle {
+  font-weight: bolder;
+}
+.container :global .MuiDataGrid-root .MuiDataGrid-row:hover {
+  background-color: #f5b7b133;
+  cursor: pointer;
+}

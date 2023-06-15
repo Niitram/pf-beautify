@@ -25,7 +25,7 @@ const getAllShopsDetails = async () => {
     const newDetail = {
       id: shopDetail.id,
       price: shopDetail.price,
-      count: shopDetail.price,
+      count: shopDetail.count,
       productId: shopDetail.Product.id,
       productName: shopDetail.Product.name,
     };

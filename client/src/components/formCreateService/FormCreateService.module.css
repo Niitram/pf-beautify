@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.containerForm {
+  margin-right: 1rem;
+}
+.serviceContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.textArea {
+  display: flex;
+  justify-content: start;
+  margin-left: 0px;
+  border: none;
+  border-bottom: 2px solid var(--text-alt);
+  width: 100%;
+  height: 5rem;
+  background-color: #f5b7b156;
+  border-radius: 5px;
+  resize: none;
+}
+.inputTexto {
+  display: flex;
+  justify-content: start;
+  margin-left: 0px;
+  border: none;
+  border-bottom: 2px solid var(--text-alt);
+  width: 100%;
+  height: 30px;
+  background-color: #f5b7b156;
+  border-radius: 5px;
+}
+.inputNumber {
+  display: flex;
+  justify-content: start;
+  margin-left: 0px;
+  border: none;
+  border-bottom: 2px solid var(--text-alt);
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #f5b7b156;
+}

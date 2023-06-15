@@ -29,10 +29,16 @@ router.get("/:id", profesionalGetIdValidation, async (req, res) => {
   }
 });
 
-router.post("/", profesionalPostValidation,  async (req, res) => {
+router.post("/", profesionalPostValidation, async (req, res) => {
   try {
-    const { fullname, mail, direction, image } = req.body;
-    const response = await postProfesional(fullname, mail, direction, image);
+    const { fullname, mail, direction, image, service } = req.body;
+    const response = await postProfesional(
+      fullname,
+      mail,
+      direction,
+      image,
+      service
+    );
     res.status(201).json(response);
   } catch (error) {
     res.status(500).json({ error: error.message });

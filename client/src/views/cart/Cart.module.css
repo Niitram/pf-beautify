@@ -11,11 +11,15 @@
 }
 .containerArticulos {
   position: relative;
-  width: 40%;
+  width: 70%;
   /* height: 150px; */
   height: fit-content;
   padding: 70px;
   /* border: 1px solid red; */
+}
+.imgAndDetail{ 
+  display: flex;
+  align-items: center;
 }
 .checkout {
   padding: 0.7rem 1rem;
@@ -34,10 +38,40 @@
   font-size: large;
   transition: 400ms ease-in-out;
 }
+.textBalance{
+  color: forestgreen;
+}
+.btnBalance{
+  padding: 0.7rem 1rem;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  margin: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--accent1);
+  border: 0px;
+  border-radius: 5px;
+  color: var(--background);
+  font-family: "Josefin Sans", sans-serif;
+  font-size: large;
+  transition: 400ms ease-in-out;
+}
+.btnBalance:hover {
+  color: var(--text);
+  background: var(--gradient);
+  transition: 400ms ease-in-out;
+  cursor: pointer;
+}
 .checkout:hover {
   color: var(--text);
   background: var(--gradient);
   transition: 400ms ease-in-out;
+  cursor: pointer;
+}
+.errorBalance{
+  color: brown;
 }
 .continuarComprando {
   display: flex;
@@ -71,10 +105,11 @@
 
 .articulo {
   display: flex;
+  flex-wrap: wrap;
   gap: 30px;
   width: 100%;
   height: 50%;
-  padding: 10px 0px;
+  padding: 10px;
   justify-content: space-between;
   align-items: center;
   border-color: black;
@@ -82,16 +117,18 @@
   background-color: var(--accent2);
   margin-top: 1.5rem;
 }
-.imagenArticulo img {
+.imagenArticulo {
   width: 5rem;
   border-radius: 5px;
-  margin-left: 1.5rem;
+  object-fit: cover;
+  object-position: center;
 }
 
 .detallesArticulo {
   display: flex;
   align-items: start;
   flex-direction: column;
+  padding-left: 10px;
 }
 .nameProduct {
   font-size: 12px;
@@ -106,27 +143,37 @@
 }
 .btnupdown {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .precio {
   font-family: "Poppins";
   font-size: small;
-  width: 3rem;
+  width: 4rem;
 }
 .cantidad {
   display: flex;
   align-items: center;
   flex-direction: row;
+  margin-right: 10px;
+  margin-left: 10px;
   /* background-color: red; */
 }
 .btnCart {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  font-size:x-large;
+  padding: 0px 10px;
 }
 .btnCart:disabled {
   cursor: auto;
   color: transparent;
+}
+.btnCart:not([disabled]):hover {
+  background-color: var(--accent1);
+  border-radius: 100%;
 }
 .btnDelete {
   height: 25px;
@@ -142,6 +189,9 @@
 }
 .cantidadProduct {
   padding: 5px;
+  font-family: "Poppins";
+  font-size: small;
+  width: 4rem;
 }
 .cantidad label {
   margin-right: 20%;
@@ -159,4 +209,55 @@
   display: flex;
   align-items: center;
   margin-right: 15px;
+  gap: 20px;
+}
+
+
+@media (max-width: 818px) {
+  .containerArticulos {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    padding: 90px;
+
+  }
+  .articulo {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+  .imgAndDetail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .detallesArticulo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .descriptionProduct {
+    font-size: 9px;
+    font-family: "Nunito";
+    width: 15rem;
+    text-align: center;
+  }
+  .btnupdown {
+    display: flex;
+    flex-direction: row;
+    gap: 1%;
+  }
+  .botonesArticulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0px;
+  }
+  .precio {
+    font-family: "Poppins";
+    font-size: small;
+    width: 4rem;
+  }
+  
 }

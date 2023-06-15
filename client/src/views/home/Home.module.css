@@ -67,6 +67,11 @@
 .btnIzquierda,
 .btnDerecha{
     width: 5%;
+    height: 500px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sliderScreen{
@@ -86,3 +91,24 @@
     margin-bottom: -5px;
 }
 
+@media (max-width: 1000px) {
+    .btnIzquierda,
+.btnDerecha{
+    height: 400px;
+}
+}
+@media (max-width: 600px) {
+    .btnIzquierda,
+.btnDerecha{
+    height: 220px;
+}
+}
+
+@media (max-width: 360px) {
+    .btnIzquierda,
+.btnDerecha{
+    width: 5%;
+    margin: 8px;
+    height: 120px;
+}
+}

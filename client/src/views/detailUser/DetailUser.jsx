@@ -17,6 +17,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import AlertFavorite from "../../components/alertFavorite/AlertFavorite";
 import { getFavorites } from "../../request/favorites";
+import getProductsCategorie from "../../utils/getProductsCategorie";
+import { getCart, postCart } from "../../request/cart";
 
 function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
   const globalUserData = useSelector((state) => state.userData);
@@ -36,13 +38,27 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       adress: userFromDb.adress,
       phone: userFromDb.phone,
       image: userFromDb.image,
+      balance: userFromDb.balance,
     });
   };
 
   const onLogout = async () => {
     setLogout(false);
-    // mandar al back la info del carrito
-    await getProductById(1); // esta petición es cualquier cosa, pero necesito el await. Va a ser reemplazada por la petición que guarda el carrito
+    // trae información del carrito y el id de usuario del local
+    const localCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const userId = JSON.parse(localStorage.getItem("userData")).id;
+
+    if (localCart.length) {
+      // acomoda la info del cart local para mandar al back sólo id y quantity de cada producto
+      const products = localCart.map((product) => ({
+        id: product.id,
+        quantity: product.quantity,
+      }));
+      // mandar al back la info del carrito
+      await postCart(userId, { products });
+    } else await postCart(userId, { products: [] });
+
+    // await getProductById(1); // esta petición es cualquier cosa, pero necesito el await. Va a ser reemplazada por la petición que guarda el carrito
     localStorage.clear();
     handleDetailClick();
     dispatch(logout());
@@ -67,6 +83,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
     adress: "",
     phone: "",
     image: "",
+    balance: "",
   };
 
   const [userData, setUserData] = useState(initialState);
@@ -106,6 +123,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       adress: userFromDb.adress,
       phone: userFromDb.phone,
       image: userFromDb.image,
+      balance: userFromDb.balance,
     });
     setVisibleInputs(initialState);
     setUpdatedData(initialState);
@@ -130,6 +148,11 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
       ...visibleInputs,
       [property]: !visibleInputs[property],
     });
+    setUpdatedData({
+      ...updatedData,
+      [property]: userData[property],
+    });
+
     if (close) {
       setUpdatedData({ ...updatedData, [property]: "" });
       setErrors({ ...errors, [property]: "" });
@@ -180,6 +203,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
               userData={userData}
               errors={errors}
               handleSubmit={handleSubmit}
+              updatedData={updatedData}
             />
 
             <div className={styles.emailPropertys}>
@@ -205,6 +229,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
               userData={userData}
               errors={errors}
               handleSubmit={handleSubmit}
+              updatedData={updatedData}
             />
 
             <Adress
@@ -214,6 +239,7 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
               userData={userData}
               errors={errors}
               handleSubmit={handleSubmit}
+              updatedData={updatedData}
             />
 
             {anyUpdatedData() && (
@@ -225,6 +251,11 @@ function DetailUser({ setLogout, detailVisible, handleDetailClick }) {
                 Submit changes
               </button>
             )}
+
+            <h4 style={{ color: "#d14d72" }}>
+              Your credit: $
+              {userData.balance ? Math.abs(userData.balance.toFixed(2)) : 0}
+            </h4>
 
             <hr className={styles.hr} />
 

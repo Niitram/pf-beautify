@@ -1,11 +1,13 @@
 .container {
   background-color: var(--background);
   width: 100%;
-  height: 92vh;
+  height: 150vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 .card {
   background-color: #f5b7b14f;
@@ -28,7 +30,7 @@
   font-family: "Josefin Sans", sans-serif;
   height: 2rem;
   margin-top: 8px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   align-self: center;
   justify-self: center;
 }
@@ -52,5 +54,22 @@
   margin: 10px;
   height: 2rem;
   font-size: 16px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+}
+.editButton {
+  fill: var(--accent1);
+}
+.container input {
+  height: 2rem;
+  margin-top: 8px;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #f5b7b171;
+  border-radius: 10px;
+  border: 0px;
+  width: 60%;
+  padding: 5px;
+}
+.container input::placeholder {
+  align-self: center;
+  padding: 5px;
 }

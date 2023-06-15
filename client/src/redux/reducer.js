@@ -15,6 +15,8 @@ import {
   UNSET_FAVORITES,
   RESET_FILTERS_ORDER,
   GET_BACKUP_PRODUCTS,
+  ADD_APPOINTMENT,
+  ADD_ALL_PROFESSIONALS,
 } from "./actions";
 
 const initialState = {
@@ -30,6 +32,7 @@ const initialState = {
     email: null,
     rol: INVITED,
   },
+  appointment: {},
   errorState: {
     tittle: null,
     message: null,
@@ -78,8 +81,8 @@ const rootReducer = (state = initialState, action) => {
         category === "all"
           ? state.allProducts
           : state.allProducts.filter(
-              (product) => product.category === category
-            );
+            (product) => product.category === category
+          );
 
       return {
         ...state,
@@ -162,6 +165,18 @@ const rootReducer = (state = initialState, action) => {
         },
       };
 
+    // Appointments
+    case ADD_APPOINTMENT:
+      return {
+        ...state,
+        appointment: { ...action.payload }
+      };
+    // Professionals
+    case ADD_ALL_PROFESSIONALS:
+      return {
+        ...state,
+        allProfessionals: [...action.payload]
+      };
     // favorites
     case SET_FAVORITES:
       return {

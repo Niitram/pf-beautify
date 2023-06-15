@@ -10,3 +10,87 @@
   z-index: 4;
   text-decoration: none;
 }
+
+.LogOutBtn {
+  background-color: transparent;
+  color: var(--text);
+  transition: 200ms;
+  border: 0px;
+  padding: 10px 35px 10px 35px;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.LogOutBtn:hover {
+  background-color: var(--accent2);
+  color: var(--text);
+  border: 0px;
+  padding: 10px 35px 10px 35px;
+  border-radius: 10px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.botones {
+  display: flex;
+  flex-direction: row;
+ 
+}
+
+.mostrarmenu,
+.ocultarmenu {
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+  transition: 0.4s;
+}
+
+.check {
+  display: none;
+}
+@media (max-width: 818px) {
+  .mostrarmenu,
+  .ocultarmenu {
+    display: block;
+  }
+  .mostrarmenu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+ 
+  .botones {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: var(--background);
+    right: -100%;
+    top: 0;
+    text-align: center;
+    z-index: 100;
+    transition: 0.8s;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-top: 5%;
+    gap:0.5rem
+  }
+  .ocultarmenu {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+  }
+  .check:checked ~ .botones {
+    right: -15px;
+  }
+  .LogOutBtn{
+    color:white;
+    background: var(--accent1);
+    width:fit-content;
+    border-radius:10px;
+  }
+  
+}

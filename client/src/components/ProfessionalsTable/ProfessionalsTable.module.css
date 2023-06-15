@@ -1,0 +1,16 @@
+.container {
+  width: fit-content;
+  height: fit-content;
+  padding: 2rem;
+  overflow-y: scroll;
+}
+.container :global .MuiDataGrid-columnHeaders {
+  background-color: var(--accent1);
+}
+.container :global .MuiDataGrid-columnHeaderTitle {
+  font-weight: bolder;
+}
+.container :global .MuiDataGrid-root .MuiDataGrid-row:hover {
+  background-color: #f5b7b133;
+  cursor: pointer;
+}

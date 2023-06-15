@@ -33,8 +33,18 @@ function DetailProduct({ handleLoginClick }) {
   const [addedFavorite, setAddedFavorite] = useToggle(false);
   const [removedFavorite, setRemovedFavorite] = useToggle(false);
   const [userFavorites, setUserFavorites] = useState([]);
+  const [errorInput, setErrorInput] = useState({
+    tittle: "",
+  });
 
   const handleQuantity = (event) => {
+    const regexNumber = /^\d+$/;
+    if (!regexNumber.test(event.target.value)) {
+      setErrorInput({ ...errorInput, tittle: "Invalid number" });
+    } else {
+      setErrorInput({ ...errorInput, tittle: "" });
+    }
+
     setQuantity(Number(event.target.value));
     //Se controla que la cantidad ingresada no sea mayor a la cantidad de stock disponible
     if (Number(event.target.value) > stock) {
@@ -48,7 +58,7 @@ function DetailProduct({ handleLoginClick }) {
   const handleAddToCart = (e) => {
     if (errorQuantity) return;
     if (!userData.id) return handleLoginClick();
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cart = JSON.parse(localStorage.getItem("cart"));
     const productExist = cart.find((cartItem) => cartItem.id == product.id);
 
     if (productExist)
@@ -74,17 +84,17 @@ function DetailProduct({ handleLoginClick }) {
     else {
       setAddProduct(true);
       cart.push({
-        category: product.category,
+        // category: product.category,
         description: product.description,
         discount: product.discount,
         id: product.id,
         image: product.image,
         name: product.name,
         price: product.price,
-        rate: product.rate,
+        quantity: quantity,
+        // rate: product.rate,
         state: product.state,
         stock: product.stock,
-        quantity: quantity,
       });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -118,9 +128,22 @@ function DetailProduct({ handleLoginClick }) {
     } catch (error) {
       console.log(error.message);
     }
-    return setProduct({});
+    return () => {
+      setProduct({});
+      setQuantity(1);
+    };
   }, [id]);
-  const { name, image, description, price, stock, rate, discount } = product;
+
+  const {
+    name,
+    image,
+    description,
+    price,
+    stock,
+    rate,
+    discount,
+    comments,
+  } = product;
   return (
     <div className={styles.aux}>
       <div className={styles.container}>
@@ -132,11 +155,17 @@ function DetailProduct({ handleLoginClick }) {
           >
             <ArrowBackIosNewIcon />
           </button>
-          {image && (
+          {image ? (
             <ImageComponent
               src={image}
               alt={name}
               notFoundSrc={productDefault}
+            />
+          ) : (
+            <Skeleton
+              sx={{ height: 390, width: 390 }}
+              animation="wave"
+              variant="rectangular"
             />
           )}
         </div>
@@ -156,12 +185,15 @@ function DetailProduct({ handleLoginClick }) {
           )}
           <div className={styles.descripcionProduct}>
             {price ? (
-              <h3 className={styles.descuento}>${price}</h3>
+              <h3 className={styles.descuento}>${Number(price).toFixed(2)}</h3>
             ) : (
               <Skeleton />
             )}
             {price ? (
-              <h3 className={styles.precio}> ${price - discount} </h3>
+              <h3 className={styles.precio}>
+                {" "}
+                ${Number(price - discount).toFixed(2)}{" "}
+              </h3>
             ) : (
               <Skeleton />
             )}
@@ -183,13 +215,21 @@ function DetailProduct({ handleLoginClick }) {
             <input
               className={styles.inputCantidad}
               onChange={handleQuantity}
+              disabled={stock == 0}
               type="number"
-              min="1"
+              min="0"
               max={stock}
-              defaultValue="1"
+              defaultValue={!stock ? "" : "1"}
             />
             {errorQuantity && (
-              <span>Error: max quantity available {stock}</span>
+              <span style={{ color: "red", fontWeight: "500" }}>
+                Error: max quantity available {stock}
+              </span>
+            )}
+            {errorInput && (
+              <span style={{ color: "red", fontWeight: "500" }}>
+                {errorInput.tittle}
+              </span>
             )}
             <label className={styles.shopMax}>Max {stock}</label>
             {/* <Link to="/cart"> */}
@@ -197,6 +237,7 @@ function DetailProduct({ handleLoginClick }) {
               onClick={handleAddToCart}
               name="buyNow"
               className={styles.btnShopNow}
+              disabled={!stock || errorInput.tittle}
               // type="submit"
             >
               Buy now
@@ -208,6 +249,7 @@ function DetailProduct({ handleLoginClick }) {
                 onClick={handleAddToCart}
                 name="addToCart"
                 className={styles.addCart}
+                disabled={!stock || errorInput.tittle}
               >
                 <ShoppingCartOutlinedIcon /> Add to cart
               </button>
@@ -231,7 +273,7 @@ function DetailProduct({ handleLoginClick }) {
           isCategory={true}
         />
       )}
-      <Reviews rate={rate} />
+      <Reviews comments={comments} rate={rate} />
       {addProduct && (
         <AlertAddCart setAddProduct={setAddProduct} addProduct={addProduct} />
       )}

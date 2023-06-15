@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.containerForm {
+  margin-right: 10%;
+}
+
+.inputTexto {
+  display: flex;
+  justify-content: start;
+  margin-left: 0px;
+  border: none;
+  border-bottom: 2px solid var(--text-alt);
+  width: 100%;
+  height: 30px;
+  background-color: #f5b7b156;
+  border-radius: 5px;
+}
+.inputNumber {
+  display: flex;
+  justify-content: start;
+  margin-left: 0px;
+  border: none;
+  border-bottom: 2px solid var(--text-alt);
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #f5b7b156;
+}

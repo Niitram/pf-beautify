@@ -2,30 +2,34 @@
   {
     "profesionalId": 2,
     "clientId": 1,
-    "serviceId": 1,
-    "date": "2023-06-12",
-    "hour": "10:30"
+    "serviceId": 2,
+    "date": "2023-04-12",
+    "hour": "10:30",
+    "paid": true
   },
   {
     "profesionalId": 1,
     "clientId": 1,
-    "serviceId": 2,
+    "serviceId": 1,
     "date": "2023-07-12",
-    "hour": "10:30"
+    "hour": "10:30",
+    "paid": true
   },
   {
     "profesionalId": 3,
     "clientId": 1,
     "serviceId": 3,
     "date": "2023-06-13",
-    "hour": "10:30"
+    "hour": "10:30",
+    "paid": true
   },
   {
     "profesionalId": 1,
     "clientId": 2,
     "serviceId": 1,
     "date": "2023-06-12",
-    "hour": "9:30"
+    "hour": "9:30",
+    "paid": true
   },
   {
     "profesionalId": 1,

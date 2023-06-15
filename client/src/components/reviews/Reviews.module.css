@@ -16,6 +16,7 @@
 }
 .containerRateTitle{
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: flex-start;
     padding: 10px 30px;
@@ -43,7 +44,9 @@
     align-items: flex-start;
     gap: 20px;
 }
-
+.h4{
+    margin-bottom: 20px;
+}
 
 .comentsContainer{
     display: flex;

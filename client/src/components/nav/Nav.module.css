@@ -128,6 +128,7 @@
     flex-direction: column;
     justify-content: start;
     padding-top: 5%;
+    gap:0.5rem;
   }
   .ocultarmenu {
     position: absolute;

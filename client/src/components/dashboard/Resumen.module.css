@@ -1,0 +1,110 @@
+.detailsGlobal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: fit-content;
+}
+.contentProfe{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+.resumen_container{
+    padding: 0.5rem;
+    width: 100%;
+    height:auto;
+    background-color: var(--background);
+}
+.profile_admin{
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap:5px;
+    width:30%;
+    padding: 0.2rem;
+   
+
+}
+.detailsDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:0.5rem;
+    text-align: center;
+}
+.figure{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height:100%;
+    clip-path: circle(30% at 50% 50%);
+}
+.logo {
+    width: 100%;
+}
+.details {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 1rem;
+    align-items: center;
+    justify-items: start;
+    padding: 5px;
+  }
+.content_details{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 10px;
+    width: 250px;
+    padding:1.5rem;
+    border-radius: 10px;
+    box-shadow: 3px 6px 12px 1px rgba(0,0,0,0.61);
+    -webkit-box-shadow: 3px 6px 12px 1px rgba(0,0,0,0.61);
+    -moz-box-shadow: 3px 6px 12px 1px rgba(0,0,0,0.61); 
+}
+
+
+.names_details {
+    color: var(--text);
+    letter-spacing: 2px;
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 10px;
+}
+
+.nombreh2{
+    color: var(--text);
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 10px;
+    font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+    .detailsGlobal{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+        transition: 0.4s;
+    }
+    .profile_admin{
+        width:40%;
+    }
+    
+}
+@media (max-width: 630px) {
+    .profile_admin{
+        width:70%;
+    }
+    
+}
+@media (max-width: 360px) {
+    .profile_admin{
+        width:60%;
+    }
+    
+}

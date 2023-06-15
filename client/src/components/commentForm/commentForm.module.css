@@ -1,0 +1,79 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs {
+  justify-self: center;
+}
+
+.form input {
+  margin: 2% 0%;
+  height: 2rem;
+  width: 100%;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #f5b7b171;
+  border: 0px solid var(--text-alt);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.form textarea {
+  margin: 2% 0%;
+  height: 2rem;
+  width: 100%;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #f5b7b171;
+  border: 0px solid var(--text-alt);
+  border-radius: 10px;
+  height: 20vh;
+  width: 20vw;
+  padding: 5px;
+}
+
+.form input::placeholder {
+  padding-left: 5px;
+}
+
+.form textarea::placeholder {
+  padding-left: 5px;
+  padding-top: 10px;
+}
+
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+.inputError {
+  color: rgb(97, 3, 3);
+  position: absolute;
+  right: 5px;
+  top: 5px;
+
+  /* z-index: 1000000; */
+}
+
+.send {
+  background-color: var(--muted);
+  color: var(--text);
+}
+
+.send:hover:disabled {
+  background-color: var(--muted);
+  color: var(--text);
+  cursor: auto;
+}
+
+.commentDiv {
+  min-height: 20vh;
+  min-width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.commentDiv p {
+  font-size: medium;
+}
